@@ -138,6 +138,21 @@
                                     <label>Property ID</label>
                                     <input type="text" name="property_id" class="form-control filter-input" value="{{$property->property_id}}" placeholder="ZOAC25">
                                 </div>
+
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Tag:</label> <span class="text-danger">*</span>
+                                            <select name="tag[]" id="" class="form-control" multiple>
+                                                <option value="">Select</option>
+                                                @foreach($tags as $tag)
+                                                    <option value="{{$tag->id}}">{{$tag->tagTranslation->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('tag')
+                                            <p class="text-danger">{{$message}}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Property Price</label>

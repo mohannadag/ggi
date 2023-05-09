@@ -431,6 +431,32 @@ class HomePageController extends Controller
         return view('frontend.ivr-index',compact('properties','maxPrice','minPrice','propertyDetails', 'stories', 'tags','maxArea','minArea','country','city','agents','users','states','categories','propertyTranslation','propertyTranslationEnglish','image','locale','facilities','siteInfo','newses','popularTopics','headerImage', 'sliders', 'videos', 'testimonials', 'partners'));
     }
 
+    public function tag($tag, Request $request){
+        App::setLocale(Session::get('currentLocal'));
+        $tag = Tag::where('id', $tag)->first();
+        $props = Property::with(['propertyDetails', 'user', 'category.categoryTranslation', 'country.countryTranslation', 'state.stateTranslation', 'city.cityTranslation', 'propertyTranslation', 'image'])
+            ->where('moderation_status', 1)
+            ->where('status', 1)
+            ->orderBy('id', 'desc')
+            ->paginate(4);
+        $city = City::with('cityTranslation')->get()->keyBy('id');
+        $maxPrice = $props->max('price');
+        $minPrice = $props->min('price');
+        $propertyDetails = PropertyDetail::get()->keyBy('property_id');
+        $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
+        $maxArea = $propertyDetails->max('room_size');
+        $minArea = $propertyDetails->min('room_size');
+        $categories = Category::with('categoryTranslation')->where('status', 1)->get()->keyBy('id');
+        $properties = $this->_propertySearchModel->getData($request);
+        $popularTopics = BlogCategory::with('blogCategoryTranslation', 'blogs')->where('status', 1)->get()->keyBy('id');
+        $newses = Blog::with('blogTranslation', 'user')
+            ->where('tag', $tag->id)
+            ->where('status', 'approved')
+            ->orderBy('id', 'desc')
+            ->paginate(4);
+        $tags = Tag::with('tagTranslation', 'tagTranslationEnglish')->where('status', 1)->get();
+            return view('frontend.tags', compact('newses', 'tag','tags', 'props', 'city', 'maxPrice', 'minPrice','propertyDetails', 'states','maxArea', 'minArea', 'properties', 'popularTopics', 'categories'));
+    }
 
     public function about(Request $request)
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Image;
+use App\Models\Tag;
 use App\ViewModels\ICategoryTranslationModel;
 use App\ViewModels\ICityTranslationModel;
 use App\ViewModels\ICountryTranslationModel;
@@ -77,8 +78,9 @@ class PropertyController extends Controller
         $units = $this->_unitsTranslationModel->getByLocale();
         $packages = $this->_packageUserModel->getPackages();
         $countries = $this->_countryTranslationModel->getByLocale();
+        $tags = Tag::all();
         $currencies = $this->_currencyModel->getAllCurrencies();
-        return view('admin.properties.create',compact('currencies','categories','facilities','units','packages','countries'));
+        return view('admin.properties.create',compact('currencies','categories','facilities','units','packages','countries', 'tags'));
     }
 
     public function store(Request $request)
@@ -98,6 +100,7 @@ class PropertyController extends Controller
         $locale   = Session::get('currentLocal');
         $property = $this->_propertyModel->getById($id);
 
+        $tags = Tag::all();
         $propertyTranslation = $this->_propertyTranslationModel->getById($id);
         $user = auth()->user();
         $categories = $this->_categoryTranslationModel->getByLocale();
@@ -110,7 +113,7 @@ class PropertyController extends Controller
         $cities = $this->_cityTranslationModel->getByLocale();
         $currencies = $this->_currencyModel->getAllCurrencies();
 
-        return view('admin.properties.edit',compact('currencies','property','user','categories','facilities','units','package_user','packages','countries','states','cities','locale','propertyTranslation'));
+        return view('admin.properties.edit',compact('currencies','property','user','categories','facilities','units','package_user','packages','countries','states','cities','locale','propertyTranslation', 'tags'));
     }
 
     public function update(Request $request,$id)

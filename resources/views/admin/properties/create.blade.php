@@ -92,6 +92,20 @@
                                         @enderror
                                     </div>
                                     <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Tag:</label> <span class="text-danger">*</span>
+                                            <select name="tags[]" id="" class="form-control" multiple>
+                                                <option value="">Select</option>
+                                                @foreach($tags as $tag)
+                                                    <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('tag')
+                                            <p class="text-danger">{{$message}}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <label>Category</label> <span class="text-danger">*</span>
                                         <select name="category_id" id="category_id" class="listing-input hero__form-input  form-control custom-select">
                                             <option value="">Select</option>

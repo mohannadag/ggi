@@ -110,7 +110,7 @@
                                 <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[30px] font-medium">{{trans('file.tags')}}<span class="text-secondary">.</span></h3>
                                 <ul class="flex flex-wrap my-[-7px] mx-[-5px] font-light text-[12px]">
                                     @foreach($tags as $tag)
-                                    <li class="my-[7px] mx-[5px]"><a href="{{route('news.tag',$tag)}}" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">{{$tag->tagTranslation->name ?? $tag->tagTranslationEnglish->name  ?? null }}</a>
+                                    <li class="my-[7px] mx-[5px]"><a href="{{route('tags',$tag)}}" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">{{$tag->tagTranslation->name ?? $tag->tagTranslationEnglish->name  ?? null }}</a>
                                     </li>
                                     @endforeach
 

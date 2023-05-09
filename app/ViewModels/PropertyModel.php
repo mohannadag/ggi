@@ -159,6 +159,7 @@ class PropertyModel implements IPropertyModel
             'type'=> 'required',
             'category_id'=> 'required',
             'price'=> 'nullable',
+            'tag'=>'nullable',
             'currency_id'=> 'nullable',
             'status'=> 'required',
             'is_featured'=> 'nullable',
@@ -208,6 +209,7 @@ class PropertyModel implements IPropertyModel
         $dataProperty['user_id'] = $request->input('user_id');
         $dataProperty['property_id'] = $request->input('property_id');
         $dataProperty['category_id'] = $request->input('category_id');
+        $dataProperty['tag'] = $request->input('tag');
         $dataProperty['country_id'] = $request->input('country_id');
         $dataProperty['city_id'] = $request->input('city_id');
         $dataProperty['state_id'] = $request->input('state_id');
@@ -448,6 +450,7 @@ class PropertyModel implements IPropertyModel
         $dataProperty['user_id'] = $request->input('user_id');
         $dataProperty['property_id'] = $request->input('property_id');
         $dataProperty['category_id'] = $request->input('category_id');
+        $dataProperty['tag'] = $request->input('tag');
         $dataProperty['country_id'] = $request->input('country_id');
         $dataProperty['city_id'] = $request->input('city_id');
         $dataProperty['state_id'] = $request->input('state_id');

@@ -75,7 +75,7 @@ Route::get('/packages', [Front\HomePageController::class, 'membershipPackage']);
 Route::get('/news', [Front\NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{news}', [Front\NewsController::class, 'show'])->name('news.show');
 Route::get('/news/popular-topic/{category}', [Front\NewsController::class, 'popularTopic'])->name('news.popular-topic');
-Route::get('/news/tags/{tag}', [Front\NewsController::class, 'tag'])->name('news.tag');
+Route::get('/tags/{tag}', [Front\HomePageController::class, 'tag'])->name('tags');
 Route::get('/add-listing', [Front\HomePageController::class, 'addListing'])->middleware('auth');
 Route::post('/state-city', [Front\HomePageController::class, 'getCity'])->name('state.city');
 Route::get('/search-sale', [Front\HomePageController::class, 'searchProperty'])->name('search.property');

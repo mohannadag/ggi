@@ -16,6 +16,7 @@ class Property extends Model
         'package_id',
         'title',
         'type',
+        'tag',
         'category_id',
         'country_id',
         'state_id',

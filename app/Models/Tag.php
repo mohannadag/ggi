@@ -17,6 +17,10 @@ class Tag extends Model
         return $this->belongsToMany(Blog::class);
     }
 
+    public function properties(){
+        return $this->belongsToMany(Property::class);
+    }
+
     public function tagTranslation()
     {
         $locale = Session::get('currentLocal');
