@@ -442,7 +442,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Number of Bedrooms</label>
+                                        <label>Units Type</label>
                                         <select class="listing-input hero__form-input  form-control custom-select" name="bed[]" multiple="">
                                             <option value="">Select Option</option>
                                             <option value="1" >0+1</option>

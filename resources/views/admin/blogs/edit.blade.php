@@ -50,6 +50,15 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label>Slug:</label> <span class="text-danger">*</span>
+                                            <input type="text" name="slug"  @if(isset($blogTranslation->slug)) value="{{$blogTranslation->slug}}" @else value="" @endif class="form-control filter-input" id="slug" placeholder="/slug">
+                                            @error('slug')
+                                            <p class="text-danger">{{$message}}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
                                             <label>Tag:</label> <span class="text-danger">*</span>
                                             <select name="tags[]" id="" class="form-control" multiple>
                                                 <option value="">Select</option>
@@ -105,7 +114,7 @@
 
 <script>
     tinymce.init({
-      selector: '#body', 
+      selector: '#body',
       plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount code',
       toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat | code ',
     });

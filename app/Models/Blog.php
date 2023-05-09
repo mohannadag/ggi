@@ -37,10 +37,9 @@ class Blog extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->withPivot('tag_id');;
 
     }
-
 
 
     public function blogTranslation()

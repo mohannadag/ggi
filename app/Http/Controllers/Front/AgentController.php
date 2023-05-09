@@ -30,7 +30,7 @@ class AgentController extends Controller
         $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
         $recentlyAdded = Property::with('state.stateTranslation','city.cityTranslation','propertyTranslation')->where('moderation_status',1)->where('status',1)->latest()->take(5)->get();
         $headerImage = HeaderImage::where('page', 'agents')->first();
-        return view('frontend.agent-list',compact('agents','categories','states','recentlyAdded','headerImage'));
+        return view('frontend.agent-list',compact('agents','categories','states','recentlyAdded','headerImage', 'city'));
     }
 
     public function show(User $agent)
@@ -44,10 +44,11 @@ class AgentController extends Controller
                                 ->where('status',1)
                                 ->where('user_id',$agent->id)
                                 ->get();
+        $city = City::with('cityTranslation')->get()->keyBy('id');
         $headerImage = HeaderImage::where('page','single-agent')->first();
          $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
 
-        return view('frontend.agent',compact('agent','recentlyAdded', 'states','categories','properties','headerImage'));
+        return view('frontend.agent',compact('agent','recentlyAdded', 'states','categories','properties','headerImage', 'city'));
     }
 
     public function getState(Request $request)

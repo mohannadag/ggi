@@ -41,6 +41,15 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label>Slug:</label> <span class="text-danger">*</span>
+                                            <input type="text" name="slug" class="form-control filter-input" id="slug" placeholder="/slug">
+                                            @error('slug')
+                                            <p class="text-danger">{{$message}}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
                                             <label>Tag:</label> <span class="text-danger">*</span>
                                             <select name="tags[]" id="" class="form-control" multiple>
                                                 <option value="">Select</option>

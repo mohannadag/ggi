@@ -510,6 +510,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
+                                        <label>Units Types</label>
                                         <select name="bed[]" class="listing-input hero__form-input  form-control custom-select" multiple>
                                                     <option value="">{{ trans('file.na') }}</option>
                                                     <option value="1" >0+1</option>

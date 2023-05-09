@@ -429,7 +429,7 @@ class PropertyController extends Controller
                         ->paginate(4);
         $city = City::with('cityTranslation')->get()->where('state_id', $state->id)->keyBy('id');
         $stat = State::with('stateTranslation')->get()->where('state_id', $state->id)->keyBy('id');
-        $states = State::with('stateTranslation')->get()->where('state_id', $state->id)->keyBy('id');
+        $states = State::with('stateTranslation')->get()->keyBy('id');
         $maxPrice = $props->max('price');
         $minPrice = $props->min('price');
         $propertyDetails = PropertyDetail::get()->keyBy('property_id');

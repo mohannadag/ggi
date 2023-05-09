@@ -118,8 +118,9 @@ class BlogController extends Controller
         request()->validate([
             'category_id'=>'nullable',
             'user_id' => 'required',
-            'title' => 'nullable',
-            'slug'=> 'nullable|unique:blogs',
+            'title' => 'required',
+            'tag'=> 'nullable',
+            'slug'=> 'required|unique:blogs',
             'image'=>'nullable',
             'body'=> 'required'
         ],[
@@ -128,7 +129,7 @@ class BlogController extends Controller
         ]);
         //thumbnail image save start
         $thumbnailImage = $request->file('image');
-        $slug =  Str::slug($request->input('title'));
+        $slug =  $request->input('slug');
         if (isset($thumbnailImage))
         {
             $currentDate = Carbon::now()->toDateString();
@@ -149,7 +150,7 @@ class BlogController extends Controller
             'category_id'=>request('category_id'),
             'user_id' => request('user_id'),
             'title' => request('title'),
-            'slug'=> $slug,
+            'slug' => request('slug'),
             'image'=> $thumbnailName,
             'body'=> request('body')
         ]);
@@ -159,7 +160,7 @@ class BlogController extends Controller
             'blog_id'=>$blog->id,
             'locale'=> $locale,
             'title' => request('title'),
-            'slug'=> $slug,
+            'slug' => request('slug'),
             'body'=> request('body')
         ]);
         return redirect()->route('admin.blogs.index');
@@ -197,7 +198,7 @@ class BlogController extends Controller
         //thumbnail image save start
         $thumbnailImage = $request->file('image');
 //        dd($thumbnailImage);
-        $slug =  Str::slug($request->input('title'));
+        $slug =  $request->input('slug');
 
         if (isset($thumbnailImage))
         {
@@ -222,7 +223,7 @@ class BlogController extends Controller
                 'category_id'=>request('category_id'),
                 'user_id' => request('user_id'),
                 'title' => request('title'),
-                'slug'=> $slug,
+                'slug' => request('slug'),
                 'image'=> $thumbnailName,
                 'body'=> request('body'),
                 'status'=>request('status'),
@@ -234,7 +235,7 @@ class BlogController extends Controller
                 'category_id'=>request('category_id'),
                 'user_id' => request('user_id'),
                 'title' => request('title'),
-                'slug'=> $slug,
+                'slug' => request('slug'),
                 'image'=> $thumbnailName,
                 'body'=> request('body')
             ]);
@@ -268,7 +269,7 @@ class BlogController extends Controller
     }
     public function checkSlug(Request $request)
     {
-        $slug = SlugService::createSlug(Blog::class, 'slug', $request->title);
+        $slug = SlugService::createSlug(Blog::class, 'slug', $request->slug);
         return response()->json(['slug'=>$slug]);
     }
 }

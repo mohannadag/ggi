@@ -54,6 +54,7 @@ Route::get('/ivr-2/{property}', [Front\PropertyController::class, 'ivrProp'])->n
 Route::get('/ivr-3/{property}', [Front\PropertyController::class, 'ivrProp3'])->name('front.property-ivr-3');
 Route::get('/ivr-4/{property}', [Front\PropertyController::class, 'ivrProp4'])->name('front.property-ivr-4');
 Route::get('/services/{service}', [Front\HomePageController::class, 'service'])->name('single-service');
+Route::get('/tags/{tag}', [Front\NewsController::class, 'tag'])->name('tags');
 Route::get('/about', [Front\HomePageController::class, 'about']);
 Route::get('/faq', [Front\HomePageController::class, 'faq']);
 Route::get('/page/{page}', [Front\HomePageController::class, 'page']);
@@ -74,6 +75,7 @@ Route::get('/packages', [Front\HomePageController::class, 'membershipPackage']);
 Route::get('/news', [Front\NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{news}', [Front\NewsController::class, 'show'])->name('news.show');
 Route::get('/news/popular-topic/{category}', [Front\NewsController::class, 'popularTopic'])->name('news.popular-topic');
+Route::get('/news/tags/{tag}', [Front\NewsController::class, 'tag'])->name('news.tag');
 Route::get('/add-listing', [Front\HomePageController::class, 'addListing'])->middleware('auth');
 Route::post('/state-city', [Front\HomePageController::class, 'getCity'])->name('state.city');
 Route::get('/search-sale', [Front\HomePageController::class, 'searchProperty'])->name('search.property');
@@ -180,7 +182,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::post('citizenship/general', [Admin\CitizenshipController::class, 'store'])->name('citizenship.store');
     Route::get('social-login', [Admin\SocialLoginController::class, 'index'])->name('social.login');
     Route::post('/facebook/store', [Admin\SocialLoginController::class, 'facebookStoreOrUpdate'])->name('facebook.info.store')->middleware('XSS');
-    Route::get('/blogs/check_slug', [Admin\BlogController::class, 'checkSlug'])->name('blogs.checkSlug');
     Route::get('edit-profile', [Admin\ProfileController::class, 'editProfile']);
     Route::get('my-properties', [Admin\PropertyController::class, 'myProperties'])->name('my-properties');
     Route::get('recieved-reviews', [Admin\ReviewController::class, 'recievedReviews'])->name('recieved-reviews');

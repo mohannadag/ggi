@@ -98,17 +98,6 @@
     align-items: center
 }
 
-.diagram li .title:lang(ar) {
-    font-size: 1.1rem;
-    position: absolute;
-    top: 0;
-    right: 85px;
-    width: 275px;
-    height: 75px;
-    display: flex;
-    align-items: center
-}
-
 .diagram li .image {
     max-width: 200px;
     position: relative
@@ -141,13 +130,6 @@
 .diagram li:nth-child(even) .title {
     left: unset;
     right: 85px;
-    text-align: right;
-    justify-content: flex-end
-}
-
-.diagram li:nth-child(even) .title:lang(ar) {
-    right: unset;
-    left: 85px;
     text-align: right;
     justify-content: flex-end
 }
