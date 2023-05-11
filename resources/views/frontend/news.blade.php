@@ -106,7 +106,7 @@
                             </div>
 
 
-                            <div class="mb-[40px]">
+                            {{-- <div class="mb-[40px]">
                                 <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[30px] font-medium">{{trans('file.tags')}}<span class="text-secondary">.</span></h3>
                                 <ul class="flex flex-wrap my-[-7px] mx-[-5px] font-light text-[12px]">
                                     @foreach($tags as $tag)
@@ -115,7 +115,7 @@
                                     @endforeach
 
                                 </ul>
-                            </div>
+                            </div> --}}
                         </aside>
                     </div>
                 </div>

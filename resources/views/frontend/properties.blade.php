@@ -382,7 +382,7 @@
                         </div>
                     </div> --}}
 
-                    <div class="mb-[60px]">
+                    {{-- <div class="mb-[60px]">
                         <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[40px] font-medium">Tags<span
     class="text-secondary">.</span></h3>
                         <ul class="flex flex-wrap my-[-7px] mx-[-5px] font-light text-[12px]">
@@ -391,7 +391,7 @@
                             </li>
                             @endforeach
                         </ul>
-                    </div>
+                    </div> --}}
                 </aside>
             </div>
         </div>
