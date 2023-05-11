@@ -54,7 +54,6 @@ Route::get('/ivr-2/{property}', [Front\PropertyController::class, 'ivrProp'])->n
 Route::get('/ivr-3/{property}', [Front\PropertyController::class, 'ivrProp3'])->name('front.property-ivr-3');
 Route::get('/ivr-4/{property}', [Front\PropertyController::class, 'ivrProp4'])->name('front.property-ivr-4');
 Route::get('/services/{service}', [Front\HomePageController::class, 'service'])->name('single-service');
-Route::get('/tags/{tag}', [Front\NewsController::class, 'tag'])->name('tags');
 Route::get('/about', [Front\HomePageController::class, 'about']);
 Route::get('/faq', [Front\HomePageController::class, 'faq']);
 Route::get('/page/{page}', [Front\HomePageController::class, 'page']);
@@ -75,7 +74,7 @@ Route::get('/packages', [Front\HomePageController::class, 'membershipPackage']);
 Route::get('/news', [Front\NewsController::class, 'index'])->name('news.index');
 Route::get('/news/{news}', [Front\NewsController::class, 'show'])->name('news.show');
 Route::get('/news/popular-topic/{category}', [Front\NewsController::class, 'popularTopic'])->name('news.popular-topic');
-Route::get('/tags/{tag}', [Front\HomePageController::class, 'tag'])->name('tags');
+Route::get('/tag/{tag}', [Front\HomePageController::class, 'tag'])->name('tags');
 Route::get('/add-listing', [Front\HomePageController::class, 'addListing'])->middleware('auth');
 Route::post('/state-city', [Front\HomePageController::class, 'getCity'])->name('state.city');
 Route::get('/search-sale', [Front\HomePageController::class, 'searchProperty'])->name('search.property');

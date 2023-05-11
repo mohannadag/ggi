@@ -78,25 +78,6 @@ class HomePageController extends Controller
                         ->orderBy('id','DESC')
                         ->where('status',1)
                         ->get();
-        // $properties = DB::table('properties')
-        //             ->join('cities', 'properties.city_id', '=', 'cities.id')
-        //             ->join('countries', 'properties.country_id', '=', 'countries.id')
-        //             ->join('currencies', 'properties.currency_id', '=', 'currencies.id')
-        //             ->join('states', 'properties.state_id', '=', 'states.id')
-        //             ->join('users', 'properties.user_id', '=', 'users.id')
-        //             ->join('property_details', 'property_details.property_id', '=', 'properties.id')
-        //             ->join('packages', 'properties.package_id', '=', 'packages.id')
-        //             ->join('package_user', 'package_user.package_id', '=', 'packages.id')
-        //             ->select('properties.*', 'cities.name as city_name', 'countries.name as country_name',
-        //                 'states.name as state_name,users.f_name as user_name','property_details.bed as bed',
-        //                 'property_details.bath as bath','property_details.garage as garage',
-        //                 'property_details.room_size as room_size','package_user.expire_at as expire_at','currencies.icon as icon')
-        //             ->where([
-        //                 ['properties.moderation_status', 1],
-        //                 ['properties.status', 1]
-        //             ])
-        //             ->get();
-                    // dd($properties);
         $maxPrice = $properties->max('price');
         $minPrice = $properties->min('price');
         foreach ($properties as $row)
@@ -194,17 +175,21 @@ class HomePageController extends Controller
             }
         }
         $propertyDetails = PropertyDetail::get()->keyBy('property_id');
-        $videos = Video::with(['videoTranslation','videoTranslationEnglish'])
-                ->orderBy('id','DESC')
-                ->get();
-                $testimonials = Testimonial::with(['testimonialTranslation','testimonialTranslationEnglish'])
-                    ->orderBy('id','DESC')
-                    ->get();
         $maxArea = $propertyDetails->max('room_size');
         $minArea = $propertyDetails->min('room_size');
         $country = Country::with('countryTranslation')->get()->keyBy('id');
         $city = City::with('cityTranslation')->get()->keyBy('id');
+        $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
+        $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
+        $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
+        $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
         $agents = User::get()->where('type', 'agent')->keyBy('id');
+        $videos = Video::with(['videoTranslation','videoTranslationEnglish'])
+                ->orderBy('id','DESC')
+                ->get();
+        $testimonials = Testimonial::with(['testimonialTranslation','testimonialTranslationEnglish'])
+            ->orderBy('id','DESC')
+            ->get();
         $sliders = Slider::with(['sliderTranslation','sliderTranslationEnglish'])
         ->orderBy('id','DESC')
         ->get();
@@ -213,10 +198,6 @@ class HomePageController extends Controller
 
         $campaigns = Campaign::with('campaignTranslation')->where('status',1)->get()->keyBy('id');
         $users = User::where('type','user')->get()->keyBy('id');
-        $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
-        $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
-        $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
-        $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
         $image = Image::get()->keyBy('property_id');
         $partners = OurPartner::all();
         $facilities = Facility::get();
@@ -242,9 +223,9 @@ class HomePageController extends Controller
                 $curr = Currency::where('is_default','=',1)->first();
             }
         App::setLocale(Session::get('currentLocal'));
+        $locale   = Session::get('currentLocal');
         $landing = Landing::with(['landingTranslation','landingTranslationEnglish'])->where('slug', $landing)->first();
 
-        $locale   = Session::get('currentLocal');
         // $projects = json_decode($landing['projects_id']);
         $properties = Property::orderBy('id','DESC')
                         ->where('is_featured', 1)
@@ -432,51 +413,89 @@ class HomePageController extends Controller
     }
 
     public function tag($tag, Request $request){
+
         App::setLocale(Session::get('currentLocal'));
+        $locale   = Session::get('currentLocal');
         $tag = Tag::where('id', $tag)->first();
-        $props = Property::with(['propertyDetails', 'user', 'category.categoryTranslation', 'country.countryTranslation', 'state.stateTranslation', 'city.cityTranslation', 'propertyTranslation', 'image'])
-            ->where('moderation_status', 1)
-            ->where('status', 1)
-            ->orderBy('id', 'desc')
-            ->paginate(4);
-        $city = City::with('cityTranslation')->get()->keyBy('id');
-        $maxPrice = $props->max('price');
-        $minPrice = $props->min('price');
+        $props = Property::with(['propertyDetails','user','category.categoryTranslation', 'country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
+        ->where('tag', $tag->id)
+        ->where('moderation_status',1)
+        ->where('status',1)
+        ->orderBy('id','desc')
+        ->paginate(4);
+        $properties = Property::where('moderation_status',1)
+        ->where('tag', $tag->id)
+                        ->orderBy('id','DESC')
+                        ->where('status',1)
+                        ->get();
+        $maxPrice = $properties->max('price');
+        $minPrice = $properties->min('price');
+        foreach ($properties as $row)
+        {
+            $currentTime = Carbon::now();
+            $end_time = new Carbon($row->expire_at);
+            if($currentTime > $end_time)
+            {
+                $row->status = 0;
+                $row->save();
+            }
+        }
         $propertyDetails = PropertyDetail::get()->keyBy('property_id');
-        $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
         $maxArea = $propertyDetails->max('room_size');
         $minArea = $propertyDetails->min('room_size');
-        $categories = Category::with('categoryTranslation')->where('status', 1)->get()->keyBy('id');
-        $properties = $this->_propertySearchModel->getData($request);
-        $popularTopics = BlogCategory::with('blogCategoryTranslation', 'blogs')->where('status', 1)->get()->keyBy('id');
+        $country = Country::with('countryTranslation')->get()->keyBy('id');
+        $city = City::with('cityTranslation')->get()->keyBy('id');
+        $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
+        $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
+        $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
+        $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
+
         $newses = Blog::with('blogTranslation', 'user')
             ->where('tag', $tag->id)
-            ->where('status', 'approved')
             ->orderBy('id', 'desc')
             ->paginate(4);
-        $tags = Tag::with('tagTranslation', 'tagTranslationEnglish')->where('status', 1)->get();
-            return view('frontend.tags', compact('newses', 'tag','tags', 'props', 'city', 'maxPrice', 'minPrice','propertyDetails', 'states','maxArea', 'minArea', 'properties', 'popularTopics', 'categories'));
+        $tags = Tag::with('tagTranslation', 'tagTranslationEnglish')->get();
+        return view('frontend.tags', compact('newses', 'tag','tags', 'props', 'city', 'maxPrice', 'minPrice','propertyDetails', 'states','maxArea', 'minArea', 'properties', 'categories'));
     }
 
     public function about(Request $request)
     {
+
+        App::setLocale(Session::get('currentLocal'));
+        $locale   = Session::get('currentLocal');
         $props = Property::with(['propertyDetails','user','category.categoryTranslation', 'country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
         ->where('moderation_status',1)
         ->where('status',1)
         ->orderBy('id','desc')
         ->paginate(4);
-    $city = City::with('cityTranslation')->get()->keyBy('id');
-    $maxPrice = $props->max('price');
-    $minPrice = $props->min('price');
-    $propertyDetails = PropertyDetail::get()->keyBy('property_id');
-    $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
-    $maxArea = $propertyDetails->max('room_size');
-    $minArea = $propertyDetails->min('room_size');
+        $properties = Property::where('moderation_status',1)
+                        ->orderBy('id','DESC')
+                        ->where('status',1)
+                        ->get();
+        $maxPrice = $properties->max('price');
+        $minPrice = $properties->min('price');
+        foreach ($properties as $row)
+        {
+            $currentTime = Carbon::now();
+            $end_time = new Carbon($row->expire_at);
+            if($currentTime > $end_time)
+            {
+                $row->status = 0;
+                $row->save();
+            }
+        }
+        $propertyDetails = PropertyDetail::get()->keyBy('property_id');
+        $maxArea = $propertyDetails->max('room_size');
+        $minArea = $propertyDetails->min('room_size');
+        $country = Country::with('countryTranslation')->get()->keyBy('id');
+        $city = City::with('cityTranslation')->get()->keyBy('id');
+        $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
+        $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
+        $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
+        $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
     $services = Service::all();
     $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
     //Poperty Search
-    $properties = $this->_propertySearchModel->getData($request);
-    $data = $request->all();
         $testimonials = Testimonial::with(['testimonialTranslation','testimonialTranslationEnglish'])
             ->orderBy('id','DESC')
             ->get();
@@ -487,7 +506,7 @@ class HomePageController extends Controller
         $agents = User::where('type','user', 'company_name')->get();
         $headerImage = HeaderImage::where('page','about-us')->first();
 
-        return view('frontend.about',compact('testimonials','sliders','partners','agents','headerImage', 'properties','data', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'services'));
+        return view('frontend.about',compact('testimonials','sliders','partners',  'agents','headerImage', 'properties', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'services'));
     }
 
     public function citizenship(Request $request)
@@ -808,7 +827,6 @@ class HomePageController extends Controller
       echo $output;
      }
     }
-
     public function getByCategory($categoryId)
     {
         $data = [];
@@ -827,6 +845,13 @@ class HomePageController extends Controller
         $data = [];
         $data['city'] = $cityId;
         return $this->_propertySearchRepository->getByCity($data);
+    }
+
+    public function getByState($stateId)
+    {
+        $data = [];
+        $data['state'] = $stateId;
+        return $this->_propertySearchRepository->getByState($data);
     }
 
     public function getByPrice($minPrice,$maxPrice)
@@ -974,6 +999,7 @@ class HomePageController extends Controller
         $data['bed'] = $bed;
         return $this->_propertySearchRepository->getByBed($data);
     }
+
 
     public function getByBath($bath)
     {

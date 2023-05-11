@@ -2,11 +2,12 @@
     <!-- Section: Design Block -->
     <section class="mt-6 mb-20 text-neutral-700">
         <div class="mb-6 pb-2">
-            <h2 class="font-lora text-primary text-3xl sm:text-3xl leading-[1.277] lg:text-5xl capitalize font-medium max-w-[500px]">{{$citizenship->citizenshipTranslation->obtaining_title}}<span class="text-secondary">.</span></h2>
+            <h2 class="font-lora text-primary text-3xl sm:text-3xl leading-[1.277] lg:text-5xl capitalize font-medium max-w-[500px]"><?php echo e($citizenship->citizenshipTranslation->documents_title); ?><span class="text-secondary">.</span></h2>
         </div>
         <div class="grid gap-12 lg:grid-cols-3">
             <div class="order-2 lg:order-1 col-span-2">
-            {!! $citizenship->citizenshipTranslation->obtaining_text !!}
+            <?php echo $citizenship->citizenshipTranslation->documents_text; ?>
+
             </div>
             <div class="order-1 lg:order-2 col-span-1">
                 <div class="diagram">
@@ -78,3 +79,4 @@
     </section>
     <!-- Section: Design Block -->
 </div>
+<?php /**PATH /Users/viperflux/Documents/GitHub/ggi-website/resources/views/frontend/citizenship/documents.blade.php ENDPATH**/ ?>

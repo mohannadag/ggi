@@ -37,18 +37,16 @@ class Citizenship extends Model
     public function citizenshipTranslation()
     {
         $locale = Session::get('currentLocal');
-        return $this->hasOne(CitizenshipTranslation::class, 'citizenship_id')
+        return $this->hasOne(CitizenshipTranslation::class)
             ->where('locale', $locale);
-    }
-
-    public function campaign()
-    {
-        return $this->belongsTo(Campaign::class);
     }
 
     public function citizenshipTranslationEnglish()
     {
-        return $this->hasOne(CitizenshipTranslation::class, 'citizenship_id')
+        return $this->hasOne(CitizenshipTranslation::class)
             ->where('locale', 'en');
     }
 }
+
+
+

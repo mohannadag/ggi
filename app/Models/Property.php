@@ -74,6 +74,12 @@ class Property extends Model
         return $this->belongsTo(PackageUser::class,'package_id');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withPivot('tag');;
+
+    }
+
     public function image()
     {
         return $this->hasOne(Image::class);

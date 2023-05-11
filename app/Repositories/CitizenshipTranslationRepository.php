@@ -23,8 +23,6 @@ class CitizenshipTranslationRepository implements ICitizenshipTranslationReposit
     public function add($data)
     {
         CitizenshipTranslation::create([
-            'citizenship_id' => $data['citizenshipId'],
-            'locale' => $data['locale'],
             'title' => $data['title'],
             'banner_text' => $data['banner_text'],
             'main_button_link' => $data['main_button_link'],

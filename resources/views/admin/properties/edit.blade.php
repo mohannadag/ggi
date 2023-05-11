@@ -142,7 +142,7 @@
                                 <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tag:</label> <span class="text-danger">*</span>
-                                            <select name="tag[]" id="" class="form-control" multiple>
+                                            <select name="tag" id="" class="form-control">
                                                 <option value="">Select</option>
                                                 @foreach($tags as $tag)
                                                     <option value="{{$tag->id}}">{{$tag->tagTranslation->name}}</option>

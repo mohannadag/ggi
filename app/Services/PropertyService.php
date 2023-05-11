@@ -51,6 +51,7 @@ class PropertyService
         $dataProperty['propertyId'] = $property->id;
         $dataPropertyDetail['propertyId'] = $property->id;
         $property->facilities()->sync($dataProperty['facility_id']);
+        $property->tags()->sync($dataProperty['tag']);
         $this->_propertyDetailService->add($dataPropertyDetail);
         $this->_propertyTranslationRepository->add($dataProperty);
         $this->_packageUserService->update($dataProperty['package_id']);

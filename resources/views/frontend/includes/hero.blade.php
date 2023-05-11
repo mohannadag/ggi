@@ -243,32 +243,8 @@
                                     </select>
                                 </div>
                             </div>
-                            <!--<div class="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px]">-->
-                            <!--    <div class="mr-4 self-start shrink-0">-->
-                            <!--        <img src="{{asset('frontend/images/icon/dollar-circle.svg')}}" width="24" height="24" alt="svg icon">-->
-                            <!--    </div>-->
-                            <!--    <div class="flex-1">-->
-                            <!--        <label for="price" class="font-lora block capitalize text-primary text-[17px] xl:text-[24px] leading-none mb-1">Price Range</label>-->
-                            <!--        <div class="price-slider">-->
-                            <!--            <div class="price-slider" id="price-slider"></div>-->
-                            <!--            <input id="minPrice" name="minPrice" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">-->
-                            <!--            <input id="maxPrice" name="maxPrice" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">-->
-                            <!--        </div>-->
-                            <!--    </div>-->
-                            <!--</div>-->
 
                             <div class="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px] relative">
-                                <!--<div class="mr-4 self-start shrink-0">-->
-                                <!--    <img src="{{asset('frontend/images/icon/area.svg')}}" width="24" height="24" alt="svg icon">-->
-                                <!--</div>-->
-                                <!--<div class="flex-1">-->
-                                <!--    <label for="property-size" class="font-lora block capitalize text-primary text-[17px] xl:text-[24px] leading-none mb-1">Listing Size</label>-->
-                                <!--    <div class="area-slider">-->
-                                <!--        <div class="price-slider" id="area-slider"></div>-->
-                                <!--        <input id="minArea" name="minArea" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">-->
-                                <!--        <input id="maxArea" name="maxArea" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">-->
-                                <!--    </div>-->
-                                <!--</div>-->
                                 <div class="mr-4 self-start shrink-0">
                                     <img src="{{asset('frontend/images/icon/dollar-circle.svg')}}" width="24" height="24" alt="svg icon">
                                 </div>
@@ -299,13 +275,15 @@
                                     <label for="bed" class="font-lora block capitalize text-primary text-[17px] xl:text-[24px] leading-none mb-1">{{ trans('file.bedrooms') }}</label>
                                     <select name="bed" id="bed" class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
                                         <option value="">{{trans('file.select')}}</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
+                                        <option value="[1]" >0+1</option>
+                                        <option value="[2]" >1+1</option>
+                                        <option value="[3]" >1+2</option>
+                                        <option value="[4]" >1+3</option>
+                                        <option value="[5]" >1+4</option>
+                                        <option value="[6]" >1+5</option>
+                                        <option value="[7]" >1+6</option>
+                                        <option value="[8]" >1+7</option>
+                                        <option value="[9]" >1+8</option>
                                     </select>
                                 </div>
                             </div>

@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\PropertyTranslation;
 use App\Models\StateTranslation;
 use App\Models\State;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -66,8 +67,8 @@ class PropertyController extends Controller
         $maxArea = $propertyDetails->max('room_size');
         $minArea = $propertyDetails->min('room_size');
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
-
-        return view('frontend.properties',compact('properties','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'agents'));
+        $tags = Tag::with('tagTranslation', 'tagTranslationEnglish')->get();
+        return view('frontend.properties',compact('properties','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'agents', 'tags'));
 
 
     }
@@ -127,7 +128,8 @@ class PropertyController extends Controller
         $locale   = Session::get('currentLocal');
         $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
         $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
-        return view('frontend.property',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail', 'curr'));
+        $tags = Tag::with('tagTranslation', 'tagTranslationEnglish')->get();
+        return view('frontend.property',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail', 'curr', 'tags'));
     }
 
     public function ivrProperty(Property $property, Request $request)
