@@ -135,8 +135,8 @@ class BlogController extends Controller
             $currentDate = Carbon::now()->toDateString();
             $fileName = $slug.'-'.$currentDate.'-'.uniqid();
             // $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('webp', 90)->fit(750, 500)->save(public_path('images/thumbnail/'  .  $fileName . '.webp'));
-            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->fit(770, 465)->save(public_path('images/thumbnail/'  .  $fileName . '.jpg'));
-            \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->fit(770, 465)->save(public_path('images/gallery/'  .  $fileName . '.jpg'));
+            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->resize(770, 465)->save(public_path('images/thumbnail/'  .  $fileName . '.jpg'));
+            \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->resize(770, 465)->save(public_path('images/gallery/'  .  $fileName . '.jpg'));
             // \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('webp', 90)->fit(1024, 450)->save(public_path('images/gallery/'  .  $fileName . '.webp'));
             $thumbnailName = $image->basename;
         } else
@@ -208,8 +208,8 @@ class BlogController extends Controller
 
             $currentDate = Carbon::now()->toDateString();
             $fileName = $slug.'-'.$currentDate.'-'.uniqid();
-            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->fit(770, 465)->save(public_path('images/thumbnail/'  .  $fileName . '.jpg'));
-            \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->fit(770, 465)->save(public_path('images/gallery/'  .  $fileName . '.jpg'));
+            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->resize(770, 465)->save(public_path('images/thumbnail/'  .  $fileName . '.jpg'));
+            \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->resize(770, 465)->save(public_path('images/gallery/'  .  $fileName . '.jpg'));
             $thumbnailName = $image->basename;
         } else
         {

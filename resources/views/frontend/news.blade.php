@@ -89,7 +89,7 @@
                                     @endphp
                                     <div class="flex items-center mb-[20px]">
                                         <div class="relative w-[127px]">
-                                            <a href="#" class="block w-full">
+                                            <a href="{{route('news.show',$recentlyAddedPost)}}" class="block w-full">
                                                 <img src="{{URL::asset('/images/thumbnail/'.$recentlyAddedPost->image)}}" class="w-full" alt="{{$recentlyAddedPost->blogTranslation->title ?? $recentlyAddedPost->blogTranslationEnglish->title  ?? 'title' }}">
                                             </a>
                                         </div>

@@ -705,7 +705,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-[30px]">
                     @if ($property->propertyDetails->first_floor_picture !== 'default.png' && $property->propertyDetails->first_floor_picture !== '')
 
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->first_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->first_floor_picture)  }}" alt="{{ $property->propertyDetails->first_floor_picture }}" loading="lazy" >
                         </a>
@@ -713,7 +713,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->second_floor_picture !== 'default.png' && $property->propertyDetails->second_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->second_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->second_floor_picture)  }}" alt="{{ $property->propertyDetails->second_floor_title }}" loading="lazy">
                         </a>
@@ -721,7 +721,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->third_floor_picture !== 'default.png' && $property->propertyDetails->third_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->third_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->third_floor_picture)  }}" alt="{{ $property->propertyDetails->third_floor_title }}" loading="lazy" width="770" height="465">
                         </a>
@@ -729,7 +729,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->fourth_floor_picture !== 'default.png' && $property->propertyDetails->fourth_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture)  }}" alt="{{ $property->propertyDetails->fourth_floor_title }}" loading="lazy" width="770" height="465">
                         </a>
@@ -737,7 +737,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->fifth_floor_picture !== 'default.png' && $property->propertyDetails->fifth_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->fifth_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->fifth_floor_picture)  }}" alt="{{ $property->propertyDetails->fifth_floor_title }}" loading="lazy" width="770" height="465">
                         </a>
@@ -745,7 +745,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->sixth_floor_picture !== 'default.png' && $property->propertyDetails->sixth_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->sixth_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->sixth_floor_picture)  }}" alt="{{ $property->propertyDetails->sixth_floor_title }}" loading="lazy" width="770" height="465">
                         </a>
@@ -753,7 +753,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->seventh_floor_picture !== 'default.png' && $property->propertyDetails->seventh_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->seventh_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->seventh_floor_picture)  }}" alt="{{ $property->propertyDetails->seventh_floor_title }}" loading="lazy" width="770" height="465">
                         </a>
@@ -761,7 +761,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->eighth_floor_picture !== 'default.png' && $property->propertyDetails->eighth_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->eighth_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->eighth_floor_picture)  }}" alt="{{ $property->propertyDetails->eighth_floor_title }}" loading="lazy" width="770" height="465">
                         </a>
@@ -769,7 +769,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->ninth_floor_picture !== 'default.png' && $property->propertyDetails->ninth_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->ninth_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->ninth_floor_picture)  }}" alt="{{ $property->propertyDetails->ninth_floor_title }}" loading="lazy" width="770" height="465">
                         </a>
@@ -777,7 +777,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->tenth_floor_picture !== 'default.png' && $property->propertyDetails->tenth_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->tenth_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->tenth_floor_picture)  }}" alt="{{ $property->propertyDetails->tenth_floor_title }}" loading="lazy" width="770" height="465">
                         </a>
@@ -785,7 +785,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->eleventh_floor_picture !== 'default.png' && $property->propertyDetails->eleventh_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->eleventh_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->eleventh_floor_picture)  }}" alt="{{ $property->propertyDetails->eleventh_floor_title }}" loading="lazy" width="770" height="465">
                         </a>
@@ -793,7 +793,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     @endif
                     @if ($property->propertyDetails->twelfth_floor_picture !== 'default.png' && $property->propertyDetails->twelfth_floor_picture !== '')
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->twelfth_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->twelfth_floor_picture)  }}" alt="{{ $property->propertyDetails->twelfth_floor_title }}" loading="lazy" width="770" height="465">
                         </a>

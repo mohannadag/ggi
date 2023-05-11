@@ -236,7 +236,7 @@ class PropertyModel implements IPropertyModel
             {
                 Carbon::now()->toDateString();
                 $name = 'gallery-'.uniqid();
-                $galleryImage = \Intervention\Image\Facades\Image::make($file)->encode('jpg', 90)->fit(750, 500)->save(public_path('images/gallery/'  .  $name . '.jpg'));
+                $galleryImage = \Intervention\Image\Facades\Image::make($file)->encode('jpg', 90)->resize(750, 500)->save(public_path('images/gallery/'  .  $name . '.jpg'));
                 $imgData[] = $galleryImage->basename;
             }
             $imgData = json_encode($imgData);
@@ -670,7 +670,7 @@ class PropertyModel implements IPropertyModel
                 // File::delete(public_path() . "/images/gallery/{$property->image}");
                 Carbon::now()->toDateString();
                 $name = 'gallery-'.uniqid();
-                $galleryImage = \Intervention\Image\Facades\Image::make($file)->encode('jpg', 90)->fit(750, 500)->save(public_path('images/gallery/'  .  $name . '.jpg'));
+                $galleryImage = \Intervention\Image\Facades\Image::make($file)->encode('jpg', 90)->resize(750, 500)->save(public_path('images/gallery/'  .  $name . '.jpg'));
                 $imgData[] = $galleryImage->basename;
             }
 

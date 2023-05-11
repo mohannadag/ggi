@@ -29,7 +29,7 @@
                 <div class="grid grid-cols-12 mb-[-30px] gap-[30px] xl:gap-[50px]">
                     <div class="col-span-12 md:col-span-6 lg:col-span-8 mb-[30px]">
                         <img src="{{ URL::asset('/images/gallery/'.$news->image) }}" class="w-auto h-auto" loading="lazy" alt="{{$news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}" width="770" height="465">
-                        <div class="mt-[55px] mb-[35px]">
+                        <div class="mt-[55px] mb-[35px] blog-body">
                             <span
                                 class="block leading-none font-normal text-[18px] text-secondary mb-[15px]">{{$news->user->f_name}} {{$news->user->l_name}} | {{$createdAt->toFormattedDateString()}}</span>
                             <h2 class="font-lora leading-tight text-[22px] md:text-[28px] lg:text-[32px] text-primary mb-[10px] font-medium"> {{$news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}</h2>
@@ -43,7 +43,7 @@
                             <div class="flex flex-wrap mb-[15px]">
                                 <span class="text-secondary">Tags:</span>
                                 @foreach($news->tags as $tag)
-                                <a class="font-light hover:text-secondary ml-[5px]" href="#">{{$tag->tagTranslation->name ?? $tag->tagTranslationEnglish->name  ?? null }},</a>
+                                <a class="font-light hover:text-secondary ml-[5px]" href="{{route('tags',$tag)}}">{{$tag->tagTranslation->name ?? $tag->tagTranslationEnglish->name  ?? null }},</a>
                                 @endforeach
                             </div>
 
@@ -111,7 +111,7 @@
                                     @endphp
                                     <div class="flex items-center mb-[20px]">
                                         <div class="relative w-[127px]">
-                                            <a href="#" class="block w-full">
+                                            <a href="{{route('news.show',$recentlyAddedPost)}}" class="block w-full">
                                                 <img src="{{URL::asset('/images/thumbnail/'.$recentlyAddedPost->image)}}" class="w-full" alt="Post">
                                             </a>
                                         </div>
@@ -131,8 +131,8 @@
                             <div class="mb-[40px]">
                                 <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[30px] font-medium">{{trans('file.tags')}}<span class="text-secondary">.</span></h3>
                                 <ul class="flex flex-wrap my-[-7px] mx-[-5px] font-light text-[12px]">
-                                    @foreach($tags as $tag)
-                                    <li class="my-[7px] mx-[5px]"><a href="#" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">{{$tag->tagTranslation->name ?? $tag->tagTranslationEnglish->name  ?? null }}</a>
+                                    @foreach($news->tags as $tag)
+                                    <li class="my-[7px] mx-[5px]"><a href="{{route('tags',$tag)}}" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">{{$tag->tagTranslation->name ?? $tag->tagTranslationEnglish->name  ?? null }}</a>
                                     </li>
                                     @endforeach
 
