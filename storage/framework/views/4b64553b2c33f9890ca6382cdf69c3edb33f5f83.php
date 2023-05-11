@@ -38,7 +38,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
             <div class="col-span-12">
                 <div class="flex flex-wrap items-center justify-between">
                 <a href="<?php echo e(url('/')); ?>" class="block">
-                        <img width="150px" src="<?php echo e(asset('frontend/images/logo/logo.png')); ?>" loading="lazy" alt="Golden Group Investment logo"> </a>
+                        <img width="150px" src="<?php echo e(asset('frontend/images/logo/logo.png')); ?>" loading="lazy" alt="Golden Group Investment logo" style="width: 60px;border-radius: 20px;"> </a>
                     <nav class="flex flex-wrap items-center">
                         <ul class="hidden lg:flex flex-wrap items-center font-lora text-[12px] xl:text-[14px] leading-none text-black <?php echo e(App::isLocale('ar') ? 'lg:ml-[100px] xl:ml-[50px]' : ''); ?>">
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">
@@ -105,7 +105,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             </li>
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">
 
-                                <a href="<?php echo e(url('/page/turkish-citizenship')); ?>" id="citizenship-color" class="sticky-dark transition-all text-white hover:text-secondary"><?php echo e(trans('file.turkish_citizenship')); ?></a>
+                                <a href="<?php echo e(url('/turkish-citizenship')); ?>" id="citizenship-color" class="sticky-dark transition-all text-white hover:text-secondary"><?php echo e(trans('file.turkish_citizenship')); ?></a>
 
                             </li>
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">

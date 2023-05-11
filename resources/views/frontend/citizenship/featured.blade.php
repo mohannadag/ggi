@@ -6,7 +6,8 @@
                 <div class="flex flex-col items-center justify-center mb-[50px]">
                     <span class="text-secondary text-tiny inline-block mb-2">{{trans('file.best_choice')}}</span>
                     <h2 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">
-                        {{trans('file.for_citizenship')}}<span class="text-secondary">.</span></h2>
+                        {{trans('file.for_citizenship')}}<span class="text-secondary">.</span>
+                    </h2>
                 </div>
             </div>
         </div>
@@ -18,21 +19,16 @@
                     @foreach($properties->take(10) as $property)
                     @if($property->propertyDetails->citizenship == 1)
                     <div class="swiper-slide">
-                        <div
-                            class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
+                        <div class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                             <div class="relative">
                                 <a href="{{ route('front.property', ['property' => $property->id]) }}" class="block">
-                                    <img src="{{ URL::asset('/images/backgroundImage/' . $property->background_image) }}"
-
-                                        alt="{{ $propertyTranslation[$property->id]->title ?? ($propertyTranslationEnglish[$property->id]->title ?? null) }}">
+                                    <img src="{{ URL::asset('/images/backgroundImage/' . $property->background_image) }}" alt="{{ $propertyTranslation[$property->id]->title ?? ($propertyTranslationEnglish[$property->id]->title ?? null) }}">
                                 </a>
                             </div>
 
                             <div class="py-[20px] px-[20px] text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
-                                <h3><a href="{{ route('front.property', ['property' => $property->id]) }}"
-                                        class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium">{{$property->property_id}}</a></h3>
-                                <h4><a href="{{ route('front.property', ['property' => $property->id]) }}"
-                                        class="font-light text-[14px] leading-[1.75] underline">{{ $country[$property->country_id]->countryTranslation->name ?? ($country[$property->country_id]->countryTranslationEnglish->name ?? null) }},
+                                <h3><a href="{{ route('front.property', ['property' => $property->id]) }}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium">{{$property->property_id}}</a></h3>
+                                <h4><a href="{{ route('front.property', ['property' => $property->id]) }}" class="font-light text-[14px] leading-[1.75] underline">{{ $country[$property->country_id]->countryTranslation->name ?? ($country[$property->country_id]->countryTranslationEnglish->name ?? null) }},
                                         {{ $states[$property->state_id]->stateTranslation->name ?? ($states[$property->state_id]->stateTranslationEnglish->name ?? null) }},
                                         {{ $city[$property->city_id]->cityTranslation->name ?? ($city[$property->city_id]->cityTranslationEnglish->name ?? null) }}</a></h4>
                                 <span class="font-light text-sm">{{ $property->category->categoryTranslation->name }}</span>
@@ -69,21 +65,20 @@
 
                                     <li class="flex flex-wrap items-center">
                                         @if($property->category_id == 5)
-                                        @if($property->propertyDetails->delivery_year < 2022)
-                                        <span>Ready</span>
-                                        @elseif($property->propertyDetails->delivery_year > 2023)
-                                        <span>Under Construction</span>
-                                        @endif
-                                        @else
-                                        <svg class="mr-[5px]" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M12.25 6.98507H12.236L11.1307 4.49805C11.0275 4.26615 10.8592 4.06913 10.6464 3.93083C10.4335 3.79253 10.1851 3.71887 9.93125 3.71875H4.06875C3.81491 3.71888 3.56655 3.79256 3.3537 3.93086C3.14085 4.06916 2.97263 4.26616 2.86937 4.49805L1.76397 6.98507H1.75C1.51802 6.98533 1.29561 7.0776 1.13157 7.24164C0.967531 7.40568 0.875261 7.62809 0.875 7.86007V10.9226C0.875261 11.1546 0.967531 11.377 1.13157 11.541C1.29561 11.705 1.51802 11.7973 1.75 11.7976V12.9062C1.7502 13.0802 1.81941 13.247 1.94243 13.3701C2.06546 13.4931 2.23226 13.5623 2.40625 13.5625H3.9375C4.11149 13.5623 4.27829 13.4931 4.40131 13.3701C4.52434 13.247 4.59355 13.0802 4.59375 12.9062V11.7976H9.40625V12.9062C9.40645 13.0802 9.47566 13.247 9.59869 13.3701C9.72171 13.4931 9.88851 13.5623 10.0625 13.5625H11.5938C11.7677 13.5623 11.9345 13.4931 12.0576 13.3701C12.1806 13.247 12.2498 13.0802 12.25 12.9062V11.7976C12.482 11.7973 12.7044 11.705 12.8684 11.541C13.0325 11.377 13.1247 11.1546 13.125 10.9226V7.86007C13.1247 7.62809 13.0325 7.40568 12.8684 7.24164C12.7044 7.0776 12.482 6.98533 12.25 6.98507ZM3.66885 4.85352C3.70327 4.7762 3.75936 4.71052 3.83033 4.66442C3.90131 4.61831 3.98412 4.59377 4.06875 4.59375H9.93125C10.0159 4.59379 10.0986 4.61835 10.1696 4.66445C10.2406 4.71055 10.2966 4.77622 10.331 4.85352L11.2784 6.98504H2.7215L3.66885 4.85352ZM3.71875 12.6875H2.625V11.7976H3.71875V12.6875ZM11.375 12.6875H10.2812V11.7976H11.375V12.6875ZM12.25 10.9226H1.75V7.86007H12.25V10.9226Z" />
-                                            <path d="M2.625 8.96875H4.8125V9.84375H2.625V8.96875Z" />
-                                            <path d="M9.1875 8.96875H11.375V9.84375H9.1875V8.96875Z" />
-                                            <path d="M7 0.403564L0.4375 3.03849V3.98139L7 1.34649L13.5625 3.98139V3.03849L7 0.403564Z" />
-                                        </svg>
+                                        @if($property->propertyDetails->delivery_year < 2022) <span>Ready</span>
+                                            @elseif($property->propertyDetails->delivery_year > 2023)
+                                            <span>Under Construction</span>
+                                            @endif
+                                            @else
+                                            <svg class="mr-[5px]" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12.25 6.98507H12.236L11.1307 4.49805C11.0275 4.26615 10.8592 4.06913 10.6464 3.93083C10.4335 3.79253 10.1851 3.71887 9.93125 3.71875H4.06875C3.81491 3.71888 3.56655 3.79256 3.3537 3.93086C3.14085 4.06916 2.97263 4.26616 2.86937 4.49805L1.76397 6.98507H1.75C1.51802 6.98533 1.29561 7.0776 1.13157 7.24164C0.967531 7.40568 0.875261 7.62809 0.875 7.86007V10.9226C0.875261 11.1546 0.967531 11.377 1.13157 11.541C1.29561 11.705 1.51802 11.7973 1.75 11.7976V12.9062C1.7502 13.0802 1.81941 13.247 1.94243 13.3701C2.06546 13.4931 2.23226 13.5623 2.40625 13.5625H3.9375C4.11149 13.5623 4.27829 13.4931 4.40131 13.3701C4.52434 13.247 4.59355 13.0802 4.59375 12.9062V11.7976H9.40625V12.9062C9.40645 13.0802 9.47566 13.247 9.59869 13.3701C9.72171 13.4931 9.88851 13.5623 10.0625 13.5625H11.5938C11.7677 13.5623 11.9345 13.4931 12.0576 13.3701C12.1806 13.247 12.2498 13.0802 12.25 12.9062V11.7976C12.482 11.7973 12.7044 11.705 12.8684 11.541C13.0325 11.377 13.1247 11.1546 13.125 10.9226V7.86007C13.1247 7.62809 13.0325 7.40568 12.8684 7.24164C12.7044 7.0776 12.482 6.98533 12.25 6.98507ZM3.66885 4.85352C3.70327 4.7762 3.75936 4.71052 3.83033 4.66442C3.90131 4.61831 3.98412 4.59377 4.06875 4.59375H9.93125C10.0159 4.59379 10.0986 4.61835 10.1696 4.66445C10.2406 4.71055 10.2966 4.77622 10.331 4.85352L11.2784 6.98504H2.7215L3.66885 4.85352ZM3.71875 12.6875H2.625V11.7976H3.71875V12.6875ZM11.375 12.6875H10.2812V11.7976H11.375V12.6875ZM12.25 10.9226H1.75V7.86007H12.25V10.9226Z" />
+                                                <path d="M2.625 8.96875H4.8125V9.84375H2.625V8.96875Z" />
+                                                <path d="M9.1875 8.96875H11.375V9.84375H9.1875V8.96875Z" />
+                                                <path d="M7 0.403564L0.4375 3.03849V3.98139L7 1.34649L13.5625 3.98139V3.03849L7 0.403564Z" />
+                                            </svg>
 
-                                        <span>{{$property->propertyDetails->garage}}</span>
-                                        @endif
+                                            <span>{{$property->propertyDetails->garage}}</span>
+                                            @endif
                                     </li>
                                 </ul>
 
@@ -91,28 +86,17 @@
                                     <li class="flex flex-wrap items-center justify-between">
                                         <span class="font-lora text-base text-primary leading-none font-medium">{{trans('file.starts_from')}}: {{ currencyConvert($property->price) }}</span>
                                         <span class="flex flex-wrap items-center">
-                                            <button class="mr-[15px] text-[#9D9C9C] hover:text-secondary"
-                                                aria-label="svg">
-                                                <svg width="16" height="16" viewBox="0 0 16 16"
-                                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M13.1667 11.6667C12.8572 11.6667 12.5605 11.7896 12.3417 12.0084C12.1229 12.2272 12 12.5239 12 12.8334C12 13.1428 12.1229 13.4395 12.3417 13.6583C12.5605 13.8771 12.8572 14 13.1667 14C13.4761 14 13.7728 13.8771 13.9916 13.6583C14.2104 13.4395 14.3333 13.1428 14.3333 12.8334C14.3333 12.5239 14.2104 12.2272 13.9916 12.0084C13.7728 11.7896 13.4761 11.6667 13.1667 11.6667ZM11 12.8334C11 12.2587 11.2283 11.7076 11.6346 11.3013C12.0409 10.895 12.592 10.6667 13.1667 10.6667C13.7413 10.6667 14.2924 10.895 14.6987 11.3013C15.1051 11.7076 15.3333 12.2587 15.3333 12.8334C15.3333 13.408 15.1051 13.9591 14.6987 14.3654C14.2924 14.7717 13.7413 15 13.1667 15C12.592 15 12.0409 14.7717 11.6346 14.3654C11.2283 13.9591 11 13.408 11 12.8334Z"
-                                                        fill="currentColor" />
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M9.26984 1.14667C9.36347 1.24042 9.41606 1.3675 9.41606 1.5C9.41606 1.6325 9.36347 1.75958 9.26984 1.85333L8.4565 2.66667H11.1665C11.8295 2.66667 12.4654 2.93006 12.9343 3.3989C13.4031 3.86774 13.6665 4.50363 13.6665 5.16667V11C13.6665 11.1326 13.6138 11.2598 13.5201 11.3536C13.4263 11.4473 13.2991 11.5 13.1665 11.5C13.0339 11.5 12.9067 11.4473 12.813 11.3536C12.7192 11.2598 12.6665 11.1326 12.6665 11V5.16667C12.6665 4.96968 12.6277 4.77463 12.5523 4.59264C12.4769 4.41065 12.3665 4.24529 12.2272 4.10601C12.0879 3.96672 11.9225 3.85623 11.7405 3.78085C11.5585 3.70547 11.3635 3.66667 11.1665 3.66667H8.45717L9.2705 4.48C9.36154 4.57434 9.41188 4.70067 9.41068 4.83177C9.40948 4.96287 9.35683 5.08825 9.26409 5.18091C9.17134 5.27357 9.04591 5.32609 8.91481 5.32717C8.78371 5.32825 8.65743 5.27779 8.56317 5.18667L6.8965 3.52C6.80287 3.42625 6.75028 3.29917 6.75028 3.16667C6.75028 3.03417 6.80287 2.90708 6.8965 2.81333L8.56317 1.14667C8.65692 1.05303 8.784 1.00044 8.9165 1.00044C9.049 1.00044 9.17609 1.05303 9.26984 1.14667ZM2.83317 4.33333C2.98638 4.33333 3.13809 4.30316 3.27963 4.24453C3.42118 4.1859 3.54979 4.09996 3.65813 3.99162C3.76646 3.88329 3.8524 3.75468 3.91103 3.61313C3.96966 3.47158 3.99984 3.31988 3.99984 3.16667C3.99984 3.01346 3.96966 2.86175 3.91103 2.7202C3.8524 2.57866 3.76646 2.45004 3.65813 2.34171C3.54979 2.23337 3.42118 2.14744 3.27963 2.08881C3.13809 2.03018 2.98638 2 2.83317 2C2.52375 2 2.22701 2.12292 2.00821 2.34171C1.78942 2.5605 1.6665 2.85725 1.6665 3.16667C1.6665 3.47609 1.78942 3.77283 2.00821 3.99162C2.22701 4.21042 2.52375 4.33333 2.83317 4.33333ZM4.99984 3.16667C4.99984 3.7413 4.77156 4.2924 4.36524 4.69873C3.95891 5.10506 3.40781 5.33333 2.83317 5.33333C2.25853 5.33333 1.70743 5.10506 1.30111 4.69873C0.894777 4.2924 0.666504 3.7413 0.666504 3.16667C0.666504 2.59203 0.894777 2.04093 1.30111 1.6346C1.70743 1.22827 2.25853 1 2.83317 1C3.40781 1 3.95891 1.22827 4.36524 1.6346C4.77156 2.04093 4.99984 2.59203 4.99984 3.16667Z"
-                                                        fill="currentColor" />
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M6.73016 14.8533C6.63653 14.7596 6.58394 14.6325 6.58394 14.5C6.58394 14.3675 6.63653 14.2404 6.73016 14.1467L7.5435 13.3333H4.8335C4.17046 13.3333 3.53457 13.0699 3.06573 12.6011C2.59689 12.1323 2.3335 11.4964 2.3335 10.8333V5C2.3335 4.86739 2.38617 4.74021 2.47994 4.64645C2.57371 4.55268 2.70089 4.5 2.8335 4.5C2.9661 4.5 3.09328 4.55268 3.18705 4.64645C3.28082 4.74021 3.3335 4.86739 3.3335 5V10.8333C3.3335 11.2312 3.49153 11.6127 3.77284 11.894C4.05414 12.1753 4.43567 12.3333 4.8335 12.3333H7.54283L6.7295 11.52C6.68176 11.4739 6.6437 11.4187 6.61752 11.3576C6.59135 11.2966 6.57759 11.231 6.57704 11.1646C6.5765 11.0982 6.58918 11.0324 6.61435 10.971C6.63952 10.9095 6.67667 10.8537 6.72364 10.8068C6.77061 10.7599 6.82645 10.7228 6.88791 10.6977C6.94937 10.6726 7.01521 10.6599 7.0816 10.6605C7.14799 10.6612 7.2136 10.675 7.27459 10.7012C7.33557 10.7274 7.39073 10.7656 7.43683 10.8133L9.1035 12.48C9.19713 12.5738 9.24972 12.7008 9.24972 12.8333C9.24972 12.9658 9.19713 13.0929 9.1035 13.1867L7.43683 14.8533C7.34308 14.947 7.216 14.9996 7.0835 14.9996C6.951 14.9996 6.82391 14.947 6.73016 14.8533Z"
-                                                        fill="currentColor" />
+                                            <button class="mr-[15px] text-[#9D9C9C] hover:text-secondary" aria-label="svg">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.1667 11.6667C12.8572 11.6667 12.5605 11.7896 12.3417 12.0084C12.1229 12.2272 12 12.5239 12 12.8334C12 13.1428 12.1229 13.4395 12.3417 13.6583C12.5605 13.8771 12.8572 14 13.1667 14C13.4761 14 13.7728 13.8771 13.9916 13.6583C14.2104 13.4395 14.3333 13.1428 14.3333 12.8334C14.3333 12.5239 14.2104 12.2272 13.9916 12.0084C13.7728 11.7896 13.4761 11.6667 13.1667 11.6667ZM11 12.8334C11 12.2587 11.2283 11.7076 11.6346 11.3013C12.0409 10.895 12.592 10.6667 13.1667 10.6667C13.7413 10.6667 14.2924 10.895 14.6987 11.3013C15.1051 11.7076 15.3333 12.2587 15.3333 12.8334C15.3333 13.408 15.1051 13.9591 14.6987 14.3654C14.2924 14.7717 13.7413 15 13.1667 15C12.592 15 12.0409 14.7717 11.6346 14.3654C11.2283 13.9591 11 13.408 11 12.8334Z" fill="currentColor" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.26984 1.14667C9.36347 1.24042 9.41606 1.3675 9.41606 1.5C9.41606 1.6325 9.36347 1.75958 9.26984 1.85333L8.4565 2.66667H11.1665C11.8295 2.66667 12.4654 2.93006 12.9343 3.3989C13.4031 3.86774 13.6665 4.50363 13.6665 5.16667V11C13.6665 11.1326 13.6138 11.2598 13.5201 11.3536C13.4263 11.4473 13.2991 11.5 13.1665 11.5C13.0339 11.5 12.9067 11.4473 12.813 11.3536C12.7192 11.2598 12.6665 11.1326 12.6665 11V5.16667C12.6665 4.96968 12.6277 4.77463 12.5523 4.59264C12.4769 4.41065 12.3665 4.24529 12.2272 4.10601C12.0879 3.96672 11.9225 3.85623 11.7405 3.78085C11.5585 3.70547 11.3635 3.66667 11.1665 3.66667H8.45717L9.2705 4.48C9.36154 4.57434 9.41188 4.70067 9.41068 4.83177C9.40948 4.96287 9.35683 5.08825 9.26409 5.18091C9.17134 5.27357 9.04591 5.32609 8.91481 5.32717C8.78371 5.32825 8.65743 5.27779 8.56317 5.18667L6.8965 3.52C6.80287 3.42625 6.75028 3.29917 6.75028 3.16667C6.75028 3.03417 6.80287 2.90708 6.8965 2.81333L8.56317 1.14667C8.65692 1.05303 8.784 1.00044 8.9165 1.00044C9.049 1.00044 9.17609 1.05303 9.26984 1.14667ZM2.83317 4.33333C2.98638 4.33333 3.13809 4.30316 3.27963 4.24453C3.42118 4.1859 3.54979 4.09996 3.65813 3.99162C3.76646 3.88329 3.8524 3.75468 3.91103 3.61313C3.96966 3.47158 3.99984 3.31988 3.99984 3.16667C3.99984 3.01346 3.96966 2.86175 3.91103 2.7202C3.8524 2.57866 3.76646 2.45004 3.65813 2.34171C3.54979 2.23337 3.42118 2.14744 3.27963 2.08881C3.13809 2.03018 2.98638 2 2.83317 2C2.52375 2 2.22701 2.12292 2.00821 2.34171C1.78942 2.5605 1.6665 2.85725 1.6665 3.16667C1.6665 3.47609 1.78942 3.77283 2.00821 3.99162C2.22701 4.21042 2.52375 4.33333 2.83317 4.33333ZM4.99984 3.16667C4.99984 3.7413 4.77156 4.2924 4.36524 4.69873C3.95891 5.10506 3.40781 5.33333 2.83317 5.33333C2.25853 5.33333 1.70743 5.10506 1.30111 4.69873C0.894777 4.2924 0.666504 3.7413 0.666504 3.16667C0.666504 2.59203 0.894777 2.04093 1.30111 1.6346C1.70743 1.22827 2.25853 1 2.83317 1C3.40781 1 3.95891 1.22827 4.36524 1.6346C4.77156 2.04093 4.99984 2.59203 4.99984 3.16667Z" fill="currentColor" />
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.73016 14.8533C6.63653 14.7596 6.58394 14.6325 6.58394 14.5C6.58394 14.3675 6.63653 14.2404 6.73016 14.1467L7.5435 13.3333H4.8335C4.17046 13.3333 3.53457 13.0699 3.06573 12.6011C2.59689 12.1323 2.3335 11.4964 2.3335 10.8333V5C2.3335 4.86739 2.38617 4.74021 2.47994 4.64645C2.57371 4.55268 2.70089 4.5 2.8335 4.5C2.9661 4.5 3.09328 4.55268 3.18705 4.64645C3.28082 4.74021 3.3335 4.86739 3.3335 5V10.8333C3.3335 11.2312 3.49153 11.6127 3.77284 11.894C4.05414 12.1753 4.43567 12.3333 4.8335 12.3333H7.54283L6.7295 11.52C6.68176 11.4739 6.6437 11.4187 6.61752 11.3576C6.59135 11.2966 6.57759 11.231 6.57704 11.1646C6.5765 11.0982 6.58918 11.0324 6.61435 10.971C6.63952 10.9095 6.67667 10.8537 6.72364 10.8068C6.77061 10.7599 6.82645 10.7228 6.88791 10.6977C6.94937 10.6726 7.01521 10.6599 7.0816 10.6605C7.14799 10.6612 7.2136 10.675 7.27459 10.7012C7.33557 10.7274 7.39073 10.7656 7.43683 10.8133L9.1035 12.48C9.19713 12.5738 9.24972 12.7008 9.24972 12.8333C9.24972 12.9658 9.19713 13.0929 9.1035 13.1867L7.43683 14.8533C7.34308 14.947 7.216 14.9996 7.0835 14.9996C6.951 14.9996 6.82391 14.947 6.73016 14.8533Z" fill="currentColor" />
                                                 </svg>
                                             </button>
                                             <button class="text-[#9D9C9C] hover:text-secondary" aria-label="svg">
-                                                <svg width="16" height="16" viewBox="0 0 16 16"
-                                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                     <g clip-path="url(.clip0_656_640)">
-                                                        <path
-                                                            d="M7.9999 2.74799L7.2829 2.01099C5.5999 0.280988 2.5139 0.877988 1.39989 3.05299C0.876895 4.07599 0.758895 5.55299 1.71389 7.43799C2.63389 9.25299 4.5479 11.427 7.9999 13.795C11.4519 11.427 13.3649 9.25299 14.2859 7.43799C15.2409 5.55199 15.1239 4.07599 14.5999 3.05299C13.4859 0.877988 10.3999 0.279988 8.7169 2.00999L7.9999 2.74799ZM7.9999 15C-7.33311 4.86799 3.27889 -3.04001 7.82389 1.14299C7.88389 1.19799 7.94289 1.25499 7.9999 1.31399C8.05632 1.25504 8.11503 1.19833 8.17589 1.14399C12.7199 -3.04201 23.3329 4.86699 7.9999 15Z"
-                                                            fill="currentColor" />
+                                                        <path d="M7.9999 2.74799L7.2829 2.01099C5.5999 0.280988 2.5139 0.877988 1.39989 3.05299C0.876895 4.07599 0.758895 5.55299 1.71389 7.43799C2.63389 9.25299 4.5479 11.427 7.9999 13.795C11.4519 11.427 13.3649 9.25299 14.2859 7.43799C15.2409 5.55199 15.1239 4.07599 14.5999 3.05299C13.4859 0.877988 10.3999 0.279988 8.7169 2.00999L7.9999 2.74799ZM7.9999 15C-7.33311 4.86799 3.27889 -3.04001 7.82389 1.14299C7.88389 1.19799 7.94289 1.25499 7.9999 1.31399C8.05632 1.25504 8.11503 1.19833 8.17589 1.14399C12.7199 -3.04201 23.3329 4.86699 7.9999 15Z" fill="currentColor" />
                                                     </g>
                                                     <defs>
                                                         <clipPath class="clip0_656_640">
@@ -134,8 +118,8 @@
 
                     <!-- swiper-slide end-->
                 </div>
+
                 <!-- Add Pagination -->
-                <div class="swiper-pagination mb-4"></div>
             </div>
         </div>
 
@@ -144,28 +128,15 @@
 <!-- Popular Properties end -->
 
 
-
 <div class="container mx-auto pb-12 px-4">
     <!-- Section: Design Block -->
     <section class="mt-6 mb-20 text-neutral-700">
         <div class="grid gap-12 lg:grid-cols-3">
             <div class="order-2 lg:order-1 col-span-2">
-                <div class="swiper contentSlider">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="mb-6 pb-2">
-                                <h2 class="font-lora text-primary text-3xl sm:text-3xl leading-[1.277] lg:text-5xl capitalize font-medium max-w-[500px]">{{$citizenship->citizenshipTranslation->obtaining_title}}<span class="text-secondary">.</span></h2>
-                            </div>
-                            {!! $citizenship->citizenshipTranslation->obtaining_text !!}
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="mb-6 pb-2">
-                                <h2 class="font-lora text-primary text-3xl sm:text-3xl leading-[1.277] lg:text-5xl capitalize font-medium max-w-[500px]">{{$citizenship->citizenshipTranslation->acquisition_title}}<span class="text-secondary">.</span></h2>
-                            </div>
-                            {!! $citizenship->citizenshipTranslation->acquisition_text !!}
-                        </div>
-                    </div>
+                <div class="mb-6 pb-2">
+                    <h2 class="font-lora text-primary text-3xl sm:text-3xl leading-[1.277] lg:text-5xl capitalize font-medium max-w-[500px]">{{$citizenship->citizenshipTranslation->obtaining_title}}<span class="text-secondary">.</span></h2>
                 </div>
+                {!! $citizenship->citizenshipTranslation->obtaining_text !!}
             </div>
             <div class="order-1 lg:order-2 col-span-1">
                 <div class="diagram">
@@ -173,61 +144,223 @@
                         <li>
                             <div class="step">
                                 <span>
-                                    <img class="blur-up ls-is-cached lazyloaded" width="50px" height="50px" src="https://www.imtilakgroup.com/cdn-cgi/image/fit=contain,width=60/https://www.garsconsulting.com/storage/service_steps/2823771284180b6b119adaefa485d622jsS_353IP8.svg" data-src="https://www.imtilakgroup.com/cdn-cgi/image/fit=contain,width=60/https://www.garsconsulting.com/storage/service_steps/2823771284180b6b119adaefa485d622jsS_353IP8.svg" alt="استخراج تأمين صحي">
+                                    <img class="blur-up ls-is-cached lazyloaded" width="50px" height="50px" src="{{asset('images/insurance.svg')}}" data-src="{{asset('images/insurance.svg')}}" alt="{{trans('file.insurance')}}">
                                 </span>
                             </div>
-                            <div class="title font-bold text-capitalize">استخراج تأمين صحي</div>
+                            <div class="title font-bold text-capitalize">{{trans('file.insurance')}}</div>
                             <div class="image">
-                                <img src="https://www.garsconsulting.com/assets/img/service-decoration.svg?v=1595230525" alt="service-decoration">
-                                <div class="duration">24 ساعة</div>
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.insurance_duration')}}</div>
                             </div>
                         </li>
                         <li>
                             <div class="step">
                                 <span>
-                                    <img class="blur-up ls-is-cached lazyloaded" width="50px" height="50px" src="https://www.imtilakgroup.com/cdn-cgi/image/fit=contain,width=60/https://www.garsconsulting.com/storage/service_steps/cd97721053709db229fa6d5ab1893568QZ0_766IcK.svg" data-src="https://www.imtilakgroup.com/cdn-cgi/image/fit=contain,width=60/https://www.garsconsulting.com/storage/service_steps/cd97721053709db229fa6d5ab1893568QZ0_766IcK.svg" alt="حجز الموعد للمقابلة">
+                                    <img class="blur-up ls-is-cached lazyloaded" width="50px" height="50px" src="{{asset('images/randevu.svg')}}" data-src="{{asset('images/randevu.svg')}}" alt="{{trans('file.randevu')}}">
                                 </span>
                             </div>
-                            <div class="title font-bold text-capitalize">حجز الموعد للمقابلة</div>
+                            <div class="title font-bold text-capitalize">{{trans('file.randevu')}}</div>
                             <div class="image">
-                                <img src="https://www.garsconsulting.com/assets/img/service-decoration.svg?v=1595230525" alt="service-decoration">
-                                <div class="duration">24 ساعة</div>
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.insurance_duration')}}</div>
                             </div>
                         </li>
                         <li>
                             <div class="step">
                                 <span>
-                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="https://www.imtilakgroup.com/cdn-cgi/image/fit=contain,width=60/https://www.garsconsulting.com/storage/service_steps/931ebdc5b7f4edff2857ebf8deaf6bd9BSp_1593tH.svg" data-src="https://www.imtilakgroup.com/cdn-cgi/image/fit=contain,width=60/https://www.garsconsulting.com/storage/service_steps/931ebdc5b7f4edff2857ebf8deaf6bd9BSp_1593tH.svg" alt="تجهيز الوثائق المطلوبة">
+                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="{{asset('images/documents.svg')}}" data-src="{{asset('images/documents.svg')}}" alt="{{trans('file.docprep')}}">
                                 </span>
                             </div>
-                            <div class="title font-bold text-capitalize">تجهيز الوثائق المطلوبة</div>
+                            <div class="title font-bold text-capitalize">{{trans('file.docprep')}}</div>
                             <div class="image">
-                                <img src="https://www.garsconsulting.com/assets/img/service-decoration.svg?v=1595230525" alt="service-decoration">
-                                <div class="duration">10-15 يوم</div>
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.docprep_duration')}}</div>
                             </div>
                         </li>
                         <li>
                             <div class="step">
                                 <span>
-                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="https://www.imtilakgroup.com/cdn-cgi/image/fit=contain,width=60/https://www.garsconsulting.com/storage/service_steps/b502e441081c4993565f334051c31e04ale_537WKh.svg" data-src="https://www.imtilakgroup.com/cdn-cgi/image/fit=contain,width=60/https://www.garsconsulting.com/storage/service_steps/b502e441081c4993565f334051c31e04ale_537WKh.svg" alt="التوجه للمقابلة">
+                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="{{asset('images/goappointment.svg')}}" data-src="{{asset('images/goappointment.svg')}}" alt="{{trans('file.goappointment')}}">
                                 </span>
                             </div>
-                            <div class="title font-bold text-capitalize">التوجه للمقابلة</div>
+                            <div class="title font-bold text-capitalize">{{trans('file.goappointment')}}</div>
                             <div class="image">
-                                <img src="https://www.garsconsulting.com/assets/img/service-decoration.svg?v=1595230525" alt="service-decoration">
-                                <div class="duration">10- 90 يوم</div>
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.result_duration')}}</div>
                             </div>
                         </li>
                         <li>
                             <div class="step">
                                 <span>
-                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="https://www.imtilakgroup.com/cdn-cgi/image/fit=contain,width=60/https://www.garsconsulting.com/storage/service_steps/ce56e9fd98de5a5206937e0bb85cd6e8HMR_562TND.svg" data-src="https://www.imtilakgroup.com/cdn-cgi/image/fit=contain,width=60/https://www.garsconsulting.com/storage/service_steps/ce56e9fd98de5a5206937e0bb85cd6e8HMR_562TND.svg" alt="انتظار وصول بطاقة الإقامة">
+                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="{{asset('images/waitresults.svg')}}" data-src="{{asset('images/waitresults.svg')}}" alt="{{trans('file.result')}}">
                                 </span>
                             </div>
-                            <div class="title font-bold text-capitalize">انتظار وصول بطاقة الإقامة</div>
+                            <div class="title font-bold text-capitalize">{{trans('file.result')}}</div>
                             <div class="image">
-                                <img src="https://www.garsconsulting.com/assets/img/service-decoration.svg?v=1595230525" alt="service-decoration">
-                                <div class="duration">من 10- 90 يوم</div>
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.result_duration')}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section: Design Block -->
+</div>
+
+<div class="container mx-auto pb-12 px-4">
+    <!-- Section: Design Block -->
+    <section class="mt-6 mb-20 text-neutral-700">
+        <div class="grid gap-12 lg:grid-cols-3">
+            <div class="order-2 lg:order-1 col-span-2">
+                <div class="mb-6 pb-2">
+                    <h2 class="font-lora text-primary text-3xl sm:text-3xl leading-[1.277] lg:text-5xl capitalize font-medium max-w-[500px]">{{$citizenship->citizenshipTranslation->acquisition_title}}<span class="text-secondary">.</span></h2>
+                </div>
+                {!! $citizenship->citizenshipTranslation->acquisition_text !!}
+            </div>
+            <div class="order-1 lg:order-2 col-span-1">
+                <div class="diagram">
+                    <ul class="p-0 mb-0">
+                        <li>
+                            <div class="step">
+                                <span>
+                                    <img class="blur-up ls-is-cached lazyloaded" width="50px" height="50px" src="{{asset('images/insurance.svg')}}" data-src="{{asset('images/insurance.svg')}}" alt="{{trans('file.insurance')}}">
+                                </span>
+                            </div>
+                            <div class="title font-bold text-capitalize">{{trans('file.insurance')}}</div>
+                            <div class="image">
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.insurance_duration')}}</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step">
+                                <span>
+                                    <img class="blur-up ls-is-cached lazyloaded" width="50px" height="50px" src="{{asset('images/randevu.svg')}}" data-src="{{asset('images/randevu.svg')}}" alt="{{trans('file.randevu')}}">
+                                </span>
+                            </div>
+                            <div class="title font-bold text-capitalize">{{trans('file.randevu')}}</div>
+                            <div class="image">
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.insurance_duration')}}</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step">
+                                <span>
+                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="{{asset('images/documents.svg')}}" data-src="{{asset('images/documents.svg')}}" alt="{{trans('file.docprep')}}">
+                                </span>
+                            </div>
+                            <div class="title font-bold text-capitalize">{{trans('file.docprep')}}</div>
+                            <div class="image">
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.docprep_duration')}}</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step">
+                                <span>
+                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="{{asset('images/goappointment.svg')}}" data-src="{{asset('images/goappointment.svg')}}" alt="{{trans('file.goappointment')}}">
+                                </span>
+                            </div>
+                            <div class="title font-bold text-capitalize">{{trans('file.goappointment')}}</div>
+                            <div class="image">
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.result_duration')}}</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step">
+                                <span>
+                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="{{asset('images/waitresults.svg')}}" data-src="{{asset('images/waitresults.svg')}}" alt="{{trans('file.result')}}">
+                                </span>
+                            </div>
+                            <div class="title font-bold text-capitalize">{{trans('file.result')}}</div>
+                            <div class="image">
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">من {{trans('file.result_duration')}}</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section: Design Block -->
+</div>
+
+<div class="container mx-auto pb-12 px-4">
+    <!-- Section: Design Block -->
+    <section class="mt-6 mb-20 text-neutral-700">
+        <div class="grid gap-12 lg:grid-cols-3">
+            <div class="order-2 lg:order-1 col-span-2">
+                <div class="mb-6 pb-2">
+                    <h2 class="font-lora text-primary text-3xl sm:text-3xl leading-[1.277] lg:text-5xl capitalize font-medium max-w-[500px]">{{$citizenship->citizenshipTranslation->documents_title}}<span class="text-secondary">.</span></h2>
+                </div>
+                {!! $citizenship->citizenshipTranslation->documents_text !!}
+            </div>
+            <div class="order-1 lg:order-2 col-span-1">
+                <div class="diagram">
+                    <ul class="p-0 mb-0">
+                        <li>
+                            <div class="step">
+                                <span>
+                                    <img class="blur-up ls-is-cached lazyloaded" width="50px" height="50px" src="{{asset('images/insurance.svg')}}" data-src="{{asset('images/insurance.svg')}}" alt="{{trans('file.insurance')}}">
+                                </span>
+                            </div>
+                            <div class="title font-bold text-capitalize">{{trans('file.insurance')}}</div>
+                            <div class="image">
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.insurance_duration')}}</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step">
+                                <span>
+                                    <img class="blur-up ls-is-cached lazyloaded" width="50px" height="50px" src="{{asset('images/randevu.svg')}}" data-src="{{asset('images/randevu.svg')}}" alt="{{trans('file.randevu')}}">
+                                </span>
+                            </div>
+                            <div class="title font-bold text-capitalize">{{trans('file.randevu')}}</div>
+                            <div class="image">
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.insurance_duration')}}</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step">
+                                <span>
+                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="{{asset('images/documents.svg')}}" data-src="{{asset('images/documents.svg')}}" alt="{{trans('file.docprep')}}">
+                                </span>
+                            </div>
+                            <div class="title font-bold text-capitalize">{{trans('file.docprep')}}</div>
+                            <div class="image">
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.docprep_duration')}}</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step">
+                                <span>
+                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="{{asset('images/goappointment.svg')}}" data-src="{{asset('images/goappointment.svg')}}" alt="{{trans('file.goappointment')}}">
+                                </span>
+                            </div>
+                            <div class="title font-bold text-capitalize">{{trans('file.goappointment')}}</div>
+                            <div class="image">
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">{{trans('file.result_duration')}}</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="step">
+                                <span>
+                                    <img class="blur-up lazyloaded" width="50px" height="50px" src="{{asset('images/waitresults.svg')}}" data-src="{{asset('images/waitresults.svg')}}" alt="{{trans('file.result')}}">
+                                </span>
+                            </div>
+                            <div class="title font-bold text-capitalize">{{trans('file.result')}}</div>
+                            <div class="image">
+                                <img src="{{asset('images/service-decoration.svg')}}" alt="service-decoration">
+                                <div class="duration">من {{trans('file.result_duration')}}</div>
                             </div>
                         </li>
                     </ul>

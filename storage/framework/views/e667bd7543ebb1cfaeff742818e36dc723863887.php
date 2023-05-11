@@ -40,6 +40,8 @@
                                     <?php if(App::isLocale('ar')): ?>
                                     <?php if(old('state', request()->state) != NULL): ?>
                                     <option value="<?php echo e(old('state', request()->state)); ?>"><?php echo e(DB::table('state_translations')->where('locale', 'ar')->where('state_id', old('state', request()->state))->value('name')); ?></option>
+                                    <?php else: ?>
+                                    <option value=""><?php echo e(trans('file.select_city')); ?></option>
                                    <?php endif; ?>
                                    <?php else: ?>
                                    <?php if(old('state', request()->state) != NULL): ?>
@@ -66,6 +68,8 @@
                                     <?php if(App::isLocale('ar')): ?>
                                     <?php if(old('city_id', request()->city_id) != NULL): ?>
                                     <option value="<?php echo e(old('city_id', request()->city_id)); ?>"><?php echo e(DB::table('city_translations')->where('locale', 'ar')->where('city_id', old('city_id', request()->city_id))->value('name')); ?></option>
+                                    <?php else: ?>
+                                    <option value=""><?php echo e(trans('file.select_area')); ?></option>
                                    <?php endif; ?>
                                    <?php else: ?>
                                     <?php if(old('city_id', request()->city_id) != NULL): ?>
@@ -126,6 +130,8 @@
                                     <?php if(App::isLocale('ar')): ?>
                                     <?php if(old('category_id', request()->category_id) != NULL): ?>
                                     <option value="<?php echo e(old('category_id', request()->category_id)); ?>"><?php echo e(DB::table('category_translations')->where('locale', 'ar')->where('category_id', old('category_id', request()->category_id))->value('name')); ?></option>
+                                    <?php else: ?>
+                                    <option value=""><?php echo e(trans('file.property_type')); ?></option>
                                    <?php endif; ?>
                                     <?php else: ?>
                                     <?php if(old('category_id', request()->category_id) != NULL): ?>

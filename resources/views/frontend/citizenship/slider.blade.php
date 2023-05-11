@@ -8,11 +8,11 @@
                     <div class="grid items-center gap-12 lg:grid-cols-2">
                         <div class="lg:mt-0">
                             <h1 class="mb-5 font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">
-                                {{$citizenship->citizenshipTranslation->title}}<br /><span class="text-secondary">for your business</span>
+                                {!! $citizenship->citizenshipTranslation->banner_text !!}
                             </h1>
                             </div>
                         <div class="mb-12 lg:mb-0">
-                            <img src="https://www.imtilak.net/assets/img/turkish-wallet.png" class="w-full sm:mb-10 lg:mb-24" alt="" />
+                            <img src="{{ URL::asset('/images/images/' . $citizenship->file) }}" class="w-full sm:mb-10 lg:mb-24" alt="" />
                         </div>
                     </div>
                 </div>

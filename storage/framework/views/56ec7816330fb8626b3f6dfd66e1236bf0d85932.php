@@ -760,7 +760,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-[30px]">
                     <?php if($property->propertyDetails->first_floor_picture !== 'default.png' && $property->propertyDetails->first_floor_picture !== ''): ?>
 
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->first_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->first_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->first_floor_picture); ?>" loading="lazy" >
                         </a>
@@ -768,7 +768,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->second_floor_picture !== 'default.png' && $property->propertyDetails->second_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->second_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->second_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->second_floor_title); ?>" loading="lazy">
                         </a>
@@ -776,7 +776,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->third_floor_picture !== 'default.png' && $property->propertyDetails->third_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->third_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->third_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->third_floor_title); ?>" loading="lazy" width="770" height="465">
                         </a>
@@ -784,7 +784,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->fourth_floor_picture !== 'default.png' && $property->propertyDetails->fourth_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->fourth_floor_title); ?>" loading="lazy" width="770" height="465">
                         </a>
@@ -792,7 +792,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->fifth_floor_picture !== 'default.png' && $property->propertyDetails->fifth_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->fifth_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->fifth_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->fifth_floor_title); ?>" loading="lazy" width="770" height="465">
                         </a>
@@ -800,7 +800,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->sixth_floor_picture !== 'default.png' && $property->propertyDetails->sixth_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->sixth_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->sixth_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->sixth_floor_title); ?>" loading="lazy" width="770" height="465">
                         </a>
@@ -808,7 +808,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->seventh_floor_picture !== 'default.png' && $property->propertyDetails->seventh_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->seventh_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->seventh_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->seventh_floor_title); ?>" loading="lazy" width="770" height="465">
                         </a>
@@ -816,7 +816,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->eighth_floor_picture !== 'default.png' && $property->propertyDetails->eighth_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->eighth_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->eighth_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->eighth_floor_title); ?>" loading="lazy" width="770" height="465">
                         </a>
@@ -824,7 +824,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->ninth_floor_picture !== 'default.png' && $property->propertyDetails->ninth_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->ninth_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->ninth_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->ninth_floor_title); ?>" loading="lazy" width="770" height="465">
                         </a>
@@ -832,7 +832,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->tenth_floor_picture !== 'default.png' && $property->propertyDetails->tenth_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->tenth_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->tenth_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->tenth_floor_title); ?>" loading="lazy" width="770" height="465">
                         </a>
@@ -840,7 +840,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->eleventh_floor_picture !== 'default.png' && $property->propertyDetails->eleventh_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->eleventh_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->eleventh_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->eleventh_floor_title); ?>" loading="lazy" width="770" height="465">
                         </a>
@@ -848,7 +848,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                     <?php endif; ?>
                     <?php if($property->propertyDetails->twelfth_floor_picture !== 'default.png' && $property->propertyDetails->twelfth_floor_picture !== ''): ?>
-                    <div class="text-center">
+                    <div class="text-center plan-image">
                         <a href="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->twelfth_floor_picture)); ?>" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="<?php echo e(URL::asset('/images/floors/'.$property->propertyDetails->twelfth_floor_picture)); ?>" alt="<?php echo e($property->propertyDetails->twelfth_floor_title); ?>" loading="lazy" width="770" height="465">
                         </a>

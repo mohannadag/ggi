@@ -444,6 +444,8 @@
                                     @if(App::isLocale('ar'))
                                     @if(old('state', request()->state) != NULL)
                                     <option value="{{old('state', request()->state)}}">{{DB::table('state_translations')->where('locale', 'ar')->where('state_id', old('state', request()->state))->value('name');}}</option>
+                                    @else
+                                    <option value="">{{trans('file.select_city')}}</option>
                                    @endif
                                    @else
                                    @if(old('state', request()->state) != NULL)
@@ -469,6 +471,8 @@
                                     @if(App::isLocale('ar'))
                                     @if(old('city_id', request()->city_id) != NULL)
                                     <option value="{{old('city_id', request()->city_id)}}">{{DB::table('city_translations')->where('locale', 'ar')->where('city_id', old('city_id', request()->city_id))->value('name');}}</option>
+                                    @else
+                                    <option value="">{{trans('file.select_area')}}</option>
                                    @endif
                                    @else
                                     @if(old('city_id', request()->city_id) != NULL)
@@ -529,6 +533,8 @@
                                     @if(App::isLocale('ar'))
                                     @if(old('category_id', request()->category_id) != NULL)
                                     <option value="{{old('category_id', request()->category_id)}}">{{DB::table('category_translations')->where('locale', 'ar')->where('category_id', old('category_id', request()->category_id))->value('name');}}</option>
+                                    @else
+                                    <option value="">{{trans('file.property_type')}}</option>
                                    @endif
                                     @else
                                     @if(old('category_id', request()->category_id) != NULL)

@@ -1248,6 +1248,18 @@ class HomePageController extends Controller
         return $this->_propertySearchRepository->getByID($data);
     }
 
+    public function getByfilterProperties($categoryId,$cityId,$minPrice, $maxPrice,$bed,$bath,$stateName){
+        $data = [];
+        $data['category'] = $categoryId;
+        $data['city'] = $cityId;
+        $data['state'] = $stateName;
+        $data['minPrice'] = $minPrice;
+        $data['maxPrice'] = $maxPrice;
+        $data['bed'] = $bed;
+        $data['bath'] = $bath;
+        return $this->_propertySearchRepository->filterProperties($data);
+    }
+
     public function photo()
     {
         if (file_exists( public_path().'/storage/thumbnail/'.$this->thumbnail)) {

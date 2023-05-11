@@ -103,7 +103,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
     var swiper = new Swiper(".contentSlider", {
         direction: "vertical",
         slidesPerView: "auto",
-        freeMode: true,
+        freeMode: false,
         scrollbar: {
             el: ".swiper-scrollbar",
         },

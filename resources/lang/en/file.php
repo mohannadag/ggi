@@ -328,4 +328,13 @@ return array(
     'follow' => 'Follow Us on:',
     'realted_properties'=>'Related Properties',
     'related_posts'=>'Related Posts',
+    'insurance'=>'Getting Health Insurance',
+    'insurance_duration'=>'24 Hours',
+    'randevu'=>'Appointment Reservation',
+    'randevu_duration'=>'24 Hours',
+    'docprep'=>'Preparing Required Documents',
+    'docprep_duration'=>'10-15 Days',
+    'goappointment'=>'Go to Appointment',
+    'result_duration'=>'10-90 Days',
+    'result'=>'Wait For Residence Permit',
 );

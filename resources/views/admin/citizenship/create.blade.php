@@ -84,6 +84,16 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Image</label>
+                                            <input type="file" class="form-control" name="file" id="file">
+                                            @error('image')
+                                            <p class="text-danger">{{$message}}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -190,8 +200,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Second Field Title</label> <span class="text-danger">*</span>
-                                        <input type="text" name="acquisitiong_title" class="form-control filter-input" value="{{$citizenship->citizenshipTranslation->acquisitiong_title}}" placeholder="Page Title">
-                                        @error('acquisitiong_title')
+                                        <input type="text" name="acquisition_title" class="form-control filter-input" value="{{$citizenship->citizenshipTranslation->acquisition_title}}" placeholder="Page Title">
+                                        @error('acquisition_title')
                                         <p class="text-danger">{{$message}}</p>
                                         @enderror
                                     </div>
@@ -201,6 +211,26 @@
                                         <label for="list_info">Second Field Content</label> <span class="text-danger">*</span>
                                         <textarea name="acquisition_text" class="form-control tinymce" id="content" rows="4" placeholder="Enter your text here">{!! $citizenship->citizenshipTranslation->acquisition_text ?? $citizenship->citizenshipTranslationEnglish->acquisition_text  ?? null !!}</textarea>
                                         @error('acquisition_text')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Third Field Title</label> <span class="text-danger">*</span>
+                                        <input type="text" name="documents_title" class="form-control filter-input" value="{{$citizenship->citizenshipTranslation->documents_title}}" placeholder="Page Title">
+                                        @error('documents_title')
+                                        <p class="text-danger">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="list_info">Third Field Content</label> <span class="text-danger">*</span>
+                                        <textarea name="documents_text" class="form-control tinymce" id="content" rows="4" placeholder="Enter your text here">{!! $citizenship->citizenshipTranslation->documents_text ?? $citizenship->citizenshipTranslationEnglish->documents_text  ?? null !!}</textarea>
+                                        @error('documents_text')
                                         <p class="text-danger">{{ $message }}</p>
                                         @enderror
                                     </div>

@@ -481,7 +481,7 @@ class PropertySearchRepository implements IPropertySearchRepository
     public function filterProperties($data)
     {
         $query = property::where('status', 1)
-                                ->with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation');
+                        ->with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation');
 
         if($data['category'] != "")
         {
@@ -500,15 +500,15 @@ class PropertySearchRepository implements IPropertySearchRepository
                             ->to('USD')
                             ->amount($min)
                             ->get();
+                            return $cur;
 
                 $max = Currency::convert()
                             ->from($cur)
                             ->to('USD')
                             ->amount($max)
                             ->get();
+                    return $cur;
             }
-
-
             $query = $query->whereBetween('price', [$min, $max]);
         }
 
