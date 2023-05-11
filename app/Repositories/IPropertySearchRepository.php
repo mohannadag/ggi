@@ -5,7 +5,7 @@ interface IPropertySearchRepository
 {
     public function getByCategory($data);
     public function getByCity($data);
-    public function getByTitleDeed($data);
+    public function getByState($data);
     public function getByPrice($data);
     public function getByArea($data);
     public function getByCategoryCity($data);

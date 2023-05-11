@@ -814,19 +814,20 @@ class HomePageController extends Controller
     {
      if($request->get('query'))
      {
-      $query = $request->get('query');
-      $data = City::where('name', 'LIKE', "%{$query}%")->get();
-      $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
-      foreach($data as $row)
-      {
-       $output .= '
-       <li><a href="#">'.$row->name.','.$row->state->name.'</a></li>
-       ';
-      }
-      $output .= '</ul>';
-      echo $output;
+        $query = $request->get('query');
+        $data = City::where('name', 'LIKE', "%{$query}%")->get();
+        $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+        foreach($data as $row)
+        {
+         $output .= '
+         <li><a href="#">'.$row->name.','.$row->state->name.'</a></li>
+         ';
+        }
+        $output .= '</ul>';
+        echo $output;
      }
     }
+
     public function getByCategory($categoryId)
     {
         $data = [];

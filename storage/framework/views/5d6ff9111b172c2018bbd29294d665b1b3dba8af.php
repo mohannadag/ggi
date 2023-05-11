@@ -182,10 +182,14 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
         var propertyType = $(this).val();
         // alert(propertyType);
         if (propertyType == 1) {
-            $("#bed").show();
+            $("#bedroom").show();
             $("#bath").show();
             $("#area").show();
-        } else {
+            $("#garage").show();
+        } else  {
+            $("#bedroom").hide();
+            $("#bathroom").hide();
+            $("#bed").hide();
             $("#bath").hide();
             $("#garage").hide();
             $("#area").hide();
@@ -194,7 +198,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
 
 
-    var values = [<?php $__currentLoopData = $properties->sortBy('price'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> ["<?php echo e(priceConvert($property->price)); ?>"], <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>];
+    var values = [<?php $__currentLoopData = $properties->sortBy('price'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> ["<?php echo e($property->price); ?>"], <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>];
     var slider = $('#price-slider').slider({
         range: true,
         steps: values,
@@ -210,7 +214,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
     });
 
 
-    var values = [<?php $__currentLoopData = $properties->sortBy('price'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> ["<?php echo e(priceConvert($property->price)); ?>"], <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>];
+    var values = [<?php $__currentLoopData = $properties->sortBy('price'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> ["<?php echo e($property->price); ?>"], <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>];
     var slider = $('#price-sliderr').slider({
         range: true,
         steps: values,

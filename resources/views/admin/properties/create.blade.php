@@ -525,17 +525,17 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                         <label>Units Types</label>
-                                        <select name="bed[]" class="listing-input hero__form-input  form-control custom-select" multiple>
+                                        <select name="bed" class="listing-input hero__form-input  form-control custom-select" multiple>
                                                     <option value="">{{ trans('file.na') }}</option>
-                                                    <option value="1" >0+1</option>
-                                                    <option value="2" >1+1</option>
-                                                    <option value="3" >1+2</option>
-                                                    <option value="4" >1+3</option>
-                                                    <option value="5" >1+4</option>
-                                                    <option value="6" >1+5</option>
-                                                    <option value="7" >1+6</option>
-                                                    <option value="8" >1+7</option>
-                                                    <option value="9" >1+8</option>
+                                                    <option value="[1]" >1+0</option>
+                                                    <option value="[2]" >1+1</option>
+                                                    <option value="[3]" >2+1</option>
+                                                    <option value="[4]" >3+1</option>
+                                                    <option value="[5]" >4+1</option>
+                                                    <option value="[6]" >5+1</option>
+                                                    <option value="[7]" >6+1</option>
+                                                    <option value="[8]" >7+1</option>
+                                                    <option value="[9]" >8+1</option>
                                                 </select>
                                         </div>
                                     </div>
