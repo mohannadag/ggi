@@ -857,7 +857,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                                 <ul class="mt-[10px]">
                                                     <li class="flex flex-wrap items-center justify-between">
                                                         @if($similarListing->price !== '')
-                                                        <span class="font-lora text-[14px] text-secondary leading-none">{{trans('file.starts_from')}}: {{ $similarListing->currency->icon }} {{ number_format($similarListing->price) }}</span>
+                                                        <span class="font-lora text-[14px] text-secondary leading-none">{{trans('file.starts_from')}}: {{ currencyConvert($similarListing->price) }}</span>
                                                         @else
                                                         <span class="font-lora text-[14px] text-secondary leading-none">No Price Given</span>
                                                         @endif

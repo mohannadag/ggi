@@ -182,10 +182,14 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
         var propertyType = $(this).val();
         // alert(propertyType);
         if (propertyType == 1) {
-            $("#bed").show();
+            $("#bedroom").show();
             $("#bath").show();
             $("#area").show();
-        } else {
+            $("#garage").show();
+        } else  {
+            $("#bedroom").hide();
+            $("#bathroom").hide();
+            $("#bed").hide();
             $("#bath").hide();
             $("#garage").hide();
             $("#area").hide();
@@ -194,7 +198,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
 
 
-    var values = [@foreach ($properties->sortBy('price') as $key => $property) ["{{ priceConvert($property->price) }}"], @endforeach];
+    var values = [@foreach ($properties->sortBy('price') as $key => $property) ["{{ $property->price }}"], @endforeach];
     var slider = $('#price-slider').slider({
         range: true,
         steps: values,
@@ -210,7 +214,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
     });
 
 
-    var values = [@foreach ($properties->sortBy('price') as $key => $property) ["{{ priceConvert($property->price) }}"], @endforeach];
+    var values = [@foreach ($properties->sortBy('price') as $key => $property) ["{{ $property->price }}"], @endforeach];
     var slider = $('#price-sliderr').slider({
         range: true,
         steps: values,

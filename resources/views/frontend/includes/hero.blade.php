@@ -267,7 +267,7 @@
 
 
                         <div class="advanced-searrch-hidden flex flex-wrap items-center mt-[45px] -mb-[45px]">
-                            <div id="bed" class="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px] search-list">
+                            <div id="bedroom" class="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px] search-list">
                                 <div class="mr-4 self-start shrink-0">
                                     <img src="{{asset('frontend/images/icon/location.svg')}}" width="24" height="24" alt="svg icon">
                                 </div>
@@ -288,7 +288,7 @@
                                 </div>
                             </div>
 
-                            <div id="bath" class="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px] search-list">
+                            <div id="bathroom" class="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px] search-list">
                                 <div class="mr-4 self-start shrink-0">
                                     <img src="{{asset('frontend/images/icon/property.svg')}}" width="24" height="24" alt="svg icon">
                                 </div>

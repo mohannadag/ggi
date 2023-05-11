@@ -471,7 +471,7 @@ class PropertyModel implements IPropertyModel
         $dataProperty['locale'] = $request->input('local');
         $dataProperty['propertyId'] = $property['id'];
         $dataPropertyDetail = [];
-        $dataPropertyDetail['bed'] = $request->input('bed');
+        $dataPropertyDetail['bed'] = $request->input(['bed']);
         $dataPropertyDetail['bath'] = $request->input('bath');
         $dataPropertyDetail['garage'] = $request->input('garage');
         $dataPropertyDetail['blocks'] = $request->input('blocks') ?? '';

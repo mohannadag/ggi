@@ -444,13 +444,16 @@
                                     <?php if(App::isLocale('ar')): ?>
                                     <?php if(old('state', request()->state) != NULL): ?>
                                     <option value="<?php echo e(old('state', request()->state)); ?>"><?php echo e(DB::table('state_translations')->where('locale', 'ar')->where('state_id', old('state', request()->state))->value('name')); ?></option>
-                                    <?php else: ?>
-                                    <?php if(old('state', request()->state) != NULL): ?>
+                                   <?php endif; ?>
+                                   <?php else: ?>
+                                   <?php if(old('state', request()->state) != NULL): ?>
                                     <option value="<?php echo e(old('state', request()->state)); ?>"><?php echo e(DB::table('state_translations')->where('locale', 'en')->where('state_id', old('state', request()->state))->value('name')); ?></option>
-                                    <?php endif; ?>
+                                    <?php else: ?>
                                     <option value=""><?php echo e(trans('file.select_city')); ?></option>
                                     <?php endif; ?>
                                     <?php endif; ?>
+
+
                                     <?php $__currentLoopData = $states->where('status', 1); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option value="<?php echo e($state->id); ?>">
                                         <?php echo e($state->stateTranslation->name ?? ($state->stateTranslationEnglish->name ??
@@ -560,7 +563,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="bed" class="relative mb-[25px] bg-white">
+                            <div id="bedroom" class="relative mb-[25px] bg-white">
                                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none"
                                     width="14" height="10" viewBox="0 0 14 10" fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -568,25 +571,49 @@
                                         d="M13.0002 4.18665V2.33331C13.0002 1.23331 12.1002 0.333313 11.0002 0.333313H8.3335C7.82016 0.333313 7.3535 0.533313 7.00016 0.853313C6.64683 0.533313 6.18016 0.333313 5.66683 0.333313H3.00016C1.90016 0.333313 1.00016 1.23331 1.00016 2.33331V4.18665C0.593496 4.55331 0.333496 5.07998 0.333496 5.66665V9.66665H1.66683V8.33331H12.3335V9.66665H13.6668V5.66665C13.6668 5.07998 13.4068 4.55331 13.0002 4.18665ZM8.3335 1.66665H11.0002C11.3668 1.66665 11.6668 1.96665 11.6668 2.33331V3.66665H7.66683V2.33331C7.66683 1.96665 7.96683 1.66665 8.3335 1.66665ZM2.3335 2.33331C2.3335 1.96665 2.6335 1.66665 3.00016 1.66665H5.66683C6.0335 1.66665 6.3335 1.96665 6.3335 2.33331V3.66665H2.3335V2.33331ZM1.66683 6.99998V5.66665C1.66683 5.29998 1.96683 4.99998 2.3335 4.99998H11.6668C12.0335 4.99998 12.3335 5.29998 12.3335 5.66665V6.99998H1.66683Z">
                                     </path>
                                 </svg>
-                                <select name="bed" id="bed"
-                                    class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
-                                    <?php if(old('bed', request()->bed) != NULL): ?>
-                                    <option value="<?php echo e(old('bed', request()->bed)); ?>"><?php echo e(old('bed', request()->bed)); ?></option>
+                                <select name="bed[]" id="bed"
+                                    class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer" multiple>
+                                    <?php if(old('bed', request()->bed) == '1'): ?>
+                                    <option value="1">1+0</option>
+                                    <?php endif; ?>
+                                    <?php if(old('bed', request()->bed) == '2'): ?>
+                                    <option value="2">1+1</option>
+                                    <?php endif; ?>
+                                    <?php if(old('bed', request()->bed) == '3'): ?>
+                                    <option value="3">2+1</option>
+                                    <?php endif; ?>
+                                    <?php if(old('bed', request()->bed) == '4'): ?>
+                                    <option value="4">3+1</option>
+                                    <?php endif; ?>
+                                    <?php if(old('bed', request()->bed) == '5'): ?>
+                                    <option value="5">4+1</option>
+                                    <?php endif; ?>
+                                    <?php if(old('bed', request()->bed) == '6'): ?>
+                                    <option value="6">5+1</option>
+                                    <?php endif; ?>
+                                    <?php if(old('bed', request()->bed) == '7'): ?>
+                                    <option value="7">6+1</option>
+                                    <?php endif; ?>
+                                    <?php if(old('bed', request()->bed) == '8'): ?>
+                                    <option value="8">7+1</option>
+                                    <?php endif; ?>
+                                    <?php if(old('bed', request()->bed) == '9'): ?>
+                                    <option value="9">8+1</option>
                                     <?php else: ?>
                                     <option value=""><?php echo e(trans('file.bedrooms')); ?></option>
                                     <?php endif; ?>
-                                    <option value="[1]">0+1</option>
-                                    <option value="[2]">1+1</option>
-                                    <option value="[3]">1+2</option>
-                                    <option value="[4]">1+3</option>
-                                    <option value="[5]">1+4</option>
-                                    <option value="[6]">1+5</option>
-                                    <option value="[7]">1+6</option>
-                                    <option value="[8]">1+7</option>
-                                    <option value="[9]">1+8</option>
+                                    <option value="1">1+0</option>
+                                    <option value="2">1+1</option>
+                                    <option value="3">2+1</option>
+                                    <option value="4">3+1</option>
+                                    <option value="5">4+1</option>
+                                    <option value="6">5+1</option>
+                                    <option value="7">6+1</option>
+                                    <option value="8">7+1</option>
+                                    <option value="9">8+1</option>
                                 </select>
                             </div>
-                            <div id="bath" class="relative mb-[25px] bg-white">
+                            <div id="bathroom" class="relative mb-[25px] bg-white">
                                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none"
                                     width="14" height="14" viewBox="0 0 14 14" fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg">

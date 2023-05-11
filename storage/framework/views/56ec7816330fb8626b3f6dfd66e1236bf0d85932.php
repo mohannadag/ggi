@@ -912,7 +912,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                                 <ul class="mt-[10px]">
                                                     <li class="flex flex-wrap items-center justify-between">
                                                         <?php if($similarListing->price !== ''): ?>
-                                                        <span class="font-lora text-[14px] text-secondary leading-none"><?php echo e(trans('file.starts_from')); ?>: <?php echo e($similarListing->currency->icon); ?> <?php echo e(number_format($similarListing->price)); ?></span>
+                                                        <span class="font-lora text-[14px] text-secondary leading-none"><?php echo e(trans('file.starts_from')); ?>: <?php echo e(currencyConvert($similarListing->price)); ?></span>
                                                         <?php else: ?>
                                                         <span class="font-lora text-[14px] text-secondary leading-none">No Price Given</span>
                                                         <?php endif; ?>
