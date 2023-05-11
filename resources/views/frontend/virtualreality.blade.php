@@ -12,7 +12,7 @@
 
     <section
         class="bg-no-repeat bg-center bg-cover bg-[#E9F1FF] h-[350px] lg:h-[513px] flex flex-wrap items-center relative before:absolute before:inset-0 before:content-[''] before:bg-[#000000] before:opacity-[70%]"
-        style="background-image: url('assets/images/breadcrumb/bg-1.png');">
+        style="background-image: url('{{ url('frontend/images/breadcrumb/bread-12.jpeg') }}');">
         <div class="container">
             <div class="grid grid-cols-12">
                 <div class="col-span-12">
