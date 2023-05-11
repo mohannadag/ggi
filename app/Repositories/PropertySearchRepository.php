@@ -3,6 +3,8 @@ namespace App\Repositories;
 
 use App\Models\Property;
 use Illuminate\Database\Eloquent\Builder;
+use AmrShawky\LaravelCurrency\Facade\Currency;
+use Illuminate\Support\Facades\Session;
 
 class PropertySearchRepository implements IPropertySearchRepository
 {
@@ -475,4 +477,80 @@ class PropertySearchRepository implements IPropertySearchRepository
                         ->where('property_id',$data['property_id'])
                         ->get();
     }
+
+    public function filterProperties($data)
+    {
+        $query = property::where('status', 1)
+                                ->with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation');
+
+        if($data['category'] != "")
+        {
+            $query = $query->where('category_id', $data['category']);
+        }
+
+        if($data['minPrice'] !="" && $data['maxPrice'] !="")
+        {
+            $cur = Session::get('currency');
+            $min = (int)$data['minPrice'];
+            $max = (int)$data['maxPrice'];
+            if($cur != "USD")
+            {
+                $min = Currency::convert()
+                            ->from($cur)
+                            ->to('USD')
+                            ->amount($min)
+                            ->get();
+
+                $max = Currency::convert()
+                            ->from($cur)
+                            ->to('USD')
+                            ->amount($max)
+                            ->get();
+            }
+
+
+            $query = $query->whereBetween('price', [$min, $max]);
+        }
+
+        if($data['city'] != "")
+        {
+            $query = $query->where('city_id',$data['city']);
+        }
+
+        if($data['minArea'] !="" && $data['maxArea'] !="")
+        {
+            $query = $query->whereHas('propertyDetails',function(Builder $query) use($data){
+                    $query->whereBetween('room_size', [(int)$data['minArea'],(int)$data['maxArea']]);
+                });
+        }
+
+        if($data['bed'] != "")
+        {
+            $query = $query->whereHas('propertyDetails',function(Builder $query) use($data){
+                $query->whereIn('bed',$data['bed']);
+            });
+        }
+
+        if($data['bath'] != "")
+        {
+            $query = $query->whereHas('propertyDetails',function(Builder $query) use($data){
+                $query->where('bath',(int)$data['bath']);
+            });
+        }
+
+        if($data['title'] != "")
+        {
+            $query = $query->whereHas('city',function(Builder $query) use($data){
+                $query->where('name',$data['title']);
+            });
+        }
+
+        if($data['property_name'] != "")
+        {
+            $query = $query->where('title',$data['property_name']);
+        }
+
+        return $query->get();
+    }
+
 }

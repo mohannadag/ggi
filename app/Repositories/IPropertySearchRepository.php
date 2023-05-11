@@ -58,4 +58,6 @@ interface IPropertySearchRepository
     public function getByStateName($data);
     public function getByName($data);
     public function getByID($data);
+
+    public function filterProperties($data);
 }
