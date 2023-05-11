@@ -22,6 +22,7 @@ use App\Models\Slider;
 use App\Models\Story;
 use App\Models\Testimonial;
 use App\Models\User;
+use App\Models\CitizenshipTranslation;
 use App\Models\Video;
 use Illuminate\Support\Facades\App;
 use App\ViewModels\IPropertySearchModel;
@@ -53,6 +54,8 @@ class CitizenshipController extends Controller
     {
         $locale   = Session::get('currentLocal');
 
+        $citizenshipTranslation = CitizenshipTranslation::where('locale','en')->get()->keyBy('citizenship_id');
+        $citizenship = Citizenship::with('citizenshipTranslation')->first();
         $properties = Property::where('moderation_status',1)
                         ->orderBy('id','DESC')
                         ->where('status',1)
@@ -89,17 +92,17 @@ class CitizenshipController extends Controller
             }
         }
         $propertyDetails = PropertyDetail::get()->keyBy('property_id');
+        $maxArea = $propertyDetails->max('room_size');
+        $minArea = $propertyDetails->min('room_size');
+        $country = Country::with('countryTranslation')->get()->keyBy('id');
+        $city = City::with('cityTranslation')->get()->keyBy('id');
+        $agents = User::get()->where('type', 'agent')->keyBy('id');
         $videos = Video::with(['videoTranslation','videoTranslationEnglish'])
                 ->orderBy('id','DESC')
                 ->get();
                 $testimonials = Testimonial::with(['testimonialTranslation','testimonialTranslationEnglish'])
                     ->orderBy('id','DESC')
                     ->get();
-        $maxArea = $propertyDetails->max('room_size');
-        $minArea = $propertyDetails->min('room_size');
-        $country = Country::with('countryTranslation')->get()->keyBy('id');
-        $city = City::with('cityTranslation')->get()->keyBy('id');
-        $agents = User::get()->where('type', 'agent')->keyBy('id');
         $sliders = Slider::with(['sliderTranslation','sliderTranslationEnglish'])
         ->orderBy('id','DESC')
         ->get();
@@ -120,9 +123,7 @@ class CitizenshipController extends Controller
         $popularTopics = BlogCategory::with('blogCategoryTranslation','blogs')->where('status',1)->get()->keyBy('id');
         $tags = Tag::with('tagTranslation','tagTranslationEnglish')->where('status',1)->get();
         $headerImage = HeaderImage::where('page','home')->first();
-
-        $citizenship = Citizenship::first();
-        return view('frontend.citizenship',compact('headerImage', 'properties', 'country', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories','sliders','citizenship' ));
+        return view('frontend.citizenship',compact('citizenship', 'citizenshipTranslation', 'headerImage', 'properties', 'country', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories','sliders',));
     }
 
 

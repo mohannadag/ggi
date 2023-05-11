@@ -22,6 +22,7 @@ class PropertySearchModel implements IPropertySearchModel
         $data['title'] = $request->input('title');
         $data['category'] = $request->input('category_id');
         $data['city'] = $request->input('city_id');
+        $data['state'] = $request->input('state');
         $data['minPrice'] = $request->input('minPrice');
         $data['maxPrice'] = $request->input('maxPrice');
         $data['minArea'] = $request->input('minArea');

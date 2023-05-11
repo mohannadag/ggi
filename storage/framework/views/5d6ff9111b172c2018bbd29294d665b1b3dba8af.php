@@ -176,6 +176,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
     });
 </script>
 
+
 <script>
     $(document).on('change', '#category_id', function() {
         var propertyType = $(this).val();
@@ -193,7 +194,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
 
 
-    var values = [1, 10000, 25000, 50000, 75000, 125000, 150000, 270000, 350000, 600000, 750000, 1000000, 1500000, 2000000];
+    var values = [<?php $__currentLoopData = $properties->sortBy('price'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> ["<?php echo e(priceConvert($property->price)); ?>"], <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>];
     var slider = $('#price-slider').slider({
         range: true,
         steps: values,
@@ -208,7 +209,8 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
         }
     });
 
-    var values = [1, 10000, 25000, 50000, 75000, 125000, 150000, 270000, 350000, 600000, 750000, 1000000, 1500000, 2000000];
+
+    var values = [<?php $__currentLoopData = $properties->sortBy('price'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> ["<?php echo e(priceConvert($property->price)); ?>"], <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>];
     var slider = $('#price-sliderr').slider({
         range: true,
         steps: values,

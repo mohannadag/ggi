@@ -94,7 +94,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Tag:</label> <span class="text-danger">*</span>
-                                            <select name="tags[]" id="" class="form-control" multiple>
+                                            <select name="tag" id="tag" class="form-control">
                                                 <option value="">Select</option>
                                                 @foreach($tags as $tag)
                                                     <option value="{{$tag->id}}">{{$tag->name}}</option>

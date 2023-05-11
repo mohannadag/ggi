@@ -326,4 +326,6 @@ return array(
     'sold' => 'Sold Out',
     'share' => 'Share on Social Media',
     'follow' => 'Follow Us on:',
+    'realted_properties'=>'Related Properties',
+    'related_posts'=>'Related Posts',
 );

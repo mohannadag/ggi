@@ -441,10 +441,15 @@
 
                                 <select name="state" id="state"
                                     class="nice-select font-light w-full h-[45px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white appearance-none cursor-pointer">
+                                    @if(App::isLocale('ar'))
                                     @if(old('state', request()->state) != NULL)
-                                    <option value="{{old('state', request()->state)}}">{{DB::table('states')->where('id', old('state', request()->state))->value('name');}}</option>
+                                    <option value="{{old('state', request()->state)}}">{{DB::table('state_translations')->where('locale', 'ar')->where('state_id', old('state', request()->state))->value('name');}}</option>
                                     @else
+                                    @if(old('state', request()->state) != NULL)
+                                    <option value="{{old('state', request()->state)}}">{{DB::table('state_translations')->where('locale', 'en')->where('state_id', old('state', request()->state))->value('name');}}</option>
+                                    @endif
                                     <option value="">{{trans('file.select_city')}}</option>
+                                    @endif
                                     @endif
                                     @foreach ($states->where('status', 1) as $state)
                                     <option value="{{ $state->id }}">
@@ -458,10 +463,16 @@
 
                                 <select name="city_id" id="city_id"
                                     class="nice-select select appearance-none bg-transparent text-tiny font-light cursor-pointer">
+                                    @if(App::isLocale('ar'))
                                     @if(old('city_id', request()->city_id) != NULL)
-                                    <option value="{{old('city_id', request()->city_id)}}">{{DB::table('cities')->where('id', old('city_id', request()->city_id))->value('name');}}</option>
+                                    <option value="{{old('city_id', request()->city_id)}}">{{DB::table('city_translations')->where('locale', 'ar')->where('city_id', old('city_id', request()->city_id))->value('name');}}</option>
+                                   @endif
+                                   @else
+                                    @if(old('city_id', request()->city_id) != NULL)
+                                    <option value="{{old('city_id', request()->city_id)}}">{{DB::table('city_translations')->where('locale', 'en')->where('city_id', old('city_id', request()->city_id))->value('name');}}</option>
                                     @else
                                     <option value="">{{trans('file.select_area')}}</option>
+                                    @endif
                                     @endif
                                     @foreach ($city->where('status', 1) as $city)
                                     <option value="{{ $city->id }}">
@@ -512,11 +523,16 @@
                                 </svg>
                                 <select id="category_id" name="category_id"
                                     class="nice-select font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body borderborder-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary border-primary pl-[40px] pr-[20px] py-[8px] focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white appearance-none cursor-pointer">
+                                    @if(App::isLocale('ar'))
                                     @if(old('category_id', request()->category_id) != NULL)
-                                    <option value="{{old('category_id', request()->category_id)}}">{{old('category_id',
-                                        request()->category_id)}}</option>
+                                    <option value="{{old('category_id', request()->category_id)}}">{{DB::table('category_translations')->where('locale', 'ar')->where('category_id', old('category_id', request()->category_id))->value('name');}}</option>
+                                   @endif
+                                    @else
+                                    @if(old('category_id', request()->category_id) != NULL)
+                                    <option value="{{old('category_id', request()->category_id)}}">{{DB::table('category_translations')->where('locale', 'en')->where('category_id', old('category_id', request()->category_id))->value('name');}}</option>
                                     @else
                                     <option value="">{{trans('file.property_type')}}</option>
+                                    @endif
                                     @endif
                                     @foreach ($categories->where('status', 1) as $category)
 
@@ -528,49 +544,21 @@
                             <div class="relative mb-[25px] bg-white">
                                 <svg class="absolute -translate-y-1/2 z-[1] left-[20px] pointer-events-none" width="16"
                                     height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M5.78125 9.55323C5.78125 10.4132 6.44125 11.1066 7.26125 11.1066H8.93458C9.64792 11.1066 10.2279 10.4999 10.2279 9.75323C10.2279 8.9399 9.87458 8.65323 9.34792 8.46657L6.66125 7.53323C6.13458 7.34657 5.78125 7.0599 5.78125 6.24657C5.78125 5.4999 6.36125 4.89323 7.07458 4.89323H8.74792C9.56792 4.89323 10.2279 5.58657 10.2279 6.44657"
-                                        stroke="#0B2C3D" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
+                                    <path d="M5.78125 9.55323C5.78125 10.4132 6.44125 11.1066 7.26125 11.1066H8.93458C9.64792 11.1066 10.2279 10.4999 10.2279 9.75323C10.2279 8.9399 9.87458 8.65323 9.34792 8.46657L6.66125 7.53323C6.13458 7.34657 5.78125 7.0599 5.78125 6.24657C5.78125 5.4999 6.36125 4.89323 7.07458 4.89323H8.74792C9.56792 4.89323 10.2279 5.58657 10.2279 6.44657" stroke="#0B2C3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     <path d="M8 4V12" stroke="#0B2C3D" stroke-width="1.5" stroke-linecap="round"
                                         stroke-linejoin="round" />
-                                    <path
-                                        d="M7.9987 14.6667C11.6806 14.6667 14.6654 11.6819 14.6654 8C14.6654 4.3181 11.6806 1.33333 7.9987 1.33333C4.3168 1.33333 1.33203 4.3181 1.33203 8C1.33203 11.6819 4.3168 14.6667 7.9987 14.6667Z"
-                                        stroke="#0B2C3D" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
+                                    <path d="M7.9987 14.6667C11.6806 14.6667 14.6654 11.6819 14.6654 8C14.6654 4.3181 11.6806 1.33333 7.9987 1.33333C4.3168 1.33333 1.33203 4.3181 1.33203 8C1.33203 11.6819 4.3168 14.6667 7.9987 14.6667Z" stroke="#0B2C3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <div class="price-slider" style="margin: 0px 0px 0px 50px;">
                                     <div class="flex-1">
                                         <div class="price-slider">
                                             <div class="price-slider" id="price-slider"></div>
-                                            <input id="minPrice" name="minPrice"
-                                                class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] "
-                                                type="text">
-                                            <input id="maxPrice" name="maxPrice"
-                                                class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] "
-                                                type="text">
+                                            <input id="minPrice" name="minPrice" value="{{old('minPrice', request()->minPrice)}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
+                                            <input id="maxPrice" name="maxPrice" value="{{old('maxPrice', request()->maxPrice)}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--<div id="area" class="relative mb-[25px] bg-white">-->
-                            <!--    <svg class="absolute -translate-y-1/2 z-[1] left-[20px] pointer-events-none" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-                            <!--        <path d="M9.33268 4.66667H4.66602V9.33334H9.33268V4.66667Z" stroke="#0B2C3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />-->
-                            <!--        <path d="M2.91602 12.8333C3.87852 12.8333 4.66602 12.0458 4.66602 11.0833V9.33333H2.91602C1.95352 9.33333 1.16602 10.1208 1.16602 11.0833C1.16602 12.0458 1.95352 12.8333 2.91602 12.8333Z" stroke="#0B2C3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />-->
-                            <!--        <path d="M2.91602 4.66667H4.66602V2.91667C4.66602 1.95417 3.87852 1.16667 2.91602 1.16667C1.95352 1.16667 1.16602 1.95417 1.16602 2.91667C1.16602 3.87917 1.95352 4.66667 2.91602 4.66667Z" stroke="#0B2C3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />-->
-                            <!--        <path d="M9.33398 4.66667H11.084C12.0465 4.66667 12.834 3.87917 12.834 2.91667C12.834 1.95417 12.0465 1.16667 11.084 1.16667C10.1215 1.16667 9.33398 1.95417 9.33398 2.91667V4.66667Z" stroke="#0B2C3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />-->
-                            <!--        <path d="M11.084 12.8333C12.0465 12.8333 12.834 12.0458 12.834 11.0833C12.834 10.1208 12.0465 9.33333 11.084 9.33333H9.33398V11.0833C9.33398 12.0458 10.1215 12.8333 11.084 12.8333Z" stroke="#0B2C3D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />-->
-                            <!--    </svg>-->
-                            <!--    <div class="price-slider" style="margin: 0px 0px 0px 50px;">-->
-                            <!--        <div class="flex-1">-->
-                            <!--            <div class="price-slider">-->
-                            <!--                <div class="price-slider" id="area-slider"></div>-->
-                            <!--                <input id="minArea" name="minArea" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">-->
-                            <!--                <input id="maxArea" name="maxArea" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">-->
-                            <!--            </div>-->
-                            <!--        </div>-->
-                            <!--    </div>-->
-                            <!--</div>-->
                             <div id="bed" class="relative mb-[25px] bg-white">
                                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none"
                                     width="14" height="10" viewBox="0 0 14 10" fill="currentColor"
@@ -581,14 +569,20 @@
                                 </svg>
                                 <select name="bed" id="bed"
                                     class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
+                                    @if(old('bed', request()->bed) != NULL)
+                                    <option value="{{old('bed', request()->bed)}}">{{old('bed', request()->bed)}}</option>
+                                    @else
                                     <option value="">{{trans('file.bedrooms')}}</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
+                                    @endif
+                                    <option value="[1]">0+1</option>
+                                    <option value="[2]">1+1</option>
+                                    <option value="[3]">1+2</option>
+                                    <option value="[4]">1+3</option>
+                                    <option value="[5]">1+4</option>
+                                    <option value="[6]">1+5</option>
+                                    <option value="[7]">1+6</option>
+                                    <option value="[8]">1+7</option>
+                                    <option value="[9]">1+8</option>
                                 </select>
                             </div>
                             <div id="bath" class="relative mb-[25px] bg-white">
@@ -601,7 +595,12 @@
                                 </svg>
                                 <select name="bath" id="bath"
                                     class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
+                                    @if(old('bath', request()->bath) != NULL)
+                                    <option value="{{old('bath', request()->bath)}}">{{old('bath',
+                                        request()->bath)}}</option>
+                                    @else
                                     <option value="">{{trans('file.bath')}}</option>
+                                    @endif
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

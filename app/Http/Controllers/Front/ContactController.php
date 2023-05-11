@@ -14,7 +14,11 @@ use App\Repositories\IPropertySearchRepository;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Category;
+use App\Models\PropertyTranslation;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 use App\Models\State;
+use Carbon\Carbon;
 
 class ContactController extends Controller
 {
@@ -30,25 +34,41 @@ class ContactController extends Controller
 
     public function index(Request $request)
     {
-        $props = Property::with(['propertyDetails','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
+        App::setLocale(Session::get('currentLocal'));
+        $locale   = Session::get('currentLocal');
+        $props = Property::with(['propertyDetails','user','category.categoryTranslation', 'country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
         ->where('moderation_status',1)
         ->where('status',1)
         ->orderBy('id','desc')
         ->paginate(4);
-    $city = City::with('cityTranslation')->get()->keyBy('id');
-    $maxPrice = $props->max('price');
-    $minPrice = $props->min('price');
-    $propertyDetails = PropertyDetail::get()->keyBy('property_id');
-    $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
-    $maxArea = $propertyDetails->max('room_size');
-    $minArea = $propertyDetails->min('room_size');
-    $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
-    //Poperty Search
-    $properties = $this->_propertySearchModel->getData($request);
-    $data = $request->all();
-        $headerImage = HeaderImage::where('page','contact')->first();
+        $properties = Property::where('moderation_status',1)
+                        ->orderBy('id','DESC')
+                        ->where('status',1)
+                        ->get();
+        $maxPrice = $properties->max('price');
+        $minPrice = $properties->min('price');
+        foreach ($properties as $row)
+        {
+            $currentTime = Carbon::now();
+            $end_time = new Carbon($row->expire_at);
+            if($currentTime > $end_time)
+            {
+                $row->status = 0;
+                $row->save();
+            }
+        }
+        $propertyDetails = PropertyDetail::get()->keyBy('property_id');
+        $maxArea = $propertyDetails->max('room_size');
+        $minArea = $propertyDetails->min('room_size');
+        $country = Country::with('countryTranslation')->get()->keyBy('id');
+        $city = City::with('cityTranslation')->get()->keyBy('id');
+        $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
+        $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
+        $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
+        $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
+    $headerImage = HeaderImage::where('page','contact')->first();
 
-        return view('frontend.contact',compact('headerImage', 'properties','data','states','city','minPrice','maxPrice','minArea','maxArea','categories'));
+    return view('frontend.contact',compact('headerImage', 'properties','states','city','minPrice','maxPrice','minArea','maxArea','categories'));
     }
 
     function send(Request $request)

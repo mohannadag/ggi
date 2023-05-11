@@ -141,7 +141,7 @@
                                 <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tag:</label> <span class="text-danger">*</span>
-                                            <select name="tag[]" id="" class="form-control" multiple>
+                                            <select name="tag" id="" class="form-control">
                                                 <option value="">Select</option>
                                                 <?php $__currentLoopData = $tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($tag->id); ?>"><?php echo e($tag->tagTranslation->name); ?></option>

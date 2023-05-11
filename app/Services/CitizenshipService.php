@@ -27,8 +27,7 @@ class CitizenshipService
 
     public function add($data)
     {
-        $citizenship = $this->_citizenshipRepository->add($data);
-        $data['citizenshipId'] = $citizenship->id;
+        $this->_citizenshipRepository->add($data);
         $this->_citizenshipTranslationRepository->add($data);
     }
 

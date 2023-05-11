@@ -18,7 +18,6 @@ class CitizenshipTranslation extends Model
         'main_button_text',
         'extra_button_link',
         'extra_button_text',
-        'file',
         'overview_title',
         'overview_desc',
         'overview_first_title',
@@ -36,4 +35,9 @@ class CitizenshipTranslation extends Model
         'documents_title',
         'stages_title',
         ];
+
+        public function Citizenship()
+    {
+        return $this->hasOne(Citizenship::class);
+    }
 }

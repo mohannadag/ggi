@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html dir="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}" lang="{{ App::isLocale('ar') ? 'ar' : 'en' }}">
+<html dir="<?php echo e(App::isLocale('ar') ? 'rtl' : 'ltr'); ?>" lang="<?php echo e(App::isLocale('ar') ? 'ar' : 'en'); ?>">
 
 <head>
 
@@ -13,26 +13,26 @@
     <meta name="author" content="GGI Turkey," />
     <!--open graph metas-->
     <meta property="og:site_name" content="GGI Turkey, Your real estate solution" />
-    <meta property=“og:title” content="@yield('title')" />
-    <meta property="og:description" content="@yield('meta')" />
+    <meta property=“og:title” content="<?php echo $__env->yieldContent('title'); ?>" />
+    <meta property="og:description" content="<?php echo $__env->yieldContent('meta'); ?>" />
     <meta property="og:url" content="http://ggiturkey.com" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="@yield('image')" />
+    <meta property="og:image" content="<?php echo $__env->yieldContent('image'); ?>" />
     <meta property="twitter:card" content="GGI Turkey," />
     <meta property="twitter:image" content="https://ggiturkey.com/frontend/images/logo/logo.png" />
     <!-- Links -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    @if (isset($siteInfo->favicon))
-    @if (file_exists(public_path() . '/images/images/' . $siteInfo->favicon))
-    <link rel="icon" type="image/png" href="{{ URL::asset('/images/images/' . $siteInfo->favicon) }}" />
-    @else
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
-    @endif
-    @else
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
-    @endif
+    <?php if(isset($siteInfo->favicon)): ?>
+    <?php if(file_exists(public_path() . '/images/images/' . $siteInfo->favicon)): ?>
+    <link rel="icon" type="image/png" href="<?php echo e(URL::asset('/images/images/' . $siteInfo->favicon)); ?>" />
+    <?php else: ?>
+    <link rel="icon" type="image/png" href="<?php echo e(asset('images/favicon.png')); ?>" />
+    <?php endif; ?>
+    <?php else: ?>
+    <link rel="icon" type="image/png" href="<?php echo e(asset('images/favicon.png')); ?>" />
+    <?php endif; ?>
 
 
     <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.png" />
@@ -41,24 +41,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/plugins/swiper-bundle.min.css') }}" />
+    <link rel="stylesheet" href="<?php echo e(asset('frontend/css/plugins/swiper-bundle.min.css')); ?>" />
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/plugins/magnific-popup.css') }}" />
+    <link rel="stylesheet" href="<?php echo e(asset('frontend/css/plugins/magnific-popup.css')); ?>" />
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/plugins/nice-select.css') }}" />
-    <link rel="stylesheet" href="{{asset('frontend/js/plugins/custom_slider/customSliderStyle.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('frontend/css/plugins/nice-select.css')); ?>" />
+    <link rel="stylesheet" href="<?php echo e(asset('frontend/js/plugins/custom_slider/customSliderStyle.css')); ?>">
 
 
 
-    <link rel="stylesheet" href="{{asset('frontend/css/zuck.min.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('frontend/css/zuck.min.css')); ?>">
 
-    <link rel="stylesheet" href="{{asset('frontend/css/snapgram.css')}}">
+    <link rel="stylesheet" href="<?php echo e(asset('frontend/css/snapgram.css')); ?>">
     <link rel='stylesheet' href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
 
-    <link rel="stylesheet" href="{{asset('frontend/css/stories.css')}}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
-    <title>@yield('title', isset($siteInfo->title) ? $siteInfo->title : 'GGI Turkey,')</title>
+    <link rel="stylesheet" href="<?php echo e(asset('frontend/css/stories.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('frontend/css/style.css')); ?>" />
+    <title><?php echo $__env->yieldContent('title', isset($siteInfo->title) ? $siteInfo->title : 'GGI Turkey,'); ?></title>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V3NFNKHZHT"></script>
@@ -86,7 +86,7 @@
     </script>
 
 </head>
-@php
+<?php
 
 $languages = \Illuminate\Support\Facades\DB::table('languages')
 
@@ -102,21 +102,21 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
 \Illuminate\Support\Facades\App::setLocale(\Illuminate\Support\Facades\Session::get('currentLocal'));
 
-@endphp
+?>
 
 <body class="font-karla text-body text-tiny">
 
     <div class="overflow-hidden">
 
-        @include('frontend.includes.popup')
-        @include('frontend.includes.searchpopup')
-        @include('frontend.includes.popup-form')
 
-        @yield('content')
+        <?php echo $__env->make('frontend.includes.popup', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('frontend.includes.popup-form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->yieldContent('content'); ?>
 
-        @include('frontend.includes.docker')
-        @include('frontend.includes.footer')
-        @include('cookieConsent::index')
+
+        <?php echo $__env->make('frontend.includes.docker', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('frontend.includes.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('cookieConsent::index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 
 
@@ -132,37 +132,32 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
     <!-- JS Vendor, Plugins & Activation Script Files -->
 
-    <script src="{{asset('js/plugin.js')}}"></script>
+    <script src="<?php echo e(asset('js/plugin.js')); ?>"></script>
     <!-- Vendors JS -->
-    <script src="{{asset('frontend/js/vendor/modernizr-3.11.7.min.js')}}"></script>
-    <script src="{{asset('frontend/js/vendor/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{asset('frontend/js/vendor/jquery-migrate-3.3.2.min.js')}}"></script>
+    <script src="<?php echo e(asset('frontend/js/vendor/modernizr-3.11.7.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/vendor/jquery-3.6.0.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/vendor/jquery-migrate-3.3.2.min.js')); ?>"></script>
     <!-- Plugins JS -->
 
-    <script src="{{asset('js/sweetalert2@11.js')}}"></script>
+    <script src="<?php echo e(asset('js/sweetalert2@11.js')); ?>"></script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js"></script>
-    <script src="{{asset('frontend/js/plugins/swiper-bundle.min.js')}}"></script>
+    <script src="<?php echo e(asset('frontend/js/plugins/swiper-bundle.min.js')); ?>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.0/umd/popper.min.js"></script>
-    <script src="{{asset('frontend/js/plugins/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{asset('frontend/js/plugins/jquery.ajaxchimp.min.js')}}"></script>
-    <script src="{{asset('frontend/js/plugins/parallax.min.js')}}"></script>
-    <script src="{{ asset('frontend/js/plugins/nice-select/js/jquery.nice-select.js') }}"></script>
-    <script src="{{ asset('frontend/js/plugins/jquery.nice-select.min.js') }}"></script>
+    <script src="<?php echo e(asset('frontend/js/plugins/jquery.magnific-popup.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/plugins/jquery.ajaxchimp.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/plugins/parallax.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/plugins/nice-select/js/jquery.nice-select.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/plugins/jquery.nice-select.min.js')); ?>"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-    <script src="{{asset('frontend/js/plugins/script.js')}}"></script>
+    <script src="<?php echo e(asset('frontend/js/plugins/script.js')); ?>"></script>
     <!-- Activation JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-    <script src="{{asset('frontend/js/main.js')}}"></script>
-    <script src="{{asset('frontend/js/script.js')}}"></script>
-    <script src="{{asset('frontend/js/plugins/custom_slider/customSlider.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js" integrity="sha512-jNDtFf7qgU0eH/+Z42FG4fw3w7DM/9zbgNPe3wfJlCylVDTT3IgKW5r92Vy9IHa6U50vyMz5gRByIu4YIXFtaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="<?php echo e(asset('frontend/js/main.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/script.js')); ?>"></script>
+    <script src="<?php echo e(asset('frontend/js/plugins/custom_slider/customSlider.js')); ?>"></script>
 </body>
-@stack('script')
-<script>
-    $(document).ready(function() {
-        $(‘img’).lazyload()
-    })
-</script>
+<?php echo $__env->yieldPushContent('script'); ?>
+
 
 <script>
     $(document).ready(function() {
@@ -175,7 +170,6 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
         });
     });
 </script>
-
 
 <script>
     $(document).on('change', '#category_id', function() {
@@ -194,7 +188,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
 
 
-    var values = [@foreach ($properties->sortBy('price') as $key => $property) ["{{ priceConvert($property->price) }}"], @endforeach];
+    var values = [1, 10000, 25000, 50000, 75000, 125000, 150000, 270000, 350000, 600000, 750000, 1000000, 1500000, 2000000];
     var slider = $('#price-slider').slider({
         range: true,
         steps: values,
@@ -209,8 +203,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
         }
     });
 
-
-    var values = [@foreach ($properties->sortBy('price') as $key => $property) ["{{ priceConvert($property->price) }}"], @endforeach];
+    var values = [1, 10000, 25000, 50000, 75000, 125000, 150000, 270000, 350000, 600000, 750000, 1000000, 1500000, 2000000];
     var slider = $('#price-sliderr').slider({
         range: true,
         steps: values,
@@ -242,4 +235,4 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 </script>
 
 
-</html>
+</html><?php /**PATH /Users/viperflux/Documents/GitHub/ggi-website/resources/views/frontend/citizenshipmain.blade.php ENDPATH**/ ?>

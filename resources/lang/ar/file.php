@@ -291,4 +291,6 @@ return array(
     'sold' => 'مباع',
     'share' => 'شارك هذه الصفحة على:',
     'follow' => 'تابعونا على:',
+    'realted_properties'=>'مشاريع ذات صلة',
+    'related_posts'=>'مدونات ذات صلة',
 );
