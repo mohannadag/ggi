@@ -63,7 +63,7 @@ class CitizenshipTranslationModel implements ICitizenshipTranslationModel
 
     public function update(Request $request, $id)
     {
-        $data['citizenshipId'] = $id;
+        $data['citizenshipId'] = 1;
         $data['title'] = $request->title;
         $data['locale'] = $request->locale;
         $data['banner_text'] = $request->input('banner_text');

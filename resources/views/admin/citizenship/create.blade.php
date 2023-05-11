@@ -14,11 +14,8 @@
             <ul></ul>
         </div>
         <div class="row">
-            <form action="{{route('admin.citizenship.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('admin.citizenship.update', $citizenship->citizenship_id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="citizenship_id" id="citizenship_id" value="1">
-                <div class="col-md-12">
-
                     <div class="db-add-list-wrap">
                         <div class="act-title">
                             <h5>Citizenship :</h5>
@@ -85,11 +82,14 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-4">
+                                        <div class="user-image mb-3 text-center">
+                                            <img loading="lazy" src="{{ URL::asset('/images/images/'.$citizenship->file)  }}" alt="" id="preview-image-before-upload">
+                                        </div>
                                         <div class="form-group">
-                                            <label>Image</label>
-                                            <input type="file" class="form-control" name="file" id="file">
-                                            @error('image')
+                                            <label for="">File:(image/page)</label> <span class="text-danger">*</span>
+                                            <input type="file" name="file" class="form-control" id="photo-upload" value="{{$citizenship->file}}">
+                                            @error('file')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
                                         </div>

@@ -13,11 +13,8 @@
             <ul></ul>
         </div>
         <div class="row">
-            <form action="<?php echo e(route('admin.citizenship.store')); ?>" method="POST" enctype="multipart/form-data">
+            <form action="<?php echo e(route('admin.citizenship.update', $citizenship->citizenship_id)); ?>" method="POST" enctype="multipart/form-data">
                 <?php echo csrf_field(); ?>
-                <input type="hidden" name="citizenship_id" id="citizenship_id" value="1">
-                <div class="col-md-12">
-
                     <div class="db-add-list-wrap">
                         <div class="act-title">
                             <h5>Citizenship :</h5>
@@ -126,11 +123,14 @@ unset($__errorArgs, $__bag); ?>
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 mb-4">
+                                        <div class="user-image mb-3 text-center">
+                                            <img loading="lazy" src="<?php echo e(URL::asset('/images/images/'.$citizenship->file)); ?>" alt="" id="preview-image-before-upload">
+                                        </div>
                                         <div class="form-group">
-                                            <label>Image</label>
-                                            <input type="file" class="form-control" name="file" id="file">
-                                            <?php $__errorArgs = ['image'];
+                                            <label for="">File:(image/page)</label> <span class="text-danger">*</span>
+                                            <input type="file" name="file" class="form-control" id="photo-upload" value="<?php echo e($citizenship->file); ?>">
+                                            <?php $__errorArgs = ['file'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }

@@ -44,7 +44,7 @@ class CitizenshipModel implements ICitizenshipModel
         $data['extra_button_text'] = $request->input('extra_button_text');
         $thumbnailImage = $request->file('file');
         $slug = $request->input('title');
-        $thumbnailName = $this->imageUpload($thumbnailImage, $slug, 'images', 1920, 750);
+        $thumbnailName = $this->imageUpload($thumbnailImage, $slug, 'images', 679, 527);
         $data['file'] = $thumbnailName;
         $data['overview_title'] = $request->input('overview_title');
         $data['overview_desc'] = $request->input('overview_desc');
@@ -79,7 +79,7 @@ class CitizenshipModel implements ICitizenshipModel
         $data['extra_button_text'] = $request->input('extra_button_text');
         $thumbnailImage = $request->file('file');
         $slug = $request->input('title');
-        $thumbnailName = $this->imageUpload($thumbnailImage, $slug, 'images', 1920, 750);
+        $thumbnailName = $this->imageUpload($thumbnailImage, $slug, 'images', 679, 527);
         $data['file'] = $thumbnailName;
         $data['overview_title'] = $request->input('overview_title');
         $data['overview_desc'] = $request->input('overview_desc');

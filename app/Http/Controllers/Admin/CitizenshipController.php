@@ -14,7 +14,7 @@ class CitizenshipController extends Controller
 
     private $_citizenshipModel;
     private $_citizenshipTranslationModel;
-    public function __construct(ICitizenshipModel $model,ICitizenshipTranslationModel $translationModel)
+    public function __construct(ICitizenshipModel $model, ICitizenshipTranslationModel $translationModel)
     {
         $this->_citizenshipModel = $model;
         $this->_citizenshipTranslationModel = $translationModel;
@@ -36,7 +36,7 @@ class CitizenshipController extends Controller
         App::setLocale(Session::get('currentLocal'));
         $locale   = Session::get('currentLocal');
         $citizenship =  $this->_citizenshipModel->getById(1);
-        return view('admin.citizenship.create',compact('citizenship', 'locale'));
+        return view('admin.citizenship.create', compact('citizenship', 'locale'));
     }
 
     /**
@@ -47,14 +47,12 @@ class CitizenshipController extends Controller
      */
     public function store(Request $request)
     {
-            $this->_citizenshipModel->add($request);
-
-            App::setLocale(Session::get('currentLocal'));
+        App::setLocale(Session::get('currentLocal'));
         $locale   = Session::get('currentLocal');
         $citizenship = $this->_citizenshipModel->add($request);
         $citizenshipTranslation = $this->_citizenshipTranslationModel->add($request);
-            notify()->success('Information updated successfully!');
-            return view('admin.citizenship.create',compact('citizenship', 'citizenshipTranslation', 'locale'));
+        notify()->success('Information updated successfully!');
+        return view('admin.citizenship.create', compact('citizenship', 'citizenshipTranslation', 'locale'));
     }
 
     /**
@@ -88,8 +86,15 @@ class CitizenshipController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+
+        App::setLocale(Session::get('currentLocal'));
+        $locale   = Session::get('currentLocal');
+        $citizenship = $this->_citizenshipModel->update($request, $id);
+        $citizenshipTranslation = $this->_citizenshipTranslationModel->update($request, $id);
+        notify()->success('Information updated successfully!');
+        $citizenship =  $this->_citizenshipModel->getById($id);
+        return view('admin.citizenship.create', compact('citizenship', 'citizenshipTranslation', 'locale'));
+        }
 
     /**
      * Remove the specified resource from storage.

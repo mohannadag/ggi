@@ -178,7 +178,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::get('site-informations/general', [Admin\SiteInfoController::class, 'create'])->name('siteinfo.create');
     Route::post('site-informations/general', [Admin\SiteInfoController::class, 'store'])->name('siteinfo.store');
     Route::get('citizenship/general', [Admin\CitizenshipController::class, 'create'])->name('citizenship.create');
-    Route::post('citizenship/general', [Admin\CitizenshipController::class, 'store'])->name('citizenship.store');
+    Route::post('citizenship/general/{id}', [Admin\CitizenshipController::class, 'update'])->name('citizenship.update');
     Route::get('social-login', [Admin\SocialLoginController::class, 'index'])->name('social.login');
     Route::post('/facebook/store', [Admin\SocialLoginController::class, 'facebookStoreOrUpdate'])->name('facebook.info.store')->middleware('XSS');
     Route::get('edit-profile', [Admin\ProfileController::class, 'editProfile']);
