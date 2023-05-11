@@ -82,6 +82,7 @@
                                 <div class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                                     <div class="relative">
                                         <a href="{{ route('front.property', ['property' => $property->id]) }}" class="block"><img src="{!! $property->photo() !!}" class="w-full h-full" loading="lazy" width="370" height="266" alt="{{ $property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null) }}"></a>
+                                        <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize">{{trans('file.property_for_sale')}}</span>
                                     </div>
 
                                     <div class="py-[20px] px-[20px] text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
@@ -290,6 +291,7 @@
                                                 <a href="{{ route('front.property', ['property' => $property->id]) }}" class="block">
                                                     <img src="{{ URL::asset('/images/thumbnail/' . $property->thumbnail) }}" class="w-full h-full" loading="lazy" width="370" height="266" alt="@@title">
                                                 </a>
+                                                <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize">{{trans('file.property_for_sale')}}</span>
                                             </div>
 
                                             <div class="pt-[15px] pb-[20px] px-[20px] text-{{ App::isLocale('ar') ? 'right' : 'left' }}">

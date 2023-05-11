@@ -3,7 +3,7 @@
         <div class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
             <!-- Left column container with background-->
             <div class="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-                <img src="{{ URL::asset('/images/images/' . $citizenship->file) }}" class="w-full" alt="Phone image" />
+                <img src="<?php echo e(URL::asset('/images/images/' . $citizenship->file)); ?>" class="w-full" alt="Phone image" />
             </div>
 
             <!-- Right column container with form -->
@@ -43,3 +43,4 @@
         </div>
     </div>
 </section>
+<?php /**PATH /Users/viperflux/Documents/GitHub/ggi-website/resources/views/frontend/citizenship/form.blade.php ENDPATH**/ ?>

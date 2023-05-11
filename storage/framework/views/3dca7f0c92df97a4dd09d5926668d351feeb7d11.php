@@ -4,9 +4,10 @@
 <?php $__env->startSection('meta'); ?><?php echo e(isset($siteInfo->description) ? $siteInfo->description : 'description'); ?>
 
 <?php $__env->stopSection(); ?>
-<?php $__env->startSection('image'); ?>https://ggiturkey.com/frontend/images/logo/logo.png
+<?php $__env->startSection('image'); ?>https://ggiturkey.com/frontend/img/brands/logo.webp
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('title', 'GGI Turkey, Properties'); ?>
+
 <?php $__env->startSection('content'); ?>
 <?php echo $__env->make('frontend.includes.header1', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
@@ -15,10 +16,9 @@
         <div class="grid grid-cols-12">
             <div class="col-span-12">
                 <div class="max-w-[600px]  mx-auto text-center text-primary relative z-[1]">
-                    <div class="mb-5"><span class="text-base block">GGI Turkey <?php echo e(trans('file.Properties')); ?></span></div>
+                    <div class="mb-5"><span class="text-base block"><?php echo e($country->countryTranslation->name ?? $country->countryTranslationEnglish->name ?? null); ?> Properties</span></div>
                     <h1 class="font-lora text-[36px] sm:text-[50px] md:text-[68px] lg:text-[50px] leading-tight xl:text-2xl font-medium">
-                        <?php echo e(trans('file.Properties')); ?>
-
+                        <?php echo e($state->stateTranslation->name ?? $state->stateTranslationEnglish->name ?? null); ?> Properties
                     </h1>
                 </div>
             </div>
@@ -58,42 +58,51 @@
                                     </svg>
                                 </button>
                             </li>
-                            <!--<li data-grid="list" class="leading-none">-->
-                            <!--    <button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">-->
-                            <!--        <svg width="25" height="19" viewBox="0 0 25 19" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-                            <!--            <path d="M23.7525 18.6641H7.03597C6.34482 18.6641 5.78906 18.1017 5.78906 17.4052C5.78906 16.71 6.34611 16.1462 7.03597 16.1462H23.7525C24.4411 16.1462 24.9994 16.71 24.9994 17.4052C24.9994 18.103 24.4411 18.6641 23.7525 18.6641Z" fill="currentcolor" />-->
-                            <!--            <path d="M23.7525 10.7602H7.03597C6.34482 10.7602 5.78906 10.1965 5.78906 9.5013C5.78906 8.80608 6.34611 8.24236 7.03597 8.24236H23.7525C24.4411 8.24236 24.9994 8.80608 24.9994 9.5013C24.9994 10.1965 24.4411 10.7602 23.7525 10.7602Z" fill="currentcolor" />-->
-                            <!--            <path d="M23.7525 2.85378H7.03597C6.34482 2.85378 5.78906 2.29005 5.78906 1.59483C5.78906 0.899617 6.34611 0.335892 7.03597 0.335892H23.7525C24.4411 0.335892 24.9994 0.899617 24.9994 1.59483C24.9994 2.29005 24.4411 2.85378 23.7525 2.85378Z" fill="currentcolor" />-->
-                            <!--            <path d="M3.35001 1.69248C3.35001 2.62594 2.60084 3.38235 1.67629 3.38235C0.749175 3.38235 0 2.62594 0 1.69248C0 0.759011 0.749175 0 1.67629 0C2.60084 0 3.35001 0.759011 3.35001 1.69248Z" fill="currentcolor" />-->
-                            <!--            <path d="M3.35001 9.5013C3.35001 10.4348 2.60084 11.1912 1.67629 11.1912C0.750464 11.1912 0 10.4348 0 9.5013C0 8.56783 0.749175 7.80882 1.67629 7.80882C2.60084 7.80752 3.35001 8.56653 3.35001 9.5013Z" fill="currentcolor" />-->
-                            <!--            <path d="M3.35001 17.3088C3.35001 18.2423 2.60084 18.9987 1.67629 18.9987C0.750464 18.9987 0 18.2423 0 17.3088C0 16.3754 0.749175 15.6163 1.67629 15.6163C2.60084 15.6163 3.35001 16.3754 3.35001 17.3088Z" fill="currentcolor" />-->
-                            <!--        </svg>-->
-                            <!--    </button>-->
-                            <!--</li>-->
+                            <li data-grid="list" class="leading-none">
+                                <button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">
+                                    <svg width="25" height="19" viewBox="0 0 25 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M23.7525 18.6641H7.03597C6.34482 18.6641 5.78906 18.1017 5.78906 17.4052C5.78906 16.71 6.34611 16.1462 7.03597 16.1462H23.7525C24.4411 16.1462 24.9994 16.71 24.9994 17.4052C24.9994 18.103 24.4411 18.6641 23.7525 18.6641Z" fill="currentcolor" />
+                                        <path d="M23.7525 10.7602H7.03597C6.34482 10.7602 5.78906 10.1965 5.78906 9.5013C5.78906 8.80608 6.34611 8.24236 7.03597 8.24236H23.7525C24.4411 8.24236 24.9994 8.80608 24.9994 9.5013C24.9994 10.1965 24.4411 10.7602 23.7525 10.7602Z" fill="currentcolor" />
+                                        <path d="M23.7525 2.85378H7.03597C6.34482 2.85378 5.78906 2.29005 5.78906 1.59483C5.78906 0.899617 6.34611 0.335892 7.03597 0.335892H23.7525C24.4411 0.335892 24.9994 0.899617 24.9994 1.59483C24.9994 2.29005 24.4411 2.85378 23.7525 2.85378Z" fill="currentcolor" />
+                                        <path d="M3.35001 1.69248C3.35001 2.62594 2.60084 3.38235 1.67629 3.38235C0.749175 3.38235 0 2.62594 0 1.69248C0 0.759011 0.749175 0 1.67629 0C2.60084 0 3.35001 0.759011 3.35001 1.69248Z" fill="currentcolor" />
+                                        <path d="M3.35001 9.5013C3.35001 10.4348 2.60084 11.1912 1.67629 11.1912C0.750464 11.1912 0 10.4348 0 9.5013C0 8.56783 0.749175 7.80882 1.67629 7.80882C2.60084 7.80752 3.35001 8.56653 3.35001 9.5013Z" fill="currentcolor" />
+                                        <path d="M3.35001 17.3088C3.35001 18.2423 2.60084 18.9987 1.67629 18.9987C0.750464 18.9987 0 18.2423 0 17.3088C0 16.3754 0.749175 15.6163 1.67629 15.6163C2.60084 15.6163 3.35001 16.3754 3.35001 17.3088Z" fill="currentcolor" />
+                                    </svg>
+                                </button>
+                            </li>
                         </ul>
+                    </div>
+                    <div class="col-span-8 lg:col-span-6 text-right">
+                        <span class="text-primary">Sort by:</span>
+                        <select name="select" id="select" class="bg-white text-[#9C9C9C] text[14px] capitalize cursor-pointer nice-select sorting-select">
+                            <option value="0" selected>Default Order</option>
+                            <option value="1">A to Z</option>
+                            <option value="2">Z to A</option>
+                            <option value="3">All</option>
+                        </select>
                     </div>
                 </div>
                 <div id="grid" class="grid grid-tab-content active">
                     <div class="col-span-12">
                         <div class="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-[30px]">
                             <?php $__currentLoopData = $properties; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <?php
-                            $createdAt = \Carbon\Carbon::parse($property->created_at);
-                            ?>
                             <div class="swiper-slide">
                                 <div class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                                     <div class="relative">
-                                        <a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="block"><img src="<?php echo $property->photo(); ?>" class="w-full h-full" loading="lazy" width="370" height="266" alt="<?php echo e($property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null)); ?>"></a>
+                                        <a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="block"><img src="<?php echo e(URL::asset('/images/thumbnail/'.$property->thumbnail)); ?>" class="w-full h-full" loading="lazy" width="370" height="266" alt="<?php echo e($property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null)); ?>"></a>
+                                        <div class="flex flex-wrap flex-col absolute top-5 right-5">
+                                            <button class="flex flex-wrap items-center bg-[rgb(11,44,61,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="<?php echo e(('frontend/images/icon/camera.png')); ?>" loading="lazy" width="13" height="10" alt="camera icon">07</button>
+                                            <button class="flex flex-wrap items-center bg-[rgb(11,44,61,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="<?php echo e(('frontend/images/icon/video.png')); ?>" loading="lazy" width="14" height="10" alt="camera icon">08</button>
+                                        </div>
                                         <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize"><?php echo e(trans('file.property_for_sale')); ?></span>
                                     </div>
 
                                     <div class="py-[20px] px-[20px] text-<?php echo e(App::isLocale('ar') ? 'right' : 'left'); ?>">
-                                        <h3><a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium"><?php echo e($property->property_id); ?></a></h3>
-                                        <h4><p class="font-light text-[14px] leading-[1.75]">
-                                            <?php echo e($property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null)); ?>,
-                            <?php echo e($property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null)); ?>,
-                            <?php echo e($property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null)); ?></p></h4>
-                                        <span class="font-light text-sm">Added: <?php echo e($createdAt->toFormattedDateString()); ?></span>
+                                        <h3><a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium"><?php echo e($property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null)); ?></a></h3>
+                                        <h4><a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="font-light text-[14px] leading-[1.75] underline"><?php echo e($property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null)); ?>,
+                                            <?php echo e($property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null)); ?>,
+                                            <?php echo e($property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null)); ?></a></h4>
+                                        <span class="font-light text-sm"><?php echo e($property->category->categoryTranslation->name); ?></span>
                                         <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                             <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
                                                 <svg class="mr-[5px]" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -187,16 +196,25 @@
                                 <div class="relative mb-[15px] lg:mb-[0px] block w-full lg:w-[300px]">
 
                                     <a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="block h-[250px]">
-                                        <img src="<?php echo $property->photo(); ?>" class="w-full h-full rounded-tl-[6px] lg:rounded-bl-[6px] object-cover" loading="lazy" width="300" height="250" alt="<?php echo e($property->property_id); ?>">
+                                        <img src="<?php echo e(URL::asset('/images/thumbnail/'.$property->thumbnail)); ?>" class="w-full h-full rounded-tl-[6px] lg:rounded-bl-[6px] object-cover" loading="lazy" width="300" height="250" alt="<?php echo e($property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null)); ?>">
                                     </a>
+
+                                    <div class="flex flex-wrap flex-col absolute top-5 right-5">
+                                        <button class="flex flex-wrap items-center bg-primary p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="<?php echo e(('frontend/images/icon/camera.png')); ?>" loading="lazy" width="13" height="10" alt="camera icon">07</button>
+                                        <button class="flex flex-wrap items-center bg-primary p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="<?php echo e(('frontend/images/icon/video.png')); ?>" loading="lazy" width="14" height="10" alt="camera icon">08</button>
+                                    </div>
+
+                                    <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal">for Sale</span>
+
                                 </div>
 
                                 <div class="flex flex-col relative w-full lg:w-[calc(100%-300px)]">
-                                    <div class="text-<?php echo e(App::isLocale('ar') ? 'right' : 'left'); ?> px-4 lg:px-0 w-full md:w-auto md:flex-1 lg:mr-7 xl:mr-[55px] bg-[#FFFDFC] lg:ml-[30px]">
-                                        <h3><a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary font-medium"><?php echo e($property->property_id); ?>.</a></h3>
-                                        <h4><p class="font-light text-tiny"><?php echo e($property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null)); ?>,
+                                    <div class="text-left px-4 lg:px-0 w-full md:w-auto md:flex-1 lg:mr-7 xl:mr-[55px] bg-[#FFFDFC] lg:ml-[30px]">
+                                        <h3><a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary font-medium"><?php echo e($property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null)); ?>.</a></h3>
+                                        <h4><a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="font-light text-tiny underline">
+                                            <?php echo e($property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null)); ?>,
                                             <?php echo e($property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null)); ?>,
-                                            <?php echo e($property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null)); ?></p></h4>
+                                            <?php echo e($property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null)); ?></a></h4>
                                         <span class="font-light text-sm block"><?php echo e($property->category->categoryTranslation->name); ?></span>
                                         <ul>
                                             <li class="flex flex-wrap items-center justify-between mt-[15px] mb-[10px] pt-[10px] border-t border-[#E0E0E0]">
@@ -241,7 +259,7 @@
                                             <svg class="mr-[5px]" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M11.8125 9.68709V4.31285C12.111 4.23634 12.384 4.0822 12.6037 3.86607C12.8234 3.64994 12.982 3.37951 13.0634 3.08226C13.1448 2.78501 13.1461 2.47151 13.0671 2.1736C12.9882 1.87569 12.8318 1.60398 12.6139 1.38605C12.396 1.16812 12.1243 1.01174 11.8263 0.932792C11.5284 0.85384 11.2149 0.855126 10.9177 0.936521C10.6204 1.01792 10.35 1.17652 10.1339 1.39623C9.91774 1.61593 9.7636 1.88892 9.68709 2.18747H4.31285C4.23634 1.88892 4.0822 1.61593 3.86607 1.39623C3.64994 1.17652 3.37951 1.01792 3.08226 0.936521C2.78501 0.855126 2.47151 0.85384 2.1736 0.932792C1.87569 1.01174 1.60398 1.16812 1.38605 1.38605C1.16812 1.60398 1.01174 1.87569 0.932792 2.1736C0.85384 2.47151 0.855126 2.78501 0.936521 3.08226C1.01792 3.37951 1.17652 3.64994 1.39623 3.86607C1.61593 4.0822 1.88892 4.23634 2.18747 4.31285V9.68709C1.88892 9.7636 1.61593 9.91774 1.39623 10.1339C1.17652 10.35 1.01792 10.6204 0.936521 10.9177C0.855126 11.2149 0.85384 11.5284 0.932792 11.8263C1.01174 12.1243 1.16812 12.396 1.38605 12.6139C1.60398 12.8318 1.87569 12.9882 2.1736 13.0671C2.47151 13.1461 2.78501 13.1448 3.08226 13.0634C3.37951 12.982 3.64994 12.8234 3.86607 12.6037C4.0822 12.384 4.23634 12.111 4.31285 11.8125H9.68709C9.7636 12.111 9.91774 12.384 10.1339 12.6037C10.35 12.8234 10.6204 12.982 10.9177 13.0634C11.2149 13.1448 11.5284 13.1461 11.8263 13.0671C12.1243 12.9882 12.396 12.8318 12.6139 12.6139C12.8318 12.396 12.9882 12.1243 13.0671 11.8263C13.1461 11.5284 13.1448 11.2149 13.0634 10.9177C12.982 10.6204 12.8234 10.35 12.6037 10.1339C12.384 9.91774 12.111 9.7636 11.8125 9.68709ZM11.375 1.74997C11.548 1.74997 11.7172 1.80129 11.8611 1.89744C12.005 1.99358 12.1171 2.13024 12.1834 2.29012C12.2496 2.45001 12.2669 2.62594 12.2332 2.79568C12.1994 2.96541 12.1161 3.12132 11.9937 3.24369C11.8713 3.36606 11.7154 3.4494 11.5457 3.48316C11.3759 3.51692 11.2 3.49959 11.0401 3.43337C10.8802 3.36714 10.7436 3.25499 10.6474 3.11109C10.5513 2.9672 10.5 2.79803 10.5 2.62497C10.5002 2.39298 10.5925 2.17055 10.7565 2.00651C10.9206 1.84246 11.143 1.7502 11.375 1.74997ZM1.74997 2.62497C1.74997 2.45191 1.80129 2.28274 1.89744 2.13885C1.99358 1.99495 2.13024 1.8828 2.29012 1.81658C2.45001 1.75035 2.62594 1.73302 2.79568 1.76678C2.96541 1.80055 3.12132 1.88388 3.24369 2.00625C3.36606 2.12862 3.4494 2.28453 3.48316 2.45427C3.51692 2.624 3.49959 2.79993 3.43337 2.95982C3.36714 3.1197 3.25499 3.25636 3.11109 3.35251C2.9672 3.44865 2.79803 3.49997 2.62497 3.49997C2.39298 3.49974 2.17055 3.40748 2.00651 3.24343C1.84246 3.07939 1.7502 2.85696 1.74997 2.62497ZM2.62497 12.25C2.45191 12.25 2.28274 12.1987 2.13885 12.1025C1.99495 12.0064 1.8828 11.8697 1.81658 11.7098C1.75035 11.5499 1.73302 11.374 1.76678 11.2043C1.80055 11.0345 1.88388 10.8786 2.00625 10.7563C2.12862 10.6339 2.28453 10.5505 2.45427 10.5168C2.624 10.483 2.79993 10.5003 2.95982 10.5666C3.1197 10.6328 3.25636 10.745 3.35251 10.8888C3.44865 11.0327 3.49997 11.2019 3.49997 11.375C3.49974 11.607 3.40748 11.8294 3.24343 11.9934C3.07939 12.1575 2.85696 12.2497 2.62497 12.25ZM9.68709 10.9375H4.31285C4.23448 10.6367 4.07729 10.3622 3.8575 10.1424C3.63771 9.92265 3.36326 9.76546 3.06247 9.68709V4.31285C3.36324 4.23444 3.63766 4.07724 3.85745 3.85745C4.07724 3.63766 4.23444 3.36324 4.31285 3.06247H9.68709C9.76546 3.36326 9.92265 3.63771 10.1424 3.8575C10.3622 4.07729 10.6367 4.23448 10.9375 4.31285V9.68709C10.6367 9.76542 10.3622 9.92259 10.1424 10.1424C9.92259 10.3622 9.76542 10.6367 9.68709 10.9375ZM11.375 12.25C11.2019 12.25 11.0327 12.1987 10.8888 12.1025C10.745 12.0064 10.6328 11.8697 10.5666 11.7098C10.5003 11.5499 10.483 11.374 10.5168 11.2043C10.5505 11.0345 10.6339 10.8786 10.7563 10.7563C10.8786 10.6339 11.0345 10.5505 11.2043 10.5168C11.374 10.483 11.5499 10.5003 11.7098 10.5666C11.8697 10.6328 12.0064 10.745 12.1025 10.8888C12.1987 11.0327 12.25 11.2019 12.25 11.375C12.2496 11.6069 12.1573 11.8293 11.9933 11.9933C11.8293 12.1573 11.6069 12.2496 11.375 12.25Z" fill="#494949" />
                                             </svg>
-                                            <span><?php echo e(number_format($property->propertyDetails->room_size)); ?> <?php echo e(trans('file.sq-ft')); ?></span>
+                                            <span>1230 Sq.fit</span>
                                         </li>
                                         <li class="flex flex-wrap items-center 2xl:px-[35px] xl:px-[20px] sm:px-[40px] md:px-[15px] px-[15px] py-2 border-r border-[#E0DEDE]">
                                             <svg class="mr-[5px]" width="14" height="10" viewBox="0 0 14 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -280,25 +298,29 @@
                 <aside class="mb-[-60px] asidebar">
                     <?php echo $__env->make('frontend.includes.search-form', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                    <div dir="<?php echo e(App::isLocale('ar') ? 'rtl' : 'ltr'); ?>" class="mb-[60px]">
+                    <div class="mb-[60px]">
                         <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[40px] font-medium">Featured Property<span class="text-secondary">.</span></h3>
                         <div class="sidebar-carousel relative">
                             <div class="swiper p-1">
                                 <!-- Additional required wrapper -->
                                 <div class="swiper-wrapper">
                                     <!-- Slides -->
-                                        <?php $__currentLoopData = $properties->shuffle(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $__currentLoopData = $properties->shuffle(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $property): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="swiper-slide">
                                         <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                                             <div class="relative">
                                                 <a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="block">
-                                                    <img src="<?php echo e(URL::asset('/images/thumbnail/' . $property->thumbnail)); ?>" class="w-full h-full" loading="lazy" width="370" height="266" alt="@title">
+                                                    <img src="<?php echo e(URL::asset('/images/thumbnail/'.$property->thumbnail)); ?>" class="w-full h-full" loading="lazy" width="370" height="266" alt="@title">
                                                 </a>
-                                                <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize"><?php echo e(trans('file.property_for_sale')); ?></span>
+                                                <div class="flex flex-wrap flex-col absolute top-5 right-5">
+                                                    <button class="flex flex-wrap items-center bg-primary p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="<?php echo e(url('frontend/images/icon/camera.png')); ?>" loading="lazy" width="13" height="10" alt="camera icon">07</button>
+                                                    <button class="flex flex-wrap items-center bg-primary p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="<?php echo e(url('frontend/images/icon/video.png')); ?>" loading="lazy" width="14" height="10" alt="camera icon">08</button>
+                                                </div>
+
                                             </div>
 
                                             <div class="pt-[15px] pb-[20px] px-[20px] text-<?php echo e(App::isLocale('ar') ? 'right' : 'left'); ?>">
-                                                <h3><a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="font-lora leading-tight text-[18px] text-primary"><?php echo e($property->property_id); ?></a></h3>
+                                                <h3><a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="font-lora leading-tight text-[18px] text-primary"><?php echo e($property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null)); ?></a></h3>
                                                 <h4 class="leading-none"><a href="<?php echo e(route('front.property', ['property' => $property->id])); ?>" class="font-light text-[14px] leading-[1.75] text-primary underline"><?php echo e($property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null)); ?>,
                                                     <?php echo e($property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null)); ?>,
                                                     <?php echo e($property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null)); ?></a></h4>
@@ -344,15 +366,14 @@
                                             </div>
                                         </div>
 
-                                    </div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    </div><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                             </div>
                             <!-- If we need navigation buttons -->
                             <div class="flex flex-wrap items-center justify-center mt-[25px]">
-                                <div class="swiper-button-<?php echo e(App::isLocale('ar') ? 'next' : 'prev'); ?> w-[26px] h-[26px] rounded-full bg-primary  text-white hover:bg-secondary static mx-[5px] mt-[0px]" style="z-index: 1;">
+                                <div class="swiper-button-prev w-[26px] h-[26px] rounded-full bg-primary  text-white hover:bg-secondary static mx-[5px] mt-[0px]">
                                 </div>
-                                <div class="swiper-button-<?php echo e(App::isLocale('ar') ? 'prev' : 'next'); ?> w-[26px] h-[26px] rounded-full bg-primary  text-white hover:bg-secondary static mx-[5px] mt-[0px]" style="z-index: 1;">
+                                <div class="swiper-button-next w-[26px] h-[26px] rounded-full bg-primary  text-white hover:bg-secondary static mx-[5px] mt-[0px]">
                                 </div>
 
                             </div>
@@ -361,9 +382,26 @@
 
                     </div>
 
-                    
 
-                    
+                    <div class="mb-[60px]">
+                        <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[40px] font-medium">Tags<span
+    class="text-secondary">.</span></h3>
+                        <ul class="flex flex-wrap my-[-7px] mx-[-5px] font-light text-[12px]">
+                            <li class="my-[7px] mx-[5px]"><a href="#" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">Real Estate</a>
+                            </li>
+                            <li class="my-[7px] mx-[5px]"><a href="#" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">Appartment</a>
+                            </li>
+                            <li class="my-[7px] mx-[5px]"><a href="#" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">Sale Property</a>
+                            </li>
+                            <li class="my-[7px] mx-[5px]"><a href="#" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">Duplex</a>
+                            </li>
+                            <li class="my-[7px] mx-[5px]"><a href="#" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">Buy Property</a>
+                            </li>
+                            <li class="my-[7px] mx-[5px]"><a href="#" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">Houses</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 </aside>
             </div>
         </div>
@@ -372,58 +410,191 @@
 </section>
 <!-- Popular Properties end -->
 
-
 <?php $__env->stopSection(); ?>
-
-
-
-<?php $__env->startPush('scripts'); ?>
-
-<script>
-    $(document).on('change','#state',function(){
-        var state = $(this).val();
-        $.ajax({
-            method:'post',
-            url: '<?php echo e(route('state.city')); ?>',
-            data: {state:state,"_token":"<?php echo e(csrf_token()); ?>"},
-            dataType:'html',
-            success:function(response){
-                $('#city_id').html(response);
-                $('#city_id').selectric('refresh');
-            }
-        });
-    });
-</script>
+<?php $__env->startPush('script'); ?>
+    <!-- Leaflet js -->
+    <script src="<?php echo e(asset('js/leaflet.min.js')); ?>"></script>
+    <!-- Leaflet Maps Scripts -->
+    <script src="<?php echo e(asset('js/leaflet-markercluster.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/leaflet-gesture-handling.min.js')); ?>"></script>
     <script>
         $(document).ready(function() {
+            var cityId = $("#cityName").val();
+            const api_url = window.location.href + '/../../../api/properties/search-properties/cities/' + cityId;
+            //var api_url1 = window.location.href+'/../../api/properties/search-properties/'+allData.category_id;
+            //var api_url = api_url1.substring(0, api_url1.indexOf('?'))+'/../api/properties/search-properties/'+allData.category_id;
 
-            $('#city_name').keyup(function() {
-                var query = $(this).val();
-                if (query != '') {
-                    var _token = $('input[name="_token"]').val();
-                    $.ajax({
-                        url: "<?php echo e(route('autocomplete.fetch')); ?>",
-                        method: "POST",
-                        data: {
-                            query: query,
-                            _token: _token
-                        },
-                        success: function(data) {
-                            $('#cityList').fadeIn();
-                            $('#cityList').html(data);
+
+            if (document.getElementById("map") !== null) {
+                var mapOptions = {
+                    scrollWheelZoom: false
+                }
+                window.map = L.map('map', mapOptions);
+                $('#scrollEnabling').hide();
+
+
+
+                function locationData(locationURL, locationImg, locationTitle, locationAddress, locationRating,
+                    location_bed, location_bath, location_garage, location_area) {
+                    return ('' +
+                        '<div class="container map_container">' +
+                        '<div class="row">' +
+                        '<div class="col-md-12 px-0">' +
+                        '<div class="marker-info" id="marker_info">' +
+                        '<img src="' + locationImg + '" alt="..."/>' +
+
+                        '<div class = "marker_price trend-open">' +
+                        '<p>' + '$' + locationAddress +
+                        '<span>month</span>' +
+                        '</p>' +
+                        '</div>' +
+                        '<span class="featured_btn">' + locationRating + '</span>' +
+                        '</div>' +
+                        '<div class="marker-text">' +
+                        '<h3 class="marker_title"><a href="' + locationURL + '">' + locationTitle +
+                        '</a></h3>' +
+                        '<ul class ="map_property_info">' +
+                        '<li>' + location_bed + '<span>Bed</span>' +
+                        '</li>' +
+                        '<li>' + location_bath + '<span>Bath</span>' +
+                        '</li>' +
+                        '<li>' + location_area + '<span>Sq Ft</span>' +
+                        '</li>' +
+                        '<li>' + location_garage + '<span>Garage</span>' +
+                        '</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'
+
+                    )
+                }
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: " &copy;  <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> &copy;  <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>",
+                    maxZoom: 10,
+                    id: 'mapbox.streets',
+                    accessToken: 'pk.eyJ1IjoidmFzdGVyYWQiLCJhIjoiY2p5cjd0NTc1MDdwaDNtbnVoOGwzNmo4aSJ9.BnYb645YABOY2G4yWAFRVw'
+                }).addTo(map);
+                markers = L.markerClusterGroup({
+                    spiderfyOnMaxZoom: true,
+                    showCoverageOnHover: false,
+                });
+
+                async function getData() {
+                    const response = await fetch(api_url);
+                    console.log(response);
+                    const locations = await response.json();
+
+                    for (var i = 0; i < locations.length; i++) {
+
+                        var listeoIcon = L.divIcon({
+                            iconAnchor: [20, 51],
+                            popupAnchor: [0, -51],
+                            className: 'listeo-marker-icon',
+                            html: '<div class="marker-container">' +
+                                '<div class="marker-card">' +
+                                '<img src="' + "<?php echo e(url('/')); ?>" +
+                                '/images/others/marker.png')}}" alt="..."/>' +
+                                '</div>' +
+                                '</div>'
+                        });
+                        var popupOptions = {
+                            'maxWidth': '270',
+                            'className': 'leaflet-infoBox'
                         }
-                    });
+                        var markerArray = [];
+                        marker = new L.marker([locations[i].lat, locations[i].lon], {
+                            icon: listeoIcon,
+                        }).bindPopup('<div class="container map_container">' +
+                            '<div class="row">' +
+                            '<div class="col-md-12 px-0">' +
+                            '<div class="marker-info" id="marker_info">' +
+                            '<img src="' + "<?php echo e(url('/')); ?>" + '/images/thumbnail/' + locations[i]
+                            .thumbnail + '" alt="..."/>' +
+
+                            '<div class = "marker_price trend-open">' +
+                            '<p>' + '$' + locations[i].price +
+                            '<span>month</span>' +
+                            '</p>' +
+                            '</div>' +
+                            '<span class="featured_btn">' + locations[i].type + '</span>' +
+                            '</div>' +
+                            '<div class="marker-text">' +
+                            '<h3 class="marker_title"><a href="properties/' + locations[i].id + '">' +
+                            locations[i].title + '</a></h3>' +
+                            '<ul class ="map_property_info">' +
+                            '<li>' + locations[i].property_details.bed + '<span>Bed</span>' +
+                            '</li>' +
+                            '<li>' + locations[i].property_details.bath + '<span>Bath</span>' +
+                            '</li>' +
+                            '<li>' + locations[i].property_details.room_size + '<span>Sq Ft</span>' +
+                            '</li>' +
+                            '<li>' + locations[i].property_details.garage + '<span>Garage</span>' +
+                            '</li>' +
+                            '</ul>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>', popupOptions);
+                        marker.on('click', function(e) {});
+                        map.on('popupopen', function(e) {
+                            L.DomUtil.addClass(e.popup._source._icon, 'clicked');
+                        }).on('popupclose', function(e) {
+                            if (e.popup) {
+                                L.DomUtil.removeClass(e.popup._source._icon, 'clicked');
+                            }
+                        });
+                        markers.addLayer(marker);
+                    }
+                    map.addLayer(markers);
+                    markerArray.push(markers);
+                    if (markerArray.length > 0) {
+                        map.fitBounds(L.featureGroup(markerArray).getBounds().pad(0.2));
+                    }
+                    map.removeControl(map.zoomControl);
+                    var zoomOptions = {
+                        zoomInText: '+',
+                        zoomOutText: '-',
+                    };
+                    var zoom = L.control.zoom(zoomOptions);
+                    zoom.addTo(map);
+                }
+
+                getData();
+
+            }
+        });
+    </script>
+    <script src="<?php echo e(asset('js/leaflet-autocomplete.js')); ?>"></script>
+    <script src="<?php echo e(asset('js/leaflet-control-geocoder.js')); ?>"></script>
+
+    <script>
+        $('#place-event').on('keyup', function() {
+            var search = $(this).val();
+            $.ajax({
+                method: 'post',
+                url: '<?php echo e(route('search.properties')); ?>',
+                data: {
+                    search: search,
+                    "_token": "<?php echo e(csrf_token()); ?>"
+                },
+                dataType: 'html',
+                success: function(response) {
+                    $('.get-properties').html(response);
                 }
             });
+        });
 
-            $(document).on('click', 'li', function() {
-                var text = $(this).text();
-                var city = text.substring(0, text.indexOf(','));
-
-                $('#city_name').val(city);
-                $('#cityList').fadeOut();
-            });
-
+        // Add remove loading class on body element based on Ajax request status
+        $(document).on({
+            ajaxStart: function() {
+                $("body").addClass("loading");
+            },
+            ajaxStop: function() {
+                $("body").removeClass("loading");
+            }
         });
     </script>
     <script>
@@ -438,7 +609,82 @@
                 $("#bath").hide();
             }
         });
+
+        $(function() {
+            var minPrice = 0;
+            var maxPrice = 20000;
+            var minArea = 0;
+            var maxArea = 500;
+            var currentMinArea = $("#minAreaSize").val();;
+            var currentMaxArea = $("#maxAreaSize").val();;
+            var currentMinValue = $("#minPropPrice").val();
+            var currentMaxValue = $("#maxPropPrice").val();
+
+            $("#slider-range").slider({
+                range: true,
+                min: minPrice,
+                max: maxPrice,
+                values: [currentMinValue, currentMaxValue],
+                slide: function(event, ui) {
+                    $("#amount").val(ui.values[0] + " - " + ui.values[1]);
+                    $("#min").val(ui.values[0]);
+                    $("#max").val(ui.values[1]);
+                    currentMinValue = ui.values[0];
+                    currentMaxValue = ui.values[1];
+                    // alert(currentMinValue,currentMaxValue);
+                },
+                stop: function(event, ui) {
+                    currentMinValue = ui.values[0];
+                    currentMaxValue = ui.values[1];
+
+                    // console.log(currentMaxValue,currentMinValue);
+                }
+            });
+
+            $("#slider-range_area").slider({
+                range: true,
+                min: minArea,
+                max: maxArea,
+                values: [currentMinArea, currentMaxArea],
+                slide: function(event, ui) {
+                    $("#area").val(ui.values[0] + " - " + ui.values[1]);
+                    $("#minArea").val(ui.values[0]);
+                    $("#maxArea").val(ui.values[1]);
+                    currentMinArea = ui.values[0];
+                    currentMaxArea = ui.values[1];
+                    // alert(currentMinValue,currentMaxValue);
+                },
+                stop: function(event, ui) {
+                    currentMinArea = ui.values[0];
+                    currentMaxArea = ui.values[1];
+                }
+            });
+
+            $("#amount").val($("#slider-range").slider("values", 0) +
+                "-" + $("#slider-range").slider("values", 1));
+
+
+            $("#area").val($("#slider-range_area").slider("values", 0) +
+                "-" + $("#slider-range_area").slider("values", 1));
+
+        });
     </script>
+
+<script>
+    $(document).on('change','#state_name',function(){
+        var state = $(this).val();
+        $.ajax({
+            method:'post',
+            url: '<?php echo e(route('admin.get.city')); ?>',
+            data: {state:state,"_token":"<?php echo e(csrf_token()); ?>"},
+            dataType:'html',
+            success:function(response){
+                $('#city_name').html(response);
+                $('#city_name').selectpicker('refresh');
+            }
+        });
+    });
+</script>
 <?php $__env->stopPush(); ?>
 
-<?php echo $__env->make('frontend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/viperflux/Documents/GitHub/ggi-website/resources/views/frontend/properties.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('frontend.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/viperflux/Documents/GitHub/ggi-website/resources/views/frontend/properties-state.blade.php ENDPATH**/ ?>

@@ -236,6 +236,26 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Fourth Field Title</label> <span class="text-danger">*</span>
+                                        <input type="text" name="stages_title" class="form-control filter-input" value="{{$citizenship->citizenshipTranslation->stages_title}}" placeholder="Page Title">
+                                        @error('stages_title')
+                                        <p class="text-danger">{{$message}}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="list_info">Fourth Field Content</label> <span class="text-danger">*</span>
+                                        <textarea name="stages_text" class="form-control tinymce" id="content" rows="4" placeholder="Enter your text here">{!! $citizenship->citizenshipTranslation->stages_text ?? $citizenship->citizenshipTranslationEnglish->stages_text  ?? null !!}</textarea>
+                                        @error('stages_text')
+                                        <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="db-add-list-wrap">

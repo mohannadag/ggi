@@ -83,7 +83,7 @@ return array(
     'popular_topic' => 'موضوع مشهور',
     'properties' => 'عقارات',
     'property_for_rent' => 'عقارات للإيجار',
-    'property_for_sale' => 'عقارات للبيع',
+    'property_for_sale' => 'للبيع',
     'property_id' => 'الرقم التعريفي',
     'property_month' => 'في الشهر',
     'property_starting' => 'إبتداءاً من',

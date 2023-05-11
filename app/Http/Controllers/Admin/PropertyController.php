@@ -177,6 +177,7 @@ class PropertyController extends Controller
 
     }
 
+
     public function importView(Request $request){
         return view('admin.import-view');
     }

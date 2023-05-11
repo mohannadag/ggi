@@ -36,6 +36,7 @@ class CitizenshipModel implements ICitizenshipModel
     public function add(Request $request)
     {
         App::setLocale(Session::get('currentLocal'));
+        $data['title'] = $request->input('title');
         $data['banner_text'] = $request->input('banner_text');
         $data['main_button_link'] = $request->input('main_button_link');
         $data['main_button_text'] = $request->input('main_button_text');
@@ -57,10 +58,12 @@ class CitizenshipModel implements ICitizenshipModel
         $data['acquisition_text'] = $request->input('acquisition_text');
         $data['documents_text'] = $request->input('documents_text');
         $data['stages_text'] = $request->input('stages_text');
-        $data['obtaining_title'] = $request->input('obtaining_text');
-        $data['acquisition_text'] = $request->input('acquisition_text');
-        $data['documents_text'] = $request->input('documents_text');
-        $data['stages_text'] = $request->input('stages_title');
+        $data['obtaining_title'] = $request->input('obtaining_title');
+        $data['acquisition_title'] = $request->input('acquisition_title');
+        $data['documents_title'] = $request->input('documents_title');
+        $data['stages_title'] = $request->input('stages_title');
+        $citizenship = $this->_citizenshipService->getById(1);
+        $id = $citizenship->id;
 
         $this->_citizenshipService->add($data);
     }
@@ -68,6 +71,7 @@ class CitizenshipModel implements ICitizenshipModel
     public function update(Request $request, $id)
     {
         $id = '1';
+        $data['title'] = $request->input('title');
         $data['banner_text'] = $request->input('banner_text');
         $data['main_button_link'] = $request->input('main_button_link');
         $data['main_button_text'] = $request->input('main_button_text');
@@ -89,9 +93,15 @@ class CitizenshipModel implements ICitizenshipModel
         $data['acquisition_text'] = $request->input('acquisition_text');
         $data['documents_text'] = $request->input('documents_text');
         $data['stages_text'] = $request->input('stages_text');
+        $data['obtaining_title'] = $request->input('obtaining_title');
+        $data['acquisition_title'] = $request->input('acquisition_title');
+        $data['documents_title'] = $request->input('documents_title');
+        $data['stages_title'] = $request->input('stages_title');
+        $citizenshipId = $this->_citizenshipService->getById(1);
 
         $this->_citizenshipService->update($data, $id);
     }
+
 
     public function delete($id)
     {

@@ -112,7 +112,7 @@ class PropertySearchRepository implements IPropertySearchRepository
     {
         return Property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation')
                     ->whereHas('propertyDetails',function(Builder $query) use($data){
-                        $query->whereIn('bed',$data['bed']);
+                        $query->whereIn('bed', (int)$data['bed']);
                     })
                     ->whereHas('propertyDetails',function(Builder $query) use($data){
                         $query->where('bath',(int)$data['bath']);
@@ -178,7 +178,7 @@ class PropertySearchRepository implements IPropertySearchRepository
     {
         return Property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation')
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->where('bed', (int)$data['bed']);
+                            $query->whereJsonContains('bed', (int)$data['bed']);
                         })
                         ->get();
     }
@@ -196,7 +196,7 @@ class PropertySearchRepository implements IPropertySearchRepository
         return Property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation')
                         ->where('category_id',$data['category'])
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->where('bed', (int)$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->get();
     }
@@ -212,7 +212,7 @@ class PropertySearchRepository implements IPropertySearchRepository
         return Property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation')
         ->where('category_id',$data['category'])
         ->whereHas('propertyDetails',function(Builder $query) use($data){
-            $query->where('bed', (int)$data['bed']);
+            $query->whereIn('bed', (int)$data['bed']);
         })
         ->whereHas('propertyDetails',function(Builder $query) use($data){
             $query->where('bath', (int)$data['bath']);
@@ -224,7 +224,7 @@ class PropertySearchRepository implements IPropertySearchRepository
         return Property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation')
         ->where('city_id',$data['city'])
         ->whereHas('propertyDetails',function(Builder $query) use($data){
-            $query->where('bed', (int)$data['bed']);
+            $query->whereIn('bed', (int)$data['bed']);
         })
         ->get();
     }
@@ -241,7 +241,7 @@ class PropertySearchRepository implements IPropertySearchRepository
         return Property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation')
                         ->where('city_id',$data['city'])
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->where('bed', (int)$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
                             $query->where('bath', (int)$data['bath']);
@@ -254,7 +254,7 @@ class PropertySearchRepository implements IPropertySearchRepository
         return Property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation')
                         ->whereBetween('price', [(int)$data['minPrice'],(int)$data['maxPrice']])
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereJsonContains('bed',$data['bed']);
                         })
                         ->get();
     }
@@ -272,7 +272,7 @@ class PropertySearchRepository implements IPropertySearchRepository
         return Property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation')
                         ->whereBetween('price', [(int)$data['minPrice'],(int)$data['maxPrice']])
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
                             $query->where('bath',(int)$data['bath']);
@@ -287,7 +287,7 @@ class PropertySearchRepository implements IPropertySearchRepository
                             $query->whereBetween('room_size', [(int)$data['minArea'],(int)$data['maxArea']]);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->get();
     }
@@ -309,7 +309,7 @@ class PropertySearchRepository implements IPropertySearchRepository
                             $query->whereBetween('room_size', [(int)$data['minArea'],(int)$data['maxArea']]);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
                             $query->where('bath',(int)$data['bath']);
@@ -323,7 +323,7 @@ class PropertySearchRepository implements IPropertySearchRepository
                         ->where('category_id',$data['category'])
                         ->where('city_id',$data['city'])
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->get();
     }
@@ -343,7 +343,7 @@ class PropertySearchRepository implements IPropertySearchRepository
                         ->where('category_id',$data['category'])
                         ->where('city_id',$data['city'])
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
                             $query->where('bath',(int)$data['bath']);
@@ -358,7 +358,7 @@ class PropertySearchRepository implements IPropertySearchRepository
                         ->where('city_id',$data['city'])
                         ->whereBetween('price', [(int)$data['minPrice'],(int)$data['maxPrice']])
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->get();
     }
@@ -380,7 +380,7 @@ class PropertySearchRepository implements IPropertySearchRepository
                         ->where('city_id',$data['city'])
                         ->whereBetween('price', [(int)$data['minPrice'],(int)$data['maxPrice']])
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
                             $query->where('bath',(int)$data['bath']);
@@ -397,7 +397,7 @@ class PropertySearchRepository implements IPropertySearchRepository
                             $query->whereBetween('room_size', [(int)$data['minArea'],(int)$data['maxArea']]);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->get();
     }
@@ -423,7 +423,7 @@ class PropertySearchRepository implements IPropertySearchRepository
                             $query->whereBetween('room_size', [(int)$data['minArea'],(int)$data['maxArea']]);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
                             $query->where('bath',(int)$data['bath']);
@@ -441,7 +441,7 @@ class PropertySearchRepository implements IPropertySearchRepository
                             $query->whereBetween('room_size', [(int)$data['minArea'],(int)$data['maxArea']]);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
-                            $query->whereIn('bed',$data['bed']);
+                            $query->whereIn('bed', (int)$data['bed']);
                         })
                         ->whereHas('propertyDetails',function(Builder $query) use($data){
                             $query->where('bath',(int)$data['bath']);
@@ -475,6 +475,23 @@ class PropertySearchRepository implements IPropertySearchRepository
     {
         return Property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation')
                         ->where('property_id',$data['property_id'])
+                        ->get();
+    }
+
+    public function getByAll($data){
+        return Property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation')
+                        ->where('category_id',$data['category'])
+                        ->whereHas('state',function(Builder $query) use($data){
+                            $query->where('name',$data['title']);
+                        })
+                        ->where('city_id',$data['city'])
+                        ->whereBetween('price', [(int)$data['minPrice'],(int)$data['maxPrice']])
+                        ->whereHas('propertyDetails',function(Builder $query) use($data){
+                            $query->where('first_floor_title',$data['bed']);
+                        })
+                        ->whereHas('propertyDetails',function(Builder $query) use($data){
+                            $query->where('bath',(int)$data['bath']);
+                        })
                         ->get();
     }
 
@@ -527,7 +544,7 @@ class PropertySearchRepository implements IPropertySearchRepository
         if($data['bed'] != "")
         {
             $query = $query->whereHas('propertyDetails',function(Builder $query) use($data){
-                $query->whereIn('bed',$data['bed']);
+                $query->whereIn('bed', (int)$data['bed']);
             });
         }
 

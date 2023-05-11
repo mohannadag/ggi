@@ -4,16 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\ViewModels\ICitizenshipModel;
+use App\ViewModels\ICitizenshipTranslationModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
 class CitizenshipController extends Controller
 {
+
     private $_citizenshipModel;
-    public function __construct(ICitizenshipModel $model)
+    private $_citizenshipTranslationModel;
+    public function __construct(ICitizenshipModel $model,ICitizenshipTranslationModel $translationModel)
     {
         $this->_citizenshipModel = $model;
+        $this->_citizenshipTranslationModel = $translationModel;
     }
 
     public function index()
@@ -44,10 +48,13 @@ class CitizenshipController extends Controller
     public function store(Request $request)
     {
             $this->_citizenshipModel->add($request);
+
+            App::setLocale(Session::get('currentLocal'));
+        $locale   = Session::get('currentLocal');
+        $citizenship = $this->_citizenshipModel->add($request);
+        $citizenshipTranslation = $this->_citizenshipTranslationModel->add($request);
             notify()->success('Information updated successfully!');
-            return redirect()->back();
-
-
+            return view('admin.citizenship.create',compact('citizenship', 'citizenshipTranslation', 'locale'));
     }
 
     /**

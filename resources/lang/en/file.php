@@ -93,7 +93,7 @@ return array(
     'property_details' => 'Listing Details',
     'project_details' => 'Why this project',
     'property_for_rent' => 'Listing for Rent',
-    'property_for_sale' => 'Listing for Sale',
+    'property_for_sale' => 'for Sale',
     'property_listing' => 'Listing Listings',
     'property_mortgage' => 'Listing Mortgage',
     'property_reviews' => 'Listing Reviews',

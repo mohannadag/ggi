@@ -37,7 +37,7 @@ class CitizenshipTranslationModel implements ICitizenshipTranslationModel
     {
         $locale = Session::get('currentLocal');
         $data['locale'] = $locale;
-        $data['title'] = $request->title;
+        $data['banner_text'] = $request->input('title');
         $data['banner_text'] = $request->input('banner_text');
         $data['main_button_link'] = $request->input('main_button_link');
         $data['main_button_text'] = $request->input('main_button_text');
@@ -55,13 +55,17 @@ class CitizenshipTranslationModel implements ICitizenshipTranslationModel
         $data['acquisition_text'] = $request->input('acquisition_text');
         $data['documents_text'] = $request->input('documents_text');
         $data['stages_text'] = $request->input('stages_text');
+        $data['obtaining_title'] = $request->input('obtaining_title');
+        $data['acquisition_title'] = $request->input('acquisition_title');
+        $data['documents_title'] = $request->input('documents_title');
+        $data['stages_title'] = $request->input('stages_title');
     }
 
     public function update(Request $request, $id)
     {
         $data['citizenshipId'] = $id;
         $data['title'] = $request->title;
-        $data['locale'] = $request->local;
+        $data['locale'] = $request->locale;
         $data['banner_text'] = $request->input('banner_text');
         $data['main_button_link'] = $request->input('main_button_link');
         $data['main_button_text'] = $request->input('main_button_text');
@@ -79,6 +83,10 @@ class CitizenshipTranslationModel implements ICitizenshipTranslationModel
         $data['acquisition_text'] = $request->input('acquisition_text');
         $data['documents_text'] = $request->input('documents_text');
         $data['stages_text'] = $request->input('stages_text');
+        $data['obtaining_title'] = $request->input('obtaining_title');
+        $data['acquisition_title'] = $request->input('acquisition_title');
+        $data['documents_title'] = $request->input('documents_title');
+        $data['stages_title'] = $request->input('stages_title');
         $this->_citizenshipTranslationService->update($data);
     }
 

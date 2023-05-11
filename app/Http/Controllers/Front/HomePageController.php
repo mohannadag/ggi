@@ -543,37 +543,68 @@ class HomePageController extends Controller
 
     public function virtualreality(Request $request)
     {
-        $props = Property::with(['propertyDetails','user','category.categoryTranslation', 'country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
-        ->where('moderation_status',1)
-        ->where('status',1)
-        ->orderBy('id','desc')
-        ->paginate(4);
-    $city = City::with('cityTranslation')->get()->keyBy('id');
-    $maxPrice = $props->max('price');
-    $minPrice = $props->min('price');
+        App::setLocale(Session::get('currentLocal'));
+        $locale   = Session::get('currentLocal');
+        $properties = Property::where('moderation_status',1)
+                        ->orderBy('id','DESC')
+                        ->where('status',1)
+                        ->get();
+        // $properties = DB::table('properties')
+        //             ->join('cities', 'properties.city_id', '=', 'cities.id')
+        //             ->join('countries', 'properties.country_id', '=', 'countries.id')
+        //             ->join('currencies', 'properties.currency_id', '=', 'currencies.id')
+        //             ->join('states', 'properties.state_id', '=', 'states.id')
+        //             ->join('users', 'properties.user_id', '=', 'users.id')
+        //             ->join('property_details', 'property_details.property_id', '=', 'properties.id')
+        //             ->join('packages', 'properties.package_id', '=', 'packages.id')
+        //             ->join('package_user', 'package_user.package_id', '=', 'packages.id')
+        //             ->select('properties.*', 'cities.name as city_name', 'countries.name as country_name',
+        //                 'states.name as state_name,users.f_name as user_name','property_details.bed as bed',
+        //                 'property_details.bath as bath','property_details.garage as garage',
+        //                 'property_details.room_size as room_size','package_user.expire_at as expire_at','currencies.icon as icon')
+        //             ->where([
+        //                 ['properties.moderation_status', 1],
+        //                 ['properties.status', 1]
+        //             ])
+        //             ->get();
+                    // dd($properties);
+        $maxPrice = $properties->max('price');
+        $minPrice = $properties->min('price');
+        foreach ($properties as $row)
+        {
+            $currentTime = Carbon::now();
+            $end_time = new Carbon($row->expire_at);
+            if($currentTime > $end_time)
+            {
+                $row->status = 0;
+                $row->save();
+            }
+        }
+        $propertyDetails = PropertyDetail::get()->keyBy('property_id');
+        $maxArea = $propertyDetails->max('room_size');
+        $minArea = $propertyDetails->min('room_size');
+        $country = Country::with('countryTranslation')->get()->keyBy('id');
+        $city = City::with('cityTranslation')->get()->keyBy('id');
+        $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
+        $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
+        $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
+        $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
     $virtualrealitys = VirtualReality::with(['virtualrealityTranslation','virtualrealityTranslationEnglish'])
             ->orderBy('id','DESC')
             ->get();
-    $propertyDetails = PropertyDetail::get()->keyBy('property_id');
-    $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');
-    $maxArea = $propertyDetails->max('room_size');
-    $minArea = $propertyDetails->min('room_size');
-    $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
-    //Poperty Search
-    $properties = $this->_propertySearchModel->getData($request);
-    $data = $request->all();
-        $testimonials = Testimonial::with(['testimonialTranslation','testimonialTranslationEnglish'])
+
+    $testimonials = Testimonial::with(['testimonialTranslation','testimonialTranslationEnglish'])
             ->orderBy('id','DESC')
             ->get();
-            $sliders = Slider::with(['sliderTranslation','sliderTranslationEnglish'])
+    $sliders = Slider::with(['sliderTranslation','sliderTranslationEnglish'])
             ->orderBy('id','DESC')
             ->get();
 
-        $partners = OurPartner::all();
-        $agents = User::where('type','user')->get();
-        $headerImage = HeaderImage::where('page','about-us')->first();
+    $partners = OurPartner::all();
+    $agents = User::where('type','user')->get();
+    $headerImage = HeaderImage::where('page','about-us')->first();
 
-        return view('frontend.virtualreality',compact('testimonials','sliders','partners','agents','headerImage', 'properties','data', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'virtualrealitys'));
+    return view('frontend.virtualreality',compact('testimonials','sliders','partners','agents','headerImage', 'properties', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'virtualrealitys'));
     }
 
     public function service($service, Request $request)
@@ -1246,6 +1277,19 @@ class HomePageController extends Controller
         $data = [];
         $data['property_title'] = $title;
         return $this->_propertySearchRepository->getByID($data);
+    }
+
+
+    public function getByAll($categoryId,$cityId,$minPrice, $maxPrice,$bed,$bath,$stateName){
+        $data = [];
+        $data['category'] = $categoryId;
+        $data['city'] = $cityId;
+        $data['state'] = $stateName;
+        $data['minPrice'] = $minPrice;
+        $data['maxPrice'] = $maxPrice;
+        $data['bed'] = $bed;
+        $data['bath'] = $bath;
+        return $this->_propertySearchRepository->getByAll($data);
     }
 
     public function getByfilterProperties($categoryId,$cityId,$minPrice, $maxPrice,$bed,$bath,$stateName){

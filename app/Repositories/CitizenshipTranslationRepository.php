@@ -76,6 +76,10 @@ class CitizenshipTranslationRepository implements ICitizenshipTranslationReposit
                 'acquisition_text' => $data['acquisition_text'],
                 'documents_text' => $data['documents_text'],
                 'stages_text' => $data['stages_text'],
+                'obtaining_title' => $data['obtaining_title'],
+                'acquisition_title' => $data['acquisition_title'],
+                'documents_title' => $data['documents_title'],
+                'stages_title' => $data['stages_title'],
             ]
         );
     }

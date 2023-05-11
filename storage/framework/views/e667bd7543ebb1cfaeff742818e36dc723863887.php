@@ -173,7 +173,7 @@
                                         d="M13.0002 4.18665V2.33331C13.0002 1.23331 12.1002 0.333313 11.0002 0.333313H8.3335C7.82016 0.333313 7.3535 0.533313 7.00016 0.853313C6.64683 0.533313 6.18016 0.333313 5.66683 0.333313H3.00016C1.90016 0.333313 1.00016 1.23331 1.00016 2.33331V4.18665C0.593496 4.55331 0.333496 5.07998 0.333496 5.66665V9.66665H1.66683V8.33331H12.3335V9.66665H13.6668V5.66665C13.6668 5.07998 13.4068 4.55331 13.0002 4.18665ZM8.3335 1.66665H11.0002C11.3668 1.66665 11.6668 1.96665 11.6668 2.33331V3.66665H7.66683V2.33331C7.66683 1.96665 7.96683 1.66665 8.3335 1.66665ZM2.3335 2.33331C2.3335 1.96665 2.6335 1.66665 3.00016 1.66665H5.66683C6.0335 1.66665 6.3335 1.96665 6.3335 2.33331V3.66665H2.3335V2.33331ZM1.66683 6.99998V5.66665C1.66683 5.29998 1.96683 4.99998 2.3335 4.99998H11.6668C12.0335 4.99998 12.3335 5.29998 12.3335 5.66665V6.99998H1.66683Z">
                                     </path>
                                 </svg>
-                                <select name="bed[]" id="bed"
+                                <select name="bed" id="bed"
                                     class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer" multiple>
                                     <?php if(old('bed', request()->bed) == '1'): ?>
                                     <option value="1">1+0</option>
@@ -204,15 +204,15 @@
                                     <?php else: ?>
                                     <option value=""><?php echo e(trans('file.bedrooms')); ?></option>
                                     <?php endif; ?>
-                                    <option value="[1]">1+0</option>
-                                    <option value="[2]">1+1</option>
-                                    <option value="[3]">2+1</option>
-                                    <option value="[4]">3+1</option>
-                                    <option value="[5]">4+1</option>
-                                    <option value="[6]">5+1</option>
-                                    <option value="[7]">6+1</option>
-                                    <option value="[8]">7+1</option>
-                                    <option value="[9]">8+1</option>
+                                    <option value="1">1+0</option>
+                                    <option value="2">1+1</option>
+                                    <option value="3">2+1</option>
+                                    <option value="4">3+1</option>
+                                    <option value="5">4+1</option>
+                                    <option value="6">5+1</option>
+                                    <option value="7">6+1</option>
+                                    <option value="8">7+1</option>
+                                    <option value="9">8+1</option>
                                 </select>
                             </div>
                             <div id="bathroom" class="relative mb-[25px] bg-white">

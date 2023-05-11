@@ -37,7 +37,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     <div class="col-span-12">
                         <div class="flex flex-wrap items-center justify-between">
                             <a href="{{ url('/') }}" class="block">
-                                <img width="150px" src="{{asset('frontend/images/logo/logo.png')}}" loading="lazy" alt="brand logo" style="width: 60px;border-radius: 20px;">
+                                <img width="60px" src="{{asset('frontend/images/logo/logo.png')}}" loading="lazy" alt="brand logo">
                             </a>
                     <nav class="flex flex-wrap items-center">
                         <ul class="hidden lg:flex flex-wrap items-center font-lora text-[16px] xl:text-[16px] leading-none text-black {{ App::isLocale('ar') ? 'lg:ml-[100px] xl:ml-[50px]' : '' }}">

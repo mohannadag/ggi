@@ -93,7 +93,7 @@
                                             <button class="flex flex-wrap items-center bg-[rgb(11,44,61,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{('frontend/images/icon/camera.png')}}" loading="lazy" width="13" height="10" alt="camera icon">07</button>
                                             <button class="flex flex-wrap items-center bg-[rgb(11,44,61,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{('frontend/images/icon/video.png')}}" loading="lazy" width="14" height="10" alt="camera icon">08</button>
                                         </div>
-                                        <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize">for Sale</span>
+                                        <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize">{{trans('file.property_for_sale')}}</span>
                                     </div>
 
                                     <div class="py-[20px] px-[20px] text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
