@@ -505,7 +505,7 @@ class PropertySearchRepository implements IPropertySearchRepository
             $query = $query->where('category_id', $data['category']);
         }
 
-        if($data['minPrice'] !="" && $data['maxPrice'] !="")
+        if( ($data['minPrice'] !="" && $data['maxPrice'] !="") || ($data['minPrice'] !="0" && $data['maxPrice'] !="0") )
         {
             $cur = Session::get('currency');
             $min = (int)$data['minPrice'];
@@ -517,16 +517,21 @@ class PropertySearchRepository implements IPropertySearchRepository
                             ->to('USD')
                             ->amount($min)
                             ->get();
-                            return $cur;
+                            //return $cur;
 
                 $max = Currency::convert()
                             ->from($cur)
                             ->to('USD')
                             ->amount($max)
                             ->get();
-                    return $cur;
+                    //return $cur;
             }
             $query = $query->whereBetween('price', [$min, $max]);
+        }
+
+        if($data['state'] != "" && $data['city'] == "")
+        {
+            $query = $query->where('state_id',$data['state']);
         }
 
         if($data['city'] != "")
@@ -541,12 +546,12 @@ class PropertySearchRepository implements IPropertySearchRepository
                 });
         }
 
-        if($data['bed'] != "")
-        {
-            $query = $query->whereHas('propertyDetails',function(Builder $query) use($data){
-                $query->whereIn('bed', (int)$data['bed']);
-            });
-        }
+        // if($data['bed'] != "")
+        // {
+        //     $query = $query->whereHas('propertyDetails',function(Builder $query) use($data){
+        //         $query->whereIn('bed', (int)$data['bed']);
+        //     });
+        // }
 
         if($data['bath'] != "")
         {
@@ -565,6 +570,24 @@ class PropertySearchRepository implements IPropertySearchRepository
         if($data['property_name'] != "")
         {
             $query = $query->where('title',$data['property_name']);
+        }
+
+        if($data['bed'] != "")
+        {
+            $query = $query->whereHas('propertyDetails',function(Builder $query) use($data){
+                $query->where('first_floor_title', $data['bed'])
+                    ->orWhere('second_floor_title', $data['bed'])
+                    ->orWhere('third_floor_title', $data['bed'])
+                    ->orWhere('fourth_floor_title', $data['bed'])
+                    ->orWhere('fifth_floor_title', $data['bed'])
+                    ->orWhere('sixth_floor_title', $data['bed'])
+                    ->orWhere('seventh_floor_title', $data['bed'])
+                    ->orWhere('eighth_floor_title', $data['bed'])
+                    ->orWhere('ninth_floor_title', $data['bed'])
+                    ->orWhere('tenth_floor_title', $data['bed'])
+                    ->orWhere('eleventh_floor_title', $data['bed'])
+                    ->orWhere('twelfth_floor_title', $data['bed']);
+            });
         }
 
         return $query->get();

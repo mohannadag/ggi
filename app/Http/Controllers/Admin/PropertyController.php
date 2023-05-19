@@ -99,8 +99,10 @@ class PropertyController extends Controller
         App::setLocale(Session::get('currentLocal'));
         $locale   = Session::get('currentLocal');
         $property = $this->_propertyModel->getById($id);
-
         $tags = Tag::all();
+        //dd($property);
+        $propertyTags = $property->tags;
+        //dd($propertyTags);
         $propertyTranslation = $this->_propertyTranslationModel->getById($id);
         $user = auth()->user();
         $categories = $this->_categoryTranslationModel->getByLocale();
@@ -113,7 +115,7 @@ class PropertyController extends Controller
         $cities = $this->_cityTranslationModel->getByLocale();
         $currencies = $this->_currencyModel->getAllCurrencies();
 
-        return view('admin.properties.edit',compact('currencies','property','user','categories','facilities','units','package_user','packages','countries','states','cities','locale','propertyTranslation', 'tags'));
+        return view('admin.properties.edit',compact('currencies','property','user','categories','facilities','units','package_user','packages','countries','states','cities','locale','propertyTranslation', 'tags', 'propertyTags'));
     }
 
     public function update(Request $request,$id)

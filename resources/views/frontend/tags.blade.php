@@ -39,10 +39,10 @@ https://ggiturkey.com/frontend/frontend/img/brands/logo.webp
     <section class="popular-properties py-[80px] lg:py-[120px]">
         <div class="container">
 
-            <div class="grid grid-cols-12 mb-[-30px] gap-[30px] xl:gap-[50px]">
+            <div class="grid grid-cols-3 mb-[-30px] gap-[30px] xl:gap-[50px]">
                 <div class="col-span-12 md:col-span-6 lg:col-span-8 mb-[30px]">
                 <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[30px] font-medium">{{trans('file.realted_properties')}}<span class="text-secondary">.</span></h3>
-                    <div class="grid sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-[30px]">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
                         @foreach ($properties as $property)
                         @php
                         $createdAt = \Carbon\Carbon::parse($property->created_at);
@@ -159,11 +159,11 @@ https://ggiturkey.com/frontend/frontend/img/brands/logo.webp
     <!-- Popular Properties start -->
     <section class="popular-properties py-[80px] lg:py-[120px]">
         <div class="container">
-            <div class="grid grid-cols-12 mb-[-30px] gap-[30px] xl:gap-[50px]">
+            <div class="grid grid-cols-3 mb-[-30px] gap-[30px] xl:gap-[50px]">
                 <div class="col-span-12 md:col-span-6 lg:col-span-8 mb-[30px]">
                 <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[30px] font-medium">{{trans('file.related_posts')}}<span class="text-secondary">.</span></h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-x-[30px] gap-y-[40px]">
-                        @foreach($newses as $news)
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-[30px] gap-y-[40px]">
+                        @foreach($blog as $news)
                         @php
                         $createdAt = \Carbon\Carbon::parse($news->created_at);
                         @endphp
@@ -182,7 +182,7 @@ https://ggiturkey.com/frontend/frontend/img/brands/logo.webp
 
                     </div>
 
-                    {{ $newses->links('vendor.pagination.custom') }}
+                    {{-- {{ $blog->links('vendor.pagination.custom') }} --}}
                 </div>
 
             </div>

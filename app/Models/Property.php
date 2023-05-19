@@ -76,7 +76,8 @@ class Property extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class)->withPivot('tag');;
+        return $this->belongsToMany(Tag::class, 'tag_property','property_id', 'tag_id');
+        // return $this->belongsToMany(Tag::class)->withPivot('tag');;
 
     }
 

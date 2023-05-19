@@ -17,8 +17,10 @@ class PropertyRepository extends Repository implements IPropertyRepository
             ->get();
     }
 
-    public function getById($id)
+    public function get($id)
     {
+        // return Property::with('propertyTranslation','propertyTranslationEnglish','category.categoryTranslation','tags')
+        // ->first('id', $id);
         return parent::get($id);
     }
 
@@ -37,13 +39,14 @@ class PropertyRepository extends Repository implements IPropertyRepository
     public function update($data,$id)
     {
         parent::update($data,$id);
-        $property = $this->getById($id);
+        $property = $this->get($id);
         $property->facilities()->sync($data['facility_id']);
+        $property->tags()->sync($data['tag']);
     }
 
     public function updateModerationStatus($data,$id)
     {
-        $property = $this->getById($id);
+        $property = $this->get($id);
         $property->update($data);
     }
 

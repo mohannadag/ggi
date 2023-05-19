@@ -14,11 +14,11 @@ class Tag extends Model
 
     public function blogs()
     {
-        return $this->belongsToMany(Blog::class);
+        return $this->belongsToMany(Blog::class, 'blog_tag',  'tag_id', 'blog_id');
     }
 
     public function properties(){
-        return $this->belongsToMany(Property::class);
+        return $this->belongsToMany(Property::class, 'tag_property', 'tag_id', 'property_id');
     }
 
     public function tagTranslation()

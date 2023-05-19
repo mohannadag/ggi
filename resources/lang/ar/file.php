@@ -303,4 +303,5 @@ return array(
     'goappointment'=>'التوجه للمقابلة',
     'result_duration'=>'10- 90 يوم',
     'result'=>'انتظار وصول بطاقة الإقامة',
+    'villas'=>'فلل',
 );

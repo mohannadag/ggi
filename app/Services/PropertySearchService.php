@@ -15,7 +15,8 @@ class PropertySearchService
     }
     public function getData($data)
     {
-        //return $this->_propertySearchRepository->filterProperties($data);
+        //dd($data);
+        return $this->_propertySearchRepository->filterProperties($data);
 
         if($data['category'] && $data['city'] == "" && $data['minPrice'] =="" && $data['maxPrice'] =="" && $data['minArea'] =="" && $data['maxArea'] =="" && $data['bed']=="" && $data['bath']=="" && $data['title']=="")
         {

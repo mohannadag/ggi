@@ -440,7 +440,7 @@
 
                                 <select name="state" id="state"
                                     class="nice-select font-light w-full h-[45px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white appearance-none cursor-pointer">
-                                    @if(App::isLocale('ar'))
+                                    {{-- @if(App::isLocale('ar'))
                                     @if(old('state', request()->state) != NULL)
                                     <option value="{{old('state', request()->state)}}">{{DB::table('state_translations')->where('locale', 'ar')->where('state_id', old('state', request()->state))->value('name');}}</option>
                                     @else
@@ -452,11 +452,11 @@
                                     @else
                                     <option value="">{{trans('file.select_city')}}</option>
                                     @endif
-                                    @endif
+                                    @endif --}}
 
-
+                                    <option value="">{{trans('file.select_city')}}</option>
                                     @foreach ($states->where('status', 1) as $state)
-                                    <option value="{{ $state->id }}">
+                                    <option value="{{ $state->id }}" {{request()->state == $state->id ? "selected" : ""}}>
                                         {{ $state->stateTranslation->name ?? ($state->stateTranslationEnglish->name ??
                                         null) }}
                                     </option>
@@ -467,7 +467,7 @@
 
                                 <select name="city_id" id="city_id"
                                     class="nice-select select appearance-none bg-transparent text-tiny font-light cursor-pointer">
-                                    @if(App::isLocale('ar'))
+                                    {{-- @if(App::isLocale('ar'))
                                     @if(old('city_id', request()->city_id) != NULL)
                                     <option value="{{old('city_id', request()->city_id)}}">{{DB::table('city_translations')->where('locale', 'ar')->where('city_id', old('city_id', request()->city_id))->value('name');}}</option>
                                     @else
@@ -479,9 +479,10 @@
                                     @else
                                     <option value="">{{trans('file.select_area')}}</option>
                                     @endif
-                                    @endif
+                                    @endif --}}
+                                    <option value="">{{trans('file.select_area')}}</option>
                                     @foreach ($city->where('status', 1) as $city)
-                                    <option value="{{ $city->id }}">
+                                    <option value="{{ $city->id }}" {{request()->city_id == $city->id ? "selected" : ""}}>
                                         {{ $city->cityTranslation->name ?? ($city->cityTranslationEnglish->name ?? null)
                                         }}
                                     </option>
@@ -529,7 +530,7 @@
                                 </svg>
                                 <select id="category_id" name="category_id"
                                     class="nice-select font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body borderborder-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary border-primary pl-[40px] pr-[20px] py-[8px] focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white appearance-none cursor-pointer">
-                                    @if(App::isLocale('ar'))
+                                    {{-- @if(App::isLocale('ar'))
                                     @if(old('category_id', request()->category_id) != NULL)
                                     <option value="{{old('category_id', request()->category_id)}}">{{DB::table('category_translations')->where('locale', 'ar')->where('category_id', old('category_id', request()->category_id))->value('name');}}</option>
                                     @else
@@ -541,10 +542,11 @@
                                     @else
                                     <option value="">{{trans('file.property_type')}}</option>
                                     @endif
-                                    @endif
+                                    @endif --}}
+                                    <option value="">{{trans('file.property_type')}}</option>
                                     @foreach ($categories->where('status', 1) as $category)
 
-                                    <option value="{{ $category->id }}"> {{ $category->categoryTranslation->name ??
+                                    <option value="{{ $category->id }}" {{request()->category_id == $category->id ? "selected" : ""}}> {{ $category->categoryTranslation->name ??
                                         ($category->categoryTranslationEnglish->name ?? null) }}</option>
                                     @endforeach
                                 </select>
@@ -561,8 +563,19 @@
                                     <div class="flex-1">
                                         <div class="price-slider">
                                             <div class="price-slider" id="price-slider"></div>
-                                            <input id="minPrice" name="minPrice" value="{{old('minPrice', request()->minPrice)}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
-                                            <input id="maxPrice" name="maxPrice" value="{{old('maxPrice', request()->maxPrice)}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
+                                            @php
+
+                                                $min = 1;
+                                                $max = 1000000;
+                                                if(request()->has('minPrice') && request()->minPrice != "")
+                                                        $min = request()->minPrice;
+
+                                                if(request()->has('maxPrice') && request()->maxPrice != "")
+                                                        $max = request()->maxPrice;
+
+                                            @endphp
+                                            <input id="minPrice" name="minPrice" value="{{$min}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
+                                            <input id="maxPrice" name="maxPrice" value="{{$max}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -576,8 +589,8 @@
                                     </path>
                                 </svg>
                                 <select name="bed" id="bed"
-                                    class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer" multiple>
-                                    @if(old('bed', request()->bed) == '1')
+                                    class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
+                                    {{-- @if(old('bed', request()->bed) == '1')
                                     <option value="1">1+0</option>
                                     @endif
                                     @if(old('bed', request()->bed) == '2')
@@ -605,16 +618,17 @@
                                     <option value="9">8+1</option>
                                     @else
                                     <option value="">{{trans('file.bedrooms')}}</option>
-                                    @endif
-                                    <option value="1">1+0</option>
-                                    <option value="2">1+1</option>
-                                    <option value="3">2+1</option>
-                                    <option value="4">3+1</option>
-                                    <option value="5">4+1</option>
-                                    <option value="6">5+1</option>
-                                    <option value="7">6+1</option>
-                                    <option value="8">7+1</option>
-                                    <option value="9">8+1</option>
+                                    @endif --}}
+                                    <option value="">{{trans('file.bedrooms')}}</option>
+                                    <option value="1" {{request()->bed == 1 ? "selected" : ""}}>1+0</option>
+                                    <option value="2" {{request()->bed == 2 ? "selected" : ""}}>1+1</option>
+                                    <option value="3" {{request()->bed == 3 ? "selected" : ""}}>2+1</option>
+                                    <option value="4" {{request()->bed == 4 ? "selected" : ""}}>3+1</option>
+                                    <option value="5" {{request()->bed == 5 ? "selected" : ""}}>4+1</option>
+                                    <option value="6" {{request()->bed == 6 ? "selected" : ""}}>5+1</option>
+                                    <option value="7" {{request()->bed == 7 ? "selected" : ""}}>6+1</option>
+                                    <option value="8" {{request()->bed == 8 ? "selected" : ""}}>7+1</option>
+                                    <option value="9" {{request()->bed == 9 ? "selected" : ""}}>8+1</option>
                                 </select>
                             </div>
                             <div id="bathroom" class="relative mb-[25px] bg-white">
@@ -627,15 +641,16 @@
                                 </svg>
                                 <select name="bath" id="bath"
                                     class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
-                                    @if(old('bath', request()->bath) != NULL)
+                                    {{-- @if(old('bath', request()->bath) != NULL)
                                     <option value="{{old('bath', request()->bath)}}">{{old('bath',
                                         request()->bath)}}</option>
                                     @else
                                     <option value="">{{trans('file.bath')}}</option>
-                                    @endif
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                    @endif --}}
+                                    <option value="">{{trans('file.bath')}}</option>
+                                    <option value="1" {{request()->bath == 1 ? "selected" : ""}}>1</option>
+                                    <option value="2" {{request()->bath == 2 ? "selected" : ""}}>2</option>
+                                    <option value="3" {{request()->bath == 3 ? "selected" : ""}}>3</option>
                                 </select>
                             </div>
 
@@ -655,7 +670,7 @@
                                 <!-- Additional required wrapper -->
                                 <div class="swiper-wrapper">
                                     <!-- Slides -->
-                                    @foreach ($properties->where('moderation_status', 1)->shuffle() as $property)
+                                    @foreach ($featuredProperties->shuffle() as $property)
                                     <div class="swiper-slide">
                                         <div
                                             class="overflow-hidden rounded-md drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
@@ -793,7 +808,7 @@
     <script src="{{ asset('js/leaflet.min.js') }}"></script>
     <!-- Leaflet Maps Scripts -->
     <script src="{{ asset('js/leaflet-markercluster.min.js') }}"></script>
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             var data = new Array();
             var allData = @json($data);
@@ -1314,24 +1329,24 @@
 
             }
         });
-    </script>
+    </script> --}}
 
     <script>
-        $('#place-event').on('keyup', function() {
-            var search = $(this).val();
-            $.ajax({
-                method: 'post',
-                url: '{{ route('search.properties') }}',
-                data: {
-                    search: search,
-                    "_token": "{{ csrf_token() }}"
-                },
-                dataType: 'html',
-                success: function(response) {
-                    $('.get-properties').html(response);
-                }
-            });
-        });
+        // $('#place-event').on('keyup', function() {
+        //     var search = $(this).val();
+        //     $.ajax({
+        //         method: 'post',
+        //         url: '{{ route('search.properties') }}',
+        //         data: {
+        //             search: search,
+        //             "_token": "{{ csrf_token() }}"
+        //         },
+        //         dataType: 'html',
+        //         success: function(response) {
+        //             $('.get-properties').html(response);
+        //         }
+        //     });
+        // });
 
         // Add remove loading class on body element based on Ajax request status
         $(document).on({

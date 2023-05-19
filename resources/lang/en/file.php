@@ -337,4 +337,5 @@ return array(
     'goappointment'=>'Go to Appointment',
     'result_duration'=>'10-90 Days',
     'result'=>'Wait For Residence Permit',
+    'villas'=>'Villas',
 );

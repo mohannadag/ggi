@@ -412,22 +412,36 @@ class HomePageController extends Controller
         return view('frontend.ivr-index',compact('properties','maxPrice','minPrice','propertyDetails', 'stories', 'tags','maxArea','minArea','country','city','agents','users','states','categories','propertyTranslation','propertyTranslationEnglish','image','locale','facilities','siteInfo','newses','popularTopics','headerImage', 'sliders', 'videos', 'testimonials', 'partners'));
     }
 
-    public function tag($tag, Request $request){
-
+    public function tag($tag, Request $request)
+    {
         App::setLocale(Session::get('currentLocal'));
         $locale   = Session::get('currentLocal');
         $tag = Tag::where('id', $tag)->first();
+        //dd($tag);
+
+        $properties = $tag->properties()
+        ->where('moderation_status',1)
+        ->where('status',1)
+        ->orderBy('id','desc')
+        ->get();
+        // dd($properties1);
+        // dd($tag);
+        $blog = $tag->blogs()->orderBy('id', 'desc')
+        ->paginate(4);
+        // dd($blog);
+
         $props = Property::with(['propertyDetails','user','category.categoryTranslation', 'country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
         ->where('tag', $tag->id)
         ->where('moderation_status',1)
         ->where('status',1)
         ->orderBy('id','desc')
         ->paginate(4);
-        $properties = Property::where('moderation_status',1)
-        ->where('tag', $tag->id)
-                        ->orderBy('id','DESC')
-                        ->where('status',1)
-                        ->get();
+        // $properties = Property::where('moderation_status',1)
+        // ->where('tag', $tag->id)
+        // ->orderBy('id','DESC')
+        // ->where('status',1)
+        // ->get();
+        // dd($properties);
         $maxPrice = $properties->max('price');
         $minPrice = $properties->min('price');
         foreach ($properties as $row)
@@ -455,7 +469,7 @@ class HomePageController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(4);
         $tags = Tag::with('tagTranslation', 'tagTranslationEnglish')->get();
-        return view('frontend.tags', compact('newses', 'tag','tags', 'props', 'city', 'maxPrice', 'minPrice','propertyDetails', 'states','maxArea', 'minArea', 'properties', 'categories'));
+        return view('frontend.tags', compact('newses', 'tag','tags', 'props', 'city', 'maxPrice', 'minPrice','propertyDetails', 'states','maxArea', 'minArea', 'properties', 'categories', 'blog'));
     }
 
     public function about(Request $request)
@@ -762,11 +776,12 @@ class HomePageController extends Controller
         $props = Property::with(['propertyDetails','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
             ->where('status',1)
             ->orderBy('id','desc')
-            ->paginate(4);
+            ->get();
         $city = City::with('cityTranslation')->get()->keyBy('id');
         $states = State::with('stateTranslation')->get()->keyBy('id');
         $maxPrice = $props->max('price');
         $minPrice = $props->min('price');
+        $featuredProperties = $props->where('is_featured', 1)->take(4);
         $propertyDetails = PropertyDetail::get()->keyBy('property_id');
         $maxArea = $propertyDetails->max('room_size');
         $minArea = $propertyDetails->min('room_size');
@@ -774,7 +789,7 @@ class HomePageController extends Controller
         //Poperty Search
         $properties = $this->_propertySearchModel->getData($request);
         $data = $request->all();
-        return view('frontend.get-property',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states'));
+        return view('frontend.get-property',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'featuredProperties'));
     }
 
     public function searchProject(Request $request)

@@ -63,7 +63,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                             <li class="text-primary underline font-lora mb-[30px]">{{trans('file.states')}}</li>
                                             @foreach($states->where('status',1) as $state)
                                             <li class="mb-[25px] last:mb-0">
-                                                <a href="{{route('property.state',$state)}}"
+                                                <a href="{{url('/search-sale?&state='. $state->id)}}"
                                                     class="font-lora text-[14px] hover:text-secondary">{{ $state->stateTranslation->name ?? ($state->stateTranslationEnglish->name ?? null) }}</a>
                                             </li>
                                             @endforeach
@@ -74,8 +74,8 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                         <ul>
                                             <li class="text-primary underline font-lora mb-[30px]">{{trans('file.property_type')}}</li>
                                             <li class="mb-[25px] last:mb-0">
-                                                <a href="{{url('/search-sale?&category_id=1')}}"
-                                                    class="font-lora text-[14px] hover:text-secondary">{{trans('file.apartment')}}</a>
+                                                <a href="{{url('/search-sale?&category_id=4')}}"
+                                                    class="font-lora text-[14px] hover:text-secondary">{{trans('file.villas')}}</a>
                                             </li>
                                             <li class="mb-[25px] last:mb-0">
                                                 <a href="{{url('/search-sale?&category_id=3')}}"
@@ -90,7 +90,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                     </li>
 
 
-                                    <li class="{{ App::isLocale('ar') ? 'mr-[200px]' : 'mr-[70px]' }}">
+                                    {{-- <li class="{{ App::isLocale('ar') ? 'mr-[200px]' : 'mr-[70px]' }}">
                                         <ul>
                                             <li class="text-primary underline font-lora mb-[30px]">{{trans('file.property_status')}}</li>
                                             <li class="mb-[25px] last:mb-0">
@@ -99,13 +99,13 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                             </li>
 
                                         </ul>
-                                    </li>
+                                    </li> --}}
 
                                 </ul>
                             </li>
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">
 
-                                <a href="{{url('/turkish-citizenship')}}" id="citizenship-color" class="sticky-dark transition-all text-white hover:text-secondary">{{trans('file.turkish_citizenship')}}</a>
+                                <a href="{{url('/page/turkish-citizenship')}}" id="citizenship-color" class="sticky-dark transition-all text-white hover:text-secondary">{{trans('file.turkish_citizenship')}}</a>
 
                             </li>
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">

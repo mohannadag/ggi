@@ -142,10 +142,16 @@
                                 <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Tag:</label> <span class="text-danger">*</span>
-                                            <select name="tag" id="" class="form-control">
+                                            <select name="tag[]" id="" class="form-control" multiple>
                                                 <option value="">Select</option>
                                                 @foreach($tags as $tag)
-                                                    <option value="{{$tag->id}}">{{$tag->tagTranslation->name}}</option>
+                                                    <option value="{{$tag->id}}"
+                                                        @foreach ($propertyTags as $t)
+                                                            @if($tag->id == $t->id)
+                                                                selected
+                                                            @endif
+                                                        @endforeach
+                                                        >{{$tag->tagTranslation->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('tag')
@@ -163,7 +169,7 @@
                                     <div class="form-group">
                                         <label>Currency</label>
                                         <select name="currency_id" class="listing-input hero__form-input  form-control custom-select">
-                                            <option value="">Select</option>
+                                            {{-- <option value="">Select</option> --}}
                                             @foreach ($currencies as $currency)
                                             <option value="{{$currency->id}}" {{ $property->currency_id == $currency->id ? 'selected' : ''}}>{{$currency->name}}</option>
                                             @endforeach
@@ -198,7 +204,7 @@
                                     </div>
                                     <div class="col-md-12 mt-30">
                                         <div class="form-group">
-                                        <label>Floor Plans Link</label>
+                                        <label>Drive-GGI</label>
                                         <input type="text" name="plans_link" class="form-control filter-input" value="{{isset($property->propertyDetails->plans_link) ? $property->propertyDetails->plans_link : ''}}" placeholder="Plans Link">
                                         </div>
                                     </div>
@@ -334,7 +340,7 @@
                             </div>
                         </div>
                     </div>
-                    @if($property->category_id == '5')
+                    @if($property->category_id == '5' || $property->category_id == '4')
                     <div class="db-add-list-wrap" id="project">
                         <div class="act-title">
                         <h5>Project Details:</h5>
@@ -1633,7 +1639,7 @@
     $(document).on('change', '#category_id', function() {
         var propertyType = $(this).val();
         // alert(propertyType);
-        if (propertyType == 5) {
+        if (propertyType == 5 || propertyType == 4) {
             $("#property").hide();
             $("#land").hide();
             $("#project").show();

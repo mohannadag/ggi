@@ -170,7 +170,7 @@
                                             <label>Currency</label> <span class="text-danger">*</span>
                                             <select name="currency_id"
                                                 class="listing-input hero__form-input  form-control custom-select">
-                                                <option value="">Select</option>
+                                                {{-- <option value="">Select</option> --}}
                                                 @foreach ($currencies as $currency)
                                                     <option value="{{ $currency->id }}">{{ $currency->name }}</option>
                                                 @endforeach
@@ -204,7 +204,7 @@
                                     </div>
                                     <div class="col-md-12 mt-30">
                                         <div class="form-group">
-                                            <label>Floor Plans Link</label>
+                                            <label>Drive-GGI</label>
                                             <input type="text" name="plans_link" class="form-control filter-input"
                                                 placeholder="Floor Plans Link Here" value="">
                                         </div>
@@ -1834,7 +1834,7 @@
     $(document).on('change', '#category_id', function() {
         var propertyType = $(this).val();
         // alert(propertyType);
-        if (propertyType == 5) {
+        if (propertyType == 5 || propertyType == 4) {
             $("#property").hide();
             $("#land").hide();
             $("#project").show();
