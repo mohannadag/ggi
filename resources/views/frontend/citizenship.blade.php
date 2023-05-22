@@ -35,7 +35,8 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
   </style>
 
 @section('content')
-@include('frontend.citizenship.header')
+@include('frontend.includes.header1')
+{{-- @include('frontend.citizenship.header') --}}
 @include('frontend.citizenship.slider')
 
 @include('frontend.citizenship.intro')

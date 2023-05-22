@@ -8,6 +8,13 @@
       margin-top: 10px;
       font-size: 13px;
     }
+    /* .arabic-image {
+        transform: scaleX(-1);
+    } */
+    .slider-ar {
+        text-align:left;
+    }
+
     </style>
 <section class="hero-section bg-white">
     <div class="hero-slider2 overflow-hidden">
@@ -16,7 +23,7 @@
                 <!-- swiper-slide start -->
                 @foreach($sliders->sortBy('order') as $slider)
                 <div class="swiper-slide bg-cover bg-center bg-sky-100 z-[1] relative before:absolute before:w-full before:h-full before:inset-0 before:content-[''] before:z-[-1] py-[80px] lg:py-[200px]" style="background-image: url('{{URL::asset('/images/images/'.$slider->sliderTranslation->file)}}')">
-                    <div class="container">
+                    <div class="container {{ $slider->sliderTranslation->locale == 'ar' ? "slider-ar" : "" }}">
                         <div class="grid grid-cols-12">
                             <div class="col-span-12">
                                 <div class="slider-content">
@@ -27,7 +34,7 @@
                                         <span>{!! $slider->sliderTranslation->description !!}</span>
                                     </h1>
 
-                                    <p class="text-base text-white mt-8 mb-12 text max-w-[570px]">
+                                    <p class="text-base text-white mt-8 mb-12 text {{ $slider->sliderTranslation->locale == 'ar' ? "" : "max-w-[570px]" }}  ">
                                         {!! $slider->sliderTranslation->address !!}
                                     </p>
                                     {{-- <span class="text-white inline-block font-lora leading-none border-b-2 border-secondary bg-primary  mt-[40px] mb-[75px] hero_btn text-center"></span> --}}

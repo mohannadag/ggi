@@ -123,13 +123,13 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             </li>
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">
 
-                                <a href="{{url('/virtual')}}" class="sticky-dark transition-all text-white hover:text-secondary"><img style="max-width: 31px; height: auto; filter: invert(1);" src="{{URL::asset('/frontend/images/360-degrees.png')}}"></a>
+                                <a href="{{url('/virtual')}}" class="sticky-dark transition-all text-white hover:text-secondary"><img style="max-width: 31px; height: auto; filter: invert(0.5);" src="{{URL::asset('/frontend/images/360-degrees.png')}}"></a>
 
                             </li>
 
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">
 
-                                <a class="sticky-dark transition-all text-white hover:text-secondary"><img style="max-width: 31px; height: auto; filter: invert(1);" src="{{URL::asset('/frontend/images/lang.svg')}}"></a>
+                                <a class="sticky-dark transition-all text-white hover:text-secondary"><img style="max-width: 31px; height: auto; filter: invert(0.5);" src="{{URL::asset('/frontend/images/lang.svg')}}"></a>
                                 <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[220px] absolute top-[120%] left-1/2 -translate-x-1/2 transition-all group-hover:top-[100%] invisible group-hover:visible opacity-0 group-hover:opacity-100">
 
                                     @foreach ($languages as $item)
@@ -144,7 +144,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             </li>
 
                             <li class="mr-7 xl:mr-[20px] relative group py-[20px]">
-                                <a class="sticky-dark transition-all text-white hover:text-secondary"><img style="max-width: 31px; height: auto; filter: invert(1);" src="{{URL::asset('/frontend/images/currency.svg')}}"></a>
+                                <a class="sticky-dark transition-all text-white hover:text-secondary"><img style="max-width: 31px; height: auto; filter: invert(0.5);" src="{{URL::asset('/frontend/images/currency.svg')}}"></a>
                                 <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[220px] absolute top-[120%] left-1/2 -translate-x-1/2 transition-all group-hover:top-[100%] invisible group-hover:visible opacity-0 group-hover:opacity-100">
 
                                     @foreach(DB::table('currencies')->get() as $currency)

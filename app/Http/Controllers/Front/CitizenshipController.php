@@ -54,8 +54,8 @@ class CitizenshipController extends Controller
     {
         $locale   = Session::get('currentLocal');
 
-        $citizenshipTranslation = CitizenshipTranslation::where('locale','en')->get()->keyBy('citizenship_id');
-        $citizenship = Citizenship::with('citizenshipTranslation')->first();
+        // $citizenshipTranslation = CitizenshipTranslation::where('locale','en')->get()->keyBy('citizenship_id');
+        // $citizenship = Citizenship::with('citizenshipTranslation')->first();
         $properties = Property::where('moderation_status',1)
                         ->orderBy('id','DESC')
                         ->where('status',1)
@@ -123,7 +123,8 @@ class CitizenshipController extends Controller
         $popularTopics = BlogCategory::with('blogCategoryTranslation','blogs')->where('status',1)->get()->keyBy('id');
         $tags = Tag::with('tagTranslation','tagTranslationEnglish')->where('status',1)->get();
         $headerImage = HeaderImage::where('page','home')->first();
-        return view('frontend.citizenship',compact('citizenship', 'citizenshipTranslation', 'headerImage', 'properties', 'country', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories','sliders',));
+        // return view('frontend.citizenship',compact('citizenship', 'citizenshipTranslation', 'headerImage', 'properties', 'country', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories','sliders',));
+        return view('frontend.citizenship',compact('headerImage', 'properties', 'country', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories','sliders'));
     }
 
 

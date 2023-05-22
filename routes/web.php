@@ -268,6 +268,7 @@ Route::get('reset-password/{token}', [Admin\ForgotPasswordController::class, 'sh
 Route::post('reset-password', [Admin\ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post')->middleware('XSS');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'soon'])->name('soon');
 
 //Auth::routes();
 Route::get('welcome', [Admin\PaymentGatewayController::class, 'index']);
