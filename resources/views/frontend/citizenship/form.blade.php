@@ -1,6 +1,6 @@
-<section class="h-screen">
-    <div class="container h-full px-6 py-24">
-        <div class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
+<section class="">
+    <div class="container px-6 py-12">
+        <div class="g-6 flex flex-wrap items-center justify-center lg:justify-between">
             <!-- Left column container with background-->
             <div class="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
                 <img src="https://www.imtilak.net/assets/img/turkish-wallet.png" class="w-full" alt="Phone image" />

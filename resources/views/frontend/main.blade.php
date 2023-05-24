@@ -198,51 +198,50 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
 
 
-    var values = [@foreach ($properties->sortBy('price') as $key => $property) ["{{ $property->price }}"], @endforeach];
+    var values = [1, 10000, 25000, 50000, 75000, 125000, 150000, 270000, 350000, 600000, 750000, 1000000, 1500000, 2000000];
     var slider = $('#price-slider').slider({
-        range: true,
-        steps: values,
-        create: function(e, ui) {
-            $('#price-slider').slider('values', 1, values.length - 1);
-            $('#minPrice').val(values[0]);
-            $('#maxPrice').val(values[values.length - 1]);
-        },
-        slide: function(event, ui) {
-            $('#minPrice').val(ui.stepValue[0]);
-            $('#maxPrice').val(ui.stepValue[1]);
-        }
-    });
+      range: true,
+      steps: values,
+      create: function(e, ui){
+      $('#price-slider').slider('values', 1, values.length - 1);
+      $('#minPrice').val(values[0]);
+      $('#maxPrice').val(values[values.length - 1]);
+      },
+     slide: function(event, ui){
+       $('#minPrice').val(ui.stepValue[0]);
+       $('#maxPrice').val(ui.stepValue[1]);
+     }
+  });
 
-
-    var values = [@foreach ($properties->sortBy('price') as $key => $property) ["{{ $property->price }}"], @endforeach];
+  var values = [1, 10000, 25000, 50000, 75000, 125000, 150000, 270000, 350000, 600000, 750000, 1000000, 1500000, 2000000];
     var slider = $('#price-sliderr').slider({
-        range: true,
-        steps: values,
-        create: function(e, ui) {
-            $('#price-sliderr').slider('values', 1, values.length - 1);
-            $('#minPricee').val(values[0]);
-            $('#maxPricee').val(values[values.length - 1]);
-        },
-        slide: function(event, ui) {
-            $('#minPricee').val(ui.stepValue[0]);
-            $('#maxPricee').val(ui.stepValue[1]);
-        }
-    });
+      range: true,
+      steps: values,
+      create: function(e, ui){
+      $('#price-sliderr').slider('values', 1, values.length - 1);
+      $('#minPricee').val(values[0]);
+      $('#maxPricee').val(values[values.length - 1]);
+      },
+     slide: function(event, ui){
+       $('#minPricee').val(ui.stepValue[0]);
+       $('#maxPricee').val(ui.stepValue[1]);
+     }
+  });
 
-    var values = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000];
+  var values = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000, 4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000 ];
     var slider = $('#area-slider').slider({
-        range: true,
-        steps: values,
-        create: function(e, ui) {
-            $('#area-slider').slider('values', 1, values.length - 1);
-            $('#minArea').val(values[0]);
-            $('#maxArea').val(values[values.length - 1]);
-        },
-        slide: function(event, ui) {
-            $('#minArea').val(ui.stepValue[0]);
-            $('#maxArea').val(ui.stepValue[1]);
-        }
-    });
+      range: true,
+      steps: values,
+      create: function(e, ui){
+      $('#area-slider').slider('values', 1, values.length - 1);
+      $('#minArea').val(values[0]);
+      $('#maxArea').val(values[values.length - 1]);
+      },
+     slide: function(event, ui){
+       $('#minArea').val(ui.stepValue[0]);
+       $('#maxArea').val(ui.stepValue[1]);
+     }
+  });
 </script>
 
 

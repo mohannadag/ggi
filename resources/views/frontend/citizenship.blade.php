@@ -40,6 +40,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 @include('frontend.citizenship.slider')
 
 @include('frontend.citizenship.intro')
+@include('frontend.citizenship.featured')
 @include('frontend.citizenship.documents')
 @include('frontend.citizenship.form')
 

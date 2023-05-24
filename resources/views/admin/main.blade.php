@@ -108,17 +108,19 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
     <style>
         :root {
-
-            --theme-color: {
+            --theme-color: #000;
+            /* --theme-color: {
                     {
                     isset($siteInfo->color) ? $siteInfo->color : '#000000'
                 }
-            }
-
-            ;
+            }; */
 
         }
     </style>
+
+    <!-- Custom CSS -->
+
+    <link href="{{asset('css/dashboard.css')}}" rel="stylesheet" />
 
     @stack('styles')
     @notifyCss

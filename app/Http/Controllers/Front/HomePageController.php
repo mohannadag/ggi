@@ -122,8 +122,8 @@ class HomePageController extends Controller
         $popularTopics = BlogCategory::with('blogCategoryTranslation','blogs')->where('status',1)->get()->keyBy('id');
         $tags = Tag::with('tagTranslation','tagTranslationEnglish')->where('status',1)->get();
         $headerImage = HeaderImage::where('page','home')->first();
-        // return view('frontend.index',compact('properties','maxPrice','minPrice','propertyDetails', 'campaigns', 'stories', 'tags','maxArea','minArea','country','city','agents','users','states','categories','propertyTranslation','propertyTranslationEnglish','image','locale','facilities','siteInfo','newses','popularTopics','headerImage', 'sliders', 'videos', 'testimonials', 'partners', 'curr'));
-        return view('soon');
+        return view('frontend.index',compact('properties','maxPrice','minPrice','propertyDetails', 'campaigns', 'stories', 'tags','maxArea','minArea','country','city','agents','users','states','categories','propertyTranslation','propertyTranslationEnglish','image','locale','facilities','siteInfo','newses','popularTopics','headerImage', 'sliders', 'videos', 'testimonials', 'partners', 'curr'));
+        // return view('soon');
     }
 
     public function page($page)

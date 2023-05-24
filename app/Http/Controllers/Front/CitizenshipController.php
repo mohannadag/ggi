@@ -57,9 +57,15 @@ class CitizenshipController extends Controller
         // $citizenshipTranslation = CitizenshipTranslation::where('locale','en')->get()->keyBy('citizenship_id');
         // $citizenship = Citizenship::with('citizenshipTranslation')->first();
         $properties = Property::where('moderation_status',1)
-                        ->orderBy('id','DESC')
                         ->where('status',1)
+                        ->orderBy('id','DESC')
                         ->get();
+
+        $properties = $properties->filter(function($p) {
+            return $p->propertyDetails->citizenship == 1;
+        });
+        //dd($properties);
+
         // $properties = DB::table('properties')
         //             ->join('cities', 'properties.city_id', '=', 'cities.id')
         //             ->join('countries', 'properties.country_id', '=', 'countries.id')
@@ -91,7 +97,8 @@ class CitizenshipController extends Controller
                 $row->save();
             }
         }
-        $propertyDetails = PropertyDetail::get()->keyBy('property_id');
+        $propertyDetails = PropertyDetail::where('citizenship', 1)->get()->keyBy('property_id');
+        //dd($propertyDetails);
         $maxArea = $propertyDetails->max('room_size');
         $minArea = $propertyDetails->min('room_size');
         $country = Country::with('countryTranslation')->get()->keyBy('id');

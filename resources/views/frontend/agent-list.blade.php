@@ -42,12 +42,12 @@
                         <img src="{!! $agent->photo() !!}" class="w-auto h-auto block mx-auto" loading="lazy" width="215" height="310" alt="{{$agent->f_name}} {{$agent->l_name}}">
                     </a>
                     <ul class="flex flex-col absolute w-full top-[30px] left-0 overflow-hidden">
-                        <li class="translate-x-[0px] group-hover:translate-x-[30px] opacity-0 group-hover:opacity-100 transition-all duration-300 mb-[15px]">
+                        <li class="translate-x-[0px] group-hover:translate-x-1 opacity-0 group-hover:opacity-100 transition-all duration-300 m-[10px]">
                             <a href="tel:{{str_replace(' ','',$agent->mobile)}}" aria-label="svg" class="w-[26px] h-[26px] transition-all rounded-full bg-[#FFF6F0] flex items-center justify-center hover:drop-shadow-[0px_4px_10px_rgba(0,0,0,0.25)] text-[#494949] hover:text-[#3B5998]">
                                 <img width="16px" src="{{asset('/images/phone.png')}}">
                             </a>
                         </li>
-                        <li class="translate-x-[0px] group-hover:translate-x-[30px] opacity-0 group-hover:opacity-100 transition-all duration-500 mb-[15px]">
+                        <li class="translate-x-[0px] group-hover:translate-x-1 opacity-0 group-hover:opacity-100 transition-all duration-500 m-[10px]">
                             <a href="mailto:{{$agent->email}}" aria-label="svg" class="w-[26px] h-[26px] transition-all rounded-full bg-[#FFF6F0] flex items-center justify-center hover:drop-shadow-[0px_4px_10px_rgba(0,0,0,0.25)] text-[#494949] hover:text-[#3B5998]">
                                 <img width="16px" src="{{asset('/images/email.png')}}">
                             </a>

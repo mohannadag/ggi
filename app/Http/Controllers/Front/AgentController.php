@@ -24,7 +24,7 @@ class AgentController extends Controller
     public function index()
     {
         App::setLocale(Session::get('currentLocal'));
-
+        $city = City::with('cityTranslation')->get()->keyBy('id');
         $agents = User::where('type','agent')->paginate(12);
         $categories = Category::with('categoryTranslation','properties')->where('status',1)->get();
         $states = State::with('stateTranslation')->where('status',1)->orderBy('order')->get()->keyBy('id');

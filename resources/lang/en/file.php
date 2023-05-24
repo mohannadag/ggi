@@ -338,8 +338,8 @@ return array(
     'result_duration'=>'10-90 Days',
     'result'=>'Wait For Residence Permit',
     'villas'=>'Villas',
-    'best-offer'=>'The best offer',
-    'for-your-business'=>'for your business',
+    'best-offer'=>'The best choice',
+    'for-your-business'=>'for your investment',
     'get-started'=>'Get started',
     'learn-more'=>'Learn more',
     'citizenship-by-investment-overview'=>'Citizenship by Investment Overview',
@@ -372,4 +372,5 @@ return array(
     'duration5'=>'duration5',
     //'consult'=>'Consult with GGI Turkey',
     //'description'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+    'agent-translate'=>'30px',
 );

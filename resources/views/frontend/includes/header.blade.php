@@ -105,7 +105,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             </li>
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">
 
-                                <a href="{{url('/page/turkish-citizenship')}}" id="citizenship-color" class="sticky-dark transition-all text-white hover:text-secondary">{{trans('file.turkish_citizenship')}}</a>
+                                <a href="{{url('/turkish-citizenship')}}" id="citizenship-color" class="sticky-dark transition-all text-white hover:text-secondary">{{trans('file.turkish_citizenship')}}</a>
 
                             </li>
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">

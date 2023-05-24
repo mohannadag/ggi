@@ -84,23 +84,23 @@
                                 <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[30px] font-medium">{{trans('file.latest_posts')}}<span class="text-secondary">.</span></h3>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-x-[30px] md:gap-x-[0px] relative">
                                     @foreach ($newses as $recentlyAddedPost)
-                                @php
-                                        $createdAt = \Carbon\Carbon::parse($news->created_at);
-                                    @endphp
-                                    <div class="flex items-center mb-[20px]">
-                                        <div class="relative w-[127px]">
-                                            <a href="{{route('news.show',$recentlyAddedPost)}}" class="block w-full">
-                                                <img src="{{URL::asset('/images/thumbnail/'.$recentlyAddedPost->image)}}" class="w-full" alt="{{$recentlyAddedPost->blogTranslation->title ?? $recentlyAddedPost->blogTranslationEnglish->title  ?? 'title' }}">
-                                            </a>
-                                        </div>
+                                        @php
+                                            $createdAt = \Carbon\Carbon::parse($news->created_at);
+                                        @endphp
+                                        <div class="flex items-center mb-[20px]">
+                                            <div class="relative w-[127px]">
+                                                <a href="{{route('news.show',$recentlyAddedPost)}}" class="block w-full">
+                                                    <img src="{{URL::asset('/images/thumbnail/'.$recentlyAddedPost->image)}}" class="w-full" alt="{{$recentlyAddedPost->blogTranslation->title ?? $recentlyAddedPost->blogTranslationEnglish->title  ?? 'title' }}">
+                                                </a>
+                                            </div>
 
-                                        <div class="text-{{ App::isLocale('ar') ? 'right mr-1' : 'left' }} w-[calc(100%-151px)] ml-6">
-                                            <span class="block leading-none font-light text-[12px] text-secondary mb-[8px]">{{$createdAt->toFormattedDateString()}}</span>
-                                            <h3>
-                                                <a href="{{route('news.show',$recentlyAddedPost)}}" class="font-lora text-[16px] leading-[1.285] text-primary hover:text-secondary transition-all">{{$recentlyAddedPost->blogTranslation->title ?? $recentlyAddedPost->blogTranslationEnglish->title  ?? 'title' }}</a>
-                                            </h3>
+                                            <div class="text-{{ App::isLocale('ar') ? 'right mr-1' : 'left' }} w-[calc(100%-151px)] ml-6">
+                                                <span class="block leading-none font-light text-[12px] text-secondary mb-[8px]">{{$createdAt->toFormattedDateString()}}</span>
+                                                <h3>
+                                                    <a href="{{route('news.show',$recentlyAddedPost)}}" class="font-lora text-[16px] leading-[1.285] text-primary hover:text-secondary transition-all">{{$recentlyAddedPost->blogTranslation->title ?? $recentlyAddedPost->blogTranslationEnglish->title  ?? 'title' }}</a>
+                                                </h3>
+                                            </div>
                                         </div>
-                                    </div>
                                     @endforeach
                                 </div>
                             </div>
