@@ -13,5 +13,6 @@ class StoryTranslation extends Model
             'story_id',
             'title',
             'link_title',
+            'locale',
         ];
 }

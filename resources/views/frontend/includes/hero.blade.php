@@ -178,7 +178,7 @@
 <div class="mt-[-45px] lg:mt-[-70px] xl:mt-[-70px] relative z-[2] pl-[40px] lg:pl-[50px] xl:pl-[0px]">
     <div class="container">
         <div class="grid grid-cols-12">
-            <div class="col-span-12 relative">
+            {{-- <div class="col-span-12 relative">
                 <button class="tab-toggle-btn px-[10px] py-[15px] absolute bottom-[-56px] left-[-45px] border-l border-t border-b border-solid border-[#016450] bg-white text-primary border-opacity-25 rounded-tl-[10px] rounded-bl-[10px]" aria-label="svg icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 22V11" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -192,9 +192,9 @@
                         <path d="M10 13H14" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
-            </div>
+            </div> --}}
             <div class="col-span-12 selectricc-border-none">
-                <div class="tab-content bg-white border border-solid border-[#016450] border-opacity-25 rounded-bl-[15px] rounded-br-[15px] rounded-tr-[15px] px-[15px] sm:px-[30px] py-[40px] active">
+                <div class="tab-content bg-white border border-solid border-[#016450] border-opacity-25 rounded-tl-[15px] rounded-bl-[15px] rounded-br-[15px] rounded-tr-[15px] px-[15px] sm:px-[30px] py-[40px] active">
                     <form action="{{ route('search.property') }}" method="GET">
                         @csrf
                         <div class="advanced-searrch flex flex-wrap items-center -mb-[45px]">
@@ -236,6 +236,29 @@
 
                             <div class="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px]">
                                 <div class="mr-4 self-start shrink-0">
+                                    <img src="{{asset('frontend/images/icon/location.svg')}}" width="24" height="24" alt="svg icon">
+                                </div>
+                                <div class="flex-1">
+                                    <label for="bed" class="font-lora block capitalize text-primary text-[17px] xl:text-[24px] leading-none mb-1">{{ trans('file.bedrooms') }}</label>
+                                    <select name="bed" id="bed" class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
+                                        <option value="">{{trans('file.select')}}</option>
+                                        <option value="1" >0+1</option>
+                                        <option value="2" >1+1</option>
+                                        <option value="3" >1+2</option>
+                                        <option value="4" >1+3</option>
+                                        <option value="5" >1+4</option>
+                                        <option value="6" >1+5</option>
+                                        <option value="7" >1+6</option>
+                                        <option value="8" >1+7</option>
+                                        <option value="8" >1+8</option>
+                                    </select>
+                                </div>
+                                <div id="cityList">
+                                </div>
+                            </div>
+
+                            {{-- <div class="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px]">
+                                <div class="mr-4 self-start shrink-0">
                                     <img src="{{asset('frontend/images/icon/property.svg')}}" width="24" height="24" alt="svg icon">
                                 </div>
                                 <div class="flex-1">
@@ -249,7 +272,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px] relative">
                                 <div class="mr-4 self-start shrink-0">
@@ -259,8 +282,8 @@
                                     <label for="price" class="font-lora block capitalize text-primary text-[17px] xl:text-[24px] leading-none mb-1">{{trans('file.price_range')}}</label>
                                     <div class="price-slider">
                                         <div class="price-slider" id="price-slider"></div>
-                                        <input id="minPrice" name="minPrice" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]" type="number">
-                                        <input id="maxPrice" name="maxPrice" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]" type="number">
+                                        <input id="minPrice" name="minPrice" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]" type="number" value="1">
+                                        <input id="maxPrice" name="maxPrice" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]" type="number" value="1000000">
                                     </div>
                                 </div>
 
@@ -273,7 +296,7 @@
                         </div>
 
 
-                        <div class="advanced-searrch-hidden flex flex-wrap items-center mt-[45px] -mb-[45px]">
+                        {{-- <div class="advanced-searrch-hidden flex flex-wrap items-center mt-[45px] -mb-[45px]">
                             <div id="bedroom" class="advanced-searrch-list flex items-center lg:border-r lg:border-[#D6D4D4] lg:mr-[40px] xl:mr-[50px] last:mr-0 last:border-r-0 mb-[45px] search-list">
                                 <div class="mr-4 self-start shrink-0">
                                     <img src="{{asset('frontend/images/icon/location.svg')}}" width="24" height="24" alt="svg icon">
@@ -282,15 +305,15 @@
                                     <label for="bed" class="font-lora block capitalize text-primary text-[17px] xl:text-[24px] leading-none mb-1">{{ trans('file.bedrooms') }}</label>
                                     <select name="bed" id="bed" class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
                                         <option value="">{{trans('file.select')}}</option>
-                                        <option value="[1]" >0+1</option>
-                                        <option value="[2]" >1+1</option>
-                                        <option value="[3]" >1+2</option>
-                                        <option value="[4]" >1+3</option>
-                                        <option value="[5]" >1+4</option>
-                                        <option value="[6]" >1+5</option>
-                                        <option value="[7]" >1+6</option>
-                                        <option value="[8]" >1+7</option>
-                                        <option value="[9]" >1+8</option>
+                                        <option value="1" >0+1</option>
+                                        <option value="2" >1+1</option>
+                                        <option value="3" >1+2</option>
+                                        <option value="4" >1+3</option>
+                                        <option value="5" >1+4</option>
+                                        <option value="6" >1+5</option>
+                                        <option value="7" >1+6</option>
+                                        <option value="8" >1+7</option>
+                                        <option value="8" >1+8</option>
                                     </select>
                                 </div>
                             </div>
@@ -333,7 +356,7 @@
                                     Search Properties
                                 </button>
                             </div>
-                        </div>
+                        </div> --}}
                     </form>
                 </div>
                 <div id="rent" class="tab-content bg-white border border-solid border-[#016450] border-opacity-25 rounded-bl-[15px] rounded-br-[15px] rounded-tr-[15px] px-[15px] sm:px-[30px] py-[40px]">

@@ -96,7 +96,7 @@ class StoryModel implements IStoryModel
         $photoName = $this->imageUpload($photoImage,$slug,'stories/', 1080, 1920);
         $thumbName = $this->imageUpload($thumbImage,$slug,'stories/', 1080, 1920);
         $data['file'] = $photoName;
-        $data['campaign'] =$request->input('campaign');
+        $data['campaign'] =$request->input('campaign_id');
         $data['file_thumb'] = $thumbName;
         //thumbnail image save end
         $this->_storyService->add($data);
@@ -108,15 +108,15 @@ class StoryModel implements IStoryModel
         request()->validate([
             'title' => 'required',
             'campaign_id'=> 'required',
-            'file'=>'required',
-            'file_thumb'=>'required',
+            // 'file'=>'required',
+            // 'file_thumb'=>'required',
             'type'=> 'required'
         ]);
         $data = $request->all();
 
         //thumbnail image save start
         $data['title'] =$request->input('title');
-        $data['campaign'] =$request->input('campaign');
+        $data['campaign'] =$request->input('campaign_id');
         $data['duration'] =$request->input('duration');
         $photoImage = $request->file('file');
         $thumbImage = $request->file('file_thumb');
@@ -136,6 +136,7 @@ class StoryModel implements IStoryModel
         {
             $data['file_thumb'] = $thumbName;
         }
+        // dd($data);
         $this->_storyService->update($data,$id);
     }
 

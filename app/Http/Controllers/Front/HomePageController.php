@@ -106,6 +106,7 @@ class HomePageController extends Controller
         ->orderBy('id','DESC')
         ->get();
         $stories = Story::with(['campaign.campaignTranslation', 'storyTranslation','storyTranslationEnglish',])
+        ->where('status',1)
         ->get();
 
         $campaigns = Campaign::with('campaignTranslation')->where('status',1)->get()->keyBy('id');

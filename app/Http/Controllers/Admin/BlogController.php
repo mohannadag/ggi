@@ -44,14 +44,15 @@ class BlogController extends Controller
                 ->get();
         }
 
-        if($user->type == 'content')
+        if($user->type == 'moderator')
         {
             $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
                 ->orderBy('id','DESC')
                 ->where('user_id','=',$user->id)
                 ->get();
+                // dd($data);
         }
-
+        //dd($user);
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()

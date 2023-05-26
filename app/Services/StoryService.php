@@ -27,6 +27,7 @@ class StoryService
 
     public function add($data)
     {
+        // dd($data);
         $story = $this->_storyRepository->add($data);
         $data['storyId'] = $story->id;
         $this->_storyTranslationRepository->add($data);

@@ -19,7 +19,7 @@
             <div class="col-span-12">
                 <div class="all-properties properties-tab-content active">
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                        @foreach ($properties->take(6) as $property)
+                        @foreach ($properties->where('is_featured', 1)->take(6) as $property)
                             <div class="swiper-slide">
                                 <div class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                                     <div class="relative">
