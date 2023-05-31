@@ -190,11 +190,11 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             &nbsp;<span>{{trans('file.ready_title')}}</span>
                         </li>
                         @endif
-                        @if($property->propertyDetails->deliver_year <= 2023) <li class="flex flex-wrap items-center mb-[25px]">
+                        @if($property->propertyDetails->deliver_year <= date("Y")) <li class="flex flex-wrap items-center mb-[25px]">
                             <img class="mr-[15px]" src="{{ url('frontend/images/interior/ready.png') }}" loading="lazy" alt="icon" width="30" height="20">
                             &nbsp;<span>{{trans('file.ready_project')}}</span>
                             </li>
-                            @elseif($property->propertyDetails->deliver_year >= 2023)
+                            @elseif($property->propertyDetails->deliver_year >= date("Y"))
                             <li class="flex flex-wrap items-center mb-[25px]">
                                 <img class="mr-[15px]" src="{{ url('frontend/images/interior/construction.png') }}" loading="lazy" alt="icon" width="30" height="20">
                                 &nbsp;<span>{{trans('file.under_construction')}}</span>
@@ -202,8 +202,10 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             @endif
                     </ul>
                     @endif
-                    <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">{{trans('file.project_details')}}<span class="text-secondary">?</span></h5>
-                    {!! $property->propertyDetails->propertyDetailTranslation->content ?? ($property->propertyDetails->propertyDetailTranslationEnglish->content ?? null) !!}
+                    <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium mt-[25px]">{{trans('file.project_details')}}<span class="text-secondary">?</span></h5>
+                    <div class="project-body">
+                        {!! $property->propertyDetails->propertyDetailTranslation->content ?? ($property->propertyDetails->propertyDetailTranslationEnglish->content ?? null) !!}
+                    </div>
                 </div>
                 @if($property->propertyDetails->video !== Null)
                 <div class="w-auto h-auto">
@@ -839,8 +841,9 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                 <!-- Additional required wrapper -->
                                 <div class="swiper-wrapper">
                                     <!-- Slides -->
-                                    @foreach ($properties->where('moderation_status', 1)->shuffle() as $similarListing)
-                                    @if ($property->city_id == $similarListing->city_id)
+                                    {{-- @foreach ($properties->where('moderation_status', 1)->shuffle() as $similarListing) --}}
+                                    @foreach ($properties->where('is_featured', 1)->shuffle() as $similarListing)
+                                    {{-- @if ($property->city_id == $similarListing->city_id) --}}
                                     <div class="swiper-slide">
                                         <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                                             <div class="relative">
@@ -890,7 +893,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                             </div>
                                         </div>
                                     </div>
-                                    @endif
+                                    {{-- @endif --}}
                                     @endforeach
                                 </div>
                             </div>

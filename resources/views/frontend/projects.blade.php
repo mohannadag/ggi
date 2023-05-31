@@ -7,7 +7,8 @@
 @endsection
 @section('title', 'GGI Turkey, Properties')
 @section('content')
-@include('frontend.includes.header-ivr')
+{{-- @include('frontend.includes.header-ivr') --}}
+@include('frontend.includes.header1')
 
 <section class="bg-no-repeat bg-center bg-cover bg-[#FFF6F0] h-[350px] lg:h-[513px] flex flex-wrap items-center relative before:absolute before:inset-0 before:content-['']" style="background-image: url('{{ url('frontend/images/breadcrumb/properties-bg.jpg') }}');">
     <div class="container">
@@ -152,7 +153,7 @@
 
             <div class="col-span-12 md:col-span-6 lg:col-span-4 mb-[30px]">
                 <aside class="mb-[-60px] asidebar">
-                    <div class="mb-[40px]">
+                    {{-- <div class="mb-[40px]">
                         <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[30px] font-medium">Search by Title<span class="text-secondary">.</span></h3>
                         <form class="relative" action="{{route('search.project')}}" method="GET">
                             @csrf
@@ -175,11 +176,11 @@
                                 </svg>
                             </button>
                         </form>
-                    </div>
+                    </div> --}}
                     @include('frontend.includes.search-projects')
 
 
-                    <div dir="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}" class="mb-[60px]">
+                    {{-- <div dir="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}" class="mb-[60px]">
                         <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[40px] font-medium">{{trans('file.featured')}}<span class="text-secondary">.</span></h3>
                         <div class="sidebar-carousel relative">
                             <div class="swiper p-1">
@@ -247,7 +248,7 @@
 
                         </div>
 
-                    </div>
+                    </div> --}}
 
                     {{-- <div class="mb-[60px]">
                         <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[30px] font-medium">Our Agents<span
@@ -275,7 +276,7 @@
     </div>
     </div> --}}
 
-    <div class="mb-[60px]">
+    {{-- <div class="mb-[60px]">
         <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[40px] font-medium">Tags<span class="text-secondary">.</span></h3>
         <ul class="flex flex-wrap my-[-7px] mx-[-5px] font-light text-[12px]">
             <li class="my-[7px] mx-[5px]"><a href="#" class="leading-none border border-[#E0E0E0] py-[8px] px-[10px] block rounded-[4px] hover:text-secondary">Real Estate</a>
@@ -292,7 +293,7 @@
             </li>
 
         </ul>
-    </div>
+    </div> --}}
     </aside>
     </div>
     </div>

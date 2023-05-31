@@ -39,13 +39,13 @@
                                     class="nice-select font-light w-full h-[45px] leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] pl-[40px] pr-[20px] py-[8px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white appearance-none cursor-pointer">
                                     @if(App::isLocale('ar'))
                                     @if(old('state', request()->state) != NULL)
-                                    <option value="{{old('state', request()->state)}}">{{DB::table('state_translations')->where('locale', 'ar')->where('state_id', old('state', request()->state))->value('name');}}</option>
+                                    <option value="{{old('state', request()->state)}}">{{DB::table('state_translations')->where('locale', 'ar')->where('state_id', old('state', request()->state))->value('name')}}</option>
                                     @else
                                     <option value="">{{trans('file.select_city')}}</option>
                                    @endif
                                    @else
                                    @if(old('state', request()->state) != NULL)
-                                    <option value="{{old('state', request()->state)}}">{{DB::table('state_translations')->where('locale', 'en')->where('state_id', old('state', request()->state))->value('name');}}</option>
+                                    <option value="{{old('state', request()->state)}}">{{DB::table('state_translations')->where('locale', 'en')->where('state_id', old('state', request()->state))->value('name')}}</option>
                                     @else
                                     <option value="">{{trans('file.select_city')}}</option>
                                     @endif

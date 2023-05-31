@@ -7199,6 +7199,13 @@ input:focus {
     padding-right: 20px;
 }
 
+.blog-body ol {
+    all: unset;
+    list-style: decimal;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 
 /* end blog styles */
 
@@ -7208,4 +7215,42 @@ input:focus {
     border: 2px solid #d7b550;
     border-radius: 10px;
     padding: 5px;
+}
+
+.project-body h2 {
+    all: unset;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body h3 {
+    all: unset;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body h4 {
+    all: unset;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body h5 {
+    all: unset;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body ul {
+    list-style: disc;
+    padding: 10px 20px;
+}
+
+.project-body ol {
+    list-style: decimal;
+    padding: 10px 20px;
 }

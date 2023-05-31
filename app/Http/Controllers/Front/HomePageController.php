@@ -791,6 +791,7 @@ class HomePageController extends Controller
         //Poperty Search
         $properties = $this->_propertySearchModel->getData($request);
         $data = $request->all();
+        // dd($properties);
         return view('frontend.get-property',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'featuredProperties'));
     }
 

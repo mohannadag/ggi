@@ -499,7 +499,7 @@ class PropertySearchRepository implements IPropertySearchRepository
     {
         $query = property::where('status', 1)
                         ->with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation');
-
+        // dd($query->get());
         if($data['category'] != "")
         {
             $query = $query->where('category_id', $data['category']);
@@ -569,7 +569,9 @@ class PropertySearchRepository implements IPropertySearchRepository
 
         if($data['property_name'] != "")
         {
-            $query = $query->where('title',$data['property_name']);
+            $query = $query->where('title','LIKE','%'.$data['property_name'].'%')
+                ->orWhere('property_id','LIKE','%'.$data['property_name'].'%');
+            //dd($query->get());
         }
 
         if($data['bed'] != "")
@@ -590,7 +592,7 @@ class PropertySearchRepository implements IPropertySearchRepository
             });
         }
 
-        return $query->get();
+        return $query->paginate(6);
     }
 
 }

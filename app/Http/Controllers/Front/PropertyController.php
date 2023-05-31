@@ -128,7 +128,10 @@ class PropertyController extends Controller
         $locale   = Session::get('currentLocal');
         $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
         $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
-        $tags = Tag::with('tagTranslation', 'tagTranslationEnglish')->get();
+        $tags = $property->tags; // Tag::with('tagTranslation', 'tagTranslationEnglish')->get();
+        // $tags1 = $property->tags;
+        // dd($properties, $property);
+        // dd($tags1);
         return view('frontend.property',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail', 'curr', 'tags'));
     }
 

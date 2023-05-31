@@ -81,7 +81,8 @@ class ProjectController extends Controller
 
     public function searchProjects(Request $request)
     {
-        $properties = Property::with('propertyDetails','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image')->where('title', 'LIKE', '%' . $request->search . '%')->where('status', 'approved')->get();
+        $properties = Property::with('propertyDetails','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image')
+            ->where('title', 'LIKE', '%' . $request->search . '%')->where('status', 'approved')->get();
 
         if (count($properties) > 0) {
             foreach ($properties as $property) {

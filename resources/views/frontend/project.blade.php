@@ -2,7 +2,8 @@
 @section('meta'){{$property->description}}@endsection
 @section('image'){{ URL::asset('/images/thumbnail/'.$property->thumbnail) }}@endsection
 @section('content')
-@include('frontend.includes.header-ivr')
+{{-- @include('frontend.includes.header-ivr') --}}
+@include('frontend.includes.header1')
     @php
 
         $languages = \Illuminate\Support\Facades\DB::table('languages')
@@ -149,7 +150,9 @@
                         <h3 class="font-light text-[18px] text-secondary mb-[20px]"> {{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }}, {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }}, {{ $property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null) }}</h3>
 
                         <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">{{trans('file.property_details')}}<span class="text-secondary">.</span></h5>
-                        <p>{!! $property->propertyDetails->propertyDetailTranslation->content ?? ($property->propertyDetails->propertyDetailTranslationEnglish->content ?? null) !!}</p>
+                        <div class="project-body">
+                            <p>{!! $property->propertyDetails->propertyDetailTranslation->content ?? ($property->propertyDetails->propertyDetailTranslationEnglish->content ?? null) !!}</p>
+                        </div>
                     </div>
                     @if ($property->propertyDetails->first_floor_title !== NULL)
                 <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">{{trans('file.available_units')}}<span class="text-secondary">.</span></h5>
