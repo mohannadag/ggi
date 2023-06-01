@@ -28,7 +28,7 @@
                 <div class="col-span-12">
                     <div class="max-w-[600px]  mx-auto text-center text-white relative z-[1]">
                         <div class="mb-5"><span class="text-base block">Our Properties</span></div>
-                        <h1 class="font-lora text-[36px] sm:text-[50px] md:text-[68px] lg:text-[50px] leading-tight xl:text-2xl font-medium">{{ $property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null) }}</h1>
+                        <h1 class="font-lora text-[36px] sm:text-[50px] md:text-[68px] lg:text-[50px] leading-tight xl:text-2xl font-medium">{{ $property->property_id }}</h1>
                         <p class="text-base mt-5 max-w-[500px] mx-auto text-center">
                             {{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }},
                             {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }},
@@ -48,7 +48,7 @@
                 <div class="col-span-12 md:col-span-6 lg:col-span-8 mb-[30px]">
                     <div class="col-span-12 flex flex-wrap flex-col md:flex-row items-start justify-between">
                         <div class="mb-5 lg:mb-0">
-                            <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{$property->title}}<span class="text-secondary">.</span></h2>
+                            <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{$property->property_id}}<span class="text-secondary">.</span></h2>
                         </div>
                         <ul class="all-properties flex flex-wrap lg:pt-[10px]">
                             <li data-tab="gallery" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.gallery')}}</button></li>
@@ -114,8 +114,8 @@
                         <h3 class="font-light text-[18px] text-secondary mb-[20px]"> {{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }}, {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }}, {{ $property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null) }}</h3>
                         <p>{!! $property->propertyDetails->propertyDetailTranslation->content ?? ($property->propertyDetails->propertyDetailTranslationEnglish->content ?? null) !!}</p>
                     </div>
-                    <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">Available Units<span class="text-secondary">.</span></h5>
-                    <div class="flex flex-col">
+                    {{-- <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">Available Units<span class="text-secondary">.</span></h5> --}}
+                    {{-- <div class="flex flex-col">
                         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                           <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="overflow-x-auto">
@@ -313,8 +313,24 @@
                       </div>
 
                     <h4 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium"> {{trans('file.amenities')}}<span class="text-secondary">.</span>
-                    </h4>
-
+                    </h4> --}}
+                    @if($property->propertyDetails->video !== Null)
+                    <div class="w-auto h-auto">
+                        <div class="mt-[25px] mb-[35px]">
+                            <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">{{trans('file.video')}}<span class="text-secondary">.</span></h5>
+                            <div class="relative">
+                                <div data-relative-input="true">
+                                    <img data-depth="0.1" src="{{URL::asset('images/thumbnail/' . $property->thumbnail)}}" class="object-cover rounded-[8px] w-full h-full" width="100%" height="300px" alt="video image">
+                                </div>
+                                <a href="{{$property->propertyDetails->video}}" target="_blank" class="play-button bg-white text-white hover:text-primary absolute left-0 right-0 mx-auto top-1/2 -translate-y-1/2 hover:scale-105 hover:bg-primary w-[120px] h-[120px] flex flex-wrap z-[1] items-center justify-center opacity-100 shadow-[0px 4px 4px rgba(0, 0, 0, 0.25)] transition-all rounded-full group before:block before:absolute  before:bg-white before:opacity-80 before:shadow-[0px 4px 4px rgba(0, 0, 0, 0.25)] hover:before:bg-primary hover:before:opacity-80 before:w-[70px] before:h-[70px] before:rounded-full before:z-[-1]" aria-label="play button">
+                                    <svg width="35" height="35" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path class="stroke-primary group-hover:stroke-white" d="M1.63861 10.764V6.70324C1.63861 1.66145 5.20893 -0.403178 9.57772 2.11772L13.1024 4.14812L16.6271 6.17853C20.9959 8.69942 20.9959 12.8287 16.6271 15.3496L13.1024 17.38L9.57772 19.4104C5.20893 21.9313 1.63861 19.8666 1.63861 14.8249V10.764Z" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
                     <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 px-[15px] mx-[-15px] mt-[40px]">
                         @foreach ($property->facilities as $facility)
                         <li class="flex flex-wrap items-center mb-[25px]">
@@ -328,37 +344,55 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-[30px]">
                         @if ($property->propertyDetails->first_floor_size !== null)
                         <div class="text-center">
-                            <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->first_floor_picture) }}" alt="{{ $property->propertyDetails->first_floor_title }}">
+                            <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->first_floor_picture) }}" class="floor-image">
+                                <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->first_floor_picture) }}" alt="{{ $property->propertyDetails->first_floor_title }}">
+                            </a>
+
                             <p>{{ $property->propertyDetails->first_floor_title }}</p>
                         </div>
                         @endif
                         @if ($property->propertyDetails->second_floor_size !== null)
                         <div class="text-center">
-                            <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->second_floor_picture) }}" alt="{{ $property->propertyDetails->second_floor_title }}">
+                            <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->second_floor_picture) }}" class="floor-image">
+                                <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->second_floor_picture) }}" alt="{{ $property->propertyDetails->second_floor_title }}">
+                            </a>
+
                             <p>{{ $property->propertyDetails->second_floor_title }}</p>
                         </div>
                         @endif
                         @if ($property->propertyDetails->third_floor_size !== null)
                         <div class="text-center">
-                            <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->third_floor_picture) }}" alt="{{ $property->propertyDetails->third_floor_title }}">
+                            <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->third_floor_picture) }}" class="floor-image">
+                                <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->third_floor_picture) }}" alt="{{ $property->propertyDetails->third_floor_title }}">
+                            </a>
+
                             <p>{{ $property->propertyDetails->third_floor_title }}</p>
                         </div>
                         @endif
                         @if ($property->propertyDetails->fourth_floor_size !== null)
                         <div class="text-center">
-                            <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture) }}" alt="{{ $property->propertyDetails->fourth_floor_title }}">
+                            <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture) }}" class="floor-image">
+                                <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture) }}" alt="{{ $property->propertyDetails->fourth_floor_title }}">
+                            </a>
+
                             <p>{{ $property->propertyDetails->fourth_floor_title }}</p>
                         </div>
                         @endif
                         @if ($property->propertyDetails->fifth_floor_size !== null)
                         <div class="text-center">
-                            <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->fifth_floor_picture) }}" alt="{{ $property->propertyDetails->fifth_floor_title }}">
+                            <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->fifth_floor_picture) }}" class="floor-image">
+                                <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->fifth_floor_picture) }}" alt="{{ $property->propertyDetails->fifth_floor_title }}">
+                            </a>
+
                             <p>{{ $property->propertyDetails->fifth_floor_title }}</p>
                         </div>
                         @endif
                         @if ($property->propertyDetails->sixth_floor_size !== null)
                         <div class="text-center">
-                            <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->sixth_floor_picture) }}" alt="{{ $property->propertyDetails->sixth_floor_title }}">
+                            <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->sixth_floor_picture) }}" class="floor-image">
+                                <img src="{{ URL::asset('/images/floors/'.$property->propertyDetails->sixth_floor_picture) }}" alt="{{ $property->propertyDetails->sixth_floor_title }}">
+                            </a>
+
                             <p>{{ $property->propertyDetails->sixth_floor_title }}</p>
                         </div>
                         @endif
