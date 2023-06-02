@@ -172,9 +172,13 @@ https://ggiturkey.com/frontend/frontend/img/brands/logo.webp
                                 <img class="w-full h-full" src="{{ URL::asset('images/thumbnail/'.$news->image) }}" width="370" height="270" loading="lazy" alt="{{$news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}">
                             </a>
                             <div>
-                                <span class="block leading-none font-normal text-[14px] text-secondary mb-[10px]">{{$news->user->f_name}} on {{$createdAt->toFormattedDateString()}}</span>
+                                <span class="block leading-none font-normal text-[14px] text-secondary mb-[10px]">{{$createdAt->toFormattedDateString()}}</span>
                                 <h3><a href="{{ route('news.show', $news) }}" class="font-lora text-[22px] xl:text-[24px] leading-[1.285] text-primary block mb-[10px] hover:text-secondary transition-all font-medium">{{$news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}</a></h3>
-                                <p class="font-light text-[#494949] text-[16px] leading-[1.75]">{!! substr($news->blogTranslation->body ?? ($news->blogTranslationEnglish->body ?? null),0,150 ) !!}..</p>
+                                {{-- <p class="font-light text-[#494949] text-[16px] leading-[1.75]">{!! substr($news->blogTranslation->body ?? ($news->blogTranslationEnglish->body ?? null),0,150 ) !!}..</p> --}}
+                                @php
+                                    $content = html_entity_decode($news->blogTranslation->body ?? $news->blogTranslationEnglish->body ?? null);
+                                @endphp
+                                <p class="font-light text-[#494949] text-[16px] leading-[1.75]">{!! substr($content, 0, 150 ) !!}..</p>
                             </div>
                         </div>
 

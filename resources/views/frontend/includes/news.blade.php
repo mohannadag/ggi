@@ -20,7 +20,7 @@
                             <img class="w-full h-full" src="{{ URL::asset('images/thumbnail/'.$news->image) }}" width="370" height="270" loading="lazy" alt="{{$news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}">
                         </a>
                         <div>
-                            <span class="block leading-none font-normal text-[14px] text-secondary mb-[10px] relative before:absolute before:left-0 before:top-1/2 -translate-y-1/2">{{$news->user->f_name}} {{$news->user->l_name}},  {{$createdAt->format('l jS \o\f F Y')}}</span>
+                            <span class="block leading-none font-normal text-[14px] text-secondary mb-[10px] relative before:absolute before:left-0 before:top-1/2 -translate-y-1/2">{{$createdAt->format('l jS \o\f F Y')}}</span>
                             <h3><a href="{{ route('news.show', $news) }}" class="font-lora text-[22px] xl:text-[24px] leading-[1.285] text-primary block mb-[10px] hover:text-secondary transition-all font-medium">{{$news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}</a></h3>
                             <p class="font-light text-[#494949] text-[16px] leading-[1.75]"> </p>
                         </div>

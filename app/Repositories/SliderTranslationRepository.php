@@ -36,6 +36,7 @@ class SliderTranslationRepository implements ISliderTranslationRepository
 
     public function update($data)
     {
+        //dd($data);
         SliderTranslation::updateOrCreate(
             [
                 'slider_id' => $data['sliderId'],

@@ -497,7 +497,7 @@ class PropertySearchRepository implements IPropertySearchRepository
 
     public function filterProperties($data)
     {
-        $query = property::where('status', 1)
+        $query = property::where('moderation_status', 1)
                         ->with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation');
         // dd($query->get());
         if($data['category'] != "")
