@@ -70,7 +70,7 @@ return array(
     'messages' => 'رسائل',
     'my_packages' => 'الحزم الخاصة بي',
     'my_profile' => 'ملفي',
-    'news' => 'مدونة المجموعة الذهبية',
+    'news' => 'المقالات',
     'latest_posts' => 'أحدث مشاركات المدونة',
     'news_and_updates' => 'عرض مدونتنا',
     'news_details' => 'تفاصيل الخبر',

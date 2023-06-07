@@ -54,7 +54,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             </li>
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">
 
-                                <a href="{{ url('/properties') }}" id="properties-color" class="sticky-dark transition-all text-white hover:text-secondary">{{trans('file.turkey_properties')}}</a>
+                                <a href="{{ url('/properties') }}" id="properties-color" class="sticky-dark transition-all text-white hover:text-secondary">{{trans('file.turkey_properties')}} <i class="fa-sharp fa-solid fa-caret-down"></i></a>
                                 <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap w-[890px] absolute top-[120%] left-1/2 translate-x-[-40%] xl:translate-x-[-45%] transition-all group-hover:top-[100%] invisible group-hover:visible opacity-0 group-hover:opacity-100 px-[40px] py-[45px] bg-contain bg-right-top bg-no-repeat "
                                     style="background-image: url('../images/states/europe.jpg'); ">
 

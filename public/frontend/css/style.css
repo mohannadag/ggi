@@ -7164,46 +7164,62 @@ input:focus {
 
 /* start blog styles */
 
+.blog-body {
+    all: unset !important;
+    font-size: 1rem !important;
+}
+
+.blog-body a {
+    font-weight: bold;
+    color: #dab059;
+}
+
 .blog-body h2 {
     all: unset;
     font-size: 2.5rem;
     font-weight: bold;
     margin: 5px;
+    color: #dab059;
 }
 
 .blog-body h3 {
     all: unset;
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: bold;
     margin: 5px;
+    color: #dab059;
 }
 
 .blog-body h4 {
     all: unset;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: bold;
     margin: 5px;
+    color: #dab059;
 }
 
 .blog-body h5 {
     all: unset;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: bold;
     margin: 5px;
+    color: #dab059;
 }
 
 .blog-body ul {
-    all: unset;
+    /* all: unset; */
     list-style: disc;
-    padding-left: 20px;
-    padding-right: 20px;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    padding: 10px 20px;
 }
 
 .blog-body ol {
-    all: unset;
+    /* all: unset; */
     list-style: decimal;
-    padding-left: 20px;
-    padding-right: 20px;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    padding: 10px 20px;
 }
 
 
@@ -7253,4 +7269,42 @@ input:focus {
 .project-body ol {
     list-style: decimal;
     padding: 10px 20px;
+}
+
+/* end property styles */
+
+/* whatsapp button styles */
+.whatsapp_float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    left: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+}
+
+.whatsapp-icon {
+    margin-top: 16px;
+}
+
+/* for mobile */
+@media screen and (max-width: 767px) {
+    .whatsapp-icon {
+        margin-top: 10px;
+    }
+
+    .whatsapp_float {
+        display: none;
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 10px;
+        font-size: 22px;
+    }
 }

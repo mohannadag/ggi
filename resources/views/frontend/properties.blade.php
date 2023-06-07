@@ -411,6 +411,7 @@
 
 <script>
     $(document).on('change','#state',function(){
+
         var state = $(this).val();
         $.ajax({
             method:'post',
@@ -423,6 +424,25 @@
             }
         });
     });
+
+    $('#state').change(function () {
+        console.log('changed');
+        displayCities();
+    });
+
+    function displayCities() {
+        var state = $(this).val();
+        $.ajax({
+            method:'post',
+            url: '{{route('state.city')}}',
+            data: {state:state,"_token":"{{csrf_token()}}"},
+            dataType:'html',
+            success:function(response){
+                $('#city_id').html(response);
+                $('#city_id').selectric('refresh');
+            }
+        });
+    }
 </script>
     <script>
         $(document).ready(function() {

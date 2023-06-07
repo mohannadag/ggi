@@ -766,10 +766,10 @@ class HomePageController extends Controller
 
     public function getCity(Request $request)
     {
-        $cities = City::where('state_id',$request->state)->get();
-        echo '<option value="">Select City</option>';
+        $cities = City::where('state_id',$request->state)->with('cityTranslation')->get()->keyBy('id');
+        echo '<option value="">Select</option>';
         foreach ($cities as $city){
-            echo '<option value="'.$city->id.'">'.$city->cityTranslation->name.'</option>';
+            echo '<option value="'.$city->id.'">'.($city->cityTranslation->name ?? $city->cityTranslationEnglish->name ?? null).'</option>';
         }
     }
 

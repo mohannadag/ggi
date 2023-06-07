@@ -422,7 +422,7 @@
                             <div class="relative mb-[25px] bg-white">
 
                                 <select name="city_id" id="city_id"
-                                    class="nice-select select appearance-none bg-transparent text-tiny font-light cursor-pointer">
+                                    class="nice-select select appearance-none bg-transparent text-tiny font-light cursor-pointer city">
                                     {{-- @if(App::isLocale('ar'))
                                     @if(old('city_id', request()->city_id) != NULL)
                                     <option value="{{old('city_id', request()->city_id)}}">{{DB::table('city_translations')->where('locale', 'ar')->where('city_id', old('city_id', request()->city_id))->value('name');}}</option>
@@ -1390,6 +1390,7 @@
         </script>
 <script>
     $(document).on('change','#state',function(){
+
         var state = $(this).val();
         $.ajax({
             method:'post',
@@ -1397,8 +1398,8 @@
             data: {state:state,"_token":"{{csrf_token()}}"},
             dataType:'html',
             success:function(response){
-                $('#city_id').html(response);
-                $('#city_id').selectric('refresh');
+                $('.city').html(response);
+                $('.city').selectric('refresh');
             }
         });
     });

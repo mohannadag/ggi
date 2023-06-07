@@ -19,7 +19,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 @section('content')
    @include('frontend.includes.header')
    <!--Hero section starts-->
-    @include('frontend.includes.hero')
+    @include('frontend.includes.newhero')
     @include('frontend.includes.stories')
     <!--Hero section ends-->
     @include('frontend.includes.popular-properties')
@@ -33,6 +33,8 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
     @include('frontend.includes.testimontials')
     <!--Team section starts-->
     @include('frontend.includes.agents')
+
+    @include('frontend.includes.contact')
     <!--Team section ends-->
     @include('frontend.includes.news')
     <!--News section ends-->

@@ -15,7 +15,7 @@
                                     <div class="swiper-slide text-center">
                                         <div class="relative group">
                                             <a href="{{route('property.state',$state)}}" class="block group-hover:shadow-[0_10px_15px_0px_rgba(0,0,0,0.1)] transition-all duration-300">
-                                                <img src="{{ URL::asset('/images/states/'.$state->image) }}" class="w-full h-full block mx-auto rounded-[6px]" loading="lazy" width="270" height="370" alt="{{$state->stateTranslation->name}}">
+                                                <img src="{{ URL::asset('/images/states/'.$state->image) }}" class="w-full h-full block mx-auto rounded-[6px]" loading="lazy"  alt="{{$state->stateTranslation->name}}">
                                                 <div class="bg-[rgb(255,253,252,0.9)] rounded-[6px] px-[5px] py-[15px] absolute group-hover:bottom-[25px] group-hover:opacity-100 bottom-[0px] opacity-0 left-[25px] right-[25px] transition-all duration-500">
                                                     <span class="font-lora font-normal text-[18px] text-primary transition-all leading-none">{{$state->stateTranslation->name}}</span>
                                                     <p class="font-light text-[14px] capitalize text-secondary transition-all leading-none">{{ trans('file.see_all_listings') }}</p>

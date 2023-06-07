@@ -84,7 +84,7 @@ class CityModel implements ICityModel
         //thumbnail image save start
         $thumbnailImage = $request->file('image');
         $slug = $request->input('name');
-        $thumbnailName = $this->imageUpload($thumbnailImage,$slug,'cities',384,426);
+        $thumbnailName = $this->imageUpload($thumbnailImage,$slug,'cities',270,380);
         $data['image'] = $thumbnailName;
         //thumbnail image save end
         $this->_cityService->add($data);

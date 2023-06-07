@@ -31,7 +31,7 @@
                         <img src="{{ URL::asset('/images/gallery/'.$news->image) }}" class="w-auto h-auto" loading="lazy" alt="{{$news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}" width="770" height="465">
                         <div class="mt-[55px] mb-[35px] blog-body">
                             <span
-                                class="block leading-none font-normal text-[18px] text-secondary mb-[15px]">{{$news->user->f_name}} {{$news->user->l_name}} | {{$createdAt->toFormattedDateString()}}</span>
+                                class="block leading-none font-normal text-[18px] text-secondary mb-[15px]">{{$createdAt->toFormattedDateString()}}</span>
                             <h2 class="font-lora leading-tight text-[22px] md:text-[28px] lg:text-[32px] text-primary mb-[10px] font-medium"> {{$news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}</h2>
 
                             <p class="max-w-[767px]">{!! $news->blogTranslation->body ?? $news->blogTranslation->body  ?? null !!}</p>

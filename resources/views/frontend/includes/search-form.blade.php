@@ -63,16 +63,16 @@
                             <div class="relative mb-[25px] bg-white">
 
                                 <select name="city_id" id="city_id"
-                                    class="nice-select select appearance-none bg-transparent text-tiny font-light cursor-pointer">
+                                    class="nice-select select appearance-none bg-transparent text-tiny font-light cursor-pointer city">
                                     @if(App::isLocale('ar'))
                                     @if(old('city_id', request()->city_id) != NULL)
-                                    <option value="{{old('city_id', request()->city_id)}}">{{DB::table('city_translations')->where('locale', 'ar')->where('city_id', old('city_id', request()->city_id))->value('name');}}</option>
+                                    <option value="{{old('city_id', request()->city_id)}}">{{DB::table('city_translations')->where('locale', 'ar')->where('city_id', old('city_id', request()->city_id))->value('name')}}</option>
                                     @else
                                     <option value="">{{trans('file.select_area')}}</option>
                                    @endif
                                    @else
                                     @if(old('city_id', request()->city_id) != NULL)
-                                    <option value="{{old('city_id', request()->city_id)}}">{{DB::table('city_translations')->where('locale', 'en')->where('city_id', old('city_id', request()->city_id))->value('name');}}</option>
+                                    <option value="{{old('city_id', request()->city_id)}}">{{DB::table('city_translations')->where('locale', 'en')->where('city_id', old('city_id', request()->city_id))->value('name')}}</option>
                                     @else
                                     <option value="">{{trans('file.select_area')}}</option>
                                     @endif
@@ -128,7 +128,7 @@
                                     class="nice-select font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body borderborder-[#1B2D40] border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary border-primary pl-[40px] pr-[20px] py-[8px] focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] bg-white appearance-none cursor-pointer">
                                     @if(App::isLocale('ar'))
                                     @if(old('category_id', request()->category_id) != NULL)
-                                    <option value="{{old('category_id', request()->category_id)}}">{{DB::table('category_translations')->where('locale', 'ar')->where('category_id', old('category_id', request()->category_id))->value('name');}}</option>
+                                    <option value="{{old('category_id', request()->category_id)}}">{{DB::table('category_translations')->where('locale', 'ar')->where('category_id', old('category_id', request()->category_id))->value('name')}}</option>
                                     @else
                                     <option value="">{{trans('file.property_type')}}</option>
                                    @endif
@@ -158,8 +158,8 @@
                                     <div class="flex-1">
                                         <div class="price-slider">
                                             <div class="price-slider" id="price-slider"></div>
-                                            <input id="minPrice" name="minPrice" value="{{old('minPrice', request()->minPrice)}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
-                                            <input id="maxPrice" name="maxPrice" value="{{old('maxPrice', request()->maxPrice)}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
+                                            <input placeholder="1" id="minPrice" name="minPrice" value="{{old('minPrice', request()->minPrice)}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
+                                            <input placeholder="1000000" id="maxPrice" name="maxPrice" value="{{old('maxPrice', request()->maxPrice)}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -242,3 +242,24 @@
 
                         </form>
 </div>
+
+@push('script')
+<script>
+    $(document).on('change','#state',function(){
+
+        var state = $(this).val();
+        $.ajax({
+            method:'post',
+            url: '{{route('state.city')}}',
+            data: {state:state,"_token":"{{csrf_token()}}"},
+            dataType:'html',
+            success:function(response){
+                $('.city').html(response);
+                $('.city').selectric('refresh');
+            }
+        });
+    });
+
+
+</script>
+@endpush
