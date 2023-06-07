@@ -1,5 +1,5 @@
 <!-- News Letter section start -->
-<section class="py-[80px] lg:p-[90px] bg-primary relative">
+{{-- <section class="py-[80px] lg:p-[90px] bg-primary relative">
     <div class="container">
         <div class="grid grid-cols-1">
             <div class="col-span">
@@ -30,9 +30,9 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- News Letter section End -->
-
+@include('frontend.includes.contact')
 <!-- Footer Start -->
 <footer class="footer bg-[#EEEEEE] pt-[80px] lg:pt-[120px] pb-30 md:pb-[80px] lg:pb-[110px] font-normal bg-no-repeat" style="background-image: url({{asset('frontend/images/footer/pattern.png')}});">
     <div class="container">

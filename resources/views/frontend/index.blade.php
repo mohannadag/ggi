@@ -34,10 +34,10 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
     <!--Team section starts-->
     @include('frontend.includes.agents')
 
-    @include('frontend.includes.contact')
     <!--Team section ends-->
     @include('frontend.includes.news')
     <!--News section ends-->
+
     <!--Trending events starts-->
 
     <!--Trending events ends-->
