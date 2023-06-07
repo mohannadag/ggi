@@ -345,4 +345,8 @@ return array(
     //'consult'=>'Consult with GGI Turkey',
     //'description'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     'agent-translate'=>'-30px',
+    'fname' => 'الاسم الاول',
+    'lname' => 'الاسم الاخير',
+    'max-price' => 'السعر',
+    'number-of-bedrooms' => 'عدد الغرف',
 );

@@ -64,6 +64,7 @@ Route::get('/privacy', [Front\HomePageController::class, 'privacy']);
 Route::get('/terms', [Front\HomePageController::class, 'terms']);
 Route::get('/contact', [Front\ContactController::class, 'index']);
 Route::post('/contact/send', [Front\ContactController::class, 'send'])->name('contact')->middleware('XSS');
+Route::post('/contact/send-full', [Front\ContactController::class, 'sendFull'])->name('contact-full')->middleware('XSS');
 Route::get('/turkish-citizenship', [Front\CitizenshipController::class, 'index']);
 Route::get('/career', [Front\CareerController::class, 'index']);
 Route::post('/career/send', [Front\CareerController::class, 'store'])->name('career');

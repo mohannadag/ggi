@@ -7308,3 +7308,26 @@ input:focus {
         font-size: 22px;
     }
 }
+
+
+
+
+.selectric-form-select .selectric {
+
+    border-color: rgb(27 45 64/var(--tw-border-opacity));
+
+}
+
+.selectric-items li.highlighted {
+    background: #2e255c;
+}
+
+.selectric-items li:hover {
+    background: #2e255c;
+}
+
+.selectric .label::after {
+    border-bottom: 1px solid #2e255c;
+    border-right: 1px solid #2e255c;
+
+}

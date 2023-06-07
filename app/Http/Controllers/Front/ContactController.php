@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
+use App\Mail\FullContact;
 use App\Models\HeaderImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -89,6 +90,34 @@ class ContactController extends Controller
         );
 
         Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactMail($data));
+        return back()->with('message', 'Thanks for contacting us!');
+
+    }
+
+    function sendFull(Request $request)
+    {
+        // dd($request->all());
+        request()->validate([
+            'fname' => 'required',
+            'lname' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            // 'message'=>'required'
+        ]);
+
+        $data = array(
+            'fname'      =>  $request->fname,
+            'lname'      =>  $request->lname,
+            'email'     => $request->email,
+            'phone'     =>  $request->phone,
+            'type'     =>  $request->type,
+            'state'     =>  $request->state,
+            'maxPrice'     =>  $request->maxPrice,
+            'numberOfBedrooms'     =>  $request->numberOfBedrooms,
+            // 'message'   =>   $request->message
+        );
+        // dd($data);
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new FullContact($data));
         return back()->with('message', 'Thanks for contacting us!');
 
     }
