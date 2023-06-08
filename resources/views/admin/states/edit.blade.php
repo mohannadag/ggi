@@ -56,6 +56,17 @@
                                         </span>
                                         @endif
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>State order:</label>
+                                            <input type="number" name="order" class="form-control filter-input {{ $errors->has('order') ? 'has-error' : '' }}" placeholder="Country order" @if(isset($state->order)) value="{{$state->order}}" @else value="" @endif>
+                                            @if($errors->has('order'))
+                                                <span class="help-block text-danger">
+                                                    <strong> {{ $errors->first('order') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group">

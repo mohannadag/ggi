@@ -105,11 +105,21 @@ class StateModel implements IStateModel
         $data['Municipalities'] = $request->input('Municipalities');
         $data['Towns'] = $request->input('Towns');
         $data['Villages'] = $request->input('Villages');
-        $thumbnailImage = $request->file('image');
+        // $thumbnailImage = $request->file('image');
         $slug = $request->name;
         $state  = $this->getById($id);
-        $thumbnailName = $this->imageUpdate($thumbnailImage,$slug,$state,'states',384,426);
-        $data['image'] = $thumbnailName;
+
+        if ($request->hasFile('image')) {
+            $thumbnailImage = $request->file('image');
+            $thumbnailName = $this->imageUpdate($thumbnailImage,$slug,$state,'states',384,426);
+            $data['image'] = $thumbnailName;
+        }
+        else {
+            $data['image'] = $state->image;
+        }
+
+        // $thumbnailName = $this->imageUpdate($thumbnailImage,$slug,$state,'states',384,426);
+        // $data['image'] = $thumbnailName;
 
         $this->_stateService->update($data,$id);
     }

@@ -649,7 +649,9 @@ class HomePageController extends Controller
         $data = $request->all();
         App::setLocale(Session::get('currentLocal'));
 
-        $service = Service::get()->keyBy('service_id');
+        // $service = Service::get()->keyBy('service_id');
+        $service = Service::with(['serviceTranslation'])->where('id',$service)->first();
+        // dd($service);
 
         $popularTopics = BlogCategory::where('status', 1)->get();
         $recentlyAddedPosts = Blog::latest()->take(3)->get();
@@ -785,7 +787,7 @@ class HomePageController extends Controller
             ->orderBy('id','desc')
             ->get();
         $city = City::with('cityTranslation')->get()->keyBy('id');
-        $states = State::with('stateTranslation')->get()->keyBy('id');
+        $states = State::with('stateTranslation')->orderBy('order')->get()->keyBy('id');
         $maxPrice = $props->max('price');
         $minPrice = $props->min('price');
         $featuredProperties = $props->where('is_featured', 1)->take(4);

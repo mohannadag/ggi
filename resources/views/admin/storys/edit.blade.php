@@ -20,7 +20,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Title:</label><span class="text-danger">*</span>
-                                            <input type="text" name="title" class="form-control filter-input {{ $errors->has('title') ? 'has-error' : '' }}" placeholder="Title" value="{{$story->title}}">
+                                            <input type="text" name="title" class="form-control filter-input {{ $errors->has('title') ? 'has-error' : '' }}" placeholder="Title" value="{{$storyTranslation->title}}">
                                             @if($errors->has('title'))
                                                 <span class="help-block text-danger">
                                                 <strong> {{ $errors->first('title') }}</strong>

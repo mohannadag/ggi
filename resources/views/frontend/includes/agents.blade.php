@@ -4,7 +4,7 @@
 
   <section class="team-section pb-[80px] lg:pb-[125px] overflow-hidden">
             <div class="container">
-                <div class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-x-5 md:gap-x-[30px] mb-[-30px]">
+                <div class="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 gap-x-5 md:gap-x-[30px] mb-[-30px]">
                     <div class="xl:pr-[20px] self-center mb-[30px] sm:col-span-3 lg:col-span-1 max-w-[500px]">
                         <span class="text-secondary text-tiny capitalize inline-block mb-[15px]">{{trans('file.agents')}}</span>
                         <h2 class="font-lora text-primary text-[24px] sm:text-[30px] leading-[1.277] xl:text-xl capitalize mb-[15px] font-medium">
@@ -22,7 +22,7 @@
 
                     </div>
                     <!-- single team start -->
-                    @foreach($agents->take(4) as $key => $agent)
+                    @foreach($agents->take(3) as $key => $agent)
                     <div class="text-center group mb-[30px]">
                         <div class="relative rounded-[6px_6px_0px_0px]">
                             <a href="{{url('/agents/'.$agent->id)}}">

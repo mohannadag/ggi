@@ -59,7 +59,7 @@ class PropertyController extends Controller
             ->orderBy('id','desc')
             ->paginate(6);
         $city = City::with('cityTranslation')->get()->keyBy('id');
-        $states = State::with('stateTranslation')->get()->keyBy('id');
+        $states = State::with('stateTranslation')->orderBy('order')->get()->keyBy('id');
         $maxPrice = $properties->max('price');
         $minPrice = $properties->min('price');
         $propertyDetails = PropertyDetail::get()->keyBy('property_id');

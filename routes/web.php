@@ -30,8 +30,8 @@ Route::get('get-image', function () {
 
 
 
-Route::get('/', [Front\HomePageController::class, 'soon'])->name('front.home');
-Route::get('/zz', [Front\HomePageController::class, 'index']);
+Route::get('/', [Front\HomePageController::class, 'index'])->name('front.home');
+Route::get('/zz', [Front\HomePageController::class, 'soon']);
 Route::post('/send', [Front\PopupController::class, 'send'])->name('popup')->middleware('XSS');
 // Route::get('/help',function(){
 //     return File::get(public_path() . '/../help/index.html');
