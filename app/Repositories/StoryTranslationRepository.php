@@ -32,6 +32,7 @@ class StoryTranslationRepository implements IStoryTranslationRepository
 
     public function update($data)
     {
+        // dd($data);
         StoryTranslation::updateOrCreate(
             [
                 'story_id' => $data['storyId'],
@@ -40,6 +41,7 @@ class StoryTranslationRepository implements IStoryTranslationRepository
             [
                 'title' => $data['title'],
                 'link_title' => $data['link_title'],
+                'image' => $data['file'],
             ]
         );
     }

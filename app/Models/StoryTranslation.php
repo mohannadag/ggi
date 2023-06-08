@@ -14,5 +14,6 @@ class StoryTranslation extends Model
             'title',
             'link_title',
             'locale',
+            'image',
         ];
 }

@@ -60,6 +60,11 @@ class HomePageController extends Controller
         return redirect()->back();
     }
 
+    public function soon()
+    {
+        return view('soon');
+    }
+
     public function index()
     {
 

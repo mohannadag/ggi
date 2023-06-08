@@ -30,7 +30,8 @@ Route::get('get-image', function () {
 
 
 
-Route::get('/', [Front\HomePageController::class, 'index'])->name('front.home');
+Route::get('/', [Front\HomePageController::class, 'soon'])->name('front.home');
+Route::get('/zz', [Front\HomePageController::class, 'index']);
 Route::post('/send', [Front\PopupController::class, 'send'])->name('popup')->middleware('XSS');
 // Route::get('/help',function(){
 //     return File::get(public_path() . '/../help/index.html');
@@ -275,3 +276,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('welcome', [Admin\PaymentGatewayController::class, 'index']);
 
 Route::get('/currency-switch/{currency}', [HomePageController::class, 'switchCurrency'])->name('switch_currency');
+
+Route::get('/migration', function(){
+    Artisan::call('migrate', array('--path' => 'database/migrations', '--force' => true));
+    dd('success');
+});

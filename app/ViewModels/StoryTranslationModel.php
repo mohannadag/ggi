@@ -52,10 +52,22 @@ class StoryTranslationModel implements IStoryTranslationModel
         $data['title'] = $request->title;
         $data['link_title'] = $request->link_title;
         $data['locale'] = $request->local;
-        $photoImage = $request->file('file');
         $slug = $request->input('title');
-        $photoName = $this->imageUpload($photoImage,$slug,'stories/', 1080, 1920);
-        $data['file'] = $photoName;
+
+        $story  = $this->getById($id);
+        //$photoImage = $request->file('file');
+        //$photoName = $this->imageUpdate($photoImage,$slug,$story,'stories', 1080, 1920);
+
+        if ($request->hasFile('file')) {
+            $thumbnailImage = $request->file('file');
+            $thumbnailName = $this->imageUpdate($thumbnailImage, $request->title, $story, 'stories', 1080, 1920);
+            $data['file'] = $thumbnailName;
+        }
+        else {
+            $data['file'] = $story->file;
+        }
+
+        //$data['file'] = $photoName;
         $this->_storyTranslationService->update($data);
     }
 

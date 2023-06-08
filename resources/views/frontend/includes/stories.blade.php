@@ -28,12 +28,12 @@
         @endphp
         Zuck.buildTimelineItem(
           "{{$story->storyTranslation->title}}",
-          "{{ URL::asset('images/stories/' . $story->file)}}",
+          "{{ URL::asset('images/stories/' . $story->storyTranslation->image)}}",
           "{{$story->storyTranslation->title}}",
           "https://ggiturkey.com",
           timestamp(),
           [
-            ["{{$story->storyTranslation->title}}", "{{$story->type}}", "{{$story->duration}}", "{{ URL::asset('images/stories/' . $story->file)}}", "{{ URL::asset('images/stories/' . $story->file_thumb)}}", '{{url($story->link)}}', '{{$story->storyTranslation->link_title}}', false, timestamp()],
+            ["{{$story->storyTranslation->title}}", "{{$story->type}}", "{{$story->duration}}", "{{ URL::asset('images/stories/' . $story->storyTranslation->image)}}", "{{ URL::asset('images/stories/' . $story->file_thumb)}}", '{{url($story->link)}}', '{{$story->storyTranslation->link_title}}', false, timestamp()],
           ]
         ),
         @endforeach
