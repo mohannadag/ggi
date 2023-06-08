@@ -7319,15 +7319,15 @@ input:focus {
 }
 
 .selectric-items li.highlighted {
-    background: #2e255c;
+    background: #2e255c !important;
 }
 
 .selectric-items li:hover {
-    background: #2e255c;
+    background: #2e255c !important;
 }
 
 .selectric .label::after {
-    border-bottom: 1px solid #2e255c;
-    border-right: 1px solid #2e255c;
+    border-bottom: 1px solid #2e255c !important;
+    border-right: 1px solid #2e255c !important;
 
 }

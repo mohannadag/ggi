@@ -58,6 +58,7 @@
 
     <link rel="stylesheet" href="{{asset('frontend/css/stories.css')}}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/css/override.css') }}" />
     <title>@yield('title', isset($siteInfo->title) ? $siteInfo->title : 'GGI Turkey,')</title>
 
     <!-- Google tag (gtag.js) -->

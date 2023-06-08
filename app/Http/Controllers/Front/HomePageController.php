@@ -108,7 +108,8 @@ class HomePageController extends Controller
         $city = City::with('cityTranslation')->get()->keyBy('id');
         $agents = User::get()->where('type', 'agent')->keyBy('id');
         $sliders = Slider::with(['sliderTranslation','sliderTranslationEnglish'])
-        ->orderBy('id','DESC')
+        ->orderBy('order')
+        ->where('status', 1)
         ->get();
         $stories = Story::with(['campaign.campaignTranslation', 'storyTranslation','storyTranslationEnglish',])
         ->where('status',1)

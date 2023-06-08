@@ -193,7 +193,7 @@
  @elseif (Cookie::get('popupform') == null )
  @php( Cookie::queue( Cookie::make('popupform', true, 60)) )
  <div class="popup-wrapper" id="popup-container" aria-labelledby="PopupModal" tabindex="-1" aria-hidden="true">
-     <div class="popup-body" style="display: block;">
+     <div class="popup-body" style="display:none">
          <div class="popup-window">
              <div class="window-wrapper">
                  <div class="image-side">
@@ -236,6 +236,52 @@
  @push('script')
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+
+ <script type="text/javascript">
+    // function openModal() {
+    //     $('#exampleModal').modal('show');
+    //     $.cookie('visited', 'yes', { expires: 1 });
+    // }
+    // function closeModal() {
+    //     $('#exampleModal').modal('hide');
+    // }
+
+    // $(document).ready(function() {
+    //     var visited = $.cookie('visited');
+    //     if (visited == 'yes') {
+    //         closeModal();
+    //     } else {
+    //         setTimeout( function() { openModal() },20000);
+    //     }
+    // });
+
+    function openModal() {
+        // $('#popup-container').modal('show');
+        // $.cookie('visited', 'yes', { expires: 1 });
+        $('.popup-body').css('display', 'block');
+        jQuery('#active-popup').show();
+        jQuery('#popup-container').show();
+    }
+    function closeModal() {
+        $('.popup-body').css('display', 'none');
+        jQuery('#active-popup').hide();
+        jQuery('#popup-container').hide();
+        // $('#popup-container').modal('hide');
+    }
+
+    $(document).ready(function() {
+        var visited = $.cookie('popupform');
+        if (visited) {
+            closeModal();
+        } else {
+            setTimeout( function() { openModal() },20000);
+        }
+    });
+
+</script>
+
+
  <script>
      jQuery(document).ready(function() {
          jQuery('.close').click(function() {

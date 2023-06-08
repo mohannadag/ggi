@@ -1,0 +1,169 @@
+/* start blog styles */
+
+.blog-body {
+    all: unset !important;
+    font-size: 1rem !important;
+}
+
+.blog-body a {
+    font-weight: bold;
+    color: #dab059;
+}
+
+.blog-body h2 {
+    all: unset;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 5px;
+    color: #dab059;
+}
+
+.blog-body h3 {
+    all: unset;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 5px;
+    color: #dab059;
+}
+
+.blog-body h4 {
+    all: unset;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 5px;
+    color: #dab059;
+}
+
+.blog-body h5 {
+    all: unset;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 5px;
+    color: #dab059;
+}
+
+.blog-body ul {
+    /* all: unset; */
+    list-style: disc;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    padding: 10px 20px;
+}
+
+.blog-body ol {
+    /* all: unset; */
+    list-style: decimal;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    padding: 10px 20px;
+}
+
+
+/* end blog styles */
+
+/* start property styles */
+
+.plan-image {
+    border: 2px solid #d7b550;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.project-body h2 {
+    all: unset;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body h3 {
+    all: unset;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body h4 {
+    all: unset;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body h5 {
+    all: unset;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body ul {
+    list-style: disc;
+    padding: 10px 20px;
+}
+
+.project-body ol {
+    list-style: decimal;
+    padding: 10px 20px;
+}
+
+/* end property styles */
+
+/* whatsapp button styles */
+.whatsapp_float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    left: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+}
+
+.whatsapp-icon {
+    margin-top: 16px;
+}
+
+/* for mobile */
+@media screen and (max-width: 767px) {
+    .whatsapp-icon {
+        margin-top: 10px;
+    }
+
+    .whatsapp_float {
+        display: none;
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 10px;
+        font-size: 22px;
+    }
+}
+
+
+
+
+.selectric-form-select .selectric {
+
+    border-color: rgb(27 45 64/var(--tw-border-opacity));
+
+}
+
+.selectric-items li.highlighted {
+    background: #2e255c !important;
+}
+
+.selectric-items li:hover {
+    background: #2e255c !important;
+}
+
+.selectric .label::after {
+    border-bottom: 1px solid #2e255c !important;
+    border-right: 1px solid #2e255c !important;
+
+}
