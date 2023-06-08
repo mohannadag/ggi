@@ -3,7 +3,7 @@
         <div class="g-6 flex flex-wrap items-center justify-center lg:justify-between">
             <!-- Left column container with background-->
             <div class="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-                <img src="https://www.imtilak.net/assets/img/turkish-wallet.png" class="w-full" alt="Phone image" />
+                <img src="" class="w-full" alt="Phone image" />
             </div>
 
             <!-- Right column container with form -->

@@ -15,7 +15,7 @@
                             <a class="inline-block rounded bg-transparent px-7 py-3 text-sm font-medium uppercase leading-snug text-primary transition duration-150 ease-in-out hover:bg-neutral-100 hover:text-primary-700 focus:bg-neutral-100 focus:outline-none focus:ring-0 active:bg-neutral-200" data-te-ripple-init data-te-ripple-color="light" href="#!" role="button">{{trans('file.learn-more')}}</a>
                             </div>
                         <div class="mb-12 lg:mb-0">
-                            <img src="https://www.imtilak.net/assets/img/turkish-wallet.png" class="w-full sm:mb-10 lg:mb-24" alt="" />
+                            {{-- <img src="https://www.imtilak.net/assets/img/turkish-wallet.png" class="w-full sm:mb-10 lg:mb-24" alt="" /> --}}
                             {{-- <img src="{{ URL::asset('/images/images/' . $citizenship->file) }}" class="w-full sm:mb-10 lg:mb-24" alt="" /> --}}
                         </div>
                     </div>
