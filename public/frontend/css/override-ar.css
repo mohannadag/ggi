@@ -1,0 +1,4 @@
+.selectric-form-select .label::after {
+    right: unset !important;
+    left: 10px !important;
+}

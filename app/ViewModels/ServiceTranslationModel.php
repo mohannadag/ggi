@@ -37,6 +37,8 @@ class ServiceTranslationModel implements IServiceTranslationModel
         $locale = Session::get('currentLocal');
         $data['locale'] = $locale;
         $data['name'] = $request->name;
+        $data['description'] = $request->description;
+        $data['body'] = $request->body;
         $this->_serviceTranslationService->add($data);
 
     }
@@ -48,6 +50,7 @@ class ServiceTranslationModel implements IServiceTranslationModel
         $data['address'] = $request->address;
         $data['description'] = $request->description;
         $data['locale'] = $request->local;
+        $data['body'] = $request->body;
         $this->_serviceTranslationService->update($data);
     }
 

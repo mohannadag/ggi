@@ -46,12 +46,12 @@
                                 <div>
                                     {{-- <span class="block leading-none font-normal text-[14px] text-secondary mb-[10px]">{{ $news->user->f_name }} on {{$createdAt->toFormattedDateString()}}</span> --}}
                                     <span class="block leading-none font-normal text-[14px] text-secondary mb-[10px]">{{$createdAt->toFormattedDateString()}}</span>
-                                    <h3><a href="{{ route('news.show', $news) }}" class="font-lora text-[22px] xl:text-[24px] leading-[1.285] text-primary block mb-[10px] hover:text-secondary transition-all font-medium">{{substr($news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null, 0, 27) }}</a></h3>
+                                    <h3><a href="{{ route('news.show', $news) }}" class="font-lora text-[22px] xl:text-[24px] leading-[1.285] text-primary block mb-[10px] hover:text-secondary transition-all font-medium">{{ $news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}</a></h3>
                                     {{-- <p class="font-light text-[#494949] text-[16px] leading-[1.75]">{!! substr($news->blogTranslation->body ?? ($news->blogTranslationEnglish->body ?? null),0,150 ) !!}..</p> --}}
                                     @php
-                                        $content = html_entity_decode($news->blogTranslation->body ?? $news->blogTranslationEnglish->body ?? null);
+                                        // $content = html_entity_decode($news->blogTranslation->body ?? $news->blogTranslationEnglish->body ?? null);
                                     @endphp
-                                    <p class="font-light text-[#494949] text-[16px] leading-[1.75]">{!! substr($content, 0, 150 ) !!}..</p>
+                                    {{-- <p class="font-light text-[#494949] text-[16px] leading-[1.75]">{!! substr($content, 0, 150 ) !!}..</p> --}}
                                 </div>
                             </div>
 
@@ -88,7 +88,7 @@
                             <div class="mb-[40px]">
                                 <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[30px] font-medium">{{trans('file.latest_posts')}}<span class="text-secondary">.</span></h3>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-x-[30px] md:gap-x-[0px] relative">
-                                    @foreach ($newses as $recentlyAddedPost)
+                                    @foreach ($recentNews as $recentlyAddedPost)
                                         @php
                                             $createdAt = \Carbon\Carbon::parse($news->created_at);
                                         @endphp

@@ -188,14 +188,14 @@ class BlogController extends Controller
 
     public function update(Request $request, Blog $blog)
     {
-//        request()->validate([
-//            'category_id'=>'required',
-//            'user_id' => 'required',
-//            'title' => 'required|min:10',
-//            'slug'=> 'required',
-//            'image'=>'required',
-//            'body'=> 'required'
-//        ]);
+       request()->validate([
+           'category_id'=>'required',
+           'user_id' => 'required',
+           'title' => 'required|min:10',
+           'slug'=> 'required',
+        //    'image'=>'required',
+           'body'=> 'required'
+       ]);
         //thumbnail image save start
         $thumbnailImage = $request->file('image');
 //        dd($thumbnailImage);

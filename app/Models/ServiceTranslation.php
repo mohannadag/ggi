@@ -15,5 +15,6 @@ class ServiceTranslation extends Model
             'locale',
             'address',
             'description',
+            'body',
         ];
 }

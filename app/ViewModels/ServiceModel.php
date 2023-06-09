@@ -79,8 +79,9 @@ class ServiceModel implements IServiceModel
         request()->validate([
             'name' => 'required|min:5',
             'address'=> 'nullable',
-            'file'=>'nullable',
-            'description'=> 'nullable'
+            'file'=>'required',
+            'description'=> 'nullable',
+            'body' => 'required'
         ]);
 
         $data = $request->all();
@@ -102,7 +103,8 @@ class ServiceModel implements IServiceModel
             'name' => 'required|min:5',
             'address'=> 'nullable',
             'file'=>'nullable',
-            'description'=> 'nullable'
+            'description'=> 'nullable',
+            'body' => 'required',
         ]);
         $data = $request->all();
 
@@ -110,11 +112,11 @@ class ServiceModel implements IServiceModel
         $thumbnailImage = $request->file('file');
         $slug = $request->input('name');
         $service  = $this->getById($id);
-        $thumbnailName = $this->imageUpdate($thumbnailImage,$slug,$service,'images', 1133, 843);
+        $thumbnailName = $this->imageUpdate($thumbnailImage,$slug,$service,'images', 1200, 530);
         //thumbnail image save end
         if($request->hasFile('file'))
         {
-        $data['file'] = $thumbnailName;
+            $data['file'] = $thumbnailName;
         }
 
         $this->_serviceService->update($data,$id);

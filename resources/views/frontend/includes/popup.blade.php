@@ -188,16 +188,18 @@
          }
      }
  </style>
- @if (Cookie::get('popupform') !== null )
+ {{-- @if (Cookie::get('popupform') !== null )
  <!-- Modal -->
  @elseif (Cookie::get('popupform') == null )
- @php( Cookie::queue( Cookie::make('popupform', true, 60)) )
+ @php( Cookie::queue( Cookie::make('popupform', true, 60)) ) --}}
  <div class="popup-wrapper" id="popup-container" aria-labelledby="PopupModal" tabindex="-1" aria-hidden="true">
      <div class="popup-body" style="display:none">
          <div class="popup-window">
              <div class="window-wrapper">
                  <div class="image-side">
-                     <div class="popup-img"></div>
+                     <div class="popup-img">
+                        <img src="{{asset('frontend/images/about/232.png')}}" style="width: 100%; height:100%">
+                     </div>
                      <button type="button" id="closeButton" class="popup-close-icon close" data-dismiss="modal" onclick="closePopup()">
                          <svg aria-hidden="true" class="w-5 h-5" fill="#fff" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -231,7 +233,7 @@
          </div>
      </div>
  </div>
- @endif
+ {{-- @endif --}}
 
  @push('script')
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
@@ -262,6 +264,7 @@
         $('.popup-body').css('display', 'block');
         jQuery('#active-popup').show();
         jQuery('#popup-container').show();
+        $.cookie('popupform', 'yes', { expires: 1 });
     }
     function closeModal() {
         $('.popup-body').css('display', 'none');
@@ -272,10 +275,10 @@
 
     $(document).ready(function() {
         var visited = $.cookie('popupform');
-        if (visited) {
+        if (visited == 'yes') {
             closeModal();
         } else {
-            setTimeout( function() { openModal() },20000);
+            setTimeout( function() { openModal() },10000);
         }
     });
 

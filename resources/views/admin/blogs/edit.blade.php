@@ -32,9 +32,10 @@
                                         <div class="form-group">
                                             <label>Category</label>
                                             <select class="listing-input hero__form-input form-control custom-select" name="category_id">
+                                                {{-- @if(old('category_id', $category->id)) --}}
                                                 <option value="">Select</option>
                                                 @foreach($categories as $category)
-                                                    <option value="{{$category->id}}" {{$category->id == $blog->category_id ? 'selected' : ''}}>{{$category->blogCategoryTranslation->name ?? $category->blogCategoryTranslationEnglish->name  ?? null }}</option>
+                                                    <option value="{{$category->id}}" {{ old('category_id',$blog->category_id) == $category->id ? 'selected' : ''}}>{{$category->blogCategoryTranslation->name ?? $category->blogCategoryTranslationEnglish->name  ?? null }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

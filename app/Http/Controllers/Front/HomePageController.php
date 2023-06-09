@@ -515,9 +515,9 @@ class HomePageController extends Controller
         $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
         $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
-    $services = Service::all();
-    $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
-    //Poperty Search
+        $services = Service::all();
+        $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
+        //Poperty Search
         $testimonials = Testimonial::with(['testimonialTranslation','testimonialTranslationEnglish'])
             ->orderBy('id','DESC')
             ->get();

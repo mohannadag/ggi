@@ -134,7 +134,7 @@
                                    @endif
                                     @else
                                     @if(old('category_id', request()->category_id) != NULL)
-                                    <option value="{{old('category_id', request()->category_id)}}">{{DB::table('category_translations')->where('locale', 'en')->where('category_id', old('category_id', request()->category_id))->value('name');}}</option>
+                                    <option value="{{old('category_id', request()->category_id)}}">{{DB::table('category_translations')->where('locale', 'en')->where('category_id', old('category_id', request()->category_id))->value('name')}}</option>
                                     @else
                                     <option value="">{{trans('file.property_type')}}</option>
                                     @endif

@@ -59,6 +59,9 @@
     <link rel="stylesheet" href="{{asset('frontend/css/stories.css')}}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/override.css') }}" />
+    @if( App::isLocale('ar'))
+        <link rel="stylesheet" href="{{ asset('frontend/css/override-ar.css') }}" />
+    @endif
     <title>@yield('title', isset($siteInfo->title) ? $siteInfo->title : 'GGI Turkey,')</title>
 
     <!-- Google tag (gtag.js) -->

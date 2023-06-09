@@ -146,9 +146,9 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-[30px]">
-                @foreach($services as $service)
+                @foreach($services->take(3) as $service)
                 <div class="relative group">
-                    <a class="block">
+                    <a class="block" href="{{ route('single-service', ['service' => $service->id]) }}">
                         <img src="{{asset("images/images/".$service->file)}}" class="w-full h-full block mx-auto rounded-[6px_6px_0px_0px]" loading="lazy" width="270" height="290" alt="{{$service->serviceTranslation->name}}">
                         <div class="drop-shadow-[0px_2px_15px_rgba(0,0,0,0.1)] hover:drop-shadow-[0px_8px_20px_rgba(0,0,0,0.15)] bg-[#FFFDFC] rounded-[0px_0px_6px_6px] px-[25px] py-[25px]">
                             <h3 class="font-lora font-normal text-[24px] xl:text-lg text-primary group-hover:text-secondary transition-all mb-[5px]">{{$service->serviceTranslation->name}}<span class="text-secondary group-hover:text-primary">.</span> </h3>

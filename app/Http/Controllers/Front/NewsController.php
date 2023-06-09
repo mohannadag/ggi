@@ -71,11 +71,14 @@ class NewsController extends Controller
         $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
         $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
-        $newses = Blog::with('blogTranslation', 'user')->where('status', 'approved')->orderBy('id', 'desc')->paginate(4);
+        $newses = Blog::with('blogTranslation', 'user')->where('status', 'approved')->orderBy('id', 'desc')->paginate(6);
         $popularTopics = BlogCategory::with('blogCategoryTranslation', 'blogs')->where('status', 1)->get()->keyBy('id');
         $tags = Tag::with('tagTranslation', 'tagTranslationEnglish')->where('status', 1)->get();
         $headerImage = HeaderImage::where('page', 'news')->first();
-        return view('frontend.news', compact('newses', 'popularTopics', 'tags', 'headerImage', 'properties', 'states', 'city', 'minPrice', 'maxPrice', 'minArea', 'maxArea', 'categories'));
+
+        $recentNews = Blog::with('blogTranslation')->where('status', 'approved')->orderBy('id', 'desc')->take(4)->get();
+        // dd($recentNews);
+        return view('frontend.news', compact('newses', 'recentNews', 'popularTopics', 'tags', 'headerImage', 'properties', 'states', 'city', 'minPrice', 'maxPrice', 'minArea', 'maxArea', 'categories'));
     }
 
 

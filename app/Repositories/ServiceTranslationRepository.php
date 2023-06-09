@@ -28,6 +28,7 @@ class ServiceTranslationRepository implements IServiceTranslationRepository
             'name'=>$data['name'],
             'address'=>$data['address'],
             'description'=>$data['description'],
+            'body' => $data['body']
         ]);
     }
 
@@ -42,6 +43,7 @@ class ServiceTranslationRepository implements IServiceTranslationRepository
                 'name' => $data['name'],
                 'address' => $data['address'],
                 'description' => $data['description'],
+                'body' => $data['body']
             ]
         );
     }
