@@ -34,7 +34,7 @@
                                 class="block leading-none font-normal text-[18px] text-secondary mb-[15px]">{{$createdAt->toFormattedDateString()}}</span>
                             <h2 class="font-lora leading-tight text-[22px] md:text-[28px] lg:text-[32px] text-primary mb-[10px] font-medium"> {{$news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}</h2>
 
-                            <p class="max-w-[767px]">{!! $news->blogTranslation->body ?? $news->blogTranslation->body  ?? null !!}</p>
+                            <p class="max-w-[767px]">{!! $news->blogTranslation->body ?? $news->blogTranslationEnglish->body  ?? null !!}</p>
                         </div>
 
 

@@ -192,7 +192,7 @@ class BlogController extends Controller
            'category_id'=>'required',
            'user_id' => 'required',
            'title' => 'required|min:10',
-           'slug'=> 'required',
+           'slug'=> 'required|unique:blogs,slug',
         //    'image'=>'required',
            'body'=> 'required'
        ]);
