@@ -125,7 +125,7 @@ class NewsController extends Controller
         $popularTopics = BlogCategory::where('status', 1)->get();
         $recentlyAddedPosts = Blog::latest()->take(3)->get();
         $tags = Tag::where('status', 1)->get();
-        // dd($post);
+        // dd($news);
         $previous = Blog::where('id', '<', $news->id)->max('id');
         $next = Blog::where('id', '>', $news->id)->min('id');
 
