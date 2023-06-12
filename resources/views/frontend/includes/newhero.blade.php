@@ -16,15 +16,22 @@
     }
 
     </style>
-
-
+@php
+    if(App::isLocale('ar'))
+    {
+        $align = 'lg:left-0';
+    }
+    else {
+        $align = 'lg:right-0';
+    }
+@endphp
 <!-- Hero section start -->
 <section class="bg-primary relative pt-[130px] lg:pt-[80px] xl:pt-[0px] mb-[70px] lg:mb-[0px]">
     <div class="hero-slider overflow-hidden">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <!-- swiper-slide start -->
-                @if( App::isLocale('ar'))
+                {{-- @if( App::isLocale('ar'))
                     @foreach ( $sliders->sortBy('order') as $slider )
                         <div class="swiper-slide lg:h-[700px] xl:h-[950px] xs:h-[auto] flex flex-wrap items-center">
                             <div class="container">
@@ -63,7 +70,7 @@
                             </div>
                         </div>
                     @endforeach
-                @else
+                @else --}}
                     @foreach ( $sliders->sortBy('order') as $slider )
                         <div class="swiper-slide lg:h-[700px] xl:h-[950px] xs:h-[auto] flex flex-wrap items-center">
                             <div class="container">
@@ -93,7 +100,7 @@
                                         </div>
                                     </div>
                                     <div class="col-span-12 lg:col-span-5 xl:col-span-6">
-                                        <div class="relative mt-10 md:mt-0 lg:absolute lg:right-0 lg:bottom-0 lg:w-3/4 xl:w-fit">
+                                        <div class="relative mt-10 md:mt-0 lg:absolute {{$align}} lg:bottom-0 lg:w-3/4 xl:w-fit">
                                             <img class="hero_image w-full" src="{{URL::asset('/images/images/'.$slider->sliderTranslation->file)}}" width="866" height="879" alt="hero image">
                                         </div>
                                     </div>
@@ -101,7 +108,7 @@
                             </div>
                         </div>
                     @endforeach
-                @endif
+                {{-- @endif --}}
                 <!-- swiper-slide end-->
                 <!-- swiper-slide start -->
                 {{-- <div class="swiper-slide lg:h-[700px] xl:h-[950px] xs:h-[auto] flex flex-wrap items-center">
@@ -140,7 +147,7 @@
 
     </div>
     <span class="shape-4 absolute -bottom-[100px] left-0 scene" data-relative-input="true">
-<img  data-depth="0.1" src="assets/images/hero/shape4.svg" alt="">
+<img  data-depth="0.1" src="{{URL::asset('/frontend/images/hero/shape4.svg')}}" alt="">
 </span>
 </section>
 <!-- Hero section end -->

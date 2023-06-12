@@ -730,7 +730,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                         <p>{{ $property->propertyDetails->third_floor_title }}</p>
                     </div>
                     @endif
-                    @if ($property->propertyDetails->fourth_floor_picture !== 'default.png' && $property->propertyDetails->fourth_floor_picture !== '')
+                    @if ($property->propertyDetails->fourth_floor_picture !== 'default.png' && $property->propertyDetails->fourth_floor_picture !== '' && $property->propertyDetails->fourth_floor_picture !== null)
                     <div class="text-center plan-image">
                         <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture)  }}" class="floor-image">
                             <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture)  }}" alt="{{ $property->propertyDetails->fourth_floor_title }}" loading="lazy" width="770" height="465">

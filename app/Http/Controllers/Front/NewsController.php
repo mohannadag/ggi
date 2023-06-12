@@ -141,30 +141,30 @@ class NewsController extends Controller
     public function searchBlogs(Request $request)
     {
         $blogs = Blog::with('blogTranslation', 'blogTranslationEnglish')->where('title', 'LIKE', '%' . $request->search . '%')->where('status', 'approved')->get();
-
         if (count($blogs) > 0) {
+            $html = '<div class="col-span-12 md:col-span-6 lg:col-span-8 mb-[30px] get-blog">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-x-[30px] gap-y-[40px]">';
             foreach ($blogs as $blog) {
                 $createdAt = Carbon::parse($blog->created_at);
 
-                $html = '
-                <div class="col-span-12 md:col-span-6 lg:col-span-8 mb-[30px] get-blog">
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-x-[30px] gap-y-[40px]">
-                <div class="post-item">
-                <a href="' . route('news.show', $blog) . '" class="block overflow-hidden rounded-[6px] mb-[35px]">
-                    <img class="w-full h-full" src="images/thumbnail/' . $blog->image . '" width="370" height="270" loading="lazy" alt="' . $blog->blogTranslation->title . '">
-                </a>
+                $html = $html. '
+                    <div class="post-item">
+                    <a href="' . route('news.show', $blog) . '" class="block overflow-hidden rounded-[6px] mb-[35px]">
+                        <img class="w-full h-full" src="images/thumbnail/' . $blog->image . '" width="370" height="270" loading="lazy" alt="' . $blog->blogTranslation->title . '">
+                    </a>
 
-                    <div>
-                        <span class="block leading-none font-normal text-[14px] text-secondary mb-[10px]">' . $blog->user->f_name . '.' . $blog->user->l_name . ' &nbsp;' . $blog->created_at . '</span>
-                        <h3><a href="' . route('news.show', $blog) . '" class="font-lora text-[22px] xl:text-[24px] leading-[1.285] text-primary block mb-[10px] hover:text-secondary transition-all font-medium">' . $blog->blogTranslation->title  . '</a></h3>
-                        <p class="font-light text-[#494949] text-[16px] leading-[1.75]"></p>
+                        <div>
+                            <span class="block leading-none font-normal text-[14px] text-secondary mb-[10px]">' . $blog->created_at . '</span>
+                            <h3><a href="' . route('news.show', $blog) . '" class="font-lora text-[22px] xl:text-[24px] leading-[1.285] text-primary block mb-[10px] hover:text-secondary transition-all font-medium">' . $blog->blogTranslation->title  . '</a></h3>
+                            <p class="font-light text-[#494949] text-[16px] leading-[1.75]"></p>
+                        </div>
                     </div>
-                </div>
-                </div>
-                </div>
-            ';
-                echo $html;
+                    ';
+
             }
+            $html = $html .'</div>
+            </div>';
+        echo $html;
         } else {
             $html = '<div class="post-item">
                         <h1>No Results Found!</h1>

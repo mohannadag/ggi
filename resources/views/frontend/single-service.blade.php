@@ -35,7 +35,11 @@
                             <img data-depth="0.1" src="{{ URL::asset('/images/images/'.$service->file) }}" class="" loading="lazy" alt="about Image" style="width:100%; max-height:530px">
                         </div>
 
-                        <div class="py-[80px]">{!! $service->serviceTranslation->body ?? $service->serviceTranslation->body  ?? null !!}</div>
+                        <div class="py-[80px]">
+                            <div class="blog-body">
+                                {!! $service->serviceTranslation->body ?? $service->serviceTranslationEnglish->body  ?? null !!}
+                            </div>
+                        </div>
 
                     </div>
                 </div>

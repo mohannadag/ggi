@@ -131,7 +131,7 @@ class PropertyController extends Controller
         $tags = $property->tags; // Tag::with('tagTranslation', 'tagTranslationEnglish')->get();
         // $tags1 = $property->tags;
         // dd($properties, $property);
-        // dd($tags1);
+        // dd($property->propertyDetails);
         return view('frontend.property',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail', 'curr', 'tags'));
     }
 
