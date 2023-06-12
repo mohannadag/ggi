@@ -87,8 +87,8 @@ class BlogController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $actionBtn = '<div class="d-flex justify-content-end">
-                    <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>
-
+                    <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>|
+                    <a href="'.route('news.show', ['news' => $row->slug]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a>
                  | <form action="'.route('admin.blogs.destroy',$row).'" method="POST">
                     '.csrf_field().'
                     '.method_field("DELETE").'

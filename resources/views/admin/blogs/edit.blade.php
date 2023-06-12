@@ -43,7 +43,9 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Title:</label> <span class="text-danger">*</span>
-                                            <input type="text" name="title" @if(isset($blogTranslation->title)) value="{{$blogTranslation->title}}" @else value="" @endif class="form-control filter-input" id="title" placeholder="Name">
+                                            <input type="text" name="title"
+                                             @if(isset($blogTranslation->title)) value="{{old('title', $blogTranslation->title) }}" @else value="{{ old('title') }}" @endif
+                                             class="form-control filter-input" id="title" placeholder="Name">
                                             @error('title')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
@@ -52,7 +54,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Slug:</label> <span class="text-danger">*</span>
-                                            <input type="text" name="slug"  @if(isset($blogTranslation->slug)) value="{{$blogTranslation->slug}}" @else value="" @endif class="form-control filter-input" id="slug" placeholder="/slug">
+                                            <input type="text" name="slug"  @if(isset($blog->slug)) value="{{ old('slug', $blog->slug) }}" @else value="{{ old('slug') }}" @endif class="form-control filter-input" id="slug" placeholder="/slug">
                                             @error('slug')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror

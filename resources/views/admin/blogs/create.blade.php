@@ -22,7 +22,7 @@
                                             <select class="listing-input hero__form-input form-control custom-select" name="category_id">
                                                 <option value="">Select</option>
                                                 @foreach($categories as $category)
-                                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                                    <option value="{{$category->id}}" {{ old('category_id') == $category->id ? 'selected' : ''}} >{{$category->name}}</option>
                                                 @endforeach
                                             </select>
                                             @error('category_id')
@@ -33,7 +33,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Title:</label> <span class="text-danger">*</span>
-                                            <input type="text" name="title" class="form-control filter-input" id="title" placeholder="Name">
+                                            <input type="text" name="title" class="form-control filter-input" id="title" placeholder="Name" value="{{ old('title') }}">
                                             @error('title')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
@@ -42,7 +42,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Slug:</label> <span class="text-danger">*</span>
-                                            <input type="text" name="slug" class="form-control filter-input" id="slug" placeholder="/slug">
+                                            <input type="text" name="slug" class="form-control filter-input" id="slug" placeholder="/slug" value="{{old('slug')}}">
                                             @error('slug')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
@@ -82,7 +82,7 @@
                                             @error('body')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
-                                            <textarea name="body" class="form-control" id="body" rows="4" placeholder="Enter your text here"></textarea>
+                                            <textarea name="body" class="form-control" id="body" rows="4" placeholder="Enter your text here">{{ old('body') }}</textarea>
                                             @error('body')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror
