@@ -349,4 +349,6 @@ return array(
     'lname' => 'الاسم الاخير',
     'max-price' => 'السعر',
     'number-of-bedrooms' => 'عدد الغرف',
+    'reviews-from-our' => 'شهادات من',
+    'happy-clients' => 'عملائنا',
 );

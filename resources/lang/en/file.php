@@ -377,4 +377,6 @@ return array(
     'lname' => 'Last Name',
     'max-price' => 'Max Price',
     'number-of-bedrooms' => 'Number of bedrooms',
+    'reviews-from-our' => 'Reviews from our',
+    'happy-clients' => 'happy Clients',
 );

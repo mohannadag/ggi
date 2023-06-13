@@ -2,3 +2,11 @@
     right: unset !important;
     left: 10px !important;
 }
+
+.testimonial-ar {
+    direction: rtl !important;
+    left: 0 !important;
+    right: 20% !important;
+    padding: 2rem !important;
+    text-align: start !important;
+}

@@ -67,6 +67,9 @@ class HomePageController extends Controller
 
     public function index()
     {
+        // $pr = \App\Models\Citizenship::first();
+        // $x = $pr->citizenshipTranslation()->get();
+        // dd($x);
 
         if (Session::has('currency'))
             {
@@ -83,6 +86,27 @@ class HomePageController extends Controller
                         ->orderBy('id','DESC')
                         ->where('status',1)
                         ->get();
+
+        // $xx = Property::with(['propertyTranslation'])->whereIn("id", function ($query) use ($locale) {
+        //     $query->select('property_id')
+        //         ->from('property_translations')
+        //         ->where('locale', 'ar')
+        //         ->orWhere('locale', 'fr');
+        // })->get();
+        // dd($xx);  // the best way
+
+        // $zz = PropertyTranslation::whereIn("property_id", function ($query) use ($locale){
+        //     $query->select('id')
+        //         ->from('properties')
+        //         ->where('locale', 'ar');
+        // })->get();
+        // dd($zz);
+
+        // $zz = Property::with(['propertyTranslation'])->whereHas('propertyTranslation', function($q){
+        //     $q->where('locale', 'en');
+        // })->get();
+        // dd($zz);
+
         $maxPrice = $properties->max('price');
         $minPrice = $properties->min('price');
         foreach ($properties as $row)
