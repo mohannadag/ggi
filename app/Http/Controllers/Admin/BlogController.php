@@ -12,9 +12,11 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Throwable;
 use Yajra\DataTables\DataTables;
 
 class BlogController extends Controller
@@ -26,80 +28,108 @@ class BlogController extends Controller
 
     public function index(Request $request)
     {
-        $user = auth()->user();
-        App::setLocale(Session::get('currentLocal'));
-        $locale = Session::get('currentLocal');
-        if($user->type == 'admin')
-        {
-            $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
-                ->orderBy('id','DESC')
-                ->get();
-        }
+        try {
 
-        if($user->type == 'user')
-        {
-            $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
-                ->orderBy('id','DESC')
-                // ->where('user_id','=',$user->id)
-                ->get();
-        }
 
-        if($user->type == 'moderator')
-        {
-            $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
-                ->orderBy('id','DESC')
-                // ->where('user_id','=',$user->id)
-                ->get();
-                // dd($data);
-        }
-        //dd($user);
-        if ($request->ajax()) {
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('category', function (Blog $blog) use ($locale){
-                    return $blog->category->blogCategoryTranslation->name ?? $blog->category->blogCategoryTranslationEnglish->name ?? null;
+            if ($request->ajax()) {
+                $user = auth()->user();
+            App::setLocale(Session::get('currentLocal'));
+            $locale = Session::get('currentLocal');
+            if($user->type == 'admin')
+            {
+                $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
+                    ->orderBy('id','DESC')
+                    ->get();
+            }
 
-                })
-                ->addColumn('user', function (Blog $blog) {
-                    if($blog->user)
+            if($user->type == 'user')
+            {
+                $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
+                    ->orderBy('id','DESC')
+                    // ->where('user_id','=',$user->id)
+                    ->get();
+            }
+
+            if($user->type == 'moderator')
+            {
+                $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
+                    ->orderBy('id','DESC')
+                    // ->where('user_id','=',$user->id)
+                    ->get();
+                    // dd($data);
+            }
+
+
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('category', function (Blog $blog) use ($locale){
+                        return $blog->category->blogCategoryTranslation->name ?? $blog->category->blogCategoryTranslationEnglish->name ?? null;
+
+                    })
+                    ->addColumn('user', function (Blog $blog) {
+                        if($blog->user)
+                        {
+                            return $blog->user->f_name.' '.$blog->user->l_name;
+                        }else{
+                            return '-';
+                        }
+                    })
+                    ->addColumn('title', function ($row) use ($locale)
                     {
-                        return $blog->user->f_name.' '.$blog->user->l_name;
-                    }else{
-                        return '-';
-                    }
-                })
-                ->addColumn('title', function ($row) use ($locale)
-                {
-                    return $row->blogTranslation->title ?? $row->blogTranslationEnglish->title ?? null;
-                })
-                ->addColumn('action1',function($row){
-                    if($row->status == 'approved')
-                    {
-                        $but =  '<span class="bg-primary p-1 text-white">Approved</span>';
-                        return $but;
-                    }elseif($row->status == 'pending'){
-                        $but = '<span class="bg-warning p-1 text-white">Pending</span>';
-                        return $but;
-                    }else{
-                        $but = '<span class="bg-danger p-1 text-white">Rejected</span>';
-                        return $but;
-                    }
-                })
-                ->addColumn('action', function($row){
-                    $actionBtn = '<div class="d-flex justify-content-end">
-                    <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>|
-                    <a href="'.route('news.show', ['news' => $row->slug]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a>
-                 | <form action="'.route('admin.blogs.destroy',$row).'" method="POST">
-                    '.csrf_field().'
-                    '.method_field("DELETE").'
-               <button class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')"><i class="la la-trash"></i></button>
-                </form></div>';
-                    return $actionBtn;
-                })
-                ->rawColumns(['action','action1'])
-                ->make(true);
+                        return $row->blogTranslation->title ?? $row->blogTranslationEnglish->title ?? null;
+                    })
+                    ->addColumn('action1',function($row){
+                        if($row->status == 'approved')
+                        {
+                            $but =  '<span class="bg-primary p-1 text-white">Approved</span>';
+                            return $but;
+                        }elseif($row->status == 'pending'){
+                            $but = '<span class="bg-warning p-1 text-white">Pending</span>';
+                            return $but;
+                        }else{
+                            $but = '<span class="bg-danger p-1 text-white">Rejected</span>';
+                            return $but;
+                        }
+                    })
+                    ->addColumn('action', function($row){
+                            //         $actionBtn = '<div class="d-flex justify-content-end">
+                            //         <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>|
+                            //         <a href="'.route('news.show', ['news' => $row->slug]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a>
+                            //      | <form action="'.route('admin.blogs.destroy',$row).'" method="POST">
+                            //         '.csrf_field().'
+                            //         '.method_field("DELETE").'
+                            //    <button class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')"><i class="la la-trash"></i></button>
+                            //     </form></div>';
+                            //         return $actionBtn;
+
+                            $actionBtn = '<div class="d-flex justify-content-end">
+                            <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>|
+                            <a href="'.route('news.show', ['news' => $row->slug]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a>
+                            ';
+
+                            if(auth()->user()->type == "admin")
+                            {
+                                $actionBtn = $actionBtn . '| <form action="'.route('admin.blogs.destroy',$row).'" method="POST">
+                                '.csrf_field().'
+                                '.method_field("DELETE").'
+                                <button class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')"><i class="la la-trash"></i></button>
+                                </form>';
+                            }
+                            else{
+                                $actionBtn = $actionBtn . '</div>';
+                            }
+                        return $actionBtn;
+                    })
+                    ->rawColumns(['action','action1'])
+                    ->make(true);
+            }
+            return view('admin.blogs.index');
         }
-        return view('admin.blogs.index');
+        catch (Throwable $exception) {
+            Log::error($exception->getMessage());
+            abort(500);
+        }
+
     }
 
     public function create()

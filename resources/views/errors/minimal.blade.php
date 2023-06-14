@@ -1,4 +1,4 @@
-@extends('frontend.main')
+@extends('errors::layout')
 @section('content')
     <!--error  start-->
     <div class="ps-page--404">
