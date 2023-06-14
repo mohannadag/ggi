@@ -40,7 +40,7 @@ class BlogController extends Controller
         {
             $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
                 ->orderBy('id','DESC')
-                ->where('user_id','=',$user->id)
+                // ->where('user_id','=',$user->id)
                 ->get();
         }
 
@@ -48,7 +48,7 @@ class BlogController extends Controller
         {
             $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
                 ->orderBy('id','DESC')
-                ->where('user_id','=',$user->id)
+                // ->where('user_id','=',$user->id)
                 ->get();
                 // dd($data);
         }
