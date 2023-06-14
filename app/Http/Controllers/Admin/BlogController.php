@@ -29,8 +29,6 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         try {
-
-
             if ($request->ajax()) {
                 $user = auth()->user();
             App::setLocale(Session::get('currentLocal'));
@@ -92,32 +90,32 @@ class BlogController extends Controller
                         }
                     })
                     ->addColumn('action', function($row){
-                            //         $actionBtn = '<div class="d-flex justify-content-end">
-                            //         <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>|
-                            //         <a href="'.route('news.show', ['news' => $row->slug]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a>
-                            //      | <form action="'.route('admin.blogs.destroy',$row).'" method="POST">
-                            //         '.csrf_field().'
-                            //         '.method_field("DELETE").'
-                            //    <button class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')"><i class="la la-trash"></i></button>
-                            //     </form></div>';
-                            //         return $actionBtn;
+                        //         $actionBtn = '<div class="d-flex justify-content-end">
+                        //         <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>|
+                        //         <a href="'.route('news.show', ['news' => $row->slug]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a>
+                        //      | <form action="'.route('admin.blogs.destroy',$row).'" method="POST">
+                        //         '.csrf_field().'
+                        //         '.method_field("DELETE").'
+                        //    <button class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')"><i class="la la-trash"></i></button>
+                        //     </form></div>';
+                        //         return $actionBtn;
 
-                            $actionBtn = '<div class="d-flex justify-content-end">
-                            <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>|
-                            <a href="'.route('news.show', ['news' => $row->slug]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a>
-                            ';
+                        $actionBtn = '<div class="d-flex justify-content-end">
+                        <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>|
+                        <a href="'.route('news.show', ['news' => $row->slug]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a>
+                        ';
 
-                            if(auth()->user()->type == "admin")
-                            {
-                                $actionBtn = $actionBtn . '| <form action="'.route('admin.blogs.destroy',$row).'" method="POST">
-                                '.csrf_field().'
-                                '.method_field("DELETE").'
-                                <button class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')"><i class="la la-trash"></i></button>
-                                </form>';
-                            }
-                            else{
-                                $actionBtn = $actionBtn . '</div>';
-                            }
+                        if(auth()->user()->type == "admin")
+                        {
+                            $actionBtn = $actionBtn . '| <form action="'.route('admin.blogs.destroy',$row).'" method="POST">
+                            '.csrf_field().'
+                            '.method_field("DELETE").'
+                            <button class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')"><i class="la la-trash"></i></button>
+                            </form>';
+                        }
+                        else{
+                            $actionBtn = $actionBtn . '</div>';
+                        }
                         return $actionBtn;
                     })
                     ->rawColumns(['action','action1'])
@@ -127,7 +125,7 @@ class BlogController extends Controller
         }
         catch (Throwable $exception) {
             Log::error($exception->getMessage());
-            abort(500);
+            return view('errors.500');
         }
 
     }
@@ -177,7 +175,7 @@ class BlogController extends Controller
         //thumbnail image save end
 
 
-      $blog =   Blog::create([
+        $blog = Blog::create([
             'category_id'=>request('category_id'),
             'user_id' => request('user_id'),
             'title' => request('title'),
