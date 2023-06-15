@@ -16,7 +16,7 @@
                             </div>
                         <div class="mb-12 lg:mb-0">
                             {{-- <img src="https://www.imtilak.net/assets/img/turkish-wallet.png" class="w-full sm:mb-10 lg:mb-24" alt="" /> --}}
-                            {{-- <img src="{{ URL::asset('/images/images/' . $citizenship->file) }}" class="w-full sm:mb-10 lg:mb-24" alt="" /> --}}
+                            <img src="{{ URL::asset('/images/images/pass.png') }}" class="w-full sm:mb-10 lg:mb-24" alt="turkish citizenship" />
                         </div>
                     </div>
                 </div>
