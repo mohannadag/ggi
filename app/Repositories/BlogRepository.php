@@ -29,7 +29,7 @@ class BlogRepository implements IBlogRepository
 
 
         return Blog::with(['blogTranslation'])
-                    ->where('deleted', 0)
+                    ->where('deleted', 0 || null)
                     ->orderBy('id','DESC')
                     ->get();
     }
