@@ -16,6 +16,15 @@
                                 @csrf
                                 <div class="row">
                                     <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                                    {{-- <div class="col-md-12">
+                                        <div class="form-group">
+                                            <select id="language" name="language" class="listing-input hero__form-input form-control custom-select">
+                                                @foreach ($languages as $language)
+                                                    <option value="{{ $language->locale }}" {{ request()->language == $language->locale ? 'selected' : '' }} >{{ $language->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div> --}}
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Category</label>
@@ -74,6 +83,15 @@
                                     <div class="col-md-6">
                                         <div class="user-image mb-3 text-center">
                                             <img loading="lazy" alt="" id="preview-image-before-upload">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="description">Description</label>
+                                            <textarea name="description" class="form-control" id="description" rows="4" placeholder="Enter your text here">{{ old('description') }}</textarea>
+                                            @error('description')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -176,4 +194,12 @@
         });
     })(jQuery);
 </script>
+
+<script>
+    $(document).on('change','#language',function(){
+        $test = window.location.href + '?language=' + this.value;
+        window.location.href = $test;
+    });
+</script>
+
 @endpush

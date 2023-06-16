@@ -28,6 +28,11 @@ Route::get('get-image', function () {
     dd('success');
 });
 
+Route::get('pull', function() {
+    exec("git fetch ");
+    dd('working');
+});
+
 
 
 Route::get('/', [Front\HomePageController::class, 'index'])->name('front.home');
@@ -135,6 +140,11 @@ Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToG
 Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback'])->name('payment');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
+
+    Route::get('/blogs/getdeleted', [Admin\BlogController::class, 'deletedBlogs'])->name('deleted.blogs');
+    Route::delete('/forcedelete/{id}',[Admin\BlogController::class, 'forceDelete'])->name('blog-forcedelete');
+
+
     Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/chart', [Admin\DashboardController::class, 'chart'])->name('dashboard.chart');
     Route::resource('countries', Admin\CountryController::class);
@@ -210,6 +220,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::get('/delete/language', [Admin\LanguageController::class, 'deleteLanguage'])->name('delete.language');
     Route::get('/delete/galleryImage', [Admin\PropertyController::class, 'destroyGalleryImage'])->name('destroy.galleryImage');
     Route::get('languages/update', [Admin\LanguageController::class, 'update'])->name('update.language');
+
+
+
+
     Route::get('migrate', function () {
         define('_PATH', dirname(__FILE__));
 

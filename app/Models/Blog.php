@@ -17,7 +17,11 @@ class Blog extends Model
         'slug',
         'image',
         'body',
-        'status'
+        'status',
+        'description',
+        'deleted',
+        'deleted_by',
+        'deleted_at'
     ];
 
     public function getRouteKeyName()
@@ -53,5 +57,10 @@ class Blog extends Model
     {
         return $this->hasOne(BlogTranslation::class,'blog_id')
             ->where('locale','en');
+    }
+
+    public function blogTrans()
+    {
+        return $this->hasMany(BlogTranslation::class);
     }
 }

@@ -220,5 +220,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\IPropertySearchRepository::class,\App\Repositories\PropertySearchRepository::class);
         $this->app->bind(\App\ViewModels\IPropertySearchModel::class,\App\ViewModels\PropertySearchModel::class);
 
+        // blog
+        $this->app->bind(\App\ViewModels\IBlogModel::class,\App\ViewModels\BlogModel::class);
+        $this->app->bind(\App\Repositories\IBlogRepository::class,\App\Repositories\BlogRepository::class);
+
     }
 }

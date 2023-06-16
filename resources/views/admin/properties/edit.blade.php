@@ -312,19 +312,21 @@
                                             {{--@endforeach--}}
                                         {{--</div>--}}
                                     {{--</div>--}}
-                                    <div class="col-md-12">
-                                        <div class="mt-1 text-center">
-                                            <div class="images-preview-div">
-                                                @foreach($pic as $key=>$p)
-                                                <input type="hidden" name="oldImages[]" value="{{$p}}" multiple>
-                                                <div class="d-flex" id="{{$key}}">
-                                                <img class="1" loading="lazy" src="{{ URL::asset('images/gallery/'.$p)}}" alt="slide" >
-                                                <span><i class="las la-trash old-image 1" data-id="{{$p}}" data-property={{$property->id}}  style="padding-top: 25px;pointer:cursor"></i></span>
+                                    @if($pic)
+                                        <div class="col-md-12">
+                                            <div class="mt-1 text-center">
+                                                <div class="images-preview-div">
+                                                    @foreach($pic as $key=>$p)
+                                                    <input type="hidden" name="oldImages[]" value="{{$p}}" multiple>
+                                                    <div class="d-flex" id="{{$key}}">
+                                                    <img class="1" loading="lazy" src="{{ URL::asset('images/gallery/'.$p)}}" alt="slide" >
+                                                    <span><i class="las la-trash old-image 1" data-id="{{$p}}" data-property={{$property->id}}  style="padding-top: 25px;pointer:cursor"></i></span>
+                                                    </div>
+                                                    @endforeach
                                                 </div>
-                                                @endforeach
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
                                     <div class="form-group">
                                         <div class="form-group">
                                             <div class="add-listing__input-file-box">

@@ -16,6 +16,15 @@
                                 <div class="row">
                                     <input type="hidden" name="user_id" value="{{$blog->user_id}}">
                                     @can('isAdmin')
+                                    {{-- <div class="col-md-12">
+                                        <div class="form-group">
+                                            <select id="language" name="language" class="listing-input hero__form-input form-control custom-select">
+                                                @foreach ($languages as $language)
+                                                    <option value="{{ $language->locale }}" {{ (request()->language ?? $blog->blogTranslation->locale) == $language->locale ? 'selected' : '' }} >{{ $language->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div> --}}
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Moderation Status</label>
@@ -44,7 +53,7 @@
                                         <div class="form-group">
                                             <label>Title:</label> <span class="text-danger">*</span>
                                             <input type="text" name="title"
-                                             @if(isset($blogTranslation->title)) value="{{old('title', $blogTranslation->title) }}" @else value="{{ old('title') }}" @endif
+                                             @if(isset($blogTranslation->title)) value="{{ old('title', $blogTranslation->title) }}" @else value="{{ old('title') }}" @endif
                                              class="form-control filter-input" id="title" placeholder="Name">
                                             @error('title')
                                             <p class="text-danger">{{$message}}</p>
@@ -88,6 +97,15 @@
                                     <div class="col-md-6">
                                         <div class="user-image mb-3 text-center">
                                             <img loading="lazy" src="{{ URL::asset('/images/thumbnail/'.$blog->image)  }}" alt="" id="preview-image-before-upload" style="width: 350px;height: 254px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="description">Description</label>
+                                            <textarea name="description" class="form-control" id="description" rows="4" placeholder="Enter your text here">@if(isset($blogTranslation->description)) {{ old('description', $blogTranslation->description) }} @else {{ old('description') }} @endif</textarea>
+                                            @error('description')
+                                                <p class="text-danger">{{$message}}</p>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -182,4 +200,14 @@
         $('.ckeditor').ckeditor();
     })(jQuery);
 </script>
+
+<script>
+    $(document).on('change','#language',function(){
+        console.log('test');
+        console.log("{{route('admin.blogs.edit',$blog)}}" + '?language=' + this.value);
+        $test = "{{route('admin.blogs.edit',$blog)}}" + '?language=' + this.value;
+        window.location.href = $test;
+    });
+</script>
+
 @endpush

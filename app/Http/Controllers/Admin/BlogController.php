@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\BlogTranslation;
+use App\Models\Language;
 use App\Models\Tag;
+use App\Repositories\IBlogRepository;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Http\Request;
@@ -18,108 +20,26 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Throwable;
 use Yajra\DataTables\DataTables;
+use App\ViewModels\IBlogModel;
 
 class BlogController extends Controller
 {
-    public function __construct()
+    private $_model;
+    private $_repo;
+    public function __construct(IBlogModel $model, IBlogRepository $repo)
     {
+        $this->_model = $model;
+        $this->_repo = $repo;
         // $this->middleware('isApprove', ['only' =>['edit','update','destroy']]);
     }
 
     public function index(Request $request)
     {
+        // $data = $this->_repo->getAll();
+        // dd($data);
         try {
             if ($request->ajax()) {
-                $user = auth()->user();
-            App::setLocale(Session::get('currentLocal'));
-            $locale = Session::get('currentLocal');
-            if($user->type == 'admin')
-            {
-                $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
-                    ->orderBy('id','DESC')
-                    ->get();
-            }
-
-            if($user->type == 'user')
-            {
-                $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
-                    ->orderBy('id','DESC')
-                    // ->where('user_id','=',$user->id)
-                    ->get();
-            }
-
-            if($user->type == 'moderator')
-            {
-                $data = Blog::with(['blogTranslation','blogTranslationEnglish'])
-                    ->orderBy('id','DESC')
-                    // ->where('user_id','=',$user->id)
-                    ->get();
-                    // dd($data);
-            }
-
-
-                return DataTables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('category', function (Blog $blog) use ($locale){
-                        return $blog->category->blogCategoryTranslation->name ?? $blog->category->blogCategoryTranslationEnglish->name ?? null;
-
-                    })
-                    ->addColumn('user', function (Blog $blog) {
-                        if($blog->user)
-                        {
-                            return $blog->user->f_name.' '.$blog->user->l_name;
-                        }else{
-                            return '-';
-                        }
-                    })
-                    ->addColumn('title', function ($row) use ($locale)
-                    {
-                        return $row->blogTranslation->title ?? $row->blogTranslationEnglish->title ?? null;
-                    })
-                    ->addColumn('action1',function($row){
-                        if($row->status == 'approved')
-                        {
-                            $but =  '<span class="bg-primary p-1 text-white">Approved</span>';
-                            return $but;
-                        }elseif($row->status == 'pending'){
-                            $but = '<span class="bg-warning p-1 text-white">Pending</span>';
-                            return $but;
-                        }else{
-                            $but = '<span class="bg-danger p-1 text-white">Rejected</span>';
-                            return $but;
-                        }
-                    })
-                    ->addColumn('action', function($row){
-                        //         $actionBtn = '<div class="d-flex justify-content-end">
-                        //         <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>|
-                        //         <a href="'.route('news.show', ['news' => $row->slug]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a>
-                        //      | <form action="'.route('admin.blogs.destroy',$row).'" method="POST">
-                        //         '.csrf_field().'
-                        //         '.method_field("DELETE").'
-                        //    <button class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')"><i class="la la-trash"></i></button>
-                        //     </form></div>';
-                        //         return $actionBtn;
-
-                        $actionBtn = '<div class="d-flex justify-content-end">
-                        <a href="'.route('admin.blogs.edit',$row).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>|
-                        <a href="'.route('news.show', ['news' => $row->slug]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a>
-                        ';
-
-                        if(auth()->user()->type == "admin")
-                        {
-                            $actionBtn = $actionBtn . '| <form action="'.route('admin.blogs.destroy',$row).'" method="POST">
-                            '.csrf_field().'
-                            '.method_field("DELETE").'
-                            <button class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')"><i class="la la-trash"></i></button>
-                            </form>';
-                        }
-                        else{
-                            $actionBtn = $actionBtn . '</div>';
-                        }
-                        return $actionBtn;
-                    })
-                    ->rawColumns(['action','action1'])
-                    ->make(true);
+                return $this->_model->getAllTable($request);
             }
             return view('admin.blogs.index');
         }
@@ -135,64 +55,17 @@ class BlogController extends Controller
         App::setLocale(Session::get('currentLocal'));
         $categories =  BlogCategory::where('status',1)->get();
         $tags = Tag::all();
-        return view('admin.blogs.create',compact('categories','tags'));
+        $languages = Language::all();
+        return view('admin.blogs.create',compact('categories','tags', 'languages'));
     }
 
     public function store(Request $request)
     {
+        if($this->_model->add($request))
+            return redirect()->route('admin.blogs.index');
+        else
+            return response()->view('errors.500', ['$message' => 'something went wrong'], 500);
 
-        App::setLocale(Session::get('currentLocal'));
-        $locale   = Session::get('currentLocal');
-
-        request()->validate([
-            'category_id'=>'nullable',
-            'user_id' => 'required',
-            'title' => 'required',
-            'tag'=> 'nullable',
-            'slug'=> 'required|unique:blogs',
-            'image'=>'nullable',
-            'body'=> 'required'
-        ],[
-            'category_id.required'=>'The category field is required',
-            'body.required'=>'content field is required'
-        ]);
-        //thumbnail image save start
-        $thumbnailImage = $request->file('image');
-        $slug =  $request->input('slug');
-        if (isset($thumbnailImage))
-        {
-            $currentDate = Carbon::now()->toDateString();
-            $fileName = $slug.'-'.$currentDate.'-'.uniqid();
-            // $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('webp', 90)->fit(750, 500)->save(public_path('images/thumbnail/'  .  $fileName . '.webp'));
-            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->resize(770, 465)->save(public_path('images/thumbnail/'  .  $fileName . '.jpg'));
-            \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->resize(770, 465)->save(public_path('images/gallery/'  .  $fileName . '.jpg'));
-            // \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('webp', 90)->fit(1024, 450)->save(public_path('images/gallery/'  .  $fileName . '.webp'));
-            $thumbnailName = $image->basename;
-        } else
-        {
-            $thumbnailName ='default.png';
-        }
-        //thumbnail image save end
-
-
-        $blog = Blog::create([
-            'category_id'=>request('category_id'),
-            'user_id' => request('user_id'),
-            'title' => request('title'),
-            'slug' => request('slug'),
-            'image'=> $thumbnailName,
-            'body'=> request('body')
-        ]);
-        $blog->tags()->sync($request->tags);
-
-        BlogTranslation::create([
-            'blog_id'=>$blog->id,
-            'locale'=> $locale,
-            'title' => request('title'),
-            'slug' => request('slug'),
-            'body'=> request('body')
-        ]);
-        return redirect()->route('admin.blogs.index');
     }
 
     public function show($id)
@@ -201,91 +74,31 @@ class BlogController extends Controller
     }
 
 
-    public function edit(Blog $blog)
+    public function edit(Blog $blog, Request $request)
     {
-        $categories =  BlogCategory::where('status',1)->get();
-        $tags = Tag::all();
+        // dd($request);
+        $categories =  BlogCategory::with(['blogCategoryTranslation', 'blogCategoryTranslationEnglish'])->where('status',1)->get();
+        $tags = Tag::with(['tagTranslation', 'tagTranslationEnglish'])->get();
         App::setLocale(Session::get('currentLocal'));
-        $locale   = Session::get('currentLocal');
+        $locale = Session::get('currentLocal');
+        // $languages = Language::all();
+        // $locale = $request->language ?? 'ar';
+
         $blogTranslation = BlogTranslation::where('blog_id',$blog->id)->where('locale',$locale)->first();
-        if (!isset($blogTranslation)) {
-            $blogTranslation = BlogTranslation::where('blog_id',$blog->id)->where('locale','en')->first();
-        }
+        // if (!isset($blogTranslation)) {
+        //     $blogTranslation = BlogTranslation::where('blog_id',$blog->id)->where('locale','en')->first();
+        // }
         return view('admin.blogs.edit',compact('blog','categories','tags','locale','blogTranslation'));
     }
 
     public function update(Request $request, Blog $blog)
     {
-       request()->validate([
-           'category_id'=>'required',
-           'user_id' => 'required',
-           'title' => 'required|min:10',
-           'slug'=> 'required',
-        //    'image'=>'required',
-           'body'=> 'required'
-       ]);
-        //thumbnail image save start
-        $thumbnailImage = $request->file('image');
-//        dd($thumbnailImage);
-        $slug =  $request->input('slug');
+        if($this->_model->update($request, $blog))
+            return redirect()->route('admin.blogs.index');
+        else
+            return response()->view('errors.500', ['$message' => 'something went wrong'], 500);
 
-        if (isset($thumbnailImage))
-        {
-            // Storage::disk('public')->delete("thumbnail/{$blog->image}");
-            File::delete(public_path() . "/images/thumbnail/{$blog->image}");
-            File::delete(public_path() . "/images/gallery/{$blog->image}");
-
-            $currentDate = Carbon::now()->toDateString();
-            $fileName = $slug.'-'.$currentDate.'-'.uniqid();
-            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->resize(770, 465)->save(public_path('images/thumbnail/'  .  $fileName . '.jpg'));
-            \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('jpg')->resize(770, 465)->save(public_path('images/gallery/'  .  $fileName . '.jpg'));
-            $thumbnailName = $image->basename;
-        } else
-        {
-            $thumbnailName =$blog->image;
-        }
-        //thumbnail image save end
-        $user = auth()->user();
-        if($user->type == 'admin')
-        {
-            $blog->update([
-                'category_id'=>request('category_id'),
-                'user_id' => request('user_id'),
-                'title' => request('title'),
-                'slug' => request('slug'),
-                'image'=> $thumbnailName,
-                'body'=> request('body'),
-                'status'=>request('status'),
-            ]);
-        }
-        else{
-
-            $blog->update([
-                'category_id'=>request('category_id'),
-                'user_id' => request('user_id'),
-                'title' => request('title'),
-                'slug' => request('slug'),
-                'image'=> $thumbnailName,
-                'body'=> request('body')
-            ]);
-        }
-
-
-
-        $blog->tags()->sync($request->tags);
-        BlogTranslation::updateOrCreate(
-            [
-                'blog_id' => $blog->id,
-                'locale'    => request('locale'),
-            ], //condition
-            [
-                'title' => $blog->title,
-                'slug'=> $slug,
-                'body'=> request('body')
-            ]
-        );
-
-        return redirect()->route('admin.blogs.index');
+        // return redirect()->route('admin.blogs.index');
     }
 
 
@@ -293,7 +106,8 @@ class BlogController extends Controller
     {
         File::delete(public_path() . "/images/thumbnail/{$blog->image}");
         File::delete(public_path() . "/images/gallery/{$blog->image}");
-        $blog->delete();
+        // $blog->delete();
+        $this->_model->delete($blog->id);
         return redirect()->route('admin.blogs.index');
     }
     public function checkSlug(Request $request)
@@ -301,4 +115,25 @@ class BlogController extends Controller
         $slug = SlugService::createSlug(Blog::class, 'slug', $request->slug);
         return response()->json(['slug'=>$slug]);
     }
+
+    public function forceDelete($id)
+    {
+        $this->_model->forceDelete($id);
+    }
+
+    public function deletedBlogs(Request $request)
+    {
+        dd('test');
+        try {
+            if ($request->ajax()) {
+                return $this->_model->getAllDeleted($request);
+            }
+            return view('admin.blogs.index');
+        }
+        catch (Throwable $exception) {
+            Log::error($exception->getMessage());
+            return view('errors.500');
+        }
+    }
+
 }
