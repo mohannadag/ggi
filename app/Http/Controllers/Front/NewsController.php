@@ -123,7 +123,7 @@ class NewsController extends Controller
         $news = Blog::where('slug', $news)->first();
 
         $popularTopics = BlogCategory::where('status', 1)->get();
-        $recentlyAddedPosts = Blog::latest()->take(3)->get();
+        $recentlyAddedPosts = Blog::latest()->where('status', 'approved')->take(3)->get();
         $tags = Tag::where('status', 1)->get();
         // dd($news);
         $previous = Blog::where('id', '<', $news->id)->max('id');

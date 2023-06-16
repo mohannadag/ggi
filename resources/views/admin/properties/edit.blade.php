@@ -151,7 +151,7 @@
                                                                 selected
                                                             @endif
                                                         @endforeach
-                                                        >{{$tag->tagTranslation->name}}</option>
+                                                        >{{$tag->tagTranslation->name ?? $tag->tagTranslationEnglish->name ?? null}}</option>
                                                 @endforeach
                                             </select>
                                             @error('tag')

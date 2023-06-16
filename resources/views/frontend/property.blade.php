@@ -203,7 +203,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </ul>
                     @endif
                     <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium mt-[25px]">{{trans('file.project_details')}}<span class="text-secondary">?</span></h5>
-                    <div class="project-body">
+                    <div class="blog-body">
                         {!! $property->propertyDetails->propertyDetailTranslation->content ?? ($property->propertyDetails->propertyDetailTranslationEnglish->content ?? null) !!}
                     </div>
                 </div>
@@ -686,7 +686,9 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                 @if($property->propertyDetails->location_info !== NULL)
                 <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">{{trans('file.location_info')}}<span class="text-secondary">.</span></h5>
                 @endif
-                {!! $property->propertyDetails->propertyDetailTranslation->location_info ?? ($property->propertyDetails->propertyDetailTranslationEnglish->location_info ?? null) !!}
+                <div class="blog-body">
+                    {!! $property->propertyDetails->propertyDetailTranslation->location_info ?? ($property->propertyDetails->propertyDetailTranslationEnglish->location_info ?? null) !!}
+                </div>
 
                 @if($property->facilities->count() > 0 )
                 <h4 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium"> {{trans('file.amenities')}}<span class="text-secondary">.</span>
