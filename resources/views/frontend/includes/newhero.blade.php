@@ -72,6 +72,7 @@
                     @endforeach
                 @else --}}
                     @foreach ( $sliders->sortBy('order') as $slider )
+                        @if($slider->sliderTranslation != null)
                         <div class="swiper-slide lg:h-[700px] xl:h-[950px] xs:h-[auto] flex flex-wrap items-center">
                             <div class="container">
                                 <div class="grid grid-cols-12">
@@ -107,6 +108,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     @endforeach
                 {{-- @endif --}}
                 <!-- swiper-slide end-->
