@@ -119,8 +119,8 @@
         <div class="mx-auto grid gap-6 md:w-3/4 lg:w-full lg:grid-cols-3">
 
             <div class="bg-white rounded-2xl shadow-xl px-8 py-4 sm:px-12 lg:px-8 text-center">
-                <div class="mb-12 space-y-4">
-                    <div class="inline-block text-gray-900 mb-4 p-3">
+                <div class="space-y-4">
+                    <div class="inline-block text-gray-900 p-3">
                         <!-- icon -->
                         <i class="fa-solid fa-globe fa-2xl p-4" style="color: dab059;"></i>
                     </div>
@@ -129,8 +129,8 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-xl px-8 py-4 sm:px-12 lg:px-8 text-center">
-                <div class="mb-12 space-y-4">
-                    <div class="inline-block text-gray-900 mb-4 p-3">
+                <div class="space-y-4">
+                    <div class="inline-block text-gray-900 p-3">
                         <!-- icon -->
                         <i class="fa-solid fa-comments-dollar fa-2xl p-4" style="color: dab059;"></i>
                     </div>
@@ -139,8 +139,8 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-xl px-8 py-4 sm:px-12 lg:px-8 text-center">
-                <div class="mb-12 space-y-4">
-                    <div class="inline-block text-gray-900 mb-4 p-3">
+                <div class="space-y-4">
+                    <div class="inline-block text-gray-900 p-3">
                         <!-- icon -->
                         <i class="fa-solid fa-pen-clip fa-2xl p-4" style="color: dab059;"></i>
                     </div>
@@ -149,8 +149,8 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-xl px-8 py-4 sm:px-12 lg:px-8 text-center">
-                <div class="mb-12 space-y-4">
-                    <div class="inline-block text-gray-900 mb-4 p-3">
+                <div class="space-y-4">
+                    <div class="inline-block text-gray-900 p-3">
                         <!-- icon -->
                         <i class="fa-regular fa-file-lines fa-2xl p-4" style="color: dab059;"></i>
                     </div>
@@ -159,8 +159,8 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-xl px-8 py-4 sm:px-12 lg:px-8 text-center">
-                <div class="mb-12 space-y-4">
-                    <div class="inline-block text-gray-900 mb-4 p-3">
+                <div class="space-y-4">
+                    <div class="inline-block text-gray-900 p-3">
                         <!-- icon -->
                         <i class="fa-solid fa-money-check-dollar fa-2xl p-4" style="color: dab059;"></i>
                     </div>
@@ -169,8 +169,8 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-xl px-8 py-4 sm:px-12 lg:px-8 text-center">
-                <div class="mb-12 space-y-4">
-                    <div class="inline-block text-gray-900 mb-4 p-3">
+                <div class="space-y-4">
+                    <div class="inline-block text-gray-900 p-3">
                         <!-- icon -->
                         <i class="fa-solid fa-address-card fa-2xl p-4" style="color: dab059;"></i>
                     </div>
@@ -179,8 +179,8 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-xl px-8 py-4 sm:px-12 lg:px-8 text-center">
-                <div class="mb-12 space-y-4">
-                    <div class="inline-block text-gray-900 mb-4 p-3">
+                <div class="space-y-4">
+                    <div class="inline-block text-gray-900 p-3">
                         <!-- icon -->
                         <i class="fa-solid fa-passport fa-2xl p-4" style="color: dab059;"></i>
                     </div>
