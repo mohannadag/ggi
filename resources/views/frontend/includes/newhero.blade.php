@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="col-span-12 lg:col-span-5 xl:col-span-6">
                                         <div class="relative mt-10 md:mt-0 lg:absolute {{$align}} lg:bottom-0 lg:w-3/4 xl:w-fit">
-                                            <img class="hero_image w-full" src="{{URL::asset('/images/images/'.( $slider->sliderTranslation->file ?? $slider->file) )}}" width="866" height="879" alt="hero image">
+                                            <img class="hero_image w-full" src="{{URL::asset('/images/images/'. $slider->file )}}" width="866" height="879" alt="hero image">
                                         </div>
                                     </div>
                                 </div>
