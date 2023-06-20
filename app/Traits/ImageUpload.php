@@ -15,7 +15,7 @@ trait ImageUpload
         {
             $currentDate = Carbon::now()->toDateString();
             $fileName = $slug.'-'.$currentDate.'-'.uniqid();
-            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('png')->resize($width, $height)->save(public_path('images/'.$path.'/' .  $fileName . '.png'));
+            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('png')->fit($width, $height)->save(public_path('images/'.$path.'/' .  $fileName . '.png'));
 
             $thumbnailName = $image->basename;
         } else
@@ -55,7 +55,7 @@ trait ImageUpload
 
             $currentDate = Carbon::now()->toDateString();
             $fileName = $slug.'-'.$currentDate.'-'.uniqid();
-            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('png')->resize($width, $height)->save(public_path('images/'.$path.'/'  .  $fileName . '.png'));
+            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('png')->fit($width, $height)->save(public_path('images/'.$path.'/'  .  $fileName . '.png'));
             $thumbnailName = $image->basename;
         } else
         {
@@ -97,7 +97,7 @@ trait ImageUpload
 
             $currentDate = Carbon::now()->toDateString();
             $fileName = $slug.'-'.$currentDate.'-'.uniqid();
-            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('png')->resize($width, $height)->save(public_path('images/'.$path.'/'  .  $fileName . '.png'));
+            $image = \Intervention\Image\Facades\Image::make($thumbnailImage)->encode('png')->fit($width, $height)->save(public_path('images/'.$path.'/'  .  $fileName . '.png'));
             $thumbnailName = $image->basename;
         } else
         {
