@@ -27,17 +27,17 @@ class FaqModel implements IFaqModel
 
         return DataTables::of($data)
             ->addIndexColumn()
-            ->addColumn('name', function ($row) use ($locale)
+            ->addColumn('name', function ($row)
             {
-                return $row->faqTranslation->name ?? $row->faqTranslationEnglish->name ?? null;
+                return $row->faqTranslation->name ?? $row->name ?? null;
             })
-            ->addColumn('question', function ($row) use ($locale)
+            ->addColumn('question', function ($row)
             {
-                return $row->faqTranslation->question ?? $row->faqTranslationEnglish->question ?? null;
+                return $row->faqTranslation->question ?? $row->question ?? null;
             })
-            ->addColumn('description', function ($row) use ($locale)
+            ->addColumn('order', function ($row)
             {
-                return $row->faqTranslation->description ?? $row->faqTranslationEnglish->description ?? null;
+                return $row->order ?? null;
             })
             ->addColumn('action1',function($row){
                 if($row->status == 'approved')

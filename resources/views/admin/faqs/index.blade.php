@@ -19,7 +19,7 @@
                                         <th style="max-width:100px">Action</th>
                                         <th>Question</th>
                                         <th>Category</th>
-                                        <th>Description</th>
+                                        <th>Order</th>
                                     </tr>
                                     </thead>
                                 </table>
@@ -57,8 +57,8 @@
                     name: 'category'
                 },
                 {
-                    data: 'description',
-                    name: 'description'
+                    data: 'order',
+                    name: 'order'
                 }
             ]
         });

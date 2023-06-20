@@ -1,6 +1,6 @@
 
 
-<section class="mt-6 mb-20 text-neutral-700">
+<section class="mt-6 mb-20 text-neutral-700 bg-neutral-100 py-10">
     <div class="container grid place-content-center">
 
         <h2 class="mb-10 font-lora text-primary text-[24px] sm:text-[30px] leading-[1.277] capitalize font-medium justify-self-center" style="color: #2e255c">

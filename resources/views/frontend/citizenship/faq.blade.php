@@ -1,15 +1,3 @@
-<style>
-    .faq-answer ul {
-    list-style: disc !important;
-    padding: 10px 20px !important;
-    }
-
-    .faq-answer ol {
-        list-style: decimal;
-        padding: 10px 20px;
-    }
-</style>
-
 <div class="container pt-10">
     <div class="flex justify-center items-start my-2">
 

@@ -78,14 +78,14 @@
                                     <div class="col-span-12 lg:col-span-5 xl:col-span-6">
                                         <div class="slider-content max-w-[560px] relative z-[9]">
                                             <div class="relative mb-5 sub_title">
-                                                <span class="text-base text-white block">{!! $slider->sliderTranslation->name !!}</span>
+                                                <span class="text-base text-white block">{!! $slider->sliderTranslation->name ?? $slider->name ?? '' !!}</span>
                                             </div>
                                             <h1 class="font-lora text-secondary text-[36px] sm:text-[50px] md:text-[68px] lg:text-[50px] leading-tight xl:text-2xl title font-normal">
-                                                <span>{!! $slider->sliderTranslation->description !!}</span>
+                                                <span>{!! $slider->sliderTranslation->description ?? $slider->description ?? '' !!}</span>
                                             </h1>
 
                                             <p class="text-base text-white mt-8 mb-12 text max-w-[570px]">
-                                                {!! $slider->sliderTranslation->address !!}
+                                                {!! $slider->sliderTranslation->address ?? $slider->address ?? '' !!}
                                             </p>
 
                                             @if($slider->link == 'NULL' || $slider->link == '')
@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="col-span-12 lg:col-span-5 xl:col-span-6">
                                         <div class="relative mt-10 md:mt-0 lg:absolute {{$align}} lg:bottom-0 lg:w-3/4 xl:w-fit">
-                                            <img class="hero_image w-full" src="{{URL::asset('/images/images/'.$slider->sliderTranslation->file)}}" width="866" height="879" alt="hero image">
+                                            <img class="hero_image w-full" src="{{URL::asset('/images/images/'.( $slider->sliderTranslation->file ?? $slider->file) )}}" width="866" height="879" alt="hero image">
                                         </div>
                                     </div>
                                 </div>

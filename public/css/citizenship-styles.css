@@ -27,3 +27,13 @@
     filter: invert(16%) sepia(10%) saturate(6896%) hue-rotate(223deg) brightness(90%) contrast(96%) drop-shadow(3px 3px 5px #2e255c);
     align-self: center;
 }
+
+.faq-answer ul {
+    list-style: disc !important;
+    padding: 10px 20px !important;
+}
+
+.faq-answer ol {
+    list-style: decimal;
+    padding: 10px 20px;
+}
