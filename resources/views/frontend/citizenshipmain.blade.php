@@ -85,6 +85,8 @@
         gtag('config', 'UA-263288171-1');
     </script>
 
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{ asset('css/citizenship-styles.css') }}" />
 </head>
 @php
 
@@ -155,6 +157,8 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
     <script src="{{asset('frontend/js/main.js')}}"></script>
     <script src="{{asset('frontend/js/script.js')}}"></script>
     <script src="{{asset('frontend/js/plugins/custom_slider/customSlider.js')}}"></script>
+
+    <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
 </body>
 @stack('script')
 

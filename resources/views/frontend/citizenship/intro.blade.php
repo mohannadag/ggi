@@ -3,13 +3,13 @@
     <div class="container">
         <div class="grid grid-cols-12 gap-6 items-center">
             <div class="col-span-12 lg:pb-12 lg:col-span-6">
-                <h2 class="font-lora text-primary text-[24px] sm:text-[30px] leading-[1.277] xl:text-xl capitalize font-medium max-w-[500px]">{{trans('file.citizenship-by-investment-overview')}}<span class="text-secondary">.</span></h2>
-                <p class="max-w-[448px]  mb-5 lg:mb-16">{{trans('file.the-türkiye-citizenship')}}</p>
+                <h2 class="mb-10 font-lora text-primary text-[24px] sm:text-3xl leading-[1.277] capitalize font-medium">{{trans('file.citizenship-by-investment-overview')}}<span class="text-secondary">.</span></h2>
+                <p class="">{{trans('file.the-türkiye-citizenship')}}</p>
             </div>
             <div class="col-span-12 lg:col-span-6 lg:pl-[70px]">
                 <div class="-mb-10 mt-12 xl:mt-[70px] 2xl:mt-[100px]">
                     <div class="flex flex-wrap mb-5 lg:mb-10">
-                        <img src="{{asset('frontend/images/icon/investment.svg')}}" class="self-start mr-3" loading="lazy" width="50" height="50" alt="about Image">
+                        <img src="{{asset('frontend/images/icon/investment.svg')}}" class="self-start mx-3" loading="lazy" width="50" height="50" alt="about Image">
                         <div class="flex-1">
                             <h3 class="font-lora text-primary text-[22px] xl:text-lg capitalize mb-2">{{trans('file.investment')}}</h3>
                             <p>{{trans('file.minimum-contribution')}}</p>
@@ -17,7 +17,7 @@
 
                     </div>
                     <div class="flex flex-wrap mb-5 lg:mb-10">
-                        <img src="{{asset('frontend/images/icon/time.svg')}}" class="self-start mr-3" loading="lazy" width="50" height="50" alt="about Image">
+                        <img src="{{asset('frontend/images/icon/time.svg')}}" class="self-start mx-3" loading="lazy" width="50" height="50" alt="about Image">
                         <div class="flex-1">
                             <h3 class="font-lora text-primary text-[22px] xl:text-lg capitalize mb-2">{{trans('file.processing-time')}}</h3>
                             <p>{{trans('file.approximately')}}</p>
@@ -25,7 +25,7 @@
 
                     </div>
                     <div class="flex flex-wrap mb-5 lg:mb-10">
-                        <img src="{{asset('frontend/images/icon/benefit.svg')}}" class="self-start mr-3" loading="lazy" width="50" height="50" alt="about Image">
+                        <img src="{{asset('frontend/images/icon/benefit.svg')}}" class="self-start mx-3" loading="lazy" width="50" height="50" alt="about Image">
                         <div class="flex-1">
                             <h3 class="font-lora text-primary text-[22px] xl:text-lg capitalize mb-2">{{trans('file.key-benefit')}}</h3>
                             <p>{{trans('file.the-right')}}</p>

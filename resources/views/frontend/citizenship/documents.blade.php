@@ -2,14 +2,14 @@
     <!-- Section: Design Block -->
     <section class="mt-6 mb-20 text-neutral-700">
         <div class="mb-6 pb-2">
-            <h2 class="font-lora text-primary text-3xl sm:text-3xl leading-[1.277] lg:text-5xl capitalize font-medium max-w-[500px]">{{trans('file.türkiye-citizenship-h')}}<span class="text-secondary">.</span></h2>
+            <h2 class="font-lora text-primary text-3xl sm:text-3xl leading-[1.277] capitalize font-medium">{{trans('file.türkiye-citizenship-h')}}<span class="text-secondary">.</span></h2>
         </div>
         <div class="grid gap-12 lg:grid-cols-1 pb-[60px]">
             <div class="order-2 lg:order-1 col-span-2">
                 <p class="mb-3 lg:mb-16">{{trans('file.türkiye-citizenship-p1')}} </p>
                 <p class="mb-5 lg:mb-16">{{trans('file.türkiye-citizenship-p2')}}</p>
                 <h3 class="font-lora text-primary text-[22px] xl:text-lg capitalize mb-2">{{trans('file.turkish-passport-h')}}</h3>
-                <p class="mb-4 ">{{trans('file.turkish-passport-p')}}
+                <p class="mb-4">{{trans('file.turkish-passport-p')}}
                 </p>
                 <ul class="ml-[40px] list-disc">
                     <li>{{trans('file.turkish-passport-li1')}}</li>
@@ -21,13 +21,7 @@
             </div>
 
         </div>
-        <div class="grid gap-12 lg:grid-cols-1">
-            @if(App::isLocale('ar'))
-                <img src="{{ URL::asset('/images/images/stages.png') }}" class="lg:w-2/3" style="justify-self: center;">
-            @else
-                <img src="{{ URL::asset('/images/images/stages-en.png') }}" class="lg:w-2/3" style="justify-self: center;">
-            @endif
-        </div>
+
     </section>
     <!-- Section: Design Block -->
 </div>

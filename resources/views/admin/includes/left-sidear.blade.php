@@ -130,6 +130,9 @@
                             <a class="{{Str::startsWith(Route::currentRouteName(),'admin.page.index') ? 'active' : '' }}" href="{{route('admin.page.index')}}">Pages</a>
                         </li>
                         <li>
+                            <a class="{{Str::startsWith(Route::currentRouteName(),'admin.faqs.index') ? 'active' : '' }}" href="{{route('admin.faqs.index')}}">FAQs</a>
+                        </li>
+                        <li>
                             <a class="{{Str::startsWith(Route::currentRouteName(),'admin.currencies.index') ? 'active' : '' }}" href="{{route('admin.currencies.index')}}">Currency</a>
                         </li>
                         <li>

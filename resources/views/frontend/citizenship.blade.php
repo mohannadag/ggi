@@ -40,9 +40,14 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 @include('frontend.citizenship.slider')
 
 @include('frontend.citizenship.intro')
-@include('frontend.citizenship.featured')
+@include('frontend.citizenship.obtaining')
 @include('frontend.citizenship.documents')
+@include('frontend.citizenship.featured')
+@include('frontend.citizenship.stages-new')
+@include('frontend.citizenship.papers')
 @include('frontend.citizenship.form')
+@include('frontend.citizenship.services')
+@include('frontend.citizenship.faq')
 
 
 
@@ -56,8 +61,8 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
         <div class="grid col-span-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-[30px] mb-[-30px]">
 
             <div class="flex hover:drop-shadow-[0px_16px_10px_rgba(0,0,0,0.1)] hover:bg-[#F5F9F8] transition-all p-[20px] xl:p-[35px] rounded-[8px] mb-[30px] group">
-                <img class="self-center mr-[20px] sm:mr-[40px] lg:mr-[20px] xl:mr-[40px] sm:mb-[15px] lg:mb-0" src="{{ asset('frontend/images/icon/map.png') }}" width="40" height="55" loading="lazy" alt="image icon">
-                <div class="flex-1">
+                <img class="self-center mx-4 lg:mr-[20px] xl:mr-[40px] sm:mb-[15px] lg:mb-0" src="{{ asset('frontend/images/icon/map.png') }}" width="40" height="55" loading="lazy" alt="image icon">
+                <div class="flex-1 self-center">
                     <h4 class="font-lora group-hover:text-secondary group-hover:transition-all leading-none text-[28px] text-primary mb-[10px]">
                         {{trans('file.our_address')}} <span class="text-secondary">.</span>
                     </h4>
@@ -66,8 +71,8 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
             </div>
 
             <div class="flex hover:drop-shadow-[0px_16px_10px_rgba(0,0,0,0.1)] hover:bg-[#F5F9F8] transition-all p-[20px] xl:p-[35px] rounded-[8px] mb-[30px] group">
-                <img class="self-center mr-[20px] sm:mr-[40px] lg:mr-[20px] xl:mr-[40px] sm:mb-[15px] lg:mb-0" src="{{ asset('frontend/images/icon/phone.png') }}" width="46" height="46" loading="lazy" alt="image icon">
-                <div class="flex-1">
+                <img class="self-center mx-4 lg:mr-[20px] xl:mr-[40px] sm:mb-[15px] lg:mb-0" src="{{ asset('frontend/images/icon/phone.png') }}" width="46" height="46" loading="lazy" alt="image icon">
+                <div class="flex-1 self-center">
                     <h4 class="font-lora group-hover:text-secondary group-hover:transition-all leading-none text-[28px] text-primary mb-[10px]">
                         {{trans('file.contact_us')}}<span class="text-secondary">.</span>
                     </h4>
@@ -77,8 +82,8 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
             </div>
 
             <div class="flex hover:drop-shadow-[0px_16px_10px_rgba(0,0,0,0.1)] hover:bg-[#F5F9F8] transition-all p-[20px] xl:p-[35px] rounded-[8px] mb-[30px] xl:pl-[65px] group">
-                <img class="self-center mr-[20px] sm:mr-[40px] lg:mr-[20px] xl:mr-[40px] sm:mb-[15px] lg:mb-0" src="{{ asset('frontend/images/icon/mail.png') }}" width="46" height="52" loading="lazy" alt="image icon">
-                <div class="flex-1">
+                <img class="self-center mx-4 lg:mr-[20px] xl:mr-[40px] sm:mb-[15px] lg:mb-0" src="{{ asset('frontend/images/icon/mail.png') }}" width="46" height="52" loading="lazy" alt="image icon">
+                <div class="flex-1 self-center">
                     <h4 class="font-lora group-hover:text-secondary group-hover:transition-all leading-none text-[28px] text-primary mb-[10px]">
                         {{trans('file.email_us')}} <span class="text-secondary">.</span>
                     </h4>
