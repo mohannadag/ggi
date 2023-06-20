@@ -54,6 +54,7 @@
 
     <link rel="stylesheet" href="{{asset('frontend/css/snapgram.css')}}">
     <link rel='stylesheet' href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
 
     <link rel="stylesheet" href="{{asset('frontend/css/stories.css')}}">
@@ -85,7 +86,7 @@
         gtag('config', 'UA-263288171-1');
     </script>
 
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+
 <link rel="stylesheet" href="{{ asset('css/citizenship-styles.css') }}" />
 </head>
 @php
