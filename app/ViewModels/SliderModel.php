@@ -116,7 +116,7 @@ class SliderModel implements ISliderModel
         $slider  = $this->getById($id);
         $data['button_text'] = $request->input('button_text');
         $data['link'] = $request->input('link');
-        $thumbnailName = $this->imageUpdate($thumbnailImage, $slug, $slider, 'images', 1920, 750);
+        $thumbnailName = $this->imageUpdate($thumbnailImage, $slug, $slider, 'images', 1133, 843);
         $mobileName = $this->imageUpdate($mobileImage, $slug, $slider, 'images', 414, 485);
         //thumbnail image save end
         if ($request->hasFile('file')) {
