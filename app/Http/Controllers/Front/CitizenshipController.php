@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SendMail;
+use App\Models\Faq;
 use App\Models\HeaderImage;
 use App\Models\Image;
 use App\Models\OurPartner;
@@ -130,8 +131,10 @@ class CitizenshipController extends Controller
         $popularTopics = BlogCategory::with('blogCategoryTranslation','blogs')->where('status',1)->get()->keyBy('id');
         $tags = Tag::with('tagTranslation','tagTranslationEnglish')->where('status',1)->get();
         $headerImage = HeaderImage::where('page','home')->first();
+        $faqs = Faq::with('faqTranslation')->where(['category' => 3, 'status' => 1])->get();
+        // dd($faqs);
         // return view('frontend.citizenship',compact('citizenship', 'citizenshipTranslation', 'headerImage', 'properties', 'country', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories','sliders',));
-        return view('frontend.citizenship',compact('headerImage', 'properties', 'country', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories','sliders'));
+        return view('frontend.citizenship',compact('headerImage', 'properties', 'country', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories','sliders', 'faqs'));
     }
 
 

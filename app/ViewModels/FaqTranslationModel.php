@@ -37,7 +37,7 @@ class FaqTranslationModel implements IFaqTranslationModel
         $locale = Session::get('currentLocal');
         $data['locale'] = $locale;
         $data['name'] = $request->name;
-        $data['question'] = $request->address;
+        $data['question'] = $request->question;
         $data['description'] = $request->description;
         $this->_faqTranslationService->add($data);
 
@@ -47,7 +47,7 @@ class FaqTranslationModel implements IFaqTranslationModel
     {
         $data['faqId'] = $id;
         $data['name'] = $request->name;
-        $data['question'] = $request->address;
+        $data['question'] = $request->question;
         $data['description'] = $request->description;
         $data['locale'] = $request->local;
         $this->_faqTranslationService->update($data);

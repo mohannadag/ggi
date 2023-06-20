@@ -10,6 +10,7 @@ class FaqTranslation extends Model
     use HasFactory;
     protected $fillable =
         [
+            'question',
             'faq_id',
             'name',
             'locale',

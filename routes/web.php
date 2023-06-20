@@ -61,7 +61,7 @@ Route::get('/ivr-3/{property}', [Front\PropertyController::class, 'ivrProp3'])->
 Route::get('/ivr-4/{property}', [Front\PropertyController::class, 'ivrProp4'])->name('front.property-ivr-4');
 Route::get('/services/{service}', [Front\HomePageController::class, 'service'])->name('single-service');
 Route::get('/about', [Front\HomePageController::class, 'about']);
-Route::get('/faq', [Front\HomePageController::class, 'faq']);
+// Route::get('/faq', [Front\HomePageController::class, 'faq']);
 Route::get('/page/{page}', [Front\HomePageController::class, 'page']);
 Route::get('/landing/{landing}', [Front\HomePageController::class, 'landing']);
 Route::get('/virtual', [Front\HomePageController::class, 'virtualreality']);

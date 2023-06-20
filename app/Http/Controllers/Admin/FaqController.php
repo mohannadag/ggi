@@ -39,6 +39,7 @@ class FaqController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $this->_faqModel->add($request);
         return redirect()->route('admin.faqs.index');
     }

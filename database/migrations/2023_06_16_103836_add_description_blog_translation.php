@@ -25,7 +25,7 @@ class AddDescriptionBlogTranslation extends Migration
      */
     public function down()
     {
-        Schema::table('blogs', function (Blueprint $table) {
+        Schema::table('blog_translations', function (Blueprint $table) {
             $table->dropColumn('description');
         });
     }
