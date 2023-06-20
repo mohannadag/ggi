@@ -20,7 +20,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Title:</label><span class="text-danger">*</span>
-                                            <input type="text" name="name" class="form-control filter-input {{ $errors->has('name') ? 'has-error' : '' }}" placeholder="Title" value="{{$sliderTranslation->name}}">
+                                            <input type="text" name="name" class="form-control filter-input {{ $errors->has('name') ? 'has-error' : '' }}" placeholder="Title" value="{{$sliderTranslation->name ?? ''}}">
                                             @if($errors->has('name'))
                                                 <span class="help-block text-danger">
                                                 <strong> {{ $errors->first('name') }}</strong>
@@ -31,7 +31,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Subtitle </label>
-                                            <input type="text" name="address" class="form-control filter-input" placeholder="Subtitle" value="{{$sliderTranslation->address}}">
+                                            <input type="text" name="address" class="form-control filter-input" placeholder="Subtitle" value="{{$sliderTranslation->address ?? ''}}">
                                         </div>
                                     </div>
                                     <div class="col-md-12 mb-4">
@@ -63,7 +63,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="list_info">Description</label> <span class="text-danger">*</span>
-                                            <textarea name="description" class="form-control" id="list_info" rows="4" placeholder="Enter your text here">{{$slider->sliderTranslation->description}}</textarea>
+                                            <textarea name="description" class="form-control" id="list_info" rows="4" placeholder="Enter your text here">{{$slider->sliderTranslation->description ?? ''}}</textarea>
                                             @error('description')
                                             <p class="text-danger">{{$message}}</p>
                                             @enderror

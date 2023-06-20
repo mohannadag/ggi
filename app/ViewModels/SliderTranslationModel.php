@@ -64,7 +64,7 @@ class SliderTranslationModel implements ISliderTranslationModel
         //thumbnail image save end
         if ($request->hasFile('file')) {
             $thumbnailImage = $request->file('file');
-            $thumbnailName = $this->imageUpdate($thumbnailImage, $request->name, $slider, 'images', 1133, 843);
+            $thumbnailName = $this->imageUpdate($thumbnailImage, $request->name, $slider, 'images', 1920, 750);
             $data['file'] = $thumbnailName;
         }
         else {
