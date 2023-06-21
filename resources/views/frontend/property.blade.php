@@ -103,7 +103,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                 </div>
                 @endif
                 <div class="mt-[45px] mb-[35px]">
-                    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 px-[15px] mx-[-15px] mt-[40px]">
+                    {{-- <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 px-[15px] mx-[-15px] mt-[40px]">
                         <li class="flex flex-wrap items-center mb-[25px]">
                             @if($property->price !== '')
                             <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{trans('file.starts_from')}}: <span class="text-secondary"> {{ currencyConvert($property->price) }}</span></h2>
@@ -111,7 +111,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{trans('file.starts_from')}}: <span class="text-secondary">No Price Given</span></h2>
                             @endif
                         </li>
-                    </ul>
+                    </ul> --}}
 
                     <div>
                         <dl class="mt-5 text-center grid grid-cols-3 gap-4 sm:grid-cols-3">
@@ -205,7 +205,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             @endif
                     </ul>
                     @endif
-                    <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-my-5">{{trans('file.project_details')}}<span class="text-secondary">{{trans('file.q-mark')}}</span></h5>
+                    <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5">{{trans('file.project_details')}}<span class="text-secondary">{{trans('file.q-mark')}}</span></h5>
                     <div class="blog-body">
                         {!! $property->propertyDetails->propertyDetailTranslation->content ?? ($property->propertyDetails->propertyDetailTranslationEnglish->content ?? null) !!}
                     </div>
