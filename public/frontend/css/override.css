@@ -317,3 +317,13 @@
     direction: rtl !important;
     font-family: var(--font-secondary);
   }
+
+
+  @media (min-width: 1536px)
+  {
+    .slider-image {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+  }

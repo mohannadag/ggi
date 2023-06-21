@@ -72,7 +72,7 @@
                     @endforeach
                 @else --}}
                     @foreach ( $sliders->sortBy('order') as $slider )
-                        @if($slider->sliderTranslation != null)
+                        @if($slider->sliderTranslation != null && $slider->sliderTranslation->name != null)
                         <div class="swiper-slide lg:h-[700px] xl:h-[950px] xs:h-[auto] flex flex-wrap items-center">
                             <div class="container">
                                 <div class="grid grid-cols-12">
@@ -101,7 +101,7 @@
                                         </div>
                                     </div>
                                     <div class="col-span-12 lg:col-span-5 xl:col-span-6">
-                                        <div class="relative mt-10 md:mt-0 lg:absolute {{$align}} lg:bottom-0 lg:w-3/4 xl:w-fit">
+                                        <div class="relative mt-10 md:mt-0 lg:absolute {{$align}} lg:bottom-0 lg:w-3/4 slider-image">
                                             <img class="hero_image w-full" src="{{URL::asset('/images/images/'.( $slider->sliderTranslation->file ?? $slider->file) )}}" width="866" height="879" alt="hero image">
                                         </div>
                                     </div>
