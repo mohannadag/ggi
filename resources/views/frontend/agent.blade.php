@@ -52,7 +52,7 @@
                                 <p>{{$agent->description}}</p>
                                 <span class="font-lora font-normal block text-secondary text-[18px] mt-[10px]">
                                     Phone no. </span>
-                                <a href="tel:+905373539567" class="font-lora font-medium text-primary text-[28px]">+90537 353 95 67</a>
+                                <a href="tel:{{$agent->mobile}}" class="font-lora font-medium text-primary text-[28px]">{{$agent->mobile}}</a>
                             </div>
                             <!--<div class="mb-[30px]">-->
                             <!--    <h3 class="font-lora font-medium text-[28px] text-primary mb-[10px]">Overview<span class="text-secondary">.</span></h3>-->
@@ -243,7 +243,7 @@
 
                     <div class="relative py-[50px] px-[20px] lg:px-[35px] bg-[#F5F9F8] transition-all drop-shadow-[0px_10px_20px_rgba(0,0,0,0.15)] rounded-[10px]">
                         <span class="font-lora text-[28px] leading-none text-secondary mb-[15px] block">Whatsapp</span>
-                        <a href="tel:{{$agent->mobile}}" class="font-lora text-base text-primary hover:text-secondary">{{$agent->mobile}}</a>
+                        <a href="https://wa.me/{{$agent->mobile}}" target="_blank" class="font-lora text-base text-primary hover:text-secondary">{{$agent->mobile}}</a>
                         <svg class="absolute top-1/2 -translate-y-1/2 right-[30px]" width="90" height="100" viewBox="0 0 90 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g opacity="0.05" clip-path="url(#clip0_1035_2389)">
                                 <path d="M39.0114 62.0855C42.3982 65.4768 46.7536 67.0369 49.7794 67.0369L51.4999 67.0068C57.4915 66.9044 63.1281 64.507 67.3632 60.2664C68.9152 58.7183 68.452 56.4113 67.2489 55.5198L57.702 48.442C57.1245 48.0143 56.3124 48.0746 55.8071 48.5806L51.524 52.8694C50.6216 53.7729 50.369 55.0861 50.766 56.2185C49.2982 56.2788 47.8304 55.7186 46.7656 54.6524L35.6066 43.4906C34.5418 42.4244 33.9884 40.9607 34.0425 39.4849C35.1735 39.8824 36.4849 39.6294 37.3872 38.7259L41.6703 34.4371C42.1817 33.9251 42.2418 33.1179 41.8087 32.5396L34.7524 22.9741C33.8861 21.7995 31.5881 21.2815 30.012 22.8597C25.777 27.1063 23.3828 32.7444 23.2805 38.744L23.2505 40.4727C23.2444 40.7077 23.2264 46.2795 28.1953 51.255L39.0114 62.0855ZM26.1981 38.7982C26.2884 33.5576 28.3758 28.6303 32.0814 24.9258C32.2438 24.7631 32.3822 24.7571 32.5085 24.8354L38.7287 33.2625L35.3299 36.6658C35.2156 36.7803 35.0171 36.7803 34.9028 36.6658C33.7598 35.5213 31.7987 36.0574 31.3896 37.6175C30.6557 40.4426 31.4799 43.4906 33.5492 45.5567C41.55 53.5681 40.0341 52.0502 44.7022 56.7245C46.7716 58.7966 49.8095 59.6219 52.6308 58.887C54.1949 58.4774 54.7243 56.5137 53.5813 55.3692C53.467 55.2547 53.467 55.056 53.5813 54.9415L56.9802 51.5382L65.396 57.7666C65.4742 57.8931 65.4682 58.0316 65.3058 58.1943C61.6062 61.8988 56.6854 63.989 51.4518 64.0854L49.7433 64.1155C49.5629 64.1215 45.1354 64.0854 41.0748 60.0194L30.2587 49.1889C26.1981 45.123 26.168 40.6956 26.168 40.5209L26.1981 38.7982Z" fill="#FF6500" />
