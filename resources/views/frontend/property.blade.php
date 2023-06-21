@@ -1,4 +1,5 @@
 @extends('frontend.main')
+@section('title'){{$property->property_id}}@endsection
 @section('meta'){{$property->description}}@endsection
 @section('image'){{ URL::asset('/images/thumbnail/'.$property->thumbnail) }}@endsection
 @section('content')
@@ -47,14 +48,15 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
     <div class="container">
         <div class="grid grid-cols-12 mb-[-30px] gap-[30px] xl:gap-[50px]">
             <div class="col-span-12 md:col-span-9 lg:col-span-9 mb-[30px]">
-                <div class="col-span-12 flex flex-wrap flex-col md:flex-row items-start justify-between">
+                <div class="col-span-12 flex flex-wrap flex-col md:flex-row items-start justify-between property-list">
                     <div class="mb-5 lg:mb-0">
-                        <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{$property->property_id}}<span class="text-secondary">.</span></h2>
+                        <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{$property->property_id}}</h2>
                     </div>
-                    <ul class="all-properties flex flex-wrap lg:pt-[10px]">
-                        <li data-tab="gallery" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.gallery')}}</button></li>
+                    <ul class="all-properties flex flex-wrap">
+                        <li data-tab="gallery" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none property-list-item"><button class="leading-none capitalize hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.gallery')}}</button></li>
                         @if($property->propertyDetails->ivr !== NULL)
-                        <li data-tab="ivr" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out"><img style="max-width: 31px; height: auto;" src="{{URL::asset('/frontend/images/360-degrees.png')}}"></button></li>
+                        {{-- <li data-tab="ivr" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none property-list-item"><button class="leading-none capitalize hover:text-secondary transition-all text-[16px] ease-out"><img style="max-width: 31px; height: auto;" src="{{URL::asset('/frontend/images/360-degrees.png')}}"></button></li> --}}
+                        <li data-tab="ivr" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none property-list-item"><button class="leading-none capitalize hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.ivr')}}</button></li>
                         @endif
                     </ul>
                 </div>
@@ -89,12 +91,13 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                 <div class="ivr properties-tab-content">
                     <div class="mt-[25px] mb-[35px]">
                         <div class="relative">
-                            <div data-relative-input="true">
+                            <iframe src="https://vr.ggiturkey.com/319/GGI-396/" title="Virtual reality" height="600px" width="100%"></iframe>
+                            {{-- <div data-relative-input="true">
                                 <img data-depth="0.1" src="{{URL::asset('images/thumbnail/' . $property->thumbnail)}}" class="w-full rounded-[8px]" width="100%" height="300px" alt="video image">
                             </div>
                             <a href="{{$property->propertyDetails->ivr}}" target="_blank" class="bg-white text-white hover:text-primary absolute left-0 right-0 mx-auto top-1/2 -translate-y-1/2 hover:scale-105 hover:bg-primary w-[120px] h-[120px] flex flex-wrap z-[1] items-center justify-center opacity-100 shadow-[0px 4px 4px rgba(0, 0, 0, 0.25)] transition-all rounded-full group before:block before:absolute  before:bg-white before:opacity-80 before:shadow-[0px 4px 4px rgba(0, 0, 0, 0.25)] hover:before:bg-primary hover:before:opacity-80 before:w-[70px] before:h-[70px] before:rounded-full before:z-[-1]">
                                 <img style="max-width: 70px;height: auto;" src="{{URL::asset('/frontend/images/360-degrees.png')}}">
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 </div>
@@ -145,7 +148,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
 
                     @if($property->category_id == '5')
-                    <h4 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium"> {{trans('file.features')}}<span class="text-secondary">.</span>
+                    <h4 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5"> {{trans('file.features')}}
                     </h4>
                     <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 px-[15px] mx-[-15px] mt-[40px]">
                         @if($property->propertyDetails->heating == 2)
@@ -202,7 +205,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             @endif
                     </ul>
                     @endif
-                    <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium mt-[25px]">{{trans('file.project_details')}}<span class="text-secondary">?</span></h5>
+                    <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-my-5">{{trans('file.project_details')}}<span class="text-secondary">{{trans('file.q-mark')}}</span></h5>
                     <div class="blog-body">
                         {!! $property->propertyDetails->propertyDetailTranslation->content ?? ($property->propertyDetails->propertyDetailTranslationEnglish->content ?? null) !!}
                     </div>
@@ -210,7 +213,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                 @if($property->propertyDetails->video !== Null)
                 <div class="w-auto h-auto">
                     <div class="mt-[25px] mb-[35px]">
-                        <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">{{trans('file.video')}}<span class="text-secondary">.</span></h5>
+                        <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5">{{trans('file.video')}}</h5>
                         <div class="relative">
                             <div data-relative-input="true">
                                 <img data-depth="0.1" src="{{URL::asset('images/thumbnail/' . $property->thumbnail)}}" class="object-cover rounded-[8px] w-full h-full" width="100%" height="300px" alt="video image">
@@ -225,10 +228,14 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                 </div>
                 @endif
                 @if ($property->propertyDetails->first_floor_title !== NULL)
-                <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">{{trans('file.available_units')}}<span class="text-secondary">.</span></h5>
-                <li class="flex flex-wrap items-center mb-[25px]">
-                    <h2 class="font-lora text-primary leading-[1.277] capitalize lg font-medium">{{trans('file.payment_options')}}: <span class="text-secondary">@if($property->propertyDetails->cash == 2) {{trans('file.cash')}} @endif @if($property->propertyDetails->installments == 2) ,{{trans('file.installments')}} @endif </span></h2>
-                </li>
+                <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5">{{trans('file.available_units')}}</h5>
+                <div class="flex flex-wrap items-center mb-[25px]">
+                    <h2 class="font-lora text-primary leading-[1.277] capitalize lg font-medium my-5">{{trans('file.payment_options')}}:</h2>
+                    <p class="text-secondary">
+                        @if($property->propertyDetails->cash == 2) <span class="mx-4">{{trans('file.cash')}}</span> @endif
+                        @if($property->propertyDetails->installments == 2) <span class="mx-4">{{trans('file.installments')}}</span> @endif
+                    </p>
+                </div>
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -684,14 +691,14 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                 </div>
                 @endif
                 @if($property->propertyDetails->location_info !== NULL)
-                <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">{{trans('file.location_info')}}<span class="text-secondary">.</span></h5>
+                <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5">{{trans('file.location_info')}}</h5>
                 @endif
                 <div class="blog-body">
                     {!! $property->propertyDetails->propertyDetailTranslation->location_info ?? ($property->propertyDetails->propertyDetailTranslationEnglish->location_info ?? null) !!}
                 </div>
 
                 @if($property->facilities->count() > 0 )
-                <h4 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium"> {{trans('file.amenities')}}<span class="text-secondary">.</span>
+                <h4 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5"> {{trans('file.amenities')}}
                 </h4>
                 @endif
 
@@ -704,7 +711,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     @endforeach
                 </ul>
                 @if ($property->propertyDetails->first_floor_picture !== 'default.png' && $property->propertyDetails->first_floor_picture !== '')
-                <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium">{{trans('file.floor_plans')}}<span class="text-secondary">.</span></h5>
+                <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5">{{trans('file.floor_plans')}}</h5>
                 @endif
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-[30px]">
                     @if ($property->propertyDetails->first_floor_picture !== 'default.png' && $property->propertyDetails->first_floor_picture !== '')
@@ -837,7 +844,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
 
                     <div class="mb-[60px]">
-                        <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[40px] font-medium">{{trans('file.similar_listing')}}<span class="text-secondary">.</span></h3>
+                        <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[40px] font-medium">{{trans('file.similar_listing')}}</h3>
                         <div class="sidebar-carousel relative">
                             <div class="swiper p-1">
                                 <!-- Additional required wrapper -->
@@ -914,7 +921,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
                     <div class="mb-[60px]">
                         <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[40px] font-medium">
-                            {{trans('file.tags')}}<span class="text-secondary">.</span>
+                            {{trans('file.tags')}}
                         </h3>
                         <ul class="flex flex-wrap my-[-7px] mx-[-5px] font-light text-[12px]">
                         @foreach($tags as $tag)

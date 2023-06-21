@@ -1,5 +1,6 @@
 @extends('frontend.main')
-
+@section('title'){{$news->blogTranslation->title ?? $news->title}}@endsection
+@section('image'){{ URL::asset('/images/thumbnail/'.$news->image) }}@endsection
 @section('content')
 @include('frontend.includes.header1')
 

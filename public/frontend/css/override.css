@@ -327,3 +327,24 @@
         width: fit-content;
     }
   }
+
+
+.property-list {
+    border: 1px dashed var(--primary-color);
+    padding: 5px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.property-list-item {
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    border: 1px solid;
+    /* border-bottom: 0; */
+    background-color: var(--primary-color);
+}
+
+.property-list-item:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}

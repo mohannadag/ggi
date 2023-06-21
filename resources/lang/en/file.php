@@ -405,4 +405,5 @@ return array(
     'service6' => 'no translation',
     'service7' => 'no translation',
     'best-offer-p' => 'no translation',
+    'q-mark' => '?',
 );

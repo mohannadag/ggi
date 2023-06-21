@@ -26,8 +26,7 @@
 
                         <div class="db-add-list-wrap">
                             <div class="act-title">
-                                <h5>Property Information :</h5>
-                                <h6>Fields in this section are mandatory</h6>
+                                <h5>{{trans('admin.property-information')}} :</h5>
                             </div>
                             <div class="db-add-listing">
                                 <div class="row">
@@ -94,7 +93,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Tag:</label> <span class="text-danger">*</span>
-                                            <select name="tag" id="tag" class="form-control">
+                                            <select name="tag" id="tag" class="form-control" multiple>
                                                 <option value="">Select</option>
                                                 @foreach($tags as $tag)
                                                     <option value="{{$tag->id}}">{{$tag->name}}</option>
