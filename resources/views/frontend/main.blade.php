@@ -54,11 +54,11 @@
 
     <link rel="stylesheet" href="{{asset('frontend/css/snapgram.css')}}">
     <link rel='stylesheet' href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="{{asset('frontend/css/stories.css')}}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/css/override.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/css/override1.css') }}" />
     @if( App::isLocale('ar'))
         <link rel="stylesheet" href="{{ asset('frontend/css/override-ar.css') }}" />
     @endif
