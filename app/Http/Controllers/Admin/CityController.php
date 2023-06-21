@@ -113,17 +113,16 @@ class CityController extends Controller
         $states = State::with('stateTranslation')->where('country_id',$request->country)->get();
         echo '<option value="">Select State</option>';
         foreach ($states as $state){
-             echo '<option value="'.$state->id.'">'.$state->stateTranslation->name.'</option>';
+             echo '<option value="'.$state->id.'">'.($state->stateTranslation->name ?? $state->name ?? '').'</option>';
         }
     }
     public function getCity(Request $request)
     {
-
         App::setLocale(Session::get('currentLocal'));
         $cities = City::with('cityTranslation')->where('state_id',$request->state)->get();
-        echo '<option value="0">Select City</option>';
+        echo '<option value="">Select City</option>';
         foreach ($cities as $city){
-            echo '<option value="'.$city->id.'">'.$city->cityTranslation->name.'</option>';
+            echo '<option value="'.$city->id.'">'.($city->cityTranslation->name ?? $city->name ?? '').'</option>';
         }
     }
 }
