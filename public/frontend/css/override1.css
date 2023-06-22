@@ -348,3 +348,17 @@
     background-color: var(--secondary-color);
     color: white;
 }
+
+/* body {
+    width: 100%;
+    float: left;
+    position: relative;
+    background-image: url(https://ggiturkey.com/frontend/images/bg.png);
+    font-family: Al-Jazeera-Arabic-Regular;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-attachment: fixed;
+    overflow-x: hidden;
+} */

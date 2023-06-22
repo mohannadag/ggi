@@ -108,7 +108,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
 @endphp
 
-<body class="font-karla text-body text-tiny">
+<body class="font-karla text-body text-tiny" style="background-image: url( {{URL::asset('/frontend/images/bg.png') }});">
 
     <div class="overflow-hidden">
 
