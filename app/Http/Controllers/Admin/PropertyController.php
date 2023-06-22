@@ -179,6 +179,15 @@ class PropertyController extends Controller
 
     }
 
+    public function destroyAllImages(Request $request)
+    {
+        $fileModal = Image::where('property_id',$request->id)->first();
+        $fileModal->name = '';
+        $fileModal->image_path = '';
+        $fileModal->save();
+        return response()->json('Images deleted!');
+    }
+
 
     public function importView(Request $request){
         return view('admin.import-view');

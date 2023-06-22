@@ -219,6 +219,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::get('checkout', [Admin\PaymentGatewayController::class, 'checkoutPage'])->name('checkout.page');
     Route::get('/delete/language', [Admin\LanguageController::class, 'deleteLanguage'])->name('delete.language');
     Route::get('/delete/galleryImage', [Admin\PropertyController::class, 'destroyGalleryImage'])->name('destroy.galleryImage');
+    Route::get('/delete/AllgalleryImages', [Admin\PropertyController::class, 'destroyAllImages'])->name('destroy.allGalleryImages');
     Route::get('languages/update', [Admin\LanguageController::class, 'update'])->name('update.language');
 
 
