@@ -75,7 +75,7 @@
             x = (x + 4 <= size_li) ? x + 4 : size_li;
             $('.faqs >:lt(' + x + ')').show();
             $('.hide_button').show();
-            if (x <= size_li) {
+            if (x >= size_li) {
                 $('.show_button').hide();
             }
         });
@@ -85,7 +85,7 @@
             $('.faqs >').not(':lt(' + x + ')').hide();
             $('.show_button').show();
             $('.hide_button').show();
-            if (x >= 4) {
+            if (x >= size_li) {
                 $('.hide_button').hide();
             }
         });
