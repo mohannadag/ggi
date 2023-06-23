@@ -13,7 +13,7 @@
     <meta name="author" content="GGI Turkey," />
     <!--open graph metas-->
     <meta property="og:site_name" content="GGI Turkey, Your real estate solution" />
-    <meta property=“og:title” content="@yield('title')" />
+    <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('meta')" />
     <meta property="og:url" content="http://ggiturkey.com" />
     <meta property="og:type" content="website" />
