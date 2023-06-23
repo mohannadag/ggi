@@ -10,16 +10,30 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="author" content="GGI Turkey," />
+    <meta name="author" content="GGI Turkey" />
     <!--open graph metas-->
-    <meta property="og:site_name" content="GGI Turkey, Your real estate solution" />
+    <meta name="description" content="@yield('meta')" />
+    <meta name="keywords" content="realestate" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@GGITurkey" />
+    <meta name="twitter:creator" content="@GGITurkey" />
+    <meta name="twitter:title" content="@yield('title')" />
+    <meta name="twitter:description" content="@yield('meta')" />
+    <meta name="twitter:image" content="@yield('image')" />
+
+
+    <meta property="og:site_name" content="GGI Turkey" />
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('meta')" />
-    <meta property="og:url" content="http://ggiturkey.com" />
-    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{url()->current()}}" />
+    <meta property="og:type" content="article">
+    {{-- <meta property="og:type" content="website" /> --}}
     <meta property="og:image" content="@yield('image')" />
+    <meta property="og:image:alt" content="@yield('title')" />
     <meta property="twitter:card" content="GGI Turkey," />
     <meta property="twitter:image" content="https://ggiturkey.com/frontend/images/logo/logo.png" />
+    <meta property="og:locale:alternate" content="en_GB" />
+    <meta property="og:locale" content="ar_AE" />
     <!-- Links -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
