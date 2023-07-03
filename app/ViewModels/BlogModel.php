@@ -163,7 +163,8 @@ class BlogModel implements IBlogModel
                 'slug' => request('slug'),
                 'image'=> $thumbnailName,
                 'body'=> request('body'),
-                'description' => request('description')
+                'description' => request('description'),
+                'deleted' => 0,
             ]);
             $blog->tags()->sync($request->tags);
 
