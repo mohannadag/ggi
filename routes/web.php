@@ -296,3 +296,24 @@ Route::get('/migration', function(){
     Artisan::call('migrate', array('--path' => 'database/migrations', '--force' => true));
     dd('success');
 });
+
+
+// Route::get('/currenciesupdate', function(){
+//     // $currencies = \AmrShawky\LaravelCurrency\Facade\Currency::rates()
+//     //                     ->latest()
+//     //                     ->get();
+//     // $baseCurrencies = \App\Models\Currency::all();
+//     // $USD = $baseCurrencies->where('name', '==', 'USD')->first();
+//     // $TRY = $baseCurrencies->where('name', '==', 'TRY')->first();
+//     // $EUR = $baseCurrencies->where('name', '==', 'EUR')->first();
+//     // $USD->value = $currencies['USD'];
+//     // $TRY->value = $currencies['TRY'];
+//     // $EUR->value = $currencies['EUR'];
+//     // $USD->update();
+//     // $TRY->update();
+//     // $EUR->update();
+
+//     updateCurrencies();
+
+//     dd('success');
+// });

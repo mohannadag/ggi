@@ -190,11 +190,11 @@ class BlogModel implements IBlogModel
         request()->validate([
             'category_id'=>'required',
             'user_id' => 'required',
-            'title' => 'required|min:10',
+            'title' => 'required',
             'slug'=> 'required',
          //    'image'=>'required',
             'body'=> 'required',
-            'description' => 'required'
+            'description' => 'required|max:150'
         ]);
 
         try {
@@ -257,7 +257,8 @@ class BlogModel implements IBlogModel
                 [
                     'title' => $blog->title,
                     'slug'=> $slug,
-                    'body'=> request('body')
+                    'body'=> request('body'),
+                    'description' => request('description')
                 ]
             );
 

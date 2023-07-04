@@ -126,15 +126,17 @@ class NewsController extends Controller
         $recentlyAddedPosts = Blog::latest()->where('status', 'approved')->take(3)->get();
         $tags = Tag::where('status', 1)->get();
         // dd($news);
-        $previous = Blog::where('id', '<', $news->id)->max('id');
-        $next = Blog::where('id', '>', $news->id)->min('id');
+        // $previous = Blog::where('id', '<', $news->id)->max('id');
+        // dd($previous);
+        // $next = Blog::where('id', '>', $news->id)->min('id');
 
-        $previousPost = Blog::where('id', $previous)->first();
-        $nextPost = Blog::where('id', $next)->first();
+        // $previousPost = Blog::where('id', $previous)->first();
+        // $nextPost = Blog::where('id', $next)->first();
         // dd($previousPost);
         $headerImage = HeaderImage::where('page', 'single-news')->first();
 
-        return view('frontend.single-news', compact('news', 'popularTopics', 'recentlyAddedPosts', 'tags', 'previousPost', 'nextPost', 'previous', 'next', 'headerImage', 'properties', 'states', 'city', 'minPrice', 'maxPrice', 'minArea', 'maxArea', 'categories'));
+        // return view('frontend.single-news', compact('news', 'popularTopics', 'recentlyAddedPosts', 'tags', 'previousPost', 'nextPost', 'previous', 'next', 'headerImage', 'properties', 'states', 'city', 'minPrice', 'maxPrice', 'minArea', 'maxArea', 'categories'));
+        return view('frontend.single-news', compact('news', 'popularTopics', 'recentlyAddedPosts', 'tags', 'headerImage', 'properties', 'states', 'city', 'minPrice', 'maxPrice', 'minArea', 'maxArea', 'categories'));
     }
 
 
