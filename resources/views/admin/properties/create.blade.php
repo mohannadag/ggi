@@ -669,7 +669,7 @@
                                                 </td>
                                                 <td>
                                                     <label for="addMoreInputFields[0][max_price]">max price</label>
-                                                    <input type="number" id="addMoreInputFields[0][masx_price]" name="addMoreInputFields[0][masx_price]" class="form-control" value="0" min="0" required />
+                                                    <input type="number" id="addMoreInputFields[0][max_price]" name="addMoreInputFields[0][max_price]" class="form-control" value="0" min="0" required />
                                                 </td>
                                                 <td>
                                                     <label for="addMoreInputFields[0][min_size]">min size</label>
@@ -677,7 +677,7 @@
                                                 </td>
                                                 <td>
                                                     <label for="addMoreInputFields[0][max_size]">max size</label>
-                                                    <input type="number" id="addMoreInputFields[0][masx_size]" name="addMoreInputFields[0][masx_size]" class="form-control" value="0" min="0" required />
+                                                    <input type="number" id="addMoreInputFields[0][max_size]" name="addMoreInputFields[0][max_size]" class="form-control" value="0" min="0" required />
                                                 </td>
                                             </tr>
 
@@ -913,16 +913,16 @@
                     <input type="number" id="addMoreInputFields[`+ i +`][min_price]" name="addMoreInputFields[`+ i +`][min_price]" class="form-control" value="0" min="0" required />
                 </td>
                 <td>
-                    <label for="addMoreInputFields[`+ i +`][masx_price]">max price</label>
-                    <input type="text" id="addMoreInputFields[`+ i +`][max_price]" name="addMoreInputFields[`+ i +`][masx_price]" class="form-control" value="0" min="0" required />
+                    <label for="addMoreInputFields[`+ i +`][max_price]">max price</label>
+                    <input type="text" id="addMoreInputFields[`+ i +`][max_price]" name="addMoreInputFields[`+ i +`][max_price]" class="form-control" value="0" min="0" required />
                 </td>
                 <td>
                     <label for="addMoreInputFields[`+ i +`][min_size]">min size</label>
                     <input type="text" id="addMoreInputFields[`+ i +`][min_size]" name="addMoreInputFields[`+ i +`][min_size]" class="form-control" value="0" min="0" required />
                 </td>
                 <td>
-                    <label for="addMoreInputFields[`+ i +`][masx_size]">max size</label>
-                    <input type="text" id="addMoreInputFields[`+ i +`][max_size]" name="addMoreInputFields[`+ i +`][masx_size]" class="form-control" value="0" min="0" required />
+                    <label for="addMoreInputFields[`+ i +`][max_size]">max size</label>
+                    <input type="text" id="addMoreInputFields[`+ i +`][max_size]" name="addMoreInputFields[`+ i +`][max_size]" class="form-control" value="0" min="0" required />
                 </td>
             </tr>
 
