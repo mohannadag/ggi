@@ -186,7 +186,7 @@
 
                                         <ul>
                                             <li class="flex flex-wrap items-center justify-between">
-                                                <span class="font-lora text-base text-primary leading-none font-medium">{{ trans('file.starts_from') }}: {{ currencyConvert($property->price) }}</span>
+                                                <span class="font-lora text-base text-primary leading-none font-medium">{{ trans('file.starts_from') }}: {{ convert($property->price, $property->currency) }}</span>
                                                 <span class="flex flex-wrap items-center">
                                                 <button class="mr-[15px] text-[#9D9C9C] hover:text-secondary" aria-label="svg">
                                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -351,7 +351,7 @@
                     </div>
 
                 </div> --}}
-                {{ $properties->links('vendor.pagination.custom') }}
+                {{ $properties->appends($_GET)->links('vendor.pagination.custom') }}
             </div>
 
             <div class="col-span-12 md:col-span-6 lg:col-span-4 mb-[30px]">
@@ -576,6 +576,10 @@
                                     <option value="">{{trans('file.bedrooms')}}</option>
                                     @endif --}}
                                     <option value="">{{trans('file.bedrooms')}}</option>
+                                    @foreach ($units as $unit)
+                                        <option value="{{ $unit->id }}" {{request()->bed == $unit->id ? "selected" : ""}} >{{ $unit->name }}</option>
+                                    @endforeach
+                                    {{-- <option value="">{{trans('file.bedrooms')}}</option>
                                     <option value="1" {{request()->bed == 1 ? "selected" : ""}}>1+0</option>
                                     <option value="2" {{request()->bed == 2 ? "selected" : ""}}>1+1</option>
                                     <option value="3" {{request()->bed == 3 ? "selected" : ""}}>2+1</option>
@@ -584,7 +588,7 @@
                                     <option value="6" {{request()->bed == 6 ? "selected" : ""}}>5+1</option>
                                     <option value="7" {{request()->bed == 7 ? "selected" : ""}}>6+1</option>
                                     <option value="8" {{request()->bed == 8 ? "selected" : ""}}>7+1</option>
-                                    <option value="9" {{request()->bed == 9 ? "selected" : ""}}>8+1</option>
+                                    <option value="9" {{request()->bed == 9 ? "selected" : ""}}>8+1</option> --}}
                                 </select>
                             </div>
                             <div id="bathroom" class="relative mb-[25px] bg-white">
@@ -643,8 +647,7 @@
                                             <div class="pt-[15px] pb-[20px] px-[20px] text-left">
                                                 <h3><a href="{{ route('front.property', ['property' => $property->id]) }}"
                                                         class="font-lora leading-tight text-[18px] text-primary">{{
-                                                        $property->propertyTranslation->title ??
-                                                        ($property->propertyTranslationEnglish->title ?? null) }}</a>
+                                                        $property->property_id }}</a>
                                                 </h3>
                                                 <h4 class="leading-none"><a
                                                         href="{{ route('front.property', ['property' => $property->id]) }}"
@@ -661,7 +664,7 @@
                                                     <li class="flex flex-wrap items-center justify-between">
                                                         <span
                                                             class="font-lora text-[14px] text-secondary leading-none">{{trans('file.starts_from')}}:
-                                                            {{ currencyConvert($property->price) }}</span>
+                                                            {{ convert($property->price, $property->currency) }}</span>
 
                                                         <span class="flex flex-wrap items-center">
                                                             <button

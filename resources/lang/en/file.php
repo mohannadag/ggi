@@ -406,4 +406,6 @@ return array(
     'service7' => 'Receiving the decision to grant Turkish citizenship',
     'best-offer-p' => 'Invest in real estate and obtain Turkish citizenship through the Golden Group',
     'q-mark' => '?',
+    'baths-number' => 'number of baths',
+    'last-update' => 'Last Update',
 );

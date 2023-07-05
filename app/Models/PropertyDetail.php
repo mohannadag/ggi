@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Session;
 
 class PropertyDetail extends Model
@@ -197,5 +198,10 @@ class PropertyDetail extends Model
     {
         return $this->hasOne(PropertyDetailTranslation::class,'propertyDetail_id')
             ->where('locale','EN');
+    }
+
+    public function floors() : HasMany
+    {
+        return $this->hasMany(PropertyFloor::class, 'property_details_id', 'id');
     }
 }

@@ -93,7 +93,7 @@
                     </div>
                     @endif
                     <div class="mt-[45px] mb-[35px]">
-                        <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{trans('file.starts_from')}}: <span class="text-secondary">{{ currencyConvert($property->price) }}</span></h2>
+                        <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{trans('file.starts_from')}}: <span class="text-secondary">{{ convert($property->price, $property->currency) }}</span></h2>
                         <h3 class="font-light text-[18px] text-secondary mb-[20px]"> {{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }}, {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }}, {{ $property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null) }}</h3>
                         <p>{!! $property->propertyDetails->propertyDetailTranslation->content ?? ($property->propertyDetails->propertyDetailTranslationEnglish->content ?? null) !!}</p>
                     </div>
@@ -130,7 +130,7 @@
                                         {{$property->propertyDetails->first_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->first_floor_price) }}
+                                        {{ convert($property->propertyDetails->first_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -144,7 +144,7 @@
                                         {{$property->propertyDetails->second_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->second_floor_price) }}
+                                        {{ convert($property->propertyDetails->second_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -158,7 +158,7 @@
                                         {{$property->propertyDetails->third_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->third_floor_price) }}
+                                        {{ convert($property->propertyDetails->third_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -172,7 +172,7 @@
                                         {{$property->propertyDetails->fourth_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->fourth_floor_price) }}
+                                        {{ convert($property->propertyDetails->fourth_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -186,7 +186,7 @@
                                         {{$property->propertyDetails->fifth_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->fifth_floor_price) }}
+                                        {{ convert($property->propertyDetails->fifth_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -200,7 +200,7 @@
                                         {{$property->propertyDetails->sixth_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->sixth_floor_price) }}
+                                        {{ convert($property->propertyDetails->sixth_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -214,7 +214,7 @@
                                         {{$property->propertyDetails->seventh_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->seventh_floor_price) }}
+                                        {{ convert($property->propertyDetails->seventh_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -228,7 +228,7 @@
                                         {{$property->propertyDetails->eighth_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->eighth_floor_price) }}
+                                        {{ convert($property->propertyDetails->eighth_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -242,7 +242,7 @@
                                         {{$property->propertyDetails->ninth_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->ninth_floor_price) }}
+                                        {{ convert($property->propertyDetails->ninth_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -256,7 +256,7 @@
                                         {{$property->propertyDetails->tenth_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->tenth_floor_price) }}
+                                        {{ convert($property->propertyDetails->tenth_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -270,7 +270,7 @@
                                         {{$property->propertyDetails->eleventh_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->eleventh_floor_price) }}
+                                        {{ convert($property->propertyDetails->eleventh_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -284,7 +284,7 @@
                                         {{$property->propertyDetails->twelfth_floor_baths}}
                                     </td>
                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {{ currencyConvert($property->propertyDetails->twelfth_floor_price) }}
+                                        {{ convert($property->propertyDetails->twelfth_floor_price, $property->currency) }}
                                     </td>
                                   </tr>
                                   @endif
@@ -349,7 +349,7 @@
 
                 </div>
 
-                
+
             </div>
 
         </div>

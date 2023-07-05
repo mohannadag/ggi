@@ -29,4 +29,9 @@ class Units extends Model
         return $this->hasOne(UnitsTranslation::class,'units_id')
             ->where('locale','en');
     }
+
+    public function floors()
+    {
+        return $this->hasMany(PropertyFloor::class, 'unit_id', 'id');
+    }
 }

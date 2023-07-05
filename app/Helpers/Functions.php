@@ -122,3 +122,64 @@ function priceConvert($price)
             return ceil($amount * 0.1)/0.1;
     }
 }
+
+
+function convert($price, $cur)
+{
+    $currencies = \Illuminate\Support\Facades\Cache::remember('currencies', now()->addHours(1), function () {
+        return \App\Models\Currency::all();
+    });
+
+    $USD = $currencies->where('name', '==', 'USD')->first();
+    $EUR = $currencies->where('name', '==', 'EUR')->first();
+    $TRY = $currencies->where('name', '==', 'TRY')->first();
+
+    $i = \Illuminate\Support\Facades\Session::get('currency');
+
+    if($cur == null)
+    {
+        $cur = 'USD';
+    }
+    else {
+        $cur = $cur->name;
+    }
+
+    if($cur == 'USD')
+        $inEur = $price / $USD->value;
+    elseif($cur == 'TRY')
+        $inEur = $price / $TRY->value;
+    else
+        $inEur = $price / $EUR->value;
+
+    switch ($i) {
+        case 'EUR':
+            $amount = $inEur * $EUR->value;
+            return '€' . ' ' . number_format($amount);
+        case 'USD':
+            $amount = $inEur * $USD->value;
+
+            return '$' . ' ' . number_format($amount);
+
+        case 'TRY':
+            $amount = $inEur * $TRY->value;
+
+            return '₺' . ' ' . number_format($amount);
+    }
+}
+
+function updateCurrencies()
+{
+    $currencies = Currency::rates()
+                        ->latest()
+                        ->get();
+    $baseCurrencies = \App\Models\Currency::all();
+    $USD = $baseCurrencies->where('name', '==', 'USD')->first();
+    $TRY = $baseCurrencies->where('name', '==', 'TRY')->first();
+    $EUR = $baseCurrencies->where('name', '==', 'EUR')->first();
+    $USD->value = $currencies['USD'];
+    $TRY->value = $currencies['TRY'];
+    $EUR->value = $currencies['EUR'];
+    $USD->update();
+    $TRY->update();
+    $EUR->update();
+}

@@ -25,7 +25,7 @@ class UnitsModel implements IUnitsModel
             ->addIndexColumn()
             ->addColumn('name', function ($row) use ($locale)
             {
-                return $row->UnitsTranslation->name ?? $row->UnitsTranslationEnglish->name ?? null;
+                return $row->name ?? $row->name ?? null;
             })
             ->addColumn('status',function($row){
                 if($row->status == 1)

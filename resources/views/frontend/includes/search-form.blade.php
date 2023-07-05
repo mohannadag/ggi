@@ -173,8 +173,12 @@
                                     </path>
                                 </svg>
                                 <select name="bed" id="bed"
-                                    class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer" multiple>
-                                    @if(old('bed', request()->bed) == '1')
+                                    class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
+                                    <option value="">{{trans('file.bedrooms')}}</option>
+                                    @foreach ($units as $unit)
+                                        <option value="{{ $unit->id }}" {{request()->bed == $unit->id ? "selected" : ""}} >{{ $unit->name }}</option>
+                                    @endforeach
+                                    {{-- @if(old('bed', request()->bed) == '1')
                                     <option value="1">1+0</option>
                                     @endif
                                     @if(old('bed', request()->bed) == '2')
@@ -211,7 +215,7 @@
                                     <option value="6">5+1</option>
                                     <option value="7">6+1</option>
                                     <option value="8">7+1</option>
-                                    <option value="9">8+1</option>
+                                    <option value="9">8+1</option> --}}
                                 </select>
                             </div>
                             <div id="bathroom" class="relative mb-[25px] bg-white">

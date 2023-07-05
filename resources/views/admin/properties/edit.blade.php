@@ -834,1250 +834,88 @@
                                 data-parent="#accordion4">
                                 <div class="card-body">
 
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>1st Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>1st Floor Title</label>
-                                                        <input type="text" name="first_floor_title" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->first_floor_title) ? $property->propertyDetails->first_floor_title : '' }}">
-                                                    </div>
+                                    <div id="dynamicAddRemove">
+                                        @for ($i = 0 ; $i< count($property->propertyDetails->floors); $i++)
+                                            <div>
+                                                <table class="table table-bordered" id="">
+                                                    <input name="addMoreInputFields[{{$i}}][property_details_id]" value="{{$property->propertyDetails->id}}" hidden />
+                                                    <input name="addMoreInputFields[{{$i}}][unit_id]" value="{{$property->propertyDetails->floors[$i]->unit_id}}" hidden />
+                                                    <input name="addMoreInputFields[{{$i}}][id]" value="{{$property->propertyDetails->floors[$i]->id}}" hidden />
+                                                    <tr>
+                                                        <td>
+                                                            <label for="addMoreInputFields[{{$i}}][min_price]">min price</label>
+                                                            <input type="number" id="addMoreInputFields[{{$i}}][min_price]" name="addMoreInputFields[{{$i}}][min_price]" value="{{$property->propertyDetails->floors[$i]->min_price}}" class="form-control" min="0" required />
+                                                        </td>
+                                                        <td>
+                                                            <label for="addMoreInputFields[{{$i}}][max_price]">max price</label>
+                                                            <input type="number" id="addMoreInputFields[{{$i}}][max_price]" name="addMoreInputFields[{{$i}}][max_price]" value="{{$property->propertyDetails->floors[$i]->max_price}}" class="form-control" min="0" required />
+                                                        </td>
+                                                        <td>
+                                                            <label for="addMoreInputFields[{{$i}}][min_size]">min size</label>
+                                                            <input type="number" id="addMoreInputFields[{{$i}}][min_size]" name="addMoreInputFields[{{$i}}][min_size]" value="{{$property->propertyDetails->floors[$i]->min_size}}" class="form-control" min="0" required />
+                                                        </td>
+                                                        <td>
+                                                            <label for="addMoreInputFields[{{$i}}][max_size]">max size</label>
+                                                            <input type="number" id="addMoreInputFields[{{$i}}][max_size]" name="addMoreInputFields[{{$i}}][max_size]" value="{{$property->propertyDetails->floors[$i]->max_size}}" class="form-control" min="0" required />
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <label for="addMoreInputFields[{{$i}}][unit_id]">rooms</label>
+                                                            <select id="addMoreInputFields[{{$i}}][unit_id]" name="addMoreInputFields[{{$i}}][unit_id]"
+                                                                        class="listing-input hero__form-input  form-control custom-select">
+                                                                        <option value="" disabled>Select</option>
+                                                                        @foreach ($units as $unit)
+                                                                            <option value="{{ $unit->id }}"
+                                                                                {{ $property->propertyDetails->floors[$i]->unit_id == $unit->id ? 'selected' : '' }}>{{ $unit->name }}</option>
+                                                                        @endforeach
+                                                            </select>
+                                                            {{-- <input type="text" id="addMoreInputFields[0][unit_id]" name="addMoreInputFields[0][unit_id]" class="form-control" /></td> --}}
+                                                        <td>
+                                                            <label for="addMoreInputFields[{{$i}}][baths]">baths</label>
+                                                            <input type="number" id="addMoreInputFields[{{$i}}][baths]" name="addMoreInputFields[{{$i}}][baths]" value="{{$property->propertyDetails->floors[$i]->baths}}" class="form-control" min="1" required /></td>
+                                                        <td>
+                                                            <label for="addMoreInputFields[{{$i}}][is_sold]">Is Sold</label>
+                                                            <select id="addMoreInputFields[{{$i}}][is_sold]" name="addMoreInputFields[{{$i}}][is_sold]" class="listing-input hero__form-input  form-control custom-select">
+                                                                <option value="0" {{ $property->propertyDetails->floors[$i]->is_sold == 0 ? 'selected' : '' }}>No</option>
+                                                                <option value="1" {{ $property->propertyDetails->floors[$i]->is_sold == 1 ? 'selected' : '' }}>Yes</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <label for="addMoreInputFields[{{$i}}][ivr_link]">ivr link</label>
+                                                            <input type="text" id="addMoreInputFields[{{$i}}][ivr_link]" name="addMoreInputFields[{{$i}}][ivr_link]" value="{{$property->propertyDetails->floors[$i]->ivr_link}}" class="form-control" />
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <label for="addMoreInputFields[{{$i}}][note_ar]">Note Arabic</label>
+                                                            <input type="text" id="addMoreInputFields[{{$i}}][note_ar]" name="addMoreInputFields[{{$i}}][note_ar]" value="{{$property->propertyDetails->floors[$i]->note_ar}}" class="form-control" />
+                                                        </td>
+                                                        <td>
+                                                            <label for="addMoreInputFields[{{$i}}][note_en]">Note English</label>
+                                                            <input type="text" id="addMoreInputFields[{{$i}}][note_en]" name="addMoreInputFields[{{$i}}][note_en]" value="{{$property->propertyDetails->floors[$i]->note_en}}" class="form-control" />
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <label for="addMoreInputFields[{{$i}}][image]">Image</label>
+                                                            <input type="file" id="addMoreInputFields[{{$i}}][image]" name="addMoreInputFields[{{$i}}][image]" class="form-control" />
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+                                                <div class="user-image mb-3 text-center">
+                                                    <img loading="lazy"
+                                                        src="{{ URL::asset('/images/floors/' . $property->propertyDetails->floors[$i]->image) }}"
+                                                        alt="" id="preview-image-before-upload" style="max-height:300px">
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <label>1st Floor Sold</label>
-                                                    <select name="first_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->first_floor_sold)) {{ $property->propertyDetails->first_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->first_floor_sold)) {{ $property->propertyDetails->first_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>1st Floor Min. size</label>
-                                                        <input type="number" name="first_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->first_floor_size) ? $property->propertyDetails->first_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>1st Floor Max. size</label>
-                                                        <input type="number" name="first_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->first_floor_max_size) ? $property->propertyDetails->first_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>1st Floor Rooms</label>
-                                                        <input type="number" name="first_floor_rooms" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->first_floor_rooms) ? $property->propertyDetails->first_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>1st Floor Baths</label>
-                                                        <input type="number" name="first_floor_baths" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->first_floor_baths) ? $property->propertyDetails->first_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>1st Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="first_floor_price" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->first_floor_price) ? $property->propertyDetails->first_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>1st Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="first_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->first_floor_max_price) ? $property->propertyDetails->first_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->first_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="first_floor_picture" class="form-control"
-                                                                    id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->first_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @if($i == 0)
+                                                    <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary mb-3">Add unit</button>
+                                                @else
+                                                    <button id="delete-btn" type="button" class="btn btn-outline-danger remove-input-field">Delete</button>
+                                                @endif
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>2nd Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>2nd Floor Title</label>
-                                                        <input type="text" name="second_floor_title" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->second_floor_title) ? $property->propertyDetails->second_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>2nd Floor Sold</label>
-                                                    <select name="second_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->second_floor_sold)) {{ $property->propertyDetails->second_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->second_floor_sold)) {{ $property->propertyDetails->second_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>2nd Floor Min. size</label>
-                                                        <input type="number" name="second_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->second_floor_size) ? $property->propertyDetails->second_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>2nd Floor Max. size</label>
-                                                        <input type="number" name="second_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->second_floor_max_size) ? $property->propertyDetails->second_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>2nd Floor Rooms</label>
-                                                        <input type="number" name="second_floor_rooms" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->second_floor_rooms) ? $property->propertyDetails->second_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>2nd Floor Baths</label>
-                                                        <input type="number" name="second_floor_baths" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->second_floor_baths) ? $property->propertyDetails->second_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>2nd Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="second_floor_price" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->second_floor_price) ? $property->propertyDetails->second_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>2nd Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="second_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->second_floor_max_price) ? $property->propertyDetails->second_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->second_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="second_floor_picture" class="form-control"
-                                                                    id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->second_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>3rd Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>3rd Floor Title</label>
-                                                        <input type="text" name="third_floor_title" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->third_floor_title) ? $property->propertyDetails->third_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>3rd Floor Sold</label>
-                                                    <select name="third_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->third_floor_sold)) {{ $property->propertyDetails->third_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->third_floor_sold)) {{ $property->propertyDetails->third_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>3rd Floor Min. size</label>
-                                                        <input type="number" name="third_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->third_floor_size) ? $property->propertyDetails->third_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>3rd Floor Max. size</label>
-                                                        <input type="number" name="third_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->third_floor_max_size) ? $property->propertyDetails->third_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>3rd Floor Rooms</label>
-                                                        <input type="number" name="third_floor_rooms" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->third_floor_rooms) ? $property->propertyDetails->third_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>3rd Floor Baths</label>
-                                                        <input type="number" name="third_floor_baths" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->third_floor_baths) ? $property->propertyDetails->third_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>3rd Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="third_floor_price" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->third_floor_price) ? $property->propertyDetails->third_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>3rd Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="third_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->third_floor_max_price) ? $property->propertyDetails->third_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->third_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="third_floor_picture" class="form-control"
-                                                                    id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->third_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>4th Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>4th Floor Title</label>
-                                                        <input type="text" name="fourth_floor_title" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fourth_floor_title) ? $property->propertyDetails->fourth_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>4th Floor Sold</label>
-                                                    <select name="fourth_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->fourth_floor_sold)) {{ $property->propertyDetails->fourth_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->fourth_floor_sold)) {{ $property->propertyDetails->fourth_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>4th Floor Min. size</label>
-                                                        <input type="number" name="fourth_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fourth_floor_size) ? $property->propertyDetails->fourth_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>4th Floor Max. size</label>
-                                                        <input type="number" name="fourth_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fourth_floor_max_size) ? $property->propertyDetails->fourth_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>4th Floor Rooms</label>
-                                                        <input type="number" name="fourth_floor_rooms" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fourth_floor_rooms) ? $property->propertyDetails->fourth_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>4th Floor Baths</label>
-                                                        <input type="number" name="fourth_floor_baths" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fourth_floor_baths) ? $property->propertyDetails->fourth_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>4th Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="fourth_floor_price" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fourth_floor_price) ? $property->propertyDetails->fourth_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>4th Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="fourth_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fourth_floor_max_price) ? $property->propertyDetails->fourth_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->fourth_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="fourth_floor_picture" class="form-control"
-                                                                    id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->fourth_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>5th Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>5th Floor Title</label>
-                                                        <input type="text" name="fifth_floor_title" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fifth_floor_title) ? $property->propertyDetails->fifth_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>5th Floor Sold</label>
-                                                    <select name="fifth_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->fifth_floor_sold)) {{ $property->propertyDetails->fifth_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->fifth_floor_sold)) {{ $property->propertyDetails->fifth_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>5th Floor Min. size</label>
-                                                        <input type="number" name="fifth_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fifth_floor_size) ? $property->propertyDetails->fifth_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>5th Floor Max. size</label>
-                                                        <input type="number" name="fifth_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fifth_floor_max_size) ? $property->propertyDetails->fifth_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>5th Floor Rooms</label>
-                                                        <input type="number" name="fifth_floor_rooms" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fifth_floor_rooms) ? $property->propertyDetails->fifth_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>5th Floor Baths</label>
-                                                        <input type="number" name="fifth_floor_baths" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fifth_floor_baths) ? $property->propertyDetails->fifth_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>5th Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="fifth_floor_price" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fifth_floor_price) ? $property->propertyDetails->fifth_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>5th Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="fifth_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->fifth_floor_max_price) ? $property->propertyDetails->fifth_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->fifth_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="fifth_floor_picture" class="form-control"
-                                                                    id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->fifth_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>6th Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>6th Floor Title</label>
-                                                        <input type="text" name="sixth_floor_title" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->sixth_floor_title) ? $property->propertyDetails->sixth_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>6th Floor Sold</label>
-                                                    <select name="sixth_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->sixth_floor_sold)) {{ $property->propertyDetails->sixth_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->sixth_floor_sold)) {{ $property->propertyDetails->sixth_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>6th Floor Min. size</label>
-                                                        <input type="number" name="sixth_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->sixth_floor_size) ? $property->propertyDetails->sixth_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>6th Floor Max. size</label>
-                                                        <input type="number" name="sixth_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->sixth_floor_max_size) ? $property->propertyDetails->sixth_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>6th Floor Rooms</label>
-                                                        <input type="number" name="sixth_floor_rooms" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->sixth_floor_rooms) ? $property->propertyDetails->sixth_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>6th Floor Baths</label>
-                                                        <input type="number" name="sixth_floor_baths" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->sixth_floor_baths) ? $property->propertyDetails->sixth_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>6th Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="sixth_floor_price" class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->sixth_floor_price) ? $property->propertyDetails->sixth_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>6th Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="text" name="sixth_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->sixth_floor_max_price) ? $property->propertyDetails->sixth_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->sixth_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="sixth_floor_picture" class="form-control"
-                                                                    id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->sixth_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>7th Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>7th Floor Title</label>
-                                                        <input type="text" name="seventh_floor_title"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->seventh_floor_title) ? $property->propertyDetails->seventh_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>7th Floor Sold</label>
-                                                    <select name="seventh_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->seventh_floor_sold)) {{ $property->propertyDetails->seventh_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->seventh_floor_sold)) {{ $property->propertyDetails->seventh_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>7th Floor Min. size</label>
-                                                        <input type="number" name="seventh_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->seventh_floor_size) ? $property->propertyDetails->seventh_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>7th Floor Max. size</label>
-                                                        <input type="number" name="seventh_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->seventh_floor_max_size) ? $property->propertyDetails->seventh_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>7th Floor Rooms</label>
-                                                        <input type="number" name="seventh_floor_rooms"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->seventh_floor_rooms) ? $property->propertyDetails->seventh_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>7th Floor Baths</label>
-                                                        <input type="number" name="seventh_floor_baths"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->seventh_floor_baths) ? $property->propertyDetails->seventh_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>7th Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="seventh_floor_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->seventh_floor_price) ? $property->propertyDetails->seventh_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>7th Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="seventh_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->seventh_floor_max_price) ? $property->propertyDetails->seventh_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->seventh_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="seventh_floor_picture" class="form-control"
-                                                                    id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->seventh_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>8th Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>8th Floor Title</label>
-                                                        <input type="text" name="eighth_floor_title"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eighth_floor_title) ? $property->propertyDetails->eighth_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>8th Floor Sold</label>
-                                                    <select name="eighth_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->eighth_floor_sold)) {{ $property->propertyDetails->eighth_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->eighth_floor_sold)) {{ $property->propertyDetails->eighth_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>8th Floor Min. size</label>
-                                                        <input type="number" name="eighth_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eighth_floor_size) ? $property->propertyDetails->eighth_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>8th Floor Max. size</label>
-                                                        <input type="number" name="eighth_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eighth_floor_max_size) ? $property->propertyDetails->eighth_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>8th Floor Rooms</label>
-                                                        <input type="number" name="eighth_floor_rooms"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eighth_floor_rooms) ? $property->propertyDetails->eighth_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>8th Floor Baths</label>
-                                                        <input type="number" name="eighth_floor_baths"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eighth_floor_baths) ? $property->propertyDetails->eighth_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>8th Floor Max.Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="eighth_floor_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eighth_floor_price) ? $property->propertyDetails->eighth_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>8th Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="eighth_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eighth_floor_max_price) ? $property->propertyDetails->eighth_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->eighth_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="eighth_floor_picture" class="form-control"
-                                                                    id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->eighth_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>9th Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>9th Floor Title</label>
-                                                        <input type="text" name="ninth_floor_title"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->ninth_floor_title) ? $property->propertyDetails->ninth_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>9th Floor Sold</label>
-                                                    <select name="ninth_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->ninth_floor_sold)) {{ $property->propertyDetails->ninth_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->ninth_floor_sold)) {{ $property->propertyDetails->ninth_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>9th Floor Min. size</label>
-                                                        <input type="number" name="ninth_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->ninth_floor_size) ? $property->propertyDetails->ninth_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>9th Floor Max. size</label>
-                                                        <input type="number" name="ninth_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->ninth_floor_max_size) ? $property->propertyDetails->ninth_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>9th Floor Rooms</label>
-                                                        <input type="number" name="ninth_floor_rooms"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->ninth_floor_rooms) ? $property->propertyDetails->ninth_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>9th Floor Baths</label>
-                                                        <input type="number" name="ninth_floor_baths"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->ninth_floor_baths) ? $property->propertyDetails->ninth_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>9th Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="ninth_floor_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->ninth_floor_price) ? $property->propertyDetails->ninth_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>9th Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="ninth_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->ninth_floor_max_price) ? $property->propertyDetails->ninth_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->ninth_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="ninth_floor_picture" class="form-control"
-                                                                    id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->ninth_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>10th Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>10th Floor Title</label>
-                                                        <input type="text" name="tenth_floor_title"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->tenth_floor_title) ? $property->propertyDetails->tenth_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>10th Floor Sold</label>
-                                                    <select name="tenth_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->tenth_floor_sold)) {{ $property->propertyDetails->tenth_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->tenth_floor_sold)) {{ $property->propertyDetails->tenth_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>10th Floor Min. size</label>
-                                                        <input type="number" name="tenth_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->tenth_floor_size) ? $property->propertyDetails->tenth_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>10th Floor Max. size</label>
-                                                        <input type="number" name="tenth_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->tenth_floor_max_size) ? $property->propertyDetails->tenth_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>10th Floor Rooms</label>
-                                                        <input type="number" name="tenth_floor_rooms"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->tenth_floor_rooms) ? $property->propertyDetails->tenth_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>10th Floor Baths</label>
-                                                        <input type="number" name="tenth_floor_baths"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->tenth_floor_baths) ? $property->propertyDetails->tenth_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>10th Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="tenth_floor_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->tenth_floor_price) ? $property->propertyDetails->tenth_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>10th Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="tenth_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->tenth_floor_max_price) ? $property->propertyDetails->tenth_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->tenth_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="tenth_floor_picture" class="form-control"
-                                                                    id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->tenth_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>11th Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>11th Floor Title</label>
-                                                        <input type="text" name="eleventh_floor_title"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eleventh_floor_title) ? $property->propertyDetails->eleventh_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>11th Floor Sold</label>
-                                                    <select name="eleventh_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->eleventh_floor_sold)) {{ $property->propertyDetails->eleventh_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->eleventh_floor_sold)) {{ $property->propertyDetails->eleventh_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>11th Floor Min. size</label>
-                                                        <input type="number" name="eleventh_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eleventh_floor_size) ? $property->propertyDetails->eleventh_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>11th Floor Max. size</label>
-                                                        <input type="number" name="eleventh_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eleventh_floor_max_size) ? $property->propertyDetails->eleventh_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>11th Floor Rooms</label>
-                                                        <input type="number" name="eleventh_floor_rooms"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eleventh_floor_rooms) ? $property->propertyDetails->eleventh_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>11th Floor Baths</label>
-                                                        <input type="number" name="eleventh_floor_baths"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eleventh_floor_baths) ? $property->propertyDetails->eleventh_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>11th Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="eleventh_floor_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eleventh_floor_price) ? $property->propertyDetails->eleventh_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>11th Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="eleventh_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->eleventh_floor_max_price) ? $property->propertyDetails->eleventh_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->eleventh_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="eleventh_floor_picture"
-                                                                    class="form-control" id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->eleventh_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="db-add-list-wrap">
-                                        <div class="act-title">
-                                            <h5>12th Floor Plans:</h5>
-                                        </div>
-                                        <div class="db-add-listing">
-                                            <div class="row mb-30">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>12th Floor Title</label>
-                                                        <input type="text" name="twelfth_floor_title"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->twelfth_floor_title) ? $property->propertyDetails->twelfth_floor_title : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>12th Floor Sold</label>
-                                                    <select name="twelfth_floor_sold"
-                                                        class="listing-input hero__form-input  form-control custom-select">
-                                                        <option value="">Select Option</option>
-                                                        <option value="1"
-                                                            @if (isset($property->propertyDetails->twelfth_floor_sold)) {{ $property->propertyDetails->twelfth_floor_sold == '1' ? 'selected' : '' }} @endif>
-                                                            No</option>
-                                                        <option value="2"
-                                                            @if (isset($property->propertyDetails->twelfth_floor_sold)) {{ $property->propertyDetails->twelfth_floor_sold == '2' ? 'selected' : '' }} @endif>
-                                                            Yes</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>12th Floor Min. size</label>
-                                                        <input type="number" name="twelfth_floor_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->twelfth_floor_size) ? $property->propertyDetails->twelfth_floor_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>12th Floor Max. size</label>
-                                                        <input type="number" name="twelfth_floor_max_size" step="0.01"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->twelfth_floor_max_size) ? $property->propertyDetails->twelfth_floor_max_size : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>12th Floor Rooms</label>
-                                                        <input type="number" name="twelfth_floor_rooms"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->twelfth_floor_rooms) ? $property->propertyDetails->twelfth_floor_rooms : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>12th Floor Baths</label>
-                                                        <input type="number" name="twelfth_floor_baths"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->twelfth_floor_baths) ? $property->propertyDetails->twelfth_floor_baths : '' }}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>12th Floor Min. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="twelfth_floor_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->twelfth_floor_price) ? $property->propertyDetails->twelfth_floor_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>12th Floor Max. Price</label> <span class="text-danger">*</span>
-                                                        <input type="number" name="twelfth_floor_max_price"
-                                                            class="form-control filter-input"
-                                                            value="{{ isset($property->propertyDetails->twelfth_floor_max_price) ? $property->propertyDetails->twelfth_floor_max_price : '0.00' }}">
-                                                        @error('price')
-                                                            <p class="text-danger">{{ $message }}</p>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12 mb-4">
-                                                            <div class="user-image mb-3 text-center">
-                                                                <img loading="lazy"
-                                                                    src="{{ URL::asset('/images/floors/' . $property->propertyDetails->twelfth_floor_picture) }}"
-                                                                    alt="" id="preview-image-before-upload">
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="">File:(image/slider)</label>
-                                                                <input type="file" name="twelfth_floor_picture"
-                                                                    class="form-control" id="photo-upload"
-                                                                    value="{{ $property->propertyDetails->twelfth_floor_picture }}">
-                                                                @error('file')
-                                                                    <p class="text-danger">{{ $message }}</p>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endfor
                                     </div>
 
                                 </div>
@@ -2292,4 +1130,90 @@
             });
         });
     </script>
+
+<script type="text/javascript">
+    var i = $('#delete-btn').length;
+    console.log(i);
+    $("#dynamic-ar").click(function () {
+        ++i;
+
+        var html = `
+        <div class="pt-3">
+        <table class="table table-bordered" id="dynamicAddRemove">
+
+            <tr>
+                <td>
+                    <label for="addMoreInputFields[`+ i +`][min_price]">min price</label>
+                    <input type="number" id="addMoreInputFields[`+ i +`][min_price]" name="addMoreInputFields[`+ i +`][min_price]" class="form-control" value="0" min="0" required />
+                </td>
+                <td>
+                    <label for="addMoreInputFields[`+ i +`][max_price]">max price</label>
+                    <input type="text" id="addMoreInputFields[`+ i +`][max_price]" name="addMoreInputFields[`+ i +`][max_price]" class="form-control" value="0" min="0" required />
+                </td>
+                <td>
+                    <label for="addMoreInputFields[`+ i +`][min_size]">min size</label>
+                    <input type="text" id="addMoreInputFields[`+ i +`][min_size]" name="addMoreInputFields[`+ i +`][min_size]" class="form-control" value="0" min="0" required />
+                </td>
+                <td>
+                    <label for="addMoreInputFields[`+ i +`][max_size]">max size</label>
+                    <input type="text" id="addMoreInputFields[`+ i +`][max_size]" name="addMoreInputFields[`+ i +`][max_size]" class="form-control" value="0" min="0" required />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="addMoreInputFields[`+ i +`][unit_id]">rooms</label>
+                    <select id="addMoreInputFields[`+ i +`][unit_id]" name="addMoreInputFields[`+ i +`][unit_id]"
+                                                                class="listing-input hero__form-input  form-control custom-select">
+                                                                `+ $options +`
+                    </select>
+
+                </td>
+                <td>
+                    <label for="addMoreInputFields[`+ i +`][baths]">baths</label>
+                    <input type="text" id="addMoreInputFields[`+ i +`][baths]" name="addMoreInputFields[`+ i +`][baths]" class="form-control" value="1" min="1" required /></td>
+                <td>
+                    <label for="addMoreInputFields[`+ i +`][is_sold]">Is Sold</label>
+                    <select id="addMoreInputFields[`+ i +`][is_sold]" name="addMoreInputFields[`+ i +`][is_sold]" class="listing-input hero__form-input  form-control custom-select">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </td>
+                <td>
+                    <label for="addMoreInputFields[`+ i +`][ivr_link]">ivr link</label>
+                    <input type="text" id="addMoreInputFields[`+ i +`][ivr_link]" name="addMoreInputFields[`+ i +`][ivr_link]" class="form-control" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="addMoreInputFields[`+ i +`][note_ar]">Note Arabic</label>
+                    <input type="text" id="addMoreInputFields[`+ i +`][note_ar]" name="addMoreInputFields[`+ i +`][note_ar]" class="form-control" />
+                </td>
+                <td>
+                    <label for="addMoreInputFields[`+ i +`][note_en]">Note English</label>
+                    <input type="text" id="addMoreInputFields[`+ i +`][note_en]" name="addMoreInputFields[`+ i +`][note_en]" class="form-control" />
+                </td>
+                <td colspan="2">
+                    <label for="addMoreInputFields[`+ i +`][image]">Image</label>
+                    <input type="file" id="addMoreInputFields[`+ i +`][image]" name="addMoreInputFields[`+ i +`][image]" class="form-control" />
+                </td>
+            </tr>
+
+        </table>
+        <button type="button" class="btn btn-outline-danger remove-input-field">Delete</button>
+        </div>
+        `;
+
+        $("#dynamicAddRemove").append(html);
+
+        var $options = $("#addMoreInputFields\\[0\\]\\[unit_id\\] > option").clone();
+        $('#addMoreInputFields\\['+ i +'\\]\\[unit_id\\]').append($options);
+
+    });
+    $(document).on('click', '.remove-input-field', function () {
+        $(this).parent('div').remove();
+    });
+</script>
+
 @endpush

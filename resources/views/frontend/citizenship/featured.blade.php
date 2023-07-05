@@ -84,7 +84,7 @@
 
                                 <ul>
                                     <li class="flex flex-wrap items-center justify-between">
-                                        <span class="font-lora text-base text-primary leading-none font-medium">{{trans('file.starts_from')}}: {{ currencyConvert($property->price) }}</span>
+                                        <span class="font-lora text-base text-primary leading-none font-medium">{{trans('file.starts_from')}}: {{ convert($property->price, $property->currency) }}</span>
                                         <span class="flex flex-wrap items-center">
                                             <button class="mr-[15px] text-[#9D9C9C] hover:text-secondary" aria-label="svg">
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

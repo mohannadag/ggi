@@ -106,7 +106,7 @@ class BlogModel implements IBlogModel
                 ->make(true);
         } catch (\Throwable $ex) {
             Log::error($ex->getMessage());
-            return null;
+            return $ex->getMessage();
         }
 
     }

@@ -120,7 +120,6 @@ class PropertyController extends Controller
 
     public function update(Request $request,$id)
     {
-        // dd($request->oldImages);
         if(!env('USER_VERIFIED'))
         {
             notify()->error('This feature is disable for demo!');

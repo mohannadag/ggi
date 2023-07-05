@@ -347,6 +347,9 @@
                             <a class="{{Str::startsWith(Route::currentRouteName(),'admin.facilities.index') ? 'active' : '' }}" href="{{route('admin.facilities.index')}}">{{trans('file.facilities')}}</a>
                         </li>
                         <li>
+                            <a class="{{Str::startsWith(Route::currentRouteName(),'admin.units.index') ? 'active' : '' }}" href="{{route('admin.units.index')}}">Units</a>
+                        </li>
+                        <li>
                             <a class="{{Str::startsWith(Route::currentRouteName(),'admin.categories.index') ? 'active' : '' }}" href="{{route('admin.categories.index')}}">{{trans('file.categories')}}</a>
                         </li>
                     </ul>

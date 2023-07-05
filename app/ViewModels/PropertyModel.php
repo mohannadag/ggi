@@ -177,30 +177,15 @@ class PropertyModel implements IPropertyModel
         $thumbnailImage = $request->file('thumbnail');
         $slug = $request->input('title');
         $thumbnailName = $this->imageUpload($thumbnailImage,$slug,'thumbnail',750,500) ?? '';
-        $FirstFloorImage = $request->file('first_floor_picture');
-        $FirstFloorName = $this->imageUpload($FirstFloorImage,$slug,'floors',780, 540);
-        $SecondFloorImage = $request->file('second_floor_picture');
-        $SecondFloorName = $this->imageUpload($SecondFloorImage,$slug,'floors',780, 540);
-        $ThirdFloorImage = $request->file('third_floor_picture');
-        $ThirdFloorName = $this->imageUpload($ThirdFloorImage,$slug,'floors',780, 540);
-        $FourthFloorImage = $request->file('fourth_floor_picture');
-        $FourthFloorName = $this->imageUpload($FourthFloorImage,$slug,'floors',780, 540);
-        $FifthFloorImage = $request->file('fifth_floor_picture');
-        $FifthFloorName = $this->imageUpload($FifthFloorImage,$slug,'floors',780, 540);
-        $SixthFloorImage = $request->file('sixth_floor_picture');
-        $SixthFloorName = $this->imageUpload($SixthFloorImage,$slug,'floors',780, 540);
-        $SeventhFloorImage = $request->file('seventh_floor_picture');
-        $SeventhFloorName = $this->imageUpload($SeventhFloorImage,$slug,'floors',780, 540);
-        $EighthFloorImage = $request->file('eighth_floor_picture');
-        $EighthFloorName = $this->imageUpload($EighthFloorImage,$slug,'floors',780, 540);
-        $NinthFloorImage = $request->file('ninth_floor_picture');
-        $NinthFloorName = $this->imageUpload($NinthFloorImage,$slug,'floors',780, 540);
-        $TenthFloorImage = $request->file('tenth_floor_picture');
-        $TenthFloorName = $this->imageUpload($TenthFloorImage,$slug,'floors',780, 540);
-        $EleventhFloorImage = $request->file('eleventh_floor_picture');
-        $EleventhFloorName = $this->imageUpload($EleventhFloorImage,$slug,'floors',780, 540);
-        $TwelfthFloorImage = $request->file('twelfth_floor_picture');
-        $TwelfthFloorName = $this->imageUpload($TwelfthFloorImage,$slug,'floors',780, 540);
+
+        $propertyFloors = [];
+        foreach($request->addMoreInputFields as $key => $value)
+        {
+            $value['image'] = $this->imageUpload($value['image'],$slug,'floors',780, 540);
+            array_push($propertyFloors, $value);
+        }
+
+
         $backgroundImageName = $this->imageUpload($thumbnailImage,$slug,'backgroundImage',1400,700) ?? '';
         //thumbnail image save end
 
@@ -280,114 +265,9 @@ class PropertyModel implements IPropertyModel
         $dataPropertyDetail['sheet_no'] = $request->input('sheet_no') ?? '';
         $dataPropertyDetail['precedent_value'] = $request->input('precedent_value') ?? '';
         $dataPropertyDetail['gauge'] = $request->input('gauge') ?? '';
-        $dataPropertyDetail['first_floor_title'] = $request->input('first_floor_title');
-        $dataPropertyDetail['first_floor_sold'] = $request->input('first_floor_sold');
-        $dataPropertyDetail['first_floor_size'] = $request->input('first_floor_size');
-        $dataPropertyDetail['first_floor_max_size'] = $request->input('first_floor_max_size');
-        $dataPropertyDetail['first_floor_rooms'] = $request->input('first_floor_rooms');
-        $dataPropertyDetail['first_floor_baths'] = $request->input('first_floor_baths');
-        $dataPropertyDetail['first_floor_price'] = $request->input('first_floor_price') ?? '0';
-        $dataPropertyDetail['first_floor_max_price'] = $request->input('first_floor_max_price') ?? '0';
-        $dataPropertyDetail['first_floor_picture'] = $FirstFloorName;
-        $dataPropertyDetail['second_floor_title'] = $request->input('second_floor_title');
-        $dataPropertyDetail['second_floor_sold'] = $request->input('second_floor_sold');
-        $dataPropertyDetail['second_floor_size'] = $request->input('second_floor_size');
-        $dataPropertyDetail['second_floor_max_size'] = $request->input('second_floor_max_size');
-        $dataPropertyDetail['second_floor_rooms'] = $request->input('second_floor_rooms');
-        $dataPropertyDetail['second_floor_baths'] = $request->input('second_floor_baths');
-        $dataPropertyDetail['second_floor_price'] = $request->input('second_floor_price') ?? '0';
-        $dataPropertyDetail['second_floor_max_price'] = $request->input('second_floor_max_price') ?? '0';
-        $dataPropertyDetail['second_floor_picture'] = $SecondFloorName;
-        $dataPropertyDetail['third_floor_title'] = $request->input('third_floor_title');
-        $dataPropertyDetail['third_floor_sold'] = $request->input('third_floor_sold');
-        $dataPropertyDetail['third_floor_size'] = $request->input('third_floor_size');
-        $dataPropertyDetail['third_floor_max_size'] = $request->input('third_floor_max_size');
-        $dataPropertyDetail['third_floor_rooms'] = $request->input('third_floor_rooms');
-        $dataPropertyDetail['third_floor_baths'] = $request->input('third_floor_baths');
-        $dataPropertyDetail['third_floor_price'] = $request->input('third_floor_price') ?? '0';
-        $dataPropertyDetail['third_floor_max_price'] = $request->input('third_floor_max_price') ?? '0';
-        $dataPropertyDetail['third_floor_picture'] = $ThirdFloorName;
-        $dataPropertyDetail['fourth_floor_title'] = $request->input('fourth_floor_title');
-        $dataPropertyDetail['fourth_floor_sold'] = $request->input('fourth_floor_sold');
-        $dataPropertyDetail['fourth_floor_size'] = $request->input('fourth_floor_size');
-        $dataPropertyDetail['fourth_floor_max_size'] = $request->input('fourth_floor_max_size');
-        $dataPropertyDetail['fourth_floor_rooms'] = $request->input('fourth_floor_rooms');
-        $dataPropertyDetail['fourth_floor_bath'] = $request->input('fourth_floor_bath');
-        $dataPropertyDetail['fourth_floor_price'] = $request->input('fourth_floor_price') ?? '0';
-        $dataPropertyDetail['fourth_floor_max_price'] = $request->input('fourth_floor_max_price') ?? '0';
-        $dataPropertyDetail['fourth_floor_pictur'] = $FourthFloorName;
-        $dataPropertyDetail['fifth_floor_title'] = $request->input('fifth_floor_title');
-        $dataPropertyDetail['fifth_floor_sold'] = $request->input('fifth_floor_sold');
-        $dataPropertyDetail['fifth_floor_size'] = $request->input('fifth_floor_size');
-        $dataPropertyDetail['fifth_floor_max_size'] = $request->input('fifth_floor_max_size');
-        $dataPropertyDetail['fifth_floor_rooms'] = $request->input('fifth_floor_rooms');
-        $dataPropertyDetail['fifth_floor_baths'] = $request->input('fifth_floor_baths');
-        $dataPropertyDetail['fifth_floor_price'] = $request->input('fifth_floor_price') ?? '0';
-        $dataPropertyDetail['fifth_floor_max_price'] = $request->input('fifth_floor_max_price') ?? '0';
-        $dataPropertyDetail['fifth_floor_picture'] = $FifthFloorName;
-        $dataPropertyDetail['sixth_floor_title'] = $request->input('sixth_floor_title');
-        $dataPropertyDetail['sixth_floor_sold'] = $request->input('sixth_floor_sold');
-        $dataPropertyDetail['sixth_floor_size'] = $request->input('sixth_floor_size');
-        $dataPropertyDetail['sixth_floor_max_size'] = $request->input('sixth_floor_max_size');
-        $dataPropertyDetail['sixth_floor_rooms'] = $request->input('sixth_floor_rooms');
-        $dataPropertyDetail['sixth_floor_baths'] = $request->input('sixth_floor_baths');
-        $dataPropertyDetail['sixth_floor_price'] = $request->input('sixth_floor_price') ?? '0';
-        $dataPropertyDetail['sixth_floor_max_price'] = $request->input('sixth_floor_max_price') ?? '0';
-        $dataPropertyDetail['sixth_floor_picture'] = $SixthFloorName;
-        $dataPropertyDetail['seventh_floor_title'] = $request->input('seventh_floor_title');
-        $dataPropertyDetail['seventh_floor_sold'] = $request->input('seventh_floor_sold');
-        $dataPropertyDetail['seventh_floor_size'] = $request->input('seventh_floor_size');
-        $dataPropertyDetail['seventh_floor_max_size'] = $request->input('seventh_floor_max_size');
-        $dataPropertyDetail['seventh_floor_rooms'] = $request->input('seventh_floor_rooms');
-        $dataPropertyDetail['seventh_floor_baths'] = $request->input('seventh_floor_baths');
-        $dataPropertyDetail['seventh_floor_price'] = $request->input('seventh_floor_price') ?? '0';
-        $dataPropertyDetail['seventh_floor_max_price'] = $request->input('seventh_floor_max_price') ?? '0';
-        $dataPropertyDetail['seventh_floor_picture'] = $SeventhFloorName;
-        $dataPropertyDetail['eighth_floor_title'] = $request->input('eighth_floor_title');
-        $dataPropertyDetail['eighth_floor_sold'] = $request->input('eighth_floor_sold');
-        $dataPropertyDetail['eighth_floor_size'] = $request->input('eighth_floor_size');
-        $dataPropertyDetail['eighth_floor_max_size'] = $request->input('eighth_floor_max_size');
-        $dataPropertyDetail['eighth_floor_rooms'] = $request->input('eighth_floor_rooms');
-        $dataPropertyDetail['eighth_floor_baths'] = $request->input('eighth_floor_baths');
-        $dataPropertyDetail['eighth_floor_price'] = $request->input('eighth_floor_price') ?? '0';
-        $dataPropertyDetail['eighth_floor_max_price'] = $request->input('eighth_floor_max_price') ?? '0';
-        $dataPropertyDetail['eighth_floor_picture'] = $EighthFloorName;
-        $dataPropertyDetail['ninth_floor_title'] = $request->input('ninth_floor_title');
-        $dataPropertyDetail['ninth_floor_sold'] = $request->input('ninth_floor_sold');
-        $dataPropertyDetail['ninth_floor_size'] = $request->input('ninth_floor_size');
-        $dataPropertyDetail['ninth_floor_max_size'] = $request->input('ninth_floor_max_size');
-        $dataPropertyDetail['ninth_floor_rooms'] = $request->input('ninth_floor_rooms');
-        $dataPropertyDetail['ninth_floor_baths'] = $request->input('ninth_floor_baths');
-        $dataPropertyDetail['ninth_floor_price'] = $request->input('ninth_floor_price') ?? '0';
-        $dataPropertyDetail['ninth_floor_max_price'] = $request->input('ninth_floor_max_price') ?? '0';
-        $dataPropertyDetail['ninth_floor_picture'] = $NinthFloorName;
-        $dataPropertyDetail['tenth_floor_title'] = $request->input('tenth_floor_title');
-        $dataPropertyDetail['tenth_floor_sold'] = $request->input('tenth_floor_sold');
-        $dataPropertyDetail['tenth_floor_size'] = $request->input('tenth_floor_size');
-        $dataPropertyDetail['tenth_floor_max_size'] = $request->input('tenth_floor_max_size');
-        $dataPropertyDetail['tenth_floor_rooms'] = $request->input('tenth_floor_rooms');
-        $dataPropertyDetail['tenth_floor_baths'] = $request->input('tenth_floor_baths');
-        $dataPropertyDetail['tenth_floor_price'] = $request->input('tenth_floor_price') ?? '0';
-        $dataPropertyDetail['tenth_floor_max_price'] = $request->input('tenth_floor_max_price') ?? '0';
-        $dataPropertyDetail['tenth_floor_picture'] = $TenthFloorName;
-        $dataPropertyDetail['eleventh_floor_title'] = $request->input('eleventh_floor_title');
-        $dataPropertyDetail['eleventh_floor_sold'] = $request->input('eleventh_floor_sold');
-        $dataPropertyDetail['eleventh_floor_size'] = $request->input('eleventh_floor_size');
-        $dataPropertyDetail['eleventh_floor_max_size'] = $request->input('eleventh_floor_max_size');
-        $dataPropertyDetail['eleventh_floor_rooms'] = $request->input('eleventh_floor_rooms');
-        $dataPropertyDetail['eleventh_floor_baths'] = $request->input('eleventh_floor_baths');
-        $dataPropertyDetail['eleventh_floor_price'] = $request->input('eleventh_floor_price') ?? '0';
-        $dataPropertyDetail['eleventh_floor_max_price'] = $request->input('eleventh_floor_max_price') ?? '0';
-        $dataPropertyDetail['eleventh_floor_picture'] = $EleventhFloorName;
-        $dataPropertyDetail['twelfth_floor_title'] = $request->input('twelfth_floor_title');
-        $dataPropertyDetail['twelfth_floor_sold'] = $request->input('twelfth_floor_sold');
-        $dataPropertyDetail['twelfth_floor_size'] = $request->input('twelfth_floor_size');
-        $dataPropertyDetail['twelfth_floor_max_size'] = $request->input('twelfth_floor_max_size');
-        $dataPropertyDetail['twelfth_floor_rooms'] = $request->input('twelfth_floor_rooms');
-        $dataPropertyDetail['twelfth_floor_baths'] = $request->input('twelfth_floor_baths');
-        $dataPropertyDetail['twelfth_floor_price'] = $request->input('twelfth_floor_price') ?? '0';
-        $dataPropertyDetail['twelfth_floor_max_price'] = $request->input('twelfth_floor_max_price') ?? '0';
-        $dataPropertyDetail['twelfth_floor_picture'] = $TwelfthFloorName;
+
+
+
         $dataPropertyDetail['locale'] = $locale;
         $dataPropertyDetail['ivr'] = $request->input('ivr');
         $dataPropertyDetail['drive_link'] = $request->input('drive_link');
@@ -397,7 +277,7 @@ class PropertyModel implements IPropertyModel
         $dataPropertyDetail['whatsapp_link'] = $request->input('whatsapp_link');
         $dataPropertyDetail['location_info'] = $request->input('location_info');
 
-        $this->_propertyService->add($dataProperty,$dataPropertyDetail,$imgData);
+        $this->_propertyService->add($dataProperty,$dataPropertyDetail,$imgData,$propertyFloors);
     }
 
     public function update(Request $request, $id)
@@ -406,35 +286,22 @@ class PropertyModel implements IPropertyModel
         $user = auth()->user();
         //thumbnail image update start
         $thumbnailImage = $request->file('thumbnail');
-        $FirstFloorImage = $request->file('first_floor_picture');
-        $SecondFloorImage = $request->file('second_floor_picture');
-        $ThirdFloorImage = $request->file('third_floor_picture');
-        $FourthFloorImage = $request->file('fourth_floor_picture');
-        $FifthFloorImage = $request->file('fifth_floor_picture');
-        $SixthFloorImage = $request->file('sixth_floor_picture');
-        $SeventhFloorImage = $request->file('seventh_floor_picture');
-        $EighthFloorImage = $request->file('eighth_floor_picture');
-        $NinthFloorImage = $request->file('ninth_floor_picture');
-        $TenthFloorImage = $request->file('tenth_floor_picture');
-        $EleventhFloorImage = $request->file('eleventh_floor_picture');
-        $TwelfthFloorImage = $request->file('twelfth_floor_picture');
+
         $slug =  $request->input('title');
 
 
         $thumbnailName = $this->propertyImageUpdate($thumbnailImage,$slug,$property,'thumbnail',750,500);
-        $FirstFloorName = $this->imageUpload($FirstFloorImage,$slug,'floors',780, 540);
-        $SecondFloorName = $this->imageUpload($SecondFloorImage,$slug,'floors',780, 540);
-        $ThirdFloorName = $this->imageUpload($ThirdFloorImage,$slug,'floors',780, 540);
-        $FourthFloorName = $this->imageUpload($FourthFloorImage,$slug,'floors',780, 540);
-        $FifthFloorName = $this->imageUpload($FifthFloorImage,$slug,'floors',780, 540);
-        $SixthFloorName = $this->imageUpload($SixthFloorImage,$slug,'floors',780, 540);
-        $SeventhFloorName = $this->imageUpload($SeventhFloorImage,$slug,'floors',780, 540);
-        $EighthFloorName = $this->imageUpload($EighthFloorImage,$slug,'floors',780, 540);
-        $NinthFloorName = $this->imageUpload($NinthFloorImage,$slug,'floors',780, 540);
-        $TenthFloorName = $this->imageUpload($TenthFloorImage,$slug,'floors',780, 540);
-        $EleventhFloorName = $this->imageUpload($EleventhFloorImage,$slug,'floors',780, 540);
-        $TwelfthFloorName = $this->imageUpload($TwelfthFloorImage,$slug,'floors',780, 540);
+
         $backgroundImageName = $this->propertyImageUpdate($thumbnailImage,$slug,$property,'backgroundImage',1400,700);
+
+        $propertyFloors = [];
+        // dd($request->addMoreInputFields);
+        foreach($request->addMoreInputFields as $key => $value)
+        {
+            if(isset($value['image']))
+                $value['image'] = $this->imageUpload($value['image'],$slug,'floors',780, 540);
+            array_push($propertyFloors, $value);
+        }
 
 
         //thumbnail image save end
@@ -471,7 +338,7 @@ class PropertyModel implements IPropertyModel
         $dataProperty['locale'] = $request->input('local');
         $dataProperty['propertyId'] = $property['id'];
         $dataPropertyDetail = [];
-        $dataPropertyDetail['bed'] = $request->input(['bed']);
+        $dataPropertyDetail['bed'] = $request->input('bed');
         $dataPropertyDetail['bath'] = $request->input('bath');
         $dataPropertyDetail['garage'] = $request->input('garage');
         $dataPropertyDetail['blocks'] = $request->input('blocks') ?? '';
@@ -501,150 +368,7 @@ class PropertyModel implements IPropertyModel
         $dataPropertyDetail['sheet_no'] = $request->input('sheet_no')  ?? '';
         $dataPropertyDetail['precedent_value'] = $request->input('precedent_value') ?? '';
         $dataPropertyDetail['gauge'] = $request->input('gauge') ?? '';
-        $dataPropertyDetail['first_floor_title'] = $request->input('first_floor_title') ?? '';
-        $dataPropertyDetail['first_floor_sold'] = $request->input('first_floor_sold');
-        $dataPropertyDetail['first_floor_size'] = $request->input('first_floor_size') ?? '';
-        $dataPropertyDetail['first_floor_max_size'] = $request->input('first_floor_max_size');
-        $dataPropertyDetail['first_floor_rooms'] = $request->input('first_floor_rooms') ?? '';
-        $dataPropertyDetail['first_floor_baths'] = $request->input('first_floor_baths') ?? '';
-        $dataPropertyDetail['first_floor_price'] = $request->input('first_floor_price') ?? '0';
-        $dataPropertyDetail['first_floor_max_price'] = $request->input('first_floor_max_price') ?? '0';
-        if($request->hasFile('first_floor_picture'))
-        {
-        $dataPropertyDetail['first_floor_picture'] = $FirstFloorName;
-        }
-        $dataPropertyDetail['second_floor_title'] = $request->input('second_floor_title') ?? '';
-        $dataPropertyDetail['second_floor_sold'] = $request->input('second_floor_sold');
-        $dataPropertyDetail['second_floor_size'] = $request->input('second_floor_size') ?? '';
-        $dataPropertyDetail['second_floor_max_size'] = $request->input('second_floor_max_size');
-        $dataPropertyDetail['second_floor_rooms'] = $request->input('second_floor_rooms') ?? '';
-        $dataPropertyDetail['second_floor_baths'] = $request->input('second_floor_baths') ?? '';
-        $dataPropertyDetail['second_floor_price'] = $request->input('second_floor_price') ?? '0';
-        $dataPropertyDetail['second_floor_max_price'] = $request->input('second_floor_max_price') ?? '0';
-        if($request->hasFile('second_floor_picture'))
-        {
-        $dataPropertyDetail['second_floor_picture'] = $SecondFloorName;
-        }
-        $dataPropertyDetail['third_floor_title'] = $request->input('third_floor_title') ?? '';
-        $dataPropertyDetail['third_floor_sold'] = $request->input('third_floor_sold');
-        $dataPropertyDetail['third_floor_size'] = $request->input('third_floor_size') ?? '';
-        $dataPropertyDetail['third_floor_max_size'] = $request->input('third_floor_max_size');
-        $dataPropertyDetail['third_floor_rooms'] = $request->input('third_floor_rooms') ?? '';
-        $dataPropertyDetail['third_floor_baths'] = $request->input('third_floor_baths') ?? '';
-        $dataPropertyDetail['third_floor_price'] = $request->input('third_floor_price') ?? '0';
-        $dataPropertyDetail['third_floor_max_price'] = $request->input('third_floor_max_price') ?? '0';
-        if($request->hasFile('third_floor_picture'))
-        {
-        $dataPropertyDetail['third_floor_picture'] = $ThirdFloorName;
-        }
-        $dataPropertyDetail['fourth_floor_title'] = $request->input('fourth_floor_title') ?? '';
-        $dataPropertyDetail['fourth_floor_sold'] = $request->input('fourth_floor_sold');
-        $dataPropertyDetail['fourth_floor_size'] = $request->input('fourth_floor_size') ?? '';
-        $dataPropertyDetail['fourth_floor_max_size'] = $request->input('fourth_floor_max_size');
-        $dataPropertyDetail['fourth_floor_rooms'] = $request->input('fourth_floor_rooms') ?? '';
-        $dataPropertyDetail['fourth_floor_baths'] = $request->input('fourth_floor_baths') ?? '';
-        $dataPropertyDetail['fourth_floor_price'] = $request->input('fourth_floor_price') ?? '0';
-        $dataPropertyDetail['fourth_floor_max_price'] = $request->input('fourth_floor_max_price') ?? '0';
-        if($request->hasFile('fourth_floor_picture'))
-        {
-        $dataPropertyDetail['fourth_floor_picture'] = $FourthFloorName;
-        }
-        $dataPropertyDetail['fifth_floor_title'] = $request->input('fifth_floor_title') ?? '';
-        $dataPropertyDetail['fifth_floor_sold'] = $request->input('fifth_floor_sold');
-        $dataPropertyDetail['fifth_floor_size'] = $request->input('fifth_floor_size') ?? '';
-        $dataPropertyDetail['fifth_floor_max_size'] = $request->input('fifth_floor_max_size');
-        $dataPropertyDetail['fifth_floor_rooms'] = $request->input('fifth_floor_rooms') ?? '';
-        $dataPropertyDetail['fifth_floor_baths'] = $request->input('fifth_floor_baths') ?? '';
-        $dataPropertyDetail['fifth_floor_price'] = $request->input('fifth_floor_price') ?? '0';
-        $dataPropertyDetail['fifth_floor_max_price'] = $request->input('fifth_floor_max_price') ?? '0';
-        if($request->hasFile('fifth_floor_picture'))
-        {
-        $dataPropertyDetail['fifth_floor_picture'] = $FifthFloorName;
-        }
-        $dataPropertyDetail['sixth_floor_title'] = $request->input('sixth_floor_title') ?? '';
-        $dataPropertyDetail['sixth_floor_sold'] = $request->input('sixth_floor_sold');
-        $dataPropertyDetail['sixth_floor_size'] = $request->input('sixth_floor_size') ?? '';
-        $dataPropertyDetail['sixth_floor_max_size'] = $request->input('sixth_floor_max_size');
-        $dataPropertyDetail['sixth_floor_rooms'] = $request->input('sixth_floor_rooms') ?? '';
-        $dataPropertyDetail['sixth_floor_baths'] = $request->input('sixth_floor_baths') ?? '';
-        $dataPropertyDetail['sixth_floor_price'] = $request->input('sixth_floor_price') ?? '0';
-        $dataPropertyDetail['sixth_floor_max_price'] = $request->input('sixth_floor_max_price') ?? '0';
-        if($request->hasFile('sixth_floor_picture'))
-        {
-        $dataPropertyDetail['sixth_floor_picture'] = $SixthFloorName;
-        }
-        $dataPropertyDetail['seventh_floor_title'] = $request->input('seventh_floor_title') ?? '';
-        $dataPropertyDetail['seventh_floor_sold'] = $request->input('seventh_floor_sold');
-        $dataPropertyDetail['seventh_floor_size'] = $request->input('seventh_floor_size') ?? '';
-        $dataPropertyDetail['seventh_floor_max_size'] = $request->input('seventh_floor_max_size');
-        $dataPropertyDetail['seventh_floor_rooms'] = $request->input('seventh_floor_rooms') ?? '';
-        $dataPropertyDetail['seventh_floor_baths'] = $request->input('seventh_floor_baths') ?? '';
-        $dataPropertyDetail['seventh_floor_price'] = $request->input('seventh_floor_price') ?? '0';
-        $dataPropertyDetail['seventh_floor_max_price'] = $request->input('seventh_floor_max_price') ?? '0';
-        if($request->hasFile('seventh_floor_picture'))
-        {
-        $dataPropertyDetail['seventh_floor_picture'] = $SeventhFloorName;
-        }
-        $dataPropertyDetail['eighth_floor_title'] = $request->input('eighth_floor_title') ?? '';
-        $dataPropertyDetail['eighth_floor_sold'] = $request->input('eighth_floor_sold');
-        $dataPropertyDetail['eighth_floor_size'] = $request->input('eighth_floor_size') ?? '';
-        $dataPropertyDetail['eighth_floor_max_size'] = $request->input('eighth_floor_max_size');
-        $dataPropertyDetail['eighth_floor_rooms'] = $request->input('eighth_floor_rooms') ?? '';
-        $dataPropertyDetail['eighth_floor_baths'] = $request->input('eighth_floor_baths') ?? '';
-        $dataPropertyDetail['eighth_floor_price'] = $request->input('eighth_floor_price') ?? '0';
-        $dataPropertyDetail['eighth_floor_max_price'] = $request->input('eighth_floor_max_price') ?? '0';
-        if($request->hasFile('eighth_floor_picture'))
-        {
-        $dataPropertyDetail['eighth_floor_picture'] = $EighthFloorName;
-        }
-        $dataPropertyDetail['ninth_floor_title'] = $request->input('ninth_floor_title') ?? '';
-        $dataPropertyDetail['ninth_floor_sold'] = $request->input('ninth_floor_sold');
-        $dataPropertyDetail['ninth_floor_size'] = $request->input('ninth_floor_size') ?? '';
-        $dataPropertyDetail['ninth_floor_max_size'] = $request->input('ninth_floor_max_size');
-        $dataPropertyDetail['ninth_floor_rooms'] = $request->input('ninth_floor_rooms') ?? '';
-        $dataPropertyDetail['ninth_floor_baths'] = $request->input('ninth_floor_baths') ?? '';
-        $dataPropertyDetail['ninth_floor_price'] = $request->input('ninth_floor_price') ?? '0';
-        $dataPropertyDetail['ninth_floor_max_price'] = $request->input('ninth_floor_max_price') ?? '0';
-        if($request->hasFile('ninth_floor_picture'))
-        {
-        $dataPropertyDetail['ninth_floor_picture'] = $NinthFloorName;
-        }
-        $dataPropertyDetail['tenth_floor_title'] = $request->input('tenth_floor_title') ?? '';
-        $dataPropertyDetail['tenth_floor_sold'] = $request->input('tenth_floor_sold');
-        $dataPropertyDetail['tenth_floor_size'] = $request->input('tenth_floor_size') ?? '';
-        $dataPropertyDetail['tenth_floor_max_size'] = $request->input('tenth_floor_max_size');
-        $dataPropertyDetail['tenth_floor_rooms'] = $request->input('tenth_floor_rooms') ?? '';
-        $dataPropertyDetail['tenth_floor_baths'] = $request->input('tenth_floor_baths') ?? '';
-        $dataPropertyDetail['tenth_floor_price'] = $request->input('tenth_floor_price') ?? '0';
-        $dataPropertyDetail['tenth_floor_max_price'] = $request->input('tenth_floor_max_price') ?? '0';
-        if($request->hasFile('tenth_floor_picture'))
-        {
-        $dataPropertyDetail['tenth_floor_picture'] = $TenthFloorName;
-        }
-        $dataPropertyDetail['eleventh_floor_title'] = $request->input('eleventh_floor_title') ?? '';
-        $dataPropertyDetail['eleventh_floor_sold'] = $request->input('eleventh_floor_sold');
-        $dataPropertyDetail['eleventh_floor_size'] = $request->input('eleventh_floor_size') ?? '';
-        $dataPropertyDetail['eleventh_floor_max_size'] = $request->input('eleventh_floor_max_size');
-        $dataPropertyDetail['eleventh_floor_rooms'] = $request->input('eleventh_floor_rooms') ?? '';
-        $dataPropertyDetail['eleventh_floor_baths'] = $request->input('eleventh_floor_baths') ?? '';
-        $dataPropertyDetail['eleventh_floor_price'] = $request->input('eleventh_floor_price') ?? '0';
-        $dataPropertyDetail['eleventh_floor_max_price'] = $request->input('eleventh_floor_max_price') ?? '0';
-        if($request->hasFile('eleventh_floor_picture'))
-        {
-        $dataPropertyDetail['eleventh_floor_picture'] = $EleventhFloorName;
-        }
-        $dataPropertyDetail['twelfth_floor_title'] = $request->input('twelfth_floor_title') ?? '';
-        $dataPropertyDetail['twelfth_floor_sold'] = $request->input('twelfth_floor_sold');
-        $dataPropertyDetail['twelfth_floor_size'] = $request->input('twelfth_floor_size') ?? '';
-        $dataPropertyDetail['twelfth_floor_max_size'] = $request->input('twelfth_floor_max_size');
-        $dataPropertyDetail['twelfth_floor_rooms'] = $request->input('twelfth_floor_rooms') ?? '';
-        $dataPropertyDetail['twelfth_floor_baths'] = $request->input('twelfth_floor_baths') ?? '';
-        $dataPropertyDetail['twelfth_floor_price'] = $request->input('twelfth_floor_price') ?? '0';
-        $dataPropertyDetail['twelfth_floor_max_price'] = $request->input('twelfth_floor_max_price') ?? '0';
-        if($request->hasFile('twelfth_floor_picture'))
-        {
-        $dataPropertyDetail['twelfth_floor_picture'] = $TwelfthFloorName;
-        }
+
         $dataPropertyDetail['floor'] = $request->input('floor');
         $dataPropertyDetail['room_size'] = $request->input('room_size');
         $dataPropertyDetail['content'] = $request->input('content') ?? '';
@@ -691,7 +415,7 @@ class PropertyModel implements IPropertyModel
         }else{
             $imgData = "default.png";
         }
-        $this->_propertyService->update($dataProperty, $dataPropertyDetail,$id);
+        $this->_propertyService->update($dataProperty, $dataPropertyDetail, $propertyFloors, $id);
     }
 
     public function updateModerationStatus(Request $request, $id)

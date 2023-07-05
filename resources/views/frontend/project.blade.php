@@ -141,7 +141,7 @@
                         <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 px-[15px] mx-[-15px] mt-[40px]">
                             <li class="flex flex-wrap items-center mb-[25px]">
                                 @if($property->price !== '')
-                                <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{trans('file.starts_from')}}: <span class="text-secondary"> {{ currencyConvert($property->price) }}</span></h2>
+                                <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{trans('file.starts_from')}}: <span class="text-secondary"> {{ convert($property->price, $property->currency) }}</span></h2>
                                 @else
                                 <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{trans('file.starts_from')}}: <span class="text-secondary">No Price Given</span></h2>
                                 @endif
@@ -194,10 +194,10 @@
                                                 {{$property->propertyDetails->first_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->first_floor_price) }}
+                                                {{ convert($property->propertyDetails->first_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->first_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->first_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -211,10 +211,10 @@
                                                 {{$property->propertyDetails->second_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->second_floor_price) }}
+                                                {{ convert($property->propertyDetails->second_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->second_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->second_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -228,10 +228,10 @@
                                                 {{$property->propertyDetails->third_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->third_floor_price) }}
+                                                {{ convert($property->propertyDetails->third_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->third_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->third_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -245,10 +245,10 @@
                                                 {{$property->propertyDetails->fourth_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->fourth_floor_price) }}
+                                                {{ convert($property->propertyDetails->fourth_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->fourth_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->fourth_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -262,10 +262,10 @@
                                                 {{$property->propertyDetails->fifth_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->fifth_floor_price) }}
+                                                {{ convert($property->propertyDetails->fifth_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->fifth_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->fifth_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -279,10 +279,10 @@
                                                 {{$property->propertyDetails->sixth_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->sixth_floor_price) }}
+                                                {{ convert($property->propertyDetails->sixth_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->sixth_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->sixth_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -296,10 +296,10 @@
                                                 {{$property->propertyDetails->seventh_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->seventh_floor_price) }}
+                                                {{ convert($property->propertyDetails->seventh_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->seventh_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->seventh_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -313,10 +313,10 @@
                                                 {{$property->propertyDetails->eighth_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->eighth_floor_price) }}
+                                                {{ convert($property->propertyDetails->eighth_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->eighth_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->eighth_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -330,10 +330,10 @@
                                                 {{$property->propertyDetails->ninth_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->ninth_floor_price) }}
+                                                {{ convert($property->propertyDetails->ninth_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->ninth_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->ninth_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -347,10 +347,10 @@
                                                 {{$property->propertyDetails->tenth_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->tenth_floor_price) }}
+                                                {{ convert($property->propertyDetails->tenth_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->tenth_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->tenth_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -364,10 +364,10 @@
                                                 {{$property->propertyDetails->eleventh_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->eleventh_floor_price) }}
+                                                {{ convert($property->propertyDetails->eleventh_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->eleventh_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->eleventh_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif
@@ -381,10 +381,10 @@
                                                 {{$property->propertyDetails->twelfth_floor_max_size}} {{trans('file.sq-ft')}}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->twelfth_floor_price) }}
+                                                {{ convert($property->propertyDetails->twelfth_floor_price, $property->currency) }}
                                             </td>
                                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->twelfth_floor_max_price) }}
+                                                {{ convert($property->propertyDetails->twelfth_floor_max_price, $property->currency) }}
                                             </td>
                                         </tr>
                                         @endif

@@ -110,7 +110,7 @@
                     </div>
                     @endif
                     <div class="mt-[45px] mb-[35px]">
-                        <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{trans('file.starts_from')}}: <span class="text-secondary">{{ currencyConvert($property->price) }}</span></h2>
+                        <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{trans('file.starts_from')}}: <span class="text-secondary">{{ convert($property->price, $property->currency) }}</span></h2>
                         <h3 class="font-light text-[18px] text-secondary mb-[20px]"> {{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }}, {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }}, {{ $property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null) }}</h3>
                         <p>{!! $property->propertyDetails->propertyDetailTranslation->content ?? ($property->propertyDetails->propertyDetailTranslationEnglish->content ?? null) !!}</p>
                     </div>

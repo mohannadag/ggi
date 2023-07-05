@@ -6,9 +6,9 @@
                 <div class="col-md-12">
                     <div class="invoice-panel">
                         <div class="act-title d-flex justify-content-between">
-                            <h5>Facilities</h5><br>
+                            <h5>Units</h5><br>
 
-                            <a href="{{route('admin.units.create')}}" class="btn v3">Add Facilities</a>
+                            <a href="{{route('admin.units.create')}}" class="btn v3">Add Unit</a>
                         </div>
 
                         <div class="invoice-body">

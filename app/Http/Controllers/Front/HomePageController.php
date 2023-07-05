@@ -23,6 +23,7 @@ use App\Models\Property;
 use App\Models\Tag;
 use App\Models\PropertyDetail;
 use App\Models\PropertyTranslation;
+use App\Models\Units;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Service;
 use App\Models\SiteInfo;
@@ -823,8 +824,9 @@ class HomePageController extends Controller
         //Poperty Search
         $properties = $this->_propertySearchModel->getData($request);
         $data = $request->all();
+        $units = Units::all();
         // dd($properties);
-        return view('frontend.get-property',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'featuredProperties'));
+        return view('frontend.get-property',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'featuredProperties', 'units'));
     }
 
     public function searchProject(Request $request)
