@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front;
 use App\Http\Controllers\Admin;
@@ -7,6 +10,7 @@ use App\Http\Controllers\Front\HomePageController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\File;
+use Spatie\Analytics\Analytics;
 use Spatie\Analytics\Period;
 /*
 |--------------------------------------------------------------------------
@@ -294,26 +298,33 @@ Route::get('/currency-switch/{currency}', [HomePageController::class, 'switchCur
 
 Route::get('/migration', function(){
     Artisan::call('migrate', array('--path' => 'database/migrations', '--force' => true));
-    dd('success');
+    return redirect()->route('front.home');
+    // dd('success');
 });
 
 
-// Route::get('/currenciesupdate', function(){
-//     // $currencies = \AmrShawky\LaravelCurrency\Facade\Currency::rates()
-//     //                     ->latest()
-//     //                     ->get();
-//     // $baseCurrencies = \App\Models\Currency::all();
-//     // $USD = $baseCurrencies->where('name', '==', 'USD')->first();
-//     // $TRY = $baseCurrencies->where('name', '==', 'TRY')->first();
-//     // $EUR = $baseCurrencies->where('name', '==', 'EUR')->first();
-//     // $USD->value = $currencies['USD'];
-//     // $TRY->value = $currencies['TRY'];
-//     // $EUR->value = $currencies['EUR'];
-//     // $USD->update();
-//     // $TRY->update();
-//     // $EUR->update();
+Route::get('/currenciesupdate', function(){
+    // $currencies = \AmrShawky\LaravelCurrency\Facade\Currency::rates()
+    //                     ->latest()
+    //                     ->get();
+    // $baseCurrencies = \App\Models\Currency::all();
+    // $USD = $baseCurrencies->where('name', '==', 'USD')->first();
+    // $TRY = $baseCurrencies->where('name', '==', 'TRY')->first();
+    // $EUR = $baseCurrencies->where('name', '==', 'EUR')->first();
+    // $USD->value = $currencies['USD'];
+    // $TRY->value = $currencies['TRY'];
+    // $EUR->value = $currencies['EUR'];
+    // $USD->update();
+    // $TRY->update();
+    // $EUR->update();
 
-//     updateCurrencies();
+    updateCurrencies();
+    return redirect()->route('front.home');
+    // dd('success');
+});
 
-//     dd('success');
-// });
+Route::get('/clearcache', function() {
+    Cache::flush();
+    return redirect()->route('front.home');
+    // dd('success');
+});
