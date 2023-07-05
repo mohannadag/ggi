@@ -835,6 +835,7 @@
                                 <div class="card-body">
 
                                     <div id="dynamicAddRemove">
+                                        @if(count($property->propertyDetails->floors) > 0)
                                         @for ($i = 0 ; $i< count($property->propertyDetails->floors); $i++)
                                             <div>
                                                 <table class="table table-bordered" id="">
@@ -916,6 +917,9 @@
                                                 @endif
                                             </div>
                                         @endfor
+                                        @else
+                                            <div><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary mb-3">Add unit</button></div>
+                                        @endif
                                     </div>
 
                                 </div>
