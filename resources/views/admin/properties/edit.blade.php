@@ -918,7 +918,71 @@
                                             </div>
                                         @endfor
                                         @else
-                                            <div><button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary mb-3">Add unit</button></div>
+                                        <table class="table table-bordered" id="">
+
+                                            <tr>
+                                                <td>
+                                                    <label for="addMoreInputFields[0][min_price]">min price</label>
+                                                    <input type="number" id="addMoreInputFields[0][min_price]" name="addMoreInputFields[0][min_price]" class="form-control" value="0" min="0" required />
+                                                </td>
+                                                <td>
+                                                    <label for="addMoreInputFields[0][max_price]">max price</label>
+                                                    <input type="number" id="addMoreInputFields[0][masx_price]" name="addMoreInputFields[0][masx_price]" class="form-control" value="0" min="0" required />
+                                                </td>
+                                                <td>
+                                                    <label for="addMoreInputFields[0][min_size]">min size</label>
+                                                    <input type="number" id="addMoreInputFields[0][min_size]" name="addMoreInputFields[0][min_size]" class="form-control" value="0" min="0" required />
+                                                </td>
+                                                <td>
+                                                    <label for="addMoreInputFields[0][max_size]">max size</label>
+                                                    <input type="number" id="addMoreInputFields[0][masx_size]" name="addMoreInputFields[0][masx_size]" class="form-control" value="0" min="0" required />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <label for="addMoreInputFields[0][unit_id]">rooms</label>
+                                                    <select id="addMoreInputFields[0][unit_id]" name="addMoreInputFields[0][unit_id]"
+                                                                class="listing-input hero__form-input  form-control custom-select">
+                                                                <option value="" disabled>Select</option>
+                                                                @foreach ($units as $unit)
+                                                                    <option value="{{ $unit->id }}" >{{ $unit->name }}</option>
+                                                                @endforeach
+                                                    </select>
+                                                    {{-- <input type="text" id="addMoreInputFields[0][unit_id]" name="addMoreInputFields[0][unit_id]" class="form-control" /></td> --}}
+                                                <td>
+                                                    <label for="addMoreInputFields[0][baths]">baths</label>
+                                                    <input type="number" id="addMoreInputFields[0][baths]" name="addMoreInputFields[0][baths]" class="form-control" value="1" min="1" required /></td>
+                                                <td>
+                                                    <label for="addMoreInputFields[0][is_sold]">Is Sold</label>
+                                                    <select id="addMoreInputFields[0][is_sold]" name="addMoreInputFields[0][is_sold]" class="listing-input hero__form-input  form-control custom-select">
+                                                        <option value="0">No</option>
+                                                        <option value="1">Yes</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <label for="addMoreInputFields[0][ivr_link]">ivr link</label>
+                                                    <input type="text" id="addMoreInputFields[0][ivr_link]" name="addMoreInputFields[0][ivr_link]" class="form-control" />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <label for="addMoreInputFields[0][note_ar]">Note Arabic</label>
+                                                    <input type="text" id="addMoreInputFields[0][note_ar]" name="addMoreInputFields[0][note_ar]" class="form-control" />
+                                                </td>
+                                                <td>
+                                                    <label for="addMoreInputFields[0][note_en]">Note English</label>
+                                                    <input type="text" id="addMoreInputFields[0][note_en]" name="addMoreInputFields[0][note_en]" class="form-control" />
+                                                </td>
+                                                <td colspan="2">
+                                                    <label for="addMoreInputFields[0][image]">Image</label>
+                                                    <input type="file" id="addMoreInputFields[0][image]" name="addMoreInputFields[0][image]" class="form-control" />
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                        <button type="button" name="add" id="dynamic-ar" class="btn btn-outline-primary">Add unit</button>
                                         @endif
                                     </div>
 
