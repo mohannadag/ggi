@@ -38,10 +38,11 @@ class BlogController extends Controller
         // $data = $this->_repo->getAll();
         // dd($data);
         try {
-            if ($request->ajax()) {
-                return $this->_model->getAllTable($request);
-            }
-            return view('admin.blogs.index');
+            // if ($request->ajax()) {
+            //     return $this->_model->getAllTable($request);
+            // }
+            $properties = $this->_model->getall($request);
+            return view('admin.blogs.index',compact('properties'));
         }
         catch (Throwable $exception) {
             Log::error($exception->getMessage());

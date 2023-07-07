@@ -23,6 +23,10 @@ class BlogModel implements IBlogModel
         $this->_repository = $repository;
     }
 
+    public function getAll(Request $request)
+    {
+        return $this->_repository->getAll();
+    }
     public function getAllTable(Request $request)
     {
         try {

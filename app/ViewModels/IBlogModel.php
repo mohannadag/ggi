@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 
 interface IBlogModel
 {
+    public function getAll(Request $request);
     public function getAllTable(Request $request);
     public function add(Request $request);
     public function update(Request $request, $blog);
