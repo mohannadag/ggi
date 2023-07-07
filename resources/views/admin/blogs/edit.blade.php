@@ -15,7 +15,7 @@
                                 <input type="hidden" name="locale" value="{{$locale}}">
                                 <div class="row">
                                     <input type="hidden" name="user_id" value="{{$blog->user_id}}">
-                                    @can('isAdmin')
+                                    {{-- @can('isAdmin') --}}
                                     {{-- <div class="col-md-12">
                                         <div class="form-group">
                                             <select id="language" name="language" class="listing-input hero__form-input form-control custom-select">
@@ -36,7 +36,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    @endcan
+                                    {{-- @endcan --}}
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Category</label>
