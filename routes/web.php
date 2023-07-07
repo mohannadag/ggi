@@ -319,12 +319,14 @@ Route::get('/currenciesupdate', function(){
     // $EUR->update();
 
     updateCurrencies();
-    return redirect()->route('front.home');
+    return redirect()->back();
+    // return redirect()->route('front.home');
     // dd('success');
 });
 
 Route::get('/clearcache', function() {
     Cache::flush();
-    return redirect()->route('front.home');
+    return redirect()->back();
+    // return redirect()->route('front.home');
     // dd('success');
 });

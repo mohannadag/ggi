@@ -157,16 +157,16 @@ function convert($price, $cur)
     switch ($i) {
         case 'EUR':
             $amount = $inEur * $EUR->value;
-            return '€' . ' ' . roundUpToAny($amount);
+            return '€' . ' ' . number_format(roundUpToAny($amount));
         case 'USD':
             $amount = $inEur * $USD->value;
 
-            return '$' . ' ' . roundUpToAny($amount);
+            return '$' . ' ' . number_format(roundUpToAny($amount));
 
         case 'TRY':
             $amount = $inEur * $TRY->value;
 
-            return '₺' . ' ' . roundUpToAny($amount);
+            return '₺' . ' ' . number_format(roundUpToAny($amount));
     }
 }
 

@@ -92,8 +92,8 @@ class PropertyController extends Controller
         $maxArea = $propertyDetails->max('room_size');
         $minArea = $propertyDetails->min('room_size');
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
-
-         return view('frontend.properties-map',compact('properties','city','minPrice','maxPrice','minArea','maxArea','categories', 'states'));
+        $units = Units::all();
+         return view('frontend.properties-map',compact('properties','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'units'));
 
 
     }
@@ -131,8 +131,8 @@ class PropertyController extends Controller
         $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
         $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
         $tags = $property->tags; // Tag::with('tagTranslation', 'tagTranslationEnglish')->get();
-
-        return view('frontend.property',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail', 'curr', 'tags'));
+        $units = Units::all();
+        return view('frontend.property',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail', 'curr', 'tags', 'units'));
     }
 
     public function ivrProperty(Property $property, Request $request)
@@ -159,7 +159,8 @@ class PropertyController extends Controller
         $locale   = Session::get('currentLocal');
         $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
         $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
-        return view('frontend.property-ivr',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail'));
+        $units = Units::all();
+        return view('frontend.property-ivr',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail', 'units'));
     }
 
     public function ivrProp(Property $property, Request $request)
@@ -181,12 +182,12 @@ class PropertyController extends Controller
         //Poperty Search
         $properties = $this->_propertySearchModel->getData($request);
         $data = $request->all();
-
+        $units = Units::all();
         $properties = Property::with(['facilities.facilityTranslation', 'units.unitsTranslation','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','propertyTranslationEnglish','image','propertyDetails'])->where('moderation_status',1)->get();
         $locale   = Session::get('currentLocal');
         $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
         $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
-        return view('frontend.property-ivr-2',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail'));
+        return view('frontend.property-ivr-2',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail', 'units'));
     }
 
     public function ivrProp3(Property $property, Request $request)
@@ -213,7 +214,8 @@ class PropertyController extends Controller
         $locale   = Session::get('currentLocal');
         $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
         $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
-        return view('frontend.property-ivr-3',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail'));
+        $units = Units::all();
+        return view('frontend.property-ivr-3',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail', 'units'));
     }
 
     public function ivrProp4(Property $property, Request $request)
@@ -240,7 +242,8 @@ class PropertyController extends Controller
         $locale   = Session::get('currentLocal');
         $propertyTranslation = PropertyTranslation::where('locale',$locale)->get()->keyBy('property_id');
         $propertyTranslationEnglish = PropertyTranslation::where('locale','en')->get()->keyBy('property_id');
-        return view('frontend.property-ivr-4',compact('property','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail'));
+        $units = Units::all();
+        return view('frontend.property-ivr-4',compact('property', 'units','properties','propertyTranslation','propertyTranslationEnglish', 'states', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'thumbnail'));
     }
 
     public function searchProperties(Request $request)
@@ -353,6 +356,7 @@ class PropertyController extends Controller
     $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
     //Poperty Search
     $properties = $this->_propertySearchModel->getData($request);
+    $units = Units::all();
     $data = $request->all();
         App::setLocale(Session::get('currentLocal'));
         Session::get('currentLocal');
@@ -362,7 +366,7 @@ class PropertyController extends Controller
             ->where('type','rent')
             ->orderBy('id','desc')
             ->paginate(4);
-        return view('frontend.properties-rent',compact('properties', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'states'));
+        return view('frontend.properties-rent',compact('properties', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'units'));
     }
     public function sale(Request $request, State $state)
     {
@@ -383,6 +387,7 @@ class PropertyController extends Controller
     //Poperty Search
     $properties = $this->_propertySearchModel->getData($request);
     $data = $request->all();
+    $units = Units::all();
         App::setLocale(Session::get('currentLocal'));
         Session::get('currentLocal');
         $properties = Property::with(['propertyDetails','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
@@ -391,7 +396,7 @@ class PropertyController extends Controller
             ->where('type','sale')
             ->orderBy('id','desc')
             ->paginate(4);
-        return view('frontend.properties-sale',compact('properties', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'states'));
+        return view('frontend.properties-sale',compact('properties', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'units'));
     }
 
     public function getAllProperties()
@@ -421,8 +426,9 @@ class PropertyController extends Controller
         $minArea = $propertyDetails->min('room_size');
         $properties = $this->_propertySearchModel->getData($request);
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
+        $units = Units::all();
 //        dd($city->properties);
-        return view('frontend.properties-city',compact('city','properties', 'maxPrice','minPrice','maxArea','minArea','maxArea','cit','categories', 'states'));
+        return view('frontend.properties-city',compact('city','properties', 'maxPrice','minPrice','maxArea','minArea','maxArea','cit','categories', 'states', 'units'));
     }
 
     public function state(State $state, Request $request, Category $category)
@@ -447,6 +453,7 @@ class PropertyController extends Controller
         $stateTranslation = StateTranslation::where('locale',$locale)->get()->where('state_id', $state->id)->keyBy('state_id');
         $stateTranslationEnglish = StateTranslation::where('locale','en')->get()->where('state_id', $state->id)->keyBy('state_id');
         $data = $request->all();
+        $units = Units::all();
                 $category = Category::where('name',$category)->first();
                 App::setLocale(Session::get('currentLocal'));
                 Session::get('currentLocal');
@@ -455,7 +462,7 @@ class PropertyController extends Controller
                     ->where('state_id', $state->id)
                     ->orderBy('id','desc')
                     ->paginate(4);
-            return view('frontend.properties-state',compact('properties', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'state', 'states'));
+            return view('frontend.properties-state',compact('properties', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'state', 'states', 'units'));
     }
 
 
@@ -476,6 +483,7 @@ class PropertyController extends Controller
     //Poperty Search
     $properties = $this->_propertySearchModel->getData($request);
     $data = $request->all();
+    $units = Units::all();
             $category = Category::where('name',$category)->first();
             App::setLocale(Session::get('currentLocal'));
             Session::get('currentLocal');
@@ -484,6 +492,6 @@ class PropertyController extends Controller
                 ->where('category_id',$category->id)
                 ->orderBy('id','desc')
                 ->paginate(4);
-            return view('frontend.properties-category',compact('properties', 'city','minPrice','maxPrice','minArea','maxArea','categories'));
+            return view('frontend.properties-category',compact('properties', 'city','minPrice','maxPrice','minArea','maxArea','categories', 'units'));
     }
 }
