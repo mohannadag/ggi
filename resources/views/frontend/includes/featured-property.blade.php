@@ -12,9 +12,9 @@
                 </div>
                 <ul class="all-properties flex flex-wrap lg:pt-[10px]">
                     <li data-tab="all-properties" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none active"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.all_listings')}}</button></li>
-                    <li data-tab="Projects" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.projects')}}</button></li>
+                    {{-- <li data-tab="Projects" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.projects')}}</button></li>
                     <li data-tab="Apartments" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.apartments')}}</button></li>
-                    <li data-tab="Lands" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.lands')}}</button></li>
+                    <li data-tab="Lands" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.lands')}}</button></li> --}}
             </div>
             <div class="col-span-12">
                 <div class="all-properties properties-tab-content active">

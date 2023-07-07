@@ -1,5 +1,5 @@
 @extends('frontend.main')
-@section('title'){{$property->property_id}}@endsection
+@section('title'){{ 'GGI-'. $property->property_id}}@endsection
 @section('meta'){{$property->description}}@endsection
 @section('image'){{ URL::asset('/images/thumbnail/'.$property->thumbnail) }}@endsection
 @section('content')
@@ -227,7 +227,8 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </div>
                 </div>
                 @endif
-                @if ($property->propertyDetails->first_floor_title !== NULL)
+
+                {{-- @if ($property->propertyDetails->first_floor_title !== NULL) --}}
                 <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5">{{trans('file.available_units')}}</h5>
                 <div class="flex flex-wrap items-center mb-[25px]">
                     <h2 class="font-lora text-primary leading-[1.277] capitalize lg font-medium my-5">{{trans('file.payment_options')}}:</h2>
@@ -258,438 +259,82 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                             <!-- <th scope="col" class="text-base font-medium bg-primary text-white px-6 py-4 text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
                                                 {{trans('file.max_price')}}
                                             </th> -->
+                                            <th scope="col" class="text-base font-medium bg-primary text-white px-6 py-4 text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
+                                                {{trans('file.baths-number')}}
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if ($property->propertyDetails->first_floor_price !== '0.00')
-                                        @if($property->propertyDetails->first_floor_sold == 2)
+                                        @foreach ($property->propertyDetails->floors as $floor)
+                                            @if($floor->is_sold == 1)
+                                                <tr class="border-b bg-[#E9F1FF]">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-base font-large text-gray-900">
+                                                        <s>{{$floor->unit_id}}</s>
+                                                        <span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
+                                                            {{trans('file.sold')}}</span>
+                                                        @if((App::isLocale('ar') ? $floor->note_ar : $floor->note_en != '') || (App::isLocale('ar') ? $floor->note_ar : $floor->note_en != null))
+                                                            <i data-tooltip-target="tooltip-default" data-tooltip-placement="right" class="fa-solid fa-circle-question"></i>
+                                                            <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                                                                {{ App::isLocale('ar') ? $floor->note_ar : $floor->note_en }}
+                                                                <div class="tooltip-arrow" data-popper-arrow></div>
+                                                            </div>
+                                                        @endif
+                                                </td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        <s> {{$floor->min_size}} {{trans('file.sq-ft')}}</s>
+                                                    </td>
+                                                    <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        <s>{{$floor->max_size}} {{trans('file.sq-ft')}}</s>
+                                                    </td> -->
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        <s>{{ convert($floor->min_price, $property->currency) }}</s>
+                                                    </td>
+                                                    <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        <s>{{ convert($floor->max_price, $property->currency) }}</s>
+                                                    </td> -->
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        <s>{{$floor->baths}}</s>
+                                                    </td>
+                                                </tr>
+                                            @else
+                                                <tr class="border-b bg-[#E9F1FF]">
+                                                    <td class="px-6 py-4 whitespace-nowrap text-base font-large text-gray-900">
+                                                        {{$floor->unit->name}}
+                                                        @if((App::isLocale('ar') ? $floor->note_ar : $floor->note_en != '') || (App::isLocale('ar') ? $floor->note_ar : $floor->note_en != null))
+                                                            <i data-tooltip-target="tooltip-default" data-tooltip-placement="bottom" class="fa-solid fa-circle-question"></i>
+                                                            <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+                                                                {{ App::isLocale('ar') ? $floor->note_ar : $floor->note_en }}
+                                                                <div class="tooltip-arrow" data-popper-arrow></div>
+                                                            </div>
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        {{$floor->min_size}} {{trans('file.sq-ft')}}
+                                                    </td>
+                                                    <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        {{$floor->max_size}} {{trans('file.sq-ft')}}
+                                                    </td> -->
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        {{ convert($floor->min_price, $property->currency) }}
+                                                    </td>
+                                                    <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        {{ convert($floor->max_price, $property->currency) }}
+                                                    </td> -->
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                        {{$floor->baths}}
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
 
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-large text-gray-900"><s>{{$property->propertyDetails->first_floor_title}}</s> <span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span>
-                                        </td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                               <s> {{$property->propertyDetails->first_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->first_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->first_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->first_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-large text-gray-900">{{$property->propertyDetails->first_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->first_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->first_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->first_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->first_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->second_floor_price !== '0.00')
-                                        @if($property->propertyDetails->second_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"><s>{{$property->propertyDetails->second_floor_title}}</s><span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                               <s> {{$property->propertyDetails->second_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->second_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->second_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                               <s> {{ currencyConvert($property->propertyDetails->second_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->second_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->second_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->second_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->second_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->second_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->third_floor_price !== '0.00')
-                                        @if($property->propertyDetails->third_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"><s>{{$property->propertyDetails->third_floor_title}}</s><span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->third_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->third_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->third_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->third_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->third_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->third_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->third_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->third_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->third_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->fourth_floor_price !== '0.00')
-                                        @if($property->propertyDetails->fourth_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"><s>{{$property->propertyDetails->fourth_floor_title}}</s><span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                               <s> {{$property->propertyDetails->fourth_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->fourth_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->fourth_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->fourth_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->fourth_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->fourth_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->fourth_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->fourth_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->fourth_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->fifth_floor_price !== '0.00')
-                                        @if($property->propertyDetails->fifth_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"><s>{{$property->propertyDetails->fifth_floor_title}}</s><span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->fifth_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->fifth_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->fifth_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->fifth_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->fifth_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->fifth_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->fifth_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->fifth_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->fifth_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->sixth_floor_price !== '0.00')
-                                        @if($property->propertyDetails->sixth_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"><s>{{$property->propertyDetails->sixth_floor_title}}</s></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->sixth_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->sixth_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->sixth_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->sixth_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->sixth_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->sixth_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->sixth_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->sixth_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->sixth_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->seventh_floor_price !== '0.00')
-                                        @if($property->propertyDetails->seventh_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"> <s>{{$property->propertyDetails->seventh_floor_title}}</s><span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->seventh_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->seventh_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->seventh_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->seventh_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->seventh_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->seventh_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->seventh_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->seventh_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->seventh_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->eighth_floor_price !== '0.00')
-                                        @if($property->propertyDetails->eighth_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"><s>{{$property->propertyDetails->eighth_floor_title}}</s><span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->eighth_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->eighth_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->eighth_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->eighth_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->eighth_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->eighth_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->eighth_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->eighth_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->eighth_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->ninth_floor_price !== '0.00')
-                                        @if($property->propertyDetails->ninth_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"><s>{{$property->propertyDetails->ninth_floor_title}}</s><span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->ninth_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->ninth_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->ninth_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->ninth_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->ninth_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->ninth_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->ninth_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->ninth_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->ninth_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->tenth_floor_price !== '0.00')
-                                        @if($property->propertyDetails->tenth_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"><s>{{$property->propertyDetails->tenth_floor_title}}</s><span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->tenth_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->tenth_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->tenth_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->tenth_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->tenth_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->tenth_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->tenth_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->tenth_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->tenth_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->eleventh_floor_price !== '0.00')
-                                        @if($property->propertyDetails->eleventh_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"><s>{{$property->propertyDetails->eleventh_floor_title}}</s><span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->eleventh_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->eleventh_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->eleventh_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->eleventh_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->eleventh_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->eleventh_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->eleventh_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->eleventh_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->eleventh_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
-                                        @if ($property->propertyDetails->twelfth_floor_price !== '0.00')
-                                        @if($property->propertyDetails->twelfth_floor_sold == 2)
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900"><s>{{$property->propertyDetails->twelfth_floor_title}}</s><span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">{{trans('file.sold')}}</span></td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->twelfth_floor_size}} {{trans('file.sq-ft')}}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{$property->propertyDetails->twelfth_floor_max_size}} {{trans('file.sq-ft')}}</s>
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->twelfth_floor_price) }}</s>
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                <s>{{ currencyConvert($property->propertyDetails->twelfth_floor_max_price) }}</s>
-                                            </td> -->
-                                        </tr>
-                                        @else
-                                        <tr class="border-b bg-[#E9F1FF]">
-                                            <td class="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900">{{$property->propertyDetails->twelfth_floor_title}}</td>
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->twelfth_floor_size}} {{trans('file.sq-ft')}}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{$property->propertyDetails->twelfth_floor_max_size}} {{trans('file.sq-ft')}}
-                                            </td> -->
-                                            <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->twelfth_floor_price) }}
-                                            </td>
-                                            <!-- <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                {{ currencyConvert($property->propertyDetails->twelfth_floor_max_price) }}
-                                            </td> -->
-                                        </tr>
-                                        @endif
-                                        @endif
                                     </tbody>
                                 </table>
+                                <span class="text-start text-gray-700">{{trans('file.last-update')}} : {{ count($property->propertyDetails->floors) > 0 ?  date("d/m/Y", strtotime($property->propertyDetails->floors->max('updated_at'))) : '-' }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endif
+                {{-- @endif --}}
                 @if($property->propertyDetails->location_info !== NULL)
                 <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5">{{trans('file.location_info')}}</h5>
                 @endif
@@ -710,108 +355,22 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                     </li>
                     @endforeach
                 </ul>
-                @if ($property->propertyDetails->first_floor_picture !== 'default.png' && $property->propertyDetails->first_floor_picture !== '')
-                <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5">{{trans('file.floor_plans')}}</h5>
-                @endif
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-[30px]">
-                    @if ($property->propertyDetails->first_floor_picture !== 'default.png' && $property->propertyDetails->first_floor_picture !== '')
 
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->first_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->first_floor_picture)  }}" alt="{{ $property->propertyDetails->first_floor_picture }}" loading="lazy" >
-                        </a>
-                        <p>{{ $property->propertyDetails->first_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->second_floor_picture !== 'default.png' && $property->propertyDetails->second_floor_picture !== '')
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->second_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->second_floor_picture)  }}" alt="{{ $property->propertyDetails->second_floor_title }}" loading="lazy">
-                        </a>
-                        <p>{{ $property->propertyDetails->second_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->third_floor_picture !== 'default.png' && $property->propertyDetails->third_floor_picture !== '')
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->third_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->third_floor_picture)  }}" alt="{{ $property->propertyDetails->third_floor_title }}" loading="lazy" width="770" height="465">
-                        </a>
-                        <p>{{ $property->propertyDetails->third_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->fourth_floor_picture !== 'default.png' && $property->propertyDetails->fourth_floor_picture !== '' && $property->propertyDetails->fourth_floor_picture !== null)
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->fourth_floor_picture)  }}" alt="{{ $property->propertyDetails->fourth_floor_title }}" loading="lazy" width="770" height="465">
-                        </a>
-                        <p>{{ $property->propertyDetails->fourth_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->fifth_floor_picture !== 'default.png' && $property->propertyDetails->fifth_floor_picture !== '')
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->fifth_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->fifth_floor_picture)  }}" alt="{{ $property->propertyDetails->fifth_floor_title }}" loading="lazy" width="770" height="465">
-                        </a>
-                        <p>{{ $property->propertyDetails->fifth_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->sixth_floor_picture !== 'default.png' && $property->propertyDetails->sixth_floor_picture !== '')
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->sixth_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->sixth_floor_picture)  }}" alt="{{ $property->propertyDetails->sixth_floor_title }}" loading="lazy" width="770" height="465">
-                        </a>
-                        <p>{{ $property->propertyDetails->sixth_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->seventh_floor_picture !== 'default.png' && $property->propertyDetails->seventh_floor_picture !== '')
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->seventh_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->seventh_floor_picture)  }}" alt="{{ $property->propertyDetails->seventh_floor_title }}" loading="lazy" width="770" height="465">
-                        </a>
-                        <p>{{ $property->propertyDetails->seventh_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->eighth_floor_picture !== 'default.png' && $property->propertyDetails->eighth_floor_picture !== '')
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->eighth_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->eighth_floor_picture)  }}" alt="{{ $property->propertyDetails->eighth_floor_title }}" loading="lazy" width="770" height="465">
-                        </a>
-                        <p>{{ $property->propertyDetails->eighth_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->ninth_floor_picture !== 'default.png' && $property->propertyDetails->ninth_floor_picture !== '')
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->ninth_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->ninth_floor_picture)  }}" alt="{{ $property->propertyDetails->ninth_floor_title }}" loading="lazy" width="770" height="465">
-                        </a>
-                        <p>{{ $property->propertyDetails->ninth_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->tenth_floor_picture !== 'default.png' && $property->propertyDetails->tenth_floor_picture !== '')
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->tenth_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->tenth_floor_picture)  }}" alt="{{ $property->propertyDetails->tenth_floor_title }}" loading="lazy" width="770" height="465">
-                        </a>
-                        <p>{{ $property->propertyDetails->tenth_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->eleventh_floor_picture !== 'default.png' && $property->propertyDetails->eleventh_floor_picture !== '')
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->eleventh_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->eleventh_floor_picture)  }}" alt="{{ $property->propertyDetails->eleventh_floor_title }}" loading="lazy" width="770" height="465">
-                        </a>
-                        <p>{{ $property->propertyDetails->eleventh_floor_title }}</p>
-                    </div>
-                    @endif
-                    @if ($property->propertyDetails->twelfth_floor_picture !== 'default.png' && $property->propertyDetails->twelfth_floor_picture !== '')
-                    <div class="text-center plan-image">
-                        <a href="{{ URL::asset('/images/floors/'.$property->propertyDetails->twelfth_floor_picture)  }}" class="floor-image">
-                            <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$property->propertyDetails->twelfth_floor_picture)  }}" alt="{{ $property->propertyDetails->twelfth_floor_title }}" loading="lazy" width="770" height="465">
-                        </a>
-                        <p>{{ $property->propertyDetails->twelfth_floor_title }}</p>
-                    </div>
-                    @endif
+                <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5">{{trans('file.floor_plans')}}</h5>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-[30px]">
+                    @foreach ($property->propertyDetails->floors as $floor)
+                        @if($floor->image != null || $floor->image != '')
+                                <div class="text-center plan-image">
+                                    <a href="{{ URL::asset('/images/floors/'.$floor->image)  }}" class="floor-image">
+                                        <img class="object-cover rounded-[8px] w-full h-full" src="{{ URL::asset('/images/floors/'.$floor->image)  }}" alt="{{ $floor->image }}" loading="lazy" >
+                                    </a>
+                                    <p>{{ $floor->unit->name }}</p>
+                                </div>
+                        @endif
+                    @endforeach
                 </div>
+
+
 
             </div>
 
@@ -869,7 +428,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                                 <ul class="mt-[10px]">
                                                     <li class="flex flex-wrap items-center justify-between">
                                                         @if($similarListing->price !== '')
-                                                        <span class="font-lora text-[14px] text-secondary leading-none">{{trans('file.starts_from')}}: {{ currencyConvert($similarListing->price) }}</span>
+                                                        <span class="font-lora text-[14px] text-secondary leading-none">{{trans('file.starts_from')}}: {{ convert($similarListing->price, $similarListing->currency) }}</span>
                                                         @else
                                                         <span class="font-lora text-[14px] text-secondary leading-none">No Price Given</span>
                                                         @endif

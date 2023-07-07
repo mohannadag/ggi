@@ -577,18 +577,21 @@ class PropertySearchRepository implements IPropertySearchRepository
         if($data['bed'] != "")
         {
             $query = $query->whereHas('propertyDetails',function(Builder $query) use($data){
-                $query->where('first_floor_title', $data['bed'])
-                    ->orWhere('second_floor_title', $data['bed'])
-                    ->orWhere('third_floor_title', $data['bed'])
-                    ->orWhere('fourth_floor_title', $data['bed'])
-                    ->orWhere('fifth_floor_title', $data['bed'])
-                    ->orWhere('sixth_floor_title', $data['bed'])
-                    ->orWhere('seventh_floor_title', $data['bed'])
-                    ->orWhere('eighth_floor_title', $data['bed'])
-                    ->orWhere('ninth_floor_title', $data['bed'])
-                    ->orWhere('tenth_floor_title', $data['bed'])
-                    ->orWhere('eleventh_floor_title', $data['bed'])
-                    ->orWhere('twelfth_floor_title', $data['bed']);
+                $query->whereHas('floors', function (Builder $q) use($data){
+                    $q->where('unit_id', $data['bed']);
+                });
+                // $query->where('first_floor_title', $data['bed'])
+                //     ->orWhere('second_floor_title', $data['bed'])
+                //     ->orWhere('third_floor_title', $data['bed'])
+                //     ->orWhere('fourth_floor_title', $data['bed'])
+                //     ->orWhere('fifth_floor_title', $data['bed'])
+                //     ->orWhere('sixth_floor_title', $data['bed'])
+                //     ->orWhere('seventh_floor_title', $data['bed'])
+                //     ->orWhere('eighth_floor_title', $data['bed'])
+                //     ->orWhere('ninth_floor_title', $data['bed'])
+                //     ->orWhere('tenth_floor_title', $data['bed'])
+                //     ->orWhere('eleventh_floor_title', $data['bed'])
+                //     ->orWhere('twelfth_floor_title', $data['bed']);
             });
         }
 

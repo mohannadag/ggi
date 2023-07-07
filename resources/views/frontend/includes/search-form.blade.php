@@ -178,44 +178,7 @@
                                     @foreach ($units as $unit)
                                         <option value="{{ $unit->id }}" {{request()->bed == $unit->id ? "selected" : ""}} >{{ $unit->name }}</option>
                                     @endforeach
-                                    {{-- @if(old('bed', request()->bed) == '1')
-                                    <option value="1">1+0</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '2')
-                                    <option value="2">1+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '3')
-                                    <option value="3">2+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '4')
-                                    <option value="4">3+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '5')
-                                    <option value="5">4+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '6')
-                                    <option value="6">5+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '7')
-                                    <option value="7">6+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '8')
-                                    <option value="8">7+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '9')
-                                    <option value="9">8+1</option>
-                                    @else
-                                    <option value="">{{trans('file.bedrooms')}}</option>
-                                    @endif
-                                    <option value="1">1+0</option>
-                                    <option value="2">1+1</option>
-                                    <option value="3">2+1</option>
-                                    <option value="4">3+1</option>
-                                    <option value="5">4+1</option>
-                                    <option value="6">5+1</option>
-                                    <option value="7">6+1</option>
-                                    <option value="8">7+1</option>
-                                    <option value="9">8+1</option> --}}
+
                                 </select>
                             </div>
                             <div id="bathroom" class="relative mb-[25px] bg-white">

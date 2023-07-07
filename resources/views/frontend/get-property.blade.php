@@ -11,24 +11,24 @@
 @include('frontend.includes.header1')
 
 
-    @php
+@php
 
-        $languages = \Illuminate\Support\Facades\DB::table('languages')
+    $languages = \Illuminate\Support\Facades\DB::table('languages')
 
-            ->select('id', 'name', 'locale')
+        ->select('id', 'name', 'locale')
 
-            // ->where('default','=',0)
+        // ->where('default','=',0)
 
-            ->where('locale', '!=', \Illuminate\Support\Facades\Session::get('currentLocal'))
+        ->where('locale', '!=', \Illuminate\Support\Facades\Session::get('currentLocal'))
 
-            ->orderBy('name', 'ASC')
+        ->orderBy('name', 'ASC')
 
-            ->get();
+        ->get();
 
-        \Illuminate\Support\Facades\App::setLocale(\Illuminate\Support\Facades\Session::get('currentLocal'));
+    \Illuminate\Support\Facades\App::setLocale(\Illuminate\Support\Facades\Session::get('currentLocal'));
 
-    @endphp
-    <section
+@endphp
+<section
     class="bg-no-repeat bg-center bg-cover bg-[#FFF6F0] h-[350px] lg:h-[513px] flex flex-wrap items-center relative before:absolute before:inset-0 before:content-['']"
     style="background-image: url('{{ url('frontend/images/breadcrumb/properties-bg.jpg') }}');">
     <div class="container">
@@ -546,49 +546,12 @@
                                 </svg>
                                 <select name="bed" id="bed"
                                     class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
-                                    {{-- @if(old('bed', request()->bed) == '1')
-                                    <option value="1">1+0</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '2')
-                                    <option value="2">1+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '3')
-                                    <option value="3">2+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '4')
-                                    <option value="4">3+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '5')
-                                    <option value="5">4+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '6')
-                                    <option value="6">5+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '7')
-                                    <option value="7">6+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '8')
-                                    <option value="8">7+1</option>
-                                    @endif
-                                    @if(old('bed', request()->bed) == '9')
-                                    <option value="9">8+1</option>
-                                    @else
-                                    <option value="">{{trans('file.bedrooms')}}</option>
-                                    @endif --}}
+
                                     <option value="">{{trans('file.bedrooms')}}</option>
                                     @foreach ($units as $unit)
                                         <option value="{{ $unit->id }}" {{request()->bed == $unit->id ? "selected" : ""}} >{{ $unit->name }}</option>
                                     @endforeach
-                                    {{-- <option value="">{{trans('file.bedrooms')}}</option>
-                                    <option value="1" {{request()->bed == 1 ? "selected" : ""}}>1+0</option>
-                                    <option value="2" {{request()->bed == 2 ? "selected" : ""}}>1+1</option>
-                                    <option value="3" {{request()->bed == 3 ? "selected" : ""}}>2+1</option>
-                                    <option value="4" {{request()->bed == 4 ? "selected" : ""}}>3+1</option>
-                                    <option value="5" {{request()->bed == 5 ? "selected" : ""}}>4+1</option>
-                                    <option value="6" {{request()->bed == 6 ? "selected" : ""}}>5+1</option>
-                                    <option value="7" {{request()->bed == 7 ? "selected" : ""}}>6+1</option>
-                                    <option value="8" {{request()->bed == 8 ? "selected" : ""}}>7+1</option>
-                                    <option value="9" {{request()->bed == 9 ? "selected" : ""}}>8+1</option> --}}
+
                                 </select>
                             </div>
                             <div id="bathroom" class="relative mb-[25px] bg-white">
@@ -601,12 +564,7 @@
                                 </svg>
                                 <select name="bath" id="bath"
                                     class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
-                                    {{-- @if(old('bath', request()->bath) != NULL)
-                                    <option value="{{old('bath', request()->bath)}}">{{old('bath',
-                                        request()->bath)}}</option>
-                                    @else
-                                    <option value="">{{trans('file.bath')}}</option>
-                                    @endif --}}
+
                                     <option value="">{{trans('file.bath')}}</option>
                                     <option value="1" {{request()->bath == 1 ? "selected" : ""}}>1</option>
                                     <option value="2" {{request()->bath == 2 ? "selected" : ""}}>2</option>

@@ -29,42 +29,42 @@ class PropertySearchModel implements IPropertySearchModel
             $max = $request->maxPrice;
 
         // rooms
-        $rooms = "";
-        if($request->has('bed') && $request->bed != "")
-        {
-            switch($request->bed){
-                case '1':
-                    $rooms = "1+0";
-                    break;
-                case '2':
-                    $rooms = "1+1";
-                    break;
-                case '3':
-                    $rooms = "2+1";
-                    break;
-                case '4':
-                    $rooms = "3+1";
-                    break;
-                case '5':
-                    $rooms = "4+1";
-                    break;
-                case '6':
-                    $rooms = "5+1";
-                    break;
-                case '7':
-                    $rooms = "6+1";
-                    break;
-                case '8':
-                    $rooms = "7+1";
-                    break;
-                case '9':
-                    $rooms = "8+1";
-                    break;
-                default:
-                    $rooms = "";
-                    break;
-            }
-        }
+        // $rooms = "";
+        // if($request->has('bed') && $request->bed != "")
+        // {
+        //     switch($request->bed){
+        //         case '1':
+        //             $rooms = "1+0";
+        //             break;
+        //         case '2':
+        //             $rooms = "1+1";
+        //             break;
+        //         case '3':
+        //             $rooms = "2+1";
+        //             break;
+        //         case '4':
+        //             $rooms = "3+1";
+        //             break;
+        //         case '5':
+        //             $rooms = "4+1";
+        //             break;
+        //         case '6':
+        //             $rooms = "5+1";
+        //             break;
+        //         case '7':
+        //             $rooms = "6+1";
+        //             break;
+        //         case '8':
+        //             $rooms = "7+1";
+        //             break;
+        //         case '9':
+        //             $rooms = "8+1";
+        //             break;
+        //         default:
+        //             $rooms = "";
+        //             break;
+        //     }
+        // }
 
 
 
@@ -77,7 +77,8 @@ class PropertySearchModel implements IPropertySearchModel
         $data['maxPrice'] = $max;
         $data['minArea'] = $request->input('minArea');
         $data['maxArea'] = $request->input('maxArea');
-        $data['bed'] = $rooms;
+        $data['bed'] = $request->input('bed');
+        // $data['bed'] = $rooms;
         $data['bath'] = $request->input('bath');
         $data['property_name'] = $request->input('property_name');
         $data['property_id'] = $request->input('property_id');
