@@ -408,4 +408,6 @@ return array(
     'q-mark' => '?',
     'baths-number' => 'number of baths',
     'last-update' => 'Last Update',
+    'notes' => 'Notes',
+
 );

@@ -380,4 +380,5 @@ return array(
     'q-mark' => '؟',
     'baths-number' => 'عدد الحمامات',
     'last-update' => 'اخر تحديث',
+    'notes' => 'ملاحظات',
 );

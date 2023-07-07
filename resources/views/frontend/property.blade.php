@@ -260,7 +260,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                                 {{trans('file.max_price')}}
                                             </th> -->
                                             <th scope="col" class="text-base font-medium bg-primary text-white px-6 py-4 text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
-                                                {{trans('file.baths-number')}}
+                                                {{trans('file.notes')}}
                                             </th>
                                         </tr>
                                     </thead>
@@ -272,13 +272,13 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                                         <s>{{$floor->unit_id}}</s>
                                                         <span class="inline-block whitespace-nowrap rounded-[0.27rem] bg-primary px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
                                                             {{trans('file.sold')}}</span>
-                                                        @if((App::isLocale('ar') ? $floor->note_ar : $floor->note_en != '') || (App::isLocale('ar') ? $floor->note_ar : $floor->note_en != null))
+                                                        {{-- @if((App::isLocale('ar') ? $floor->note_ar : $floor->note_en != '') || (App::isLocale('ar') ? $floor->note_ar : $floor->note_en != null))
                                                             <i data-tooltip-target="tooltip-default" data-tooltip-placement="right" class="fa-solid fa-circle-question"></i>
                                                             <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
                                                                 {{ App::isLocale('ar') ? $floor->note_ar : $floor->note_en }}
                                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                                             </div>
-                                                        @endif
+                                                        @endif --}}
                                                 </td>
                                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                         <s> {{$floor->min_size}} {{trans('file.sq-ft')}}</s>
@@ -293,20 +293,25 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                                         <s>{{ convert($floor->max_price, $property->currency) }}</s>
                                                     </td> -->
                                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                        <s>{{$floor->baths}}</s>
+                                                        {{-- <s>{{$floor->baths}}</s> --}}
+                                                        @if((App::isLocale('ar') ? $floor->note_ar : $floor->note_en != '') || (App::isLocale('ar') ? $floor->note_ar : $floor->note_en != null))
+                                                        <s>{{ App::isLocale('ar') ? $floor->note_ar : $floor->note_en }}</s>
+                                                        @else
+                                                        <s>-</s>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @else
                                                 <tr class="border-b bg-[#E9F1FF]">
                                                     <td class="px-6 py-4 whitespace-nowrap text-base font-large text-gray-900">
                                                         {{$floor->unit->name}}
-                                                        @if((App::isLocale('ar') ? $floor->note_ar : $floor->note_en != '') || (App::isLocale('ar') ? $floor->note_ar : $floor->note_en != null))
+                                                        {{-- @if((App::isLocale('ar') ? $floor->note_ar : $floor->note_en != '') || (App::isLocale('ar') ? $floor->note_ar : $floor->note_en != null))
                                                             <i data-tooltip-target="tooltip-default" data-tooltip-placement="bottom" class="fa-solid fa-circle-question"></i>
                                                             <div id="tooltip-default" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
                                                                 {{ App::isLocale('ar') ? $floor->note_ar : $floor->note_en }}
                                                                 <div class="tooltip-arrow" data-popper-arrow></div>
                                                             </div>
-                                                        @endif
+                                                        @endif --}}
                                                     </td>
                                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                         {{$floor->min_size}} {{trans('file.sq-ft')}}
@@ -321,7 +326,12 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                                         {{ convert($floor->max_price, $property->currency) }}
                                                     </td> -->
                                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                        {{$floor->baths}}
+                                                        {{-- {{$floor->baths}} --}}
+                                                        @if((App::isLocale('ar') ? $floor->note_ar : $floor->note_en != '') || (App::isLocale('ar') ? $floor->note_ar : $floor->note_en != null))
+                                                            {{ App::isLocale('ar') ? $floor->note_ar : $floor->note_en }}
+                                                        @else
+                                                            -
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endif
