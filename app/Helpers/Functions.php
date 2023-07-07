@@ -123,6 +123,9 @@ function priceConvert($price)
     }
 }
 
+function roundUpToAny($n,$x=100) {
+    return (round($n)%$x === 0) ? round($n) : round(($n+$x/2)/$x)*$x;
+}
 
 function convert($price, $cur)
 {
@@ -154,16 +157,16 @@ function convert($price, $cur)
     switch ($i) {
         case 'EUR':
             $amount = $inEur * $EUR->value;
-            return '€' . ' ' . number_format($amount);
+            return '€' . ' ' . roundUpToAny($amount);
         case 'USD':
             $amount = $inEur * $USD->value;
 
-            return '$' . ' ' . number_format($amount);
+            return '$' . ' ' . roundUpToAny($amount);
 
         case 'TRY':
             $amount = $inEur * $TRY->value;
 
-            return '₺' . ' ' . number_format($amount);
+            return '₺' . ' ' . roundUpToAny($amount);
     }
 }
 

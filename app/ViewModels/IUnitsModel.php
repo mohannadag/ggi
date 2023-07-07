@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 
 interface IUnitsModel
 {
+    public function getAllList();
     public function getAll(Request $request);
     public function getByLocale();
     public function getById($id);

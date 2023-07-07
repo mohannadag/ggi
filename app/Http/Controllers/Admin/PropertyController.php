@@ -25,6 +25,7 @@ use App\Exports\PropertiesExport;
 use App\Imports\ImagesImport;
 use App\Imports\ImportProperties;
 use App\Imports\PropertiesDetailsImport;
+use App\ViewModels\IUnitsModel;
 
 class PropertyController extends Controller
 {
@@ -38,6 +39,7 @@ class PropertyController extends Controller
     private $_cityTranslationModel;
     private $_packageUserModel;
     private $_currencyModel;
+    private $_unitsModel;
     public function __construct(IPackageUserModel $packageUserModel,
                                 IPropertyModel $propertyModel,
                                 IPropertyTranslationModel $propertyTranslationModel,
@@ -47,7 +49,8 @@ class PropertyController extends Controller
                                 ICountryTranslationModel $countryTranslationModel,
                                 IStateTranslationModel $stateTranslationModel,
                                 ICityTranslationModel $cityTranslationModel,
-                                ICurrencyModel $currencyModel)
+                                ICurrencyModel $currencyModel,
+                                IUnitsModel $unitsModel)
     {
         $this->middleware('isApprove', ['only' => ['index','edit','update','myProperties']]);
         $this->_propertyModel = $propertyModel;
@@ -60,6 +63,7 @@ class PropertyController extends Controller
         $this->_cityTranslationModel = $cityTranslationModel;
         $this->_packageUserModel = $packageUserModel;
         $this->_currencyModel = $currencyModel;
+        $this->_unitsModel = $unitsModel;
     }
 
     public function index(Request $request)
@@ -75,7 +79,7 @@ class PropertyController extends Controller
         App::setLocale(Session::get('currentLocal'));
         $categories = $this->_categoryTranslationModel->getByLocale();
         $facilities = $this->_facilityTranslationModel->getByLocale();
-        $units = $this->_unitsTranslationModel->getByLocale();
+        $units = $this->_unitsModel->getallList();
         $packages = $this->_packageUserModel->getPackages();
         $countries = $this->_countryTranslationModel->getByLocale();
         $tags = Tag::all();
@@ -107,7 +111,7 @@ class PropertyController extends Controller
         $user = auth()->user();
         $categories = $this->_categoryTranslationModel->getByLocale();
         $facilities = $this->_facilityTranslationModel->getByLocale();
-        $units = $this->_unitsTranslationModel->getByLocale();
+        $units = $this->_unitsModel->getallList();
         $package_user = $this->_packageUserModel->getByUser($user->id);
         $packages = $this->_packageUserModel->getPackages();
         $countries = $this->_countryTranslationModel->getByLocale();

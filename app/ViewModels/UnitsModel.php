@@ -15,6 +15,11 @@ class UnitsModel implements IUnitsModel
         $this->_UnitsService = $service;
     }
 
+    public function getAllList()
+    {
+        return $data = $this->_UnitsService->getAll();
+    }
+
     public function getAll(Request $request)
     {
         App::setLocale(Session::get('currentLocal'));

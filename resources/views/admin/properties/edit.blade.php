@@ -415,7 +415,7 @@
                                                         <h5>Gallery :</h5>
                                                     </div>
                                                     @php
-                                                        $pic = json_decode($property->image->name);
+                                                        $pic = json_decode($property->image?->name);
                                                     @endphp
                                                     {{-- <div class="user-image mb-3 text-center"> --}}
                                                     {{-- <div class="imgPreview"> --}}
