@@ -12,9 +12,9 @@
                 </div>
                 <ul class="all-properties flex flex-wrap lg:pt-[10px]">
                     <li data-tab="all-properties" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none active"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.all_listings')}}</button></li>
-                    {{-- <li data-tab="Projects" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.projects')}}</button></li>
-                    <li data-tab="Apartments" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.apartments')}}</button></li>
-                    <li data-tab="Lands" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.lands')}}</button></li> --}}
+                    <li data-tab="Projects" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.projects')}}</button></li>
+                    {{-- <li data-tab="Apartments" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.apartments')}}</button></li> --}}
+                    <li data-tab="villas" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none"><button class="leading-none capitalize text-primary hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.villas')}}</button></li>
             </div>
             <div class="col-span-12">
                 <div class="all-properties properties-tab-content active">
@@ -274,7 +274,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="Apartments properties-tab-content">
+                {{-- <div class="Apartments properties-tab-content">
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
                         @foreach ($properties->take(6) as $property)
                         @if($property->category_id == 1)
@@ -405,12 +405,12 @@
                             @endif
                         @endforeach
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="Lands properties-tab-content">
+                <div class="villas properties-tab-content">
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                        @foreach ($properties->take(6) as $property)
-                        @if($property->category_id == 3)
+                        @foreach ($properties->where('category_id', 4)->take(6) as $property)
+                        @if($property)
                             <div class="swiper-slide">
                                 <div class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                                     <div class="relative">
