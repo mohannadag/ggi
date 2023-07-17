@@ -144,8 +144,8 @@
                 </div>
                 <div class="Projects properties-tab-content">
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                        @foreach ($properties->take(6) as $property)
-                        @if($property->category_id == 5)
+                        @foreach ($properties->where('is_featured', 1)->where('category_id', 5)->take(6) as $property)
+                        @if($property)
                             <div class="swiper-slide">
                                 <div class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                                     <div class="relative">
@@ -409,7 +409,7 @@
 
                 <div class="villas properties-tab-content">
                     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-[30px]">
-                        @foreach ($properties->where('category_id', 4)->take(6) as $property)
+                        @foreach ($properties->where('is_featured', 1)->where('category_id', 4)->take(6) as $property)
                         @if($property)
                             <div class="swiper-slide">
                                 <div class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
