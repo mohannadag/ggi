@@ -845,8 +845,9 @@ class HomePageController extends Controller
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
         //Poperty Search
         $properties = $this->_propertySearchModel->getData($request);
+        $units = Units::all();
         $data = $request->all();
-        return view('frontend.get-project',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states'));
+        return view('frontend.get-project',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'units'));
     }
 
     public function ivrsearch(Request $request)
@@ -865,10 +866,11 @@ class HomePageController extends Controller
         $maxArea = $propertyDetails->max('room_size');
         $minArea = $propertyDetails->min('room_size');
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
+        $units = Units::all();
         //Poperty Search
         $properties = $this->_propertySearchModel->getData($request);
         $data = $request->all();
-        return view('frontend.ivr-search',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states'));
+        return view('frontend.ivr-search',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'units'));
     }
 
     public function searchPropertyRent(Request $request)
@@ -889,8 +891,9 @@ class HomePageController extends Controller
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
         //Poperty Search
         $properties = $this->_propertySearchModel->getData($request);
+        $units = Units::all();
         $data = $request->all();
-        return view('frontend.get-property-rent',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states'));
+        return view('frontend.get-property-rent',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'units'));
     }
 
     public function fetch(Request $request)

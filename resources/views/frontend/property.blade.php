@@ -91,7 +91,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                 <div class="ivr properties-tab-content">
                     <div class="mt-[25px] mb-[35px]">
                         <div class="relative">
-                            <iframe src="https://vr.ggiturkey.com/319/GGI-396/" title="Virtual reality" height="600px" width="100%"></iframe>
+                            <iframe src="{{ $property->propertyDetails->ivr }}" title="Virtual reality" height="600px" width="100%"></iframe>
                             {{-- <div data-relative-input="true">
                                 <img data-depth="0.1" src="{{URL::asset('images/thumbnail/' . $property->thumbnail)}}" class="w-full rounded-[8px]" width="100%" height="300px" alt="video image">
                             </div>

@@ -32,12 +32,15 @@ class Kernel extends ConsoleKernel
             $USD = $baseCurrencies->where('name', '==', 'USD')->first();
             $TRY = $baseCurrencies->where('name', '==', 'TRY')->first();
             $EUR = $baseCurrencies->where('name', '==', 'EUR')->first();
-            $USD->value = $currencies['USD'];
-            $TRY->value = $currencies['TRY'];
-            $EUR->value = $currencies['EUR'];
-            $USD->update();
-            $TRY->update();
-            $EUR->update();
+            if(isset($currencies))
+            {
+                $USD->value = $currencies['USD'];
+                $TRY->value = $currencies['TRY'];
+                $EUR->value = $currencies['EUR'];
+                $USD->update();
+                $TRY->update();
+                $EUR->update();
+            }
         })->hourly();
         // $schedule->command('inspire')->hourly();
     }

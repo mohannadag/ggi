@@ -181,7 +181,9 @@ class PropertyModel implements IPropertyModel
         $propertyFloors = [];
         foreach($request->addMoreInputFields as $key => $value)
         {
-            $value['image'] = $this->imageUpload($value['image'],$slug,'floors',780, 540);
+            if(isset($value['image']))
+                $value['image'] = $this->imageUpload($value['image'],$slug,'floors',780, 540);
+
             array_push($propertyFloors, $value);
         }
 

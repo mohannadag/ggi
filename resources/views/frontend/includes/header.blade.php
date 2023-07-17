@@ -121,11 +121,11 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                 <a href="{{url('/contact')}}" id="contact-color" class="sticky-dark transition-all text-white hover:text-secondary">{{trans('file.contact')}}</a>
 
                             </li>
-                            <li class="mr-7 xl:mr-[40px] relative group py-[20px]">
+                            {{-- <li class="mr-7 xl:mr-[40px] relative group py-[20px]">
 
                                 <a href="{{url('/virtual')}}" class="sticky-dark transition-all text-white hover:text-secondary"><img style="max-width: 31px; height: auto; filter: invert(0.5);" src="{{URL::asset('/frontend/images/360-degrees.png')}}"></a>
 
-                            </li>
+                            </li> --}}
 
                             <li class="mr-7 xl:mr-[40px] relative group py-[20px]">
 

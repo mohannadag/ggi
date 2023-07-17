@@ -60,6 +60,7 @@ class PropertyService
         $property->tags()->sync($dataProperty['tag']);
 
         $propertyDetail = $this->_propertyDetailService->add($dataPropertyDetail);
+        // dd($propertyDetail);
         $this->_floorsRepository->addRange($propertyFloors, $propertyDetail->id);
 
         $this->_propertyTranslationRepository->add($dataProperty);

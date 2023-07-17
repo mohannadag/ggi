@@ -19,7 +19,8 @@ class PropertyDetailService
     {
         $propertyDetail = $this->_propertyDetailRepository->add($data);
         $data['propertyDetailId'] = $propertyDetail->id;
-        return $this->_propertyDetailTranslationRepository->add($data);
+        $this->_propertyDetailTranslationRepository->add($data);
+        return $propertyDetail;
     }
 
     public function update($data,$id)
