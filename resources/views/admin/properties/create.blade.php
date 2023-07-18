@@ -82,9 +82,10 @@
                                                         <label>Property Type</label> <span class="text-danger">*</span>
                                                         <select name="type"
                                                             class="listing-input hero__form-input  form-control custom-select">
-                                                            <option value="">Select</option>
-                                                            <option value="{{ 'sale' }}" {{ old('type') == 'sale' ? 'selected' : '' }}>Sale</option>
-                                                            <option value="{{ 'rent' }}" {{ old('type') == 'rent' ? 'selected' : '' }}>Rent</option>
+                                                            {{-- <option value="">Select</option> --}}
+                                                            {{-- <option value="{{ 'sale' }}" {{ old('type') == 'sale' ? 'selected' : '' }}>Sale</option> --}}
+                                                            <option value="{{ 'sale' }}" selected>Sale</option>
+                                                            {{-- <option value="{{ 'rent' }}" {{ old('type') == 'rent' ? 'selected' : '' }}>Rent</option> --}}
                                                         </select>
                                                         @error('type')
                                                             <p class="text-danger">{{ $message }}</p>

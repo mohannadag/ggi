@@ -831,23 +831,25 @@ class HomePageController extends Controller
 
     public function searchProject(Request $request)
     {
-        $props = Property::with(['propertyDetails','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
-            ->where('status',1)
-            ->orderBy('id','desc')
-            ->paginate(4);
+        // $props = Property::with(['propertyDetails','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
+        // ->where('moderation_status',1)
+        // ->where('status',1)
+        // ->orderBy('id','desc')
+        // ->get();
         $city = City::with('cityTranslation')->get()->keyBy('id');
         $states = State::with('stateTranslation')->get()->keyBy('id');
-        $maxPrice = $props->max('price');
-        $minPrice = $props->min('price');
-        $propertyDetails = PropertyDetail::get()->keyBy('property_id');
-        $maxArea = $propertyDetails->max('room_size');
-        $minArea = $propertyDetails->min('room_size');
+        // $maxPrice = $props->max('price');
+        // $minPrice = $props->min('price');
+        // $propertyDetails = PropertyDetail::get()->keyBy('property_id');
+        // $maxArea = $propertyDetails->max('room_size');
+        // $minArea = $propertyDetails->min('room_size');
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
         //Poperty Search
         $properties = $this->_propertySearchModel->getData($request);
         $units = Units::all();
-        $data = $request->all();
-        return view('frontend.get-project',compact('properties','data','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'units'));
+        // $data = $request->all();
+        // dd($props);
+        return view('frontend.get-project',compact('properties','city','categories', 'states', 'units'));
     }
 
     public function ivrsearch(Request $request)

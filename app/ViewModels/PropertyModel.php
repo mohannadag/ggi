@@ -158,7 +158,7 @@ class PropertyModel implements IPropertyModel
             'title'=> 'required',
             'type'=> 'required',
             'category_id'=> 'required',
-            'price'=> 'nullable',
+            'price'=> 'required',
             'tag'=>'nullable',
             'currency_id'=> 'nullable',
             'status'=> 'required',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Mail\PopUpMail;
+use App\Models\Units;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Category;
 use App\Models\City;
@@ -46,36 +47,54 @@ class ProjectController extends Controller
 
     public function index(Request $request)
     {
-        $user = auth()->user();
+        // $user = auth()->user();
 
 
 
-        if (Session::has('currency'))
-        {
-          $curr = Currency::find(Session::get('currency'));
-        }
-        else
-        {
-            $curr = Currency::where('is_default','=',1)->first();
-        }
-        App::setLocale(Session::get('currentLocal'));
-        Session::get('currentLocal');
-        $properties = Property::with(['propertyDetails','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
-            ->where('status',1)
-            ->orderBy('id','desc')
-            ->paginate(6);
+        // if (Session::has('currency'))
+        // {
+        //   $curr = Currency::find(Session::get('currency'));
+        // }
+        // else
+        // {
+        //     $curr = Currency::where('is_default','=',1)->first();
+        // }
+        // App::setLocale(Session::get('currentLocal'));
+        // Session::get('currentLocal');
+        // $properties = Property::with(['propertyDetails','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
+        //     ->where('status',1)
+        //     ->orderBy('id','desc')
+        //     ->paginate(6);
+        // $city = City::with('cityTranslation')->get()->keyBy('id');
+        // $states = State::with('stateTranslation')->get()->keyBy('id');
+        // $maxPrice = $properties->max('price');
+        // $minPrice = $properties->min('price');
+        // $propertyDetails = PropertyDetail::get()->keyBy('property_id');
+        // $agents = User::where('type','user')->get();
+        // $maxArea = $propertyDetails->max('room_size');
+        // $minArea = $propertyDetails->min('room_size');
+        // $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
+
+        // return view('frontend.projects',compact('properties','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'agents'));
+        // $props = Property::with(['propertyDetails','user','category.categoryTranslation','country.countryTranslation','state.stateTranslation','city.cityTranslation','propertyTranslation','image'])
+        // ->where('moderation_status',1)
+        // ->where('type', 'rent')
+        // ->where('status',1)
+        // ->orderBy('id','desc')
+        // ->paginate(4);
         $city = City::with('cityTranslation')->get()->keyBy('id');
         $states = State::with('stateTranslation')->get()->keyBy('id');
-        $maxPrice = $properties->max('price');
-        $minPrice = $properties->min('price');
+        // $maxPrice = $props->max('price');
+        // $minPrice = $props->min('price');
         $propertyDetails = PropertyDetail::get()->keyBy('property_id');
-        $agents = User::where('type','user')->get();
-        $maxArea = $propertyDetails->max('room_size');
-        $minArea = $propertyDetails->min('room_size');
+        // $maxArea = $propertyDetails->max('room_size');
+        // $minArea = $propertyDetails->min('room_size');
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
-
-        return view('frontend.projects',compact('properties','city','minPrice','maxPrice','minArea','maxArea','categories', 'states', 'agents'));
-
+        //Poperty Search
+        $properties = $this->_propertySearchModel->getData($request);
+        $units = Units::all();
+        // $data = $request->all();
+        return view('frontend.projects',compact('properties','city','categories', 'states', 'units'));
 
     }
 

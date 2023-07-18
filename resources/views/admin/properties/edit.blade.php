@@ -101,13 +101,14 @@
                                                     <label>Property Type</label>
                                                     <select name="type"
                                                         class="listing-input hero__form-input  form-control custom-select">
-                                                        <option>Select</option>
-                                                        <option value="{{ 'sale' }}"
+                                                        {{-- <option>Select</option> --}}
+                                                        <option value="sale" selected>Sale</option>
+                                                        {{-- <option value="{{ 'sale' }}"
                                                             {{ $property->type == 'sale' ? 'selected' : '' }}>Sale
-                                                        </option>
-                                                        <option value="{{ 'rent' }}"
+                                                        </option> --}}
+                                                        {{-- <option value="{{ 'rent' }}"
                                                             {{ $property->type == 'rent' ? 'selected' : '' }}>Rent
-                                                        </option>
+                                                        </option> --}}
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4">

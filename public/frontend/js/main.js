@@ -16,20 +16,20 @@
 
     if (scroll < 1) {
       isSticky.removeClass("is-sticky");
-      document.getElementById("sticky-color").style.color = "white";
-      document.getElementById("about-color").style.color = "white";
-      document.getElementById("properties-color").style.color = "white";
-      document.getElementById("citizenship-color").style.color = "white";
-      document.getElementById("news-color").style.color = "white";
-      document.getElementById("contact-color").style.color = "white";
+    //   document.getElementById("sticky-color").style.color = "white";
+    //   document.getElementById("about-color").style.color = "white";
+    //   document.getElementById("properties-color").style.color = "white";
+    //   document.getElementById("citizenship-color").style.color = "white";
+    //   document.getElementById("news-color").style.color = "white";
+    //   document.getElementById("contact-color").style.color = "white";
     } else {
       isSticky.addClass("is-sticky");
-      document.getElementById("sticky-color").style.color = "black";
-      document.getElementById("about-color").style.color = "black";
-      document.getElementById("properties-color").style.color = "black";
-      document.getElementById("citizenship-color").style.color = "black";
-      document.getElementById("news-color").style.color = "black";
-      document.getElementById("contact-color").style.color = "black";
+    //   document.getElementById("sticky-color").style.color = "black";
+    //   document.getElementById("about-color").style.color = "black";
+    //   document.getElementById("properties-color").style.color = "black";
+    //   document.getElementById("citizenship-color").style.color = "black";
+    //   document.getElementById("news-color").style.color = "black";
+    //   document.getElementById("contact-color").style.color = "black";
     }
   });
 
