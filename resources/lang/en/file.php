@@ -288,7 +288,7 @@ return array(
     'ggi_listings' => 'GGI Listings',
     'gallery' => 'Gallery',
     'video' => 'Video',
-    'ivr' => 'IVR',
+    'ivr' => 'Virtual Tour',
     'tags' => 'Tags',
     'get_touch' => 'Let\'s get in touch to help you',
     'our_address' => 'Our Address',

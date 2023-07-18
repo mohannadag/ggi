@@ -50,13 +50,24 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
             <div class="col-span-12 md:col-span-9 lg:col-span-9 mb-[30px]">
                 <div class="col-span-12 flex flex-wrap flex-col md:flex-row items-start justify-between property-list">
                     <div class="mb-5 lg:mb-0">
-                        <h2 class="font-lora text-primary text-[24px] sm:text-[28px] leading-[1.277] capitalize lg font-medium">{{$property->property_id}}</h2>
+                        <h2 class="font-lora text-primary text-4xl leading-[1.277] capitalize font-medium mb-3">
+                            {{$property->property_id}}
+                        </h2>
+                        <p class="p-2">{{$property->description}}</p>
                     </div>
-                    <ul class="all-properties flex flex-wrap">
-                        <li data-tab="gallery" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none property-list-item"><button class="leading-none capitalize hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.gallery')}}</button></li>
+
+                </div>
+                <div class="m-3">
+                    <ul class="all-properties flex flex-wrap" style="justify-content: space-between;margin-block-start: 1em;
+                    margin-block-end: 1em;">
+                        <li data-tab="gallery" class="mb-4 lg:mb-0 leading-none property-list-item md:w-5/12 w-screen">
+                            <button class="leading-none capitalize hover:text-secondary transition-all text-[16px] sm:text-[28px] ease-out w-full">{{trans('file.gallery')}}</button>
+                        </li>
                         @if($property->propertyDetails->ivr !== NULL)
                         {{-- <li data-tab="ivr" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none property-list-item"><button class="leading-none capitalize hover:text-secondary transition-all text-[16px] ease-out"><img style="max-width: 31px; height: auto;" src="{{URL::asset('/frontend/images/360-degrees.png')}}"></button></li> --}}
-                        <li data-tab="ivr" class="mr-[30px] md:mr-[45px] mb-4 lg:mb-0 leading-none property-list-item"><button class="leading-none capitalize hover:text-secondary transition-all text-[16px] ease-out">{{trans('file.ivr')}}</button></li>
+                        <li data-tab="ivr" class="mb-4 lg:mb-0 leading-none property-list-item md:w-5/12 w-screen">
+                            <button class="leading-none capitalize hover:text-secondary transition-all text-[16px] sm:text-[28px] ease-out w-full">{{trans('file.ivr')}}</button>
+                        </li>
                         @endif
                     </ul>
                 </div>
@@ -332,6 +343,15 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                                         @else
                                                             -
                                                         @endif
+                                                        @if(isset($floor->ivr_link))
+                                                            <a class="leading-none capitalize hover:text-secondary transition-all ease-out w-full floor-ivr" id="{{$floor->id}}"
+                                                            style="background-color: gold;
+                                                                   border:1px solid gold;
+                                                                   border-radius:10px;
+                                                                   padding: 5px;
+                                                                   cursor: pointer;">
+                                                                    {{trans('file.ivr')}}</a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endif
@@ -340,10 +360,22 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                     </tbody>
                                 </table>
                                 <span class="text-start text-gray-700">{{trans('file.last-update')}} : {{ count($property->propertyDetails->floors) > 0 ?  date("d/m/Y", strtotime($property->propertyDetails->floors->max('updated_at'))) : '-' }}</span>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
+                @foreach ($property->propertyDetails->floors as $floor)
+                    @if(isset($floor->ivr_link))
+                        <div class="mt-[25px] mb-[35px] ivrs ivr-{{$floor->id}}" hidden id="ivr-{{$floor->id}}">
+                            <div class="relative">
+                                <iframe src="{{ $floor->ivr_link }}" title="Virtual reality" height="600px" width="100%"></iframe>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+
                 {{-- @endif --}}
                 @if($property->propertyDetails->location_info !== NULL)
                 <h5 class="font-lora text-primary text-[24px] sm:text-[30px] xl:text-xl capitalize font-medium my-5">{{trans('file.location_info')}}</h5>
@@ -508,6 +540,22 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 @endsection
 @push('script')
 <script type="text/javascript">
+    $('.floor-ivr').on('click', function(){
+        var id = this.id;
+        // console.log(id);
+        // $('.ivr-'+ id).slideUp( "slow" );
+
+        var all = $(".ivrs").map(function() {
+            $(this).slideUp( "slow" );
+            // $(this).toggle();
+            //return this.innerHTML;
+        });
+        $('#ivr-'+ id).slideToggle( "slow" );
+        // $('#'+ id).show();
+        // $('.ivr-'+ id).slideDown( "slow" );
+    });
+
+
     $('#SubmitFormAgent').on('submit', function(e) {
         e.preventDefault();
 

@@ -362,3 +362,17 @@
     background-attachment: fixed;
     overflow-x: hidden;
 } */
+
+.icon-360 img {
+    position: absolute; left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    border: 5px solid #d7b550;
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    height: 80px;
+    width: 80px;
+    padding: 5px;
+    box-shadow: 0px 0px 7px 2px #d7b550;
+}
