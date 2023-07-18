@@ -181,7 +181,7 @@
 
                                 </select>
                             </div>
-                            <div id="bathroom" class="relative mb-[25px] bg-white">
+                            {{-- <div id="bathroom" class="relative mb-[25px] bg-white">
                                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none"
                                     width="14" height="14" viewBox="0 0 14 14" fill="currentColor"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -201,7 +201,7 @@
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                 </select>
-                            </div>
+                            </div> --}}
 
 
                             <button type="submit"

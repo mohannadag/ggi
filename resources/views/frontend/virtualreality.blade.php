@@ -8,7 +8,7 @@
 @section('title', 'GGI Turkey, Properties')
 
 @section('content')
-    @include('frontend.includes.header1')
+    {{-- @include('frontend.includes.header1') --}}
 
     <section
         class="bg-no-repeat bg-center bg-cover bg-[#E9F1FF] h-[350px] lg:h-[513px] flex flex-wrap items-center relative before:absolute before:inset-0 before:content-[''] before:bg-[#000000] before:opacity-[70%]"

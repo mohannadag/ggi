@@ -102,19 +102,9 @@
                 <div class="flex-1">
                     <div class="price-slider">
                         <div class="price-slider" id="price-slider"></div>
-                        @php
 
-                            $min = 1;
-                            $max = 1000000;
-                            if(request()->has('minPrice') && request()->minPrice != "")
-                                    $min = request()->minPrice;
-
-                            if(request()->has('maxPrice') && request()->maxPrice != "")
-                                    $max = request()->maxPrice;
-
-                        @endphp
-                        <input id="minPrice" name="minPrice" value="{{$min}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
-                        <input id="maxPrice" name="maxPrice" value="{{$max}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
+                        <input id="minPrice" name="minPrice" value="{{old('minPrice', request()->minPrice ?? 1)}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
+                        <input id="maxPrice" name="maxPrice" value="{{old('minPrice', request()->maxPrice ?? 100000000)}}" class="price-slider-input font-light w-full leading-[1.75] placeholder:opacity-100 placeholder:text-body border border-primary border-opacity-60 rounded-[8px] p-[15px] focus:border-secondary focus:border-opacity-60 focus:outline-none focus:drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)] " type="text">
                     </div>
                 </div>
             </div>
@@ -141,28 +131,14 @@
                 <svg class="absolute top-1/2 -translate-y-1/2 z-[1] left-[20px] pointer-events-none" width="14" height="10" viewBox="0 0 14 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.0002 4.18665V2.33331C13.0002 1.23331 12.1002 0.333313 11.0002 0.333313H8.3335C7.82016 0.333313 7.3535 0.533313 7.00016 0.853313C6.64683 0.533313 6.18016 0.333313 5.66683 0.333313H3.00016C1.90016 0.333313 1.00016 1.23331 1.00016 2.33331V4.18665C0.593496 4.55331 0.333496 5.07998 0.333496 5.66665V9.66665H1.66683V8.33331H12.3335V9.66665H13.6668V5.66665C13.6668 5.07998 13.4068 4.55331 13.0002 4.18665ZM8.3335 1.66665H11.0002C11.3668 1.66665 11.6668 1.96665 11.6668 2.33331V3.66665H7.66683V2.33331C7.66683 1.96665 7.96683 1.66665 8.3335 1.66665ZM2.3335 2.33331C2.3335 1.96665 2.6335 1.66665 3.00016 1.66665H5.66683C6.0335 1.66665 6.3335 1.96665 6.3335 2.33331V3.66665H2.3335V2.33331ZM1.66683 6.99998V5.66665C1.66683 5.29998 1.96683 4.99998 2.3335 4.99998H11.6668C12.0335 4.99998 12.3335 5.29998 12.3335 5.66665V6.99998H1.66683Z"></path>
                 </svg>
-                <select name="bed" id="bed" class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
-                    {{-- <option value="">{{trans('file.bedrooms')}}</option>
-                    <option value="[1]" >0+1</option>
-                    <option value="[2]" >1+1</option>
-                    <option value="[3]" >1+2</option>
-                    <option value="[4]" >1+3</option>
-                    <option value="[5]" >1+4</option>
-                    <option value="[6]" >1+5</option>
-                    <option value="[7]" >1+6</option>
-                    <option value="[8]" >1+7</option>
-                    <option value="[9]" >1+8</option> --}}
-                    <option value="">{{trans('file.bedrooms')}}</option>
-                    <option value="1" {{request()->bed == 1 ? "selected" : ""}}>1+0</option>
-                    <option value="2" {{request()->bed == 2 ? "selected" : ""}}>1+1</option>
-                    <option value="3" {{request()->bed == 3 ? "selected" : ""}}>2+1</option>
-                    <option value="4" {{request()->bed == 4 ? "selected" : ""}}>3+1</option>
-                    <option value="5" {{request()->bed == 5 ? "selected" : ""}}>4+1</option>
-                    <option value="6" {{request()->bed == 6 ? "selected" : ""}}>5+1</option>
-                    <option value="7" {{request()->bed == 7 ? "selected" : ""}}>6+1</option>
-                    <option value="8" {{request()->bed == 8 ? "selected" : ""}}>7+1</option>
-                    <option value="9" {{request()->bed == 9 ? "selected" : ""}}>8+1</option>
-                </select>
+                <select name="bed" id="bed"
+                                    class="nice-select appearance-none bg-transparent text-tiny font-light cursor-pointer">
+                                    <option value="">{{trans('file.bedrooms')}}</option>
+                                    @foreach ($units as $unit)
+                                        <option value="{{ $unit->id }}" {{request()->bed == $unit->id ? "selected" : ""}} >{{ $unit->name }}</option>
+                                    @endforeach
+
+                                </select>
         </div>
 
 
