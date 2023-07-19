@@ -1,0 +1,378 @@
+:root {
+    --default-color: #fafafa;
+    --primary-color: #dab059;
+    --secondary-color: #2e255c;
+  }
+
+/* start blog styles */
+
+.blog-body {
+    all: unset !important;
+    font-size: 1rem !important;
+}
+
+.blog-body a {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.blog-body h2 {
+    all: unset;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 5px;
+    color: var(--primary-color);
+}
+
+.blog-body h3 {
+    all: unset;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 5px;
+    color: var(--primary-color);
+}
+
+.blog-body h4 {
+    all: unset;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 5px;
+    color: var(--primary-color);
+}
+
+.blog-body h5 {
+    all: unset;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 5px;
+    color: var(--primary-color);
+}
+
+.blog-body ul {
+    /* all: unset; */
+    list-style: disc;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    padding: 10px 20px;
+}
+
+.blog-body ol {
+    /* all: unset; */
+    list-style: decimal;
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    padding: 10px 20px;
+}
+
+
+/* end blog styles */
+
+/* start property styles */
+
+.plan-image {
+    border: 2px solid #d7b550;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.project-body h2 {
+    all: unset;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body h3 {
+    all: unset;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body h4 {
+    all: unset;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body h5 {
+    all: unset;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.project-body ul {
+    list-style: disc;
+    padding: 10px 20px;
+}
+
+.project-body ol {
+    list-style: decimal;
+    padding: 10px 20px;
+}
+
+/* end property styles */
+
+/* whatsapp button styles */
+.whatsapp_float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    left: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+}
+
+.whatsapp-icon {
+    margin-top: 16px;
+}
+
+/* for mobile */
+@media screen and (max-width: 767px) {
+    .whatsapp-icon {
+        margin-top: 10px;
+    }
+
+    .whatsapp_float {
+        display: none;
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 10px;
+        font-size: 22px;
+    }
+}
+
+
+
+
+.selectric-form-select .selectric {
+
+    border-color: rgb(27 45 64/var(--tw-border-opacity));
+
+}
+
+.selectric-items li.highlighted {
+    background: var(--secondary-color) !important;
+}
+
+.selectric-items li:hover {
+    background: var(--secondary-color) !important;
+}
+
+.selectric .label::after {
+    border-bottom: 1px solid var(--secondary-color) !important;
+    border-right: 1px solid var(--secondary-color) !important;
+
+}
+
+
+.after\:bg-primary::after {
+    background-color: var(--secondary-color) !important;
+}
+
+.search-btn:hover {
+    background-color: var(--secondary-color) !important;
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+    border-color: var(--secondary-color) !important;
+}
+
+.hover\:bg-primary:hover {
+    background-color: var(--secondary-color) !important;
+}
+
+.text-primary {
+    color: var(--secondary-color) !important;
+}
+
+.hover\:text-white:hover {
+    color: #FFF !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* tiny override */
+
+.blog-body a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
+  .blog-body a:hover, .blog-body a:focus {
+    text-decoration: none;
+  }
+  .blog-body a.tabs {
+    color: #000;
+  }
+  .blog-body a.tabs:hover, .blog-body a.tabs:focus {
+    color: var(--primary-color);
+    transition: all 0.4s ease-in-out;
+  }
+  .blog-body span,
+  .blog-body p {
+    font-family: inherit !important;
+  }
+  .blog-body h2,
+  .blog-body h3,
+  .blog-body h4 {
+    color: var(--primary-color) !important;
+  }
+  .blog-body h2 span,
+  .blog-body h3 span,
+  .blog-body h4 span {
+    color: var(--primary-color) !important;
+  }
+  .blog-body h2 {
+    font-size: 1.3rem !important;
+  }
+  .blog-body h4,
+  .blog-body h3 {
+    font-size: 1.2rem !important;
+  }
+  .blog-body h5 {
+    font-size: 1.1rem !important;
+  }
+  .blog-body h2,
+  .blog-body h3,
+  .blog-body h4,
+  .blog-body h5,
+  .blog-body h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: inherit !important;
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+  .blog-body table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+  }
+  .blog-body table span {
+    font-size: 1rem !important;
+  }
+  .blog-body table tbody > tr:first-child {
+    background: var(--primary-color);
+    color: #fff;
+  }
+  .blog-body table tbody > tr:first-child > td {
+    color: #fff !important;
+  }
+  .blog-body table tbody > tr:first-child > td p,
+  .blog-body table tbody > tr:first-child > td span,
+  .blog-body table tbody > tr:first-child > td h1,
+  .blog-body table tbody > tr:first-child > td h2,
+  .blog-body table tbody > tr:first-child > td h3,
+  .blog-body table tbody > tr:first-child > td h4,
+  .blog-body table tbody > tr:first-child > td h5,
+  .blog-body table tbody > tr:first-child > td h6 {
+    color: #fff !important;
+  }
+  .blog-body table tbody > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  .blog-body table tbody > tr > td p {
+    margin: 0 !important;
+  }
+  .blog-body table tbody > tr:nth-child(even) {
+    background: #ddd;
+  }
+  .blog-body img {
+    max-width: 100% !important;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+  }
+  .blog-body iframe {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 8px;
+    height: 476px;
+    border: 0;
+  }
+  .blog-body pre {
+    direction: rtl !important;
+    font-family: var(--font-secondary);
+  }
+
+
+  @media (min-width: 1536px)
+  {
+    .slider-image {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+  }
+
+
+.property-list {
+    border: 1px dashed var(--primary-color);
+    padding: 5px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.property-list-item {
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    border: 1px solid;
+    /* border-bottom: 0; */
+    background-color: var(--primary-color);
+}
+
+.property-list-item:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* body {
+    width: 100%;
+    float: left;
+    position: relative;
+    background-image: url(https://ggiturkey.com/frontend/images/bg.png);
+    font-family: Al-Jazeera-Arabic-Regular;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-attachment: fixed;
+    overflow-x: hidden;
+} */
+
+.icon-360 img {
+    position: absolute; left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    pointer-events: none;
+    border: 5px solid #d7b550;
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    height: 80px;
+    width: 80px;
+    padding: 5px;
+    box-shadow: 0px 0px 7px 2px #d7b550;
+}
