@@ -20,7 +20,7 @@ class VirtualRealityController extends Controller
     private $_virtualrealityTranslationModel;
     public function __construct(IVirtualRealityModel $model,IVirtualRealityTranslationModel $translationModel)
     {
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
         $this->_virtualrealityModel = $model;
         $this->_virtualrealityTranslationModel = $translationModel;
     }

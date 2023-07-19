@@ -28,7 +28,7 @@ class BlogController extends Controller
     private $_repo;
     public function __construct(IBlogModel $model, IBlogRepository $repo)
     {
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
         $this->_model = $model;
         $this->_repo = $repo;
         // $this->middleware('isApprove', ['only' =>['edit','update','destroy']]);

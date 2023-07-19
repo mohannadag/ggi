@@ -15,7 +15,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         // $this->middleware('auth');
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
 
         Session::put('currentLocal', 'en');
     }

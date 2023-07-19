@@ -20,7 +20,7 @@ class TestimonialController extends Controller
     private $_testimonialTranslationModel;
     public function __construct(ITestimonialModel $model,ITestimonialTranslationModel $translationModel)
     {
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
         $this->_testimonialModel = $model;
         $this->_testimonialTranslationModel = $translationModel;
     }

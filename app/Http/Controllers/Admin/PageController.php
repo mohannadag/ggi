@@ -20,7 +20,7 @@ class PageController extends Controller
     private $_pageTranslationModel;
     public function __construct(IPageModel $model,IPageTranslationModel $translationModel)
     {
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
         $this->_pageModel = $model;
         $this->_pageTranslationModel = $translationModel;
     }

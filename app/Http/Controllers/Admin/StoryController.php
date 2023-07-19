@@ -25,7 +25,7 @@ class StoryController extends Controller
     IStoryTranslationModel $translationModel,
     ICampaignTranslationModel $campaignTranslationModel)
     {
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
         $this->_storyModel = $model;
         $this->_storyTranslationModel = $translationModel;
         $this->_campaignTranslationModel = $campaignTranslationModel;

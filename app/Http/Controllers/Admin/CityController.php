@@ -28,7 +28,7 @@ class CityController extends Controller
     public function __construct(ICityModel $model,ICityTranslationModel $cityTranslationModel,ICountryTranslationModel $countryTranslationModel,IStateTranslationModel $stateTranslationModel)
     {
 //        $this->middleware('isApprove', ['only' =>['edit','update','destroy']]);
-        $this->middleware('can:isAdmin,can:isMod');
+$this->middleware('accessDashboard');
         $this->_cityModel = $model;
         $this->_cityTranslationModel = $cityTranslationModel;
         $this->_countryTranslationModel = $countryTranslationModel;

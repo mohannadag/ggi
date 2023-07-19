@@ -53,7 +53,7 @@ class PropertyController extends Controller
                                 IUnitsModel $unitsModel)
     {
         // $this->middleware('isApprove', ['only' => ['index','edit','update','myProperties']]);
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
         $this->_propertyModel = $propertyModel;
         $this->_propertyTranslationModel = $propertyTranslationModel;
         $this->_categoryTranslationModel = $categoryTranslationModel;

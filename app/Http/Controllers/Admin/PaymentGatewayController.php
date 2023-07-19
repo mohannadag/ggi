@@ -23,7 +23,7 @@ class PaymentGatewayController extends Controller
 
     public function __construct(IPaymentModel $model)
     {
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
         $this->_paymentModel = $model;
     }
 

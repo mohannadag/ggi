@@ -15,7 +15,7 @@ class TagController extends Controller
     public function __construct()
     {
         // $this->middleware('admin');
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
     }
 
     public function index(Request $request)

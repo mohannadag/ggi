@@ -16,7 +16,7 @@ class UnitsController extends Controller
     public function __construct(IUnitsModel $model,IUnitsTranslationModel $translationModel)
     {
         // $this->middleware('admin');
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
         $this->_unitsModel = $model;
         $this->_unitsTranslationModel = $translationModel;
     }

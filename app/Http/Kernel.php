@@ -80,5 +80,6 @@ class Kernel extends HttpKernel
         'user' => \App\Http\Middleware\User::class,
         'credit' => \App\Http\Middleware\hasCredit::class,
         'XSS' => \App\Http\Middleware\XSS::class,
+        'accessDashboard' => \App\Http\Middleware\AccessDashboard::class,
     ];
 }

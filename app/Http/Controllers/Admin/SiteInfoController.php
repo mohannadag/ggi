@@ -11,7 +11,7 @@ class SiteInfoController extends Controller
     private $_siteInfoModel;
     public function __construct(ISiteInfoModel $model)
     {
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
         $this->_siteInfoModel = $model;
     }
 

@@ -20,7 +20,7 @@ class VideoController extends Controller
     private $_videoTranslationModel;
     public function __construct(IVideoModel $model,IVideoTranslationModel $translationModel)
     {
-        $this->middleware('can:isAdmin,can:isMod');
+        $this->middleware('accessDashboard');
         $this->_videoModel = $model;
         $this->_videoTranslationModel = $translationModel;
     }
