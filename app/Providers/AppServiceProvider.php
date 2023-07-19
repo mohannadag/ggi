@@ -76,6 +76,11 @@ class AppServiceProvider extends ServiceProvider
         $gate->define('zeroCredit',function($user){
             return $user->packageUser->sum('price') == 0;
         });
+
+        $gate->define('accessDashboard',function($user){
+            return $user->type == 'content' || $user->type == 'panorama' || $user->type == 'sliders' || $user->type == 'video' || $user->type == 'stories' || $user->type == 'moderator' || $user->type == 'admin';
+        });
+
         if (!session()->has('currency')) {
             Session::put('currency', 'USD');
         }

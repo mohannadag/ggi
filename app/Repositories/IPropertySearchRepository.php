@@ -59,6 +59,6 @@ interface IPropertySearchRepository
     public function getByName($data);
     public function getByID($data);
 
-    public function filterProperties($data);
+    public function filterProperties($data, $perPage = 6);
     public function getByAll($data);
 }

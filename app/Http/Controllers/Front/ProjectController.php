@@ -91,7 +91,7 @@ class ProjectController extends Controller
         // $minArea = $propertyDetails->min('room_size');
         $categories = Category::with('categoryTranslation')->where('status',1)->get()->keyBy('id');
         //Poperty Search
-        $properties = $this->_propertySearchModel->getData($request);
+        $properties = $this->_propertySearchModel->getData($request,0);
         $units = Units::all();
         // $data = $request->all();
         return view('frontend.projects',compact('properties','city','categories', 'states', 'units'));

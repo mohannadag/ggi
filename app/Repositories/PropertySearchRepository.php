@@ -495,7 +495,7 @@ class PropertySearchRepository implements IPropertySearchRepository
                         ->get();
     }
 
-    public function filterProperties($data)
+    public function filterProperties($data, $perPage = 6)
     {
         $query = property::where('moderation_status', 1)
                         ->with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation');
@@ -580,20 +580,11 @@ class PropertySearchRepository implements IPropertySearchRepository
                 $query->whereHas('floors', function (Builder $q) use($data){
                     $q->where('unit_id', $data['bed']);
                 });
-                // $query->where('first_floor_title', $data['bed'])
-                //     ->orWhere('second_floor_title', $data['bed'])
-                //     ->orWhere('third_floor_title', $data['bed'])
-                //     ->orWhere('fourth_floor_title', $data['bed'])
-                //     ->orWhere('fifth_floor_title', $data['bed'])
-                //     ->orWhere('sixth_floor_title', $data['bed'])
-                //     ->orWhere('seventh_floor_title', $data['bed'])
-                //     ->orWhere('eighth_floor_title', $data['bed'])
-                //     ->orWhere('ninth_floor_title', $data['bed'])
-                //     ->orWhere('tenth_floor_title', $data['bed'])
-                //     ->orWhere('eleventh_floor_title', $data['bed'])
-                //     ->orWhere('twelfth_floor_title', $data['bed']);
             });
         }
+
+        if($perPage == 0)
+            return $query->get();
 
         return $query->paginate(6);
     }
