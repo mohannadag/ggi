@@ -16,6 +16,7 @@ class CitizenshipController extends Controller
     private $_citizenshipTranslationModel;
     public function __construct(ICitizenshipModel $model, ICitizenshipTranslationModel $translationModel)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_citizenshipModel = $model;
         $this->_citizenshipTranslationModel = $translationModel;
     }

@@ -52,7 +52,8 @@ class PropertyController extends Controller
                                 ICurrencyModel $currencyModel,
                                 IUnitsModel $unitsModel)
     {
-        $this->middleware('isApprove', ['only' => ['index','edit','update','myProperties']]);
+        // $this->middleware('isApprove', ['only' => ['index','edit','update','myProperties']]);
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_propertyModel = $propertyModel;
         $this->_propertyTranslationModel = $propertyTranslationModel;
         $this->_categoryTranslationModel = $categoryTranslationModel;

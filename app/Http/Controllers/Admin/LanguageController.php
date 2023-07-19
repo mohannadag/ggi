@@ -16,6 +16,7 @@ class LanguageController extends Controller
 
     public function __construct(Translation $translation)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->translation = $translation;
     }
 

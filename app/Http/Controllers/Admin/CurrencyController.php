@@ -19,6 +19,7 @@ class CurrencyController extends Controller
     private $_currencyModel;
     public function __construct(ICurrencyModel $_currencyModel)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_currencyModel = $_currencyModel;
     }
 

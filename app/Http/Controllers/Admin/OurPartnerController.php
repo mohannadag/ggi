@@ -11,6 +11,7 @@ class OurPartnerController extends Controller
     private $_partnerModel;
     public function __construct(IPartnerModel $model)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_partnerModel = $model;
     }
 

@@ -188,7 +188,7 @@
         <nav class="navbar-sidebar2">
             <ul class="list-unstyled navbar__list">
 
-                        <li>
+                        {{-- <li>
                             <a class="{{Str::startsWith(Route::currentRouteName(),'admin.dashboard') ? 'active' : '' }}" href="{{route('admin.dashboard')}}">
                                 <i class="las la-home"></i>{{trans('file.dashboard')}}
                             </a>
@@ -276,6 +276,21 @@
                                 @csrf
 
                             </form>
+                        </li> --}}
+
+                        <li>
+                            <a class="{{Str::startsWith(Route::currentRouteName(),'admin.users.index') ? 'active' : '' }}" href="{{route('admin.users.index')}}"><i class="las la-user-circle"></i>{{trans('file.my_profile')}}</a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <i class="las la-file-upload"></i>
+                                {{trans('file.logout')}}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+
+                                @csrf
+
+                            </form>
                         </li>
 
             </ul>
@@ -285,7 +300,7 @@
         @can('isAgent')
         <nav class="navbar-sidebar2">
             <ul class="list-unstyled navbar__list">
-                        <li>
+                        {{-- <li>
                             <a class="{{Str::startsWith(Route::currentRouteName(),'admin.dashboard') ? 'active' : '' }}" href="{{route('admin.dashboard')}}">
                                 <i class="las la-home"></i>{{trans('file.dashboard')}}
                             </a>
@@ -295,7 +310,7 @@
                         </li>
                         <li>
                             <a class="{{Str::startsWith(Route::currentRouteName(),'admin.bookings.index') ? 'active' : '' }}" href="{{route('admin.bookings.index')}}"><i class="las la-copy"></i>{{trans('file.booking_request')}}</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a class="{{Str::startsWith(Route::currentRouteName(),'admin.users.index') ? 'active' : '' }}" href="{{route('admin.users.index')}}"><i class="las la-user-circle"></i>{{trans('file.my_profile')}}</a>
                         </li>

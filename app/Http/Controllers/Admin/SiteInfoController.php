@@ -11,6 +11,7 @@ class SiteInfoController extends Controller
     private $_siteInfoModel;
     public function __construct(ISiteInfoModel $model)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_siteInfoModel = $model;
     }
 
@@ -28,7 +29,7 @@ class SiteInfoController extends Controller
     {
 
         $siteInfo =  $this->_siteInfoModel->getById(1);
-    
+
         return view('admin.site-info.create',compact('siteInfo'));
     }
 

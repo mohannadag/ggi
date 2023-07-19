@@ -16,7 +16,8 @@ class CategoryController extends Controller
 
     public function __construct(ICategoryModel $model,ICategoryTranslationModel $translationModel)
     {
-        $this->middleware('admin');
+        $this->middleware('can:isAdmin,can:isMod');
+        // $this->middleware('admin');
         $this->_categoryModel = $model;
         $this->_categoryTranslationModel = $translationModel;
     }

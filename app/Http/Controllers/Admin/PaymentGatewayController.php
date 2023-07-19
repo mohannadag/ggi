@@ -23,6 +23,7 @@ class PaymentGatewayController extends Controller
 
     public function __construct(IPaymentModel $model)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_paymentModel = $model;
     }
 
@@ -143,7 +144,7 @@ class PaymentGatewayController extends Controller
             $this->dataWriteInENVFile('PAYSTACK_PUBLIC_KEY',$request->public_key);
             $this->dataWriteInENVFile('PAYSTACK_SECRET_KEY',$request->secret_key);
             $this->dataWriteInENVFile('MERCHANT_EMAIL',$request->merchant_email);
-            
+
             return response()->json(['success' => __('Data Added successfully.')]);
         }
     }

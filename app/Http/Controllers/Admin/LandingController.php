@@ -27,6 +27,7 @@ class LandingController extends Controller
     private $_landingTranslationModel;
     public function __construct(ILandingModel $model,ILandingTranslationModel $translationModel)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_landingModel = $model;
         $this->_landingTranslationModel = $translationModel;
     }

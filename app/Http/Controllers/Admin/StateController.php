@@ -26,6 +26,7 @@ class StateController extends Controller
     public function __construct(IStateModel $model,ICountryTranslationModel $countryTranslationModel,IStateTranslationModel $stateTranslationModel, ICityTranslationModel $cityTranslationModel)
     {
 //        $this->middleware('isApprove', ['only' =>['edit','update','destroy']]);
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_stateModel = $model;
         $this->_countryTranslationModel = $countryTranslationModel;
         $this->_cityTranslationModel = $cityTranslationModel;

@@ -182,6 +182,12 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                 </a>
                                 <ul class="list-none bg-white drop-shadow-[0px_6px_10px_rgba(0,0,0,0.2)] rounded-[12px] flex flex-wrap flex-col w-[180px] absolute top-[120%]  transition-all group-hover:top-[60px] invisible group-hover:visible opacity-0 group-hover:opacity-100 right-0">
                                     <li class="">
+                                        <a href="{{url('/admin/users/')}}" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-left my-[-1px]">Edit Profile</a>
+                                    </li>
+                                    @canany(['isAdmin', 'isMod'])
+
+
+                                    <li class="">
                                         <a href="{{url('/admin/properties/create')}}" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-left my-[-1px] rounded-t-[12px]">Add Property</a>
                                     </li>
                                     <li class="">
@@ -193,12 +199,12 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                     <li class="">
                                         <a href="{{url('/admin/testimonials/create')}}" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-left my-[-1px]">Add Testimonial</a>
                                     </li>
-                                    <li class="">
-                                        <a href="{{url('/admin/users/')}}" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-left my-[-1px]">Edit Profile</a>
-                                    </li>
+
                                     <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
                                         <a href="{{url('/admin/dashboard')}}" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-left my-[-1px]">Dashboard</a>
                                     </li>
+
+                                    @endcanany
                                     <li class="border-b border-dashed border-primary border-opacity-40 last:border-b-0 hover:border-solid transition-all">
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="font-lora leading-[1.571] text-[14px] text-primary p-[10px] capitalize block transition-all hover:bg-primary hover:text-white text-center my-[-1px] rounded-b-[12px]">Logout</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

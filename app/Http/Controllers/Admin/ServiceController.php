@@ -20,6 +20,7 @@ class ServiceController extends Controller
     private $_serviceTranslationModel;
     public function __construct(IServiceModel $model,IServiceTranslationModel $translationModel)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_serviceModel = $model;
         $this->_serviceTranslationModel = $translationModel;
     }

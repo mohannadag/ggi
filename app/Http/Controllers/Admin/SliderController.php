@@ -20,6 +20,7 @@ class SliderController extends Controller
     private $_sliderTranslationModel;
     public function __construct(ISliderModel $model,ISliderTranslationModel $translationModel)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_sliderModel = $model;
         $this->_sliderTranslationModel = $translationModel;
     }

@@ -15,7 +15,8 @@ class FacilityController extends Controller
     private $_facilityTranslationModel;
     public function __construct(IFacilityModel $model,IFacilityTranslationModel $translationModel)
     {
-        $this->middleware('admin');
+        // $this->middleware('admin');
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_facilityModel = $model;
         $this->_facilityTranslationModel = $translationModel;
     }

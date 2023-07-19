@@ -14,6 +14,7 @@ class AgentController extends Controller
     private $_userTranslationModel;
     public function __construct(IUserModel $model,IUserTranslationModel $userTranslationModel)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_userModel = $model;
         $this->_userTranslationModel = $userTranslationModel;
     }

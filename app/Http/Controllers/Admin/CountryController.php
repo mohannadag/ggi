@@ -16,6 +16,7 @@ class CountryController extends Controller
     public function __construct(ICountryModel $countryModel,ICountryTranslationModel $translationModel)
     {
 //        $this->middleware('isApprove', ['only' =>['edit','update','destroy']]);
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_countryModel = $countryModel;
         $this->_countryTranslationModel = $translationModel;
     }

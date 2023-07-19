@@ -16,7 +16,8 @@ class CampaignController extends Controller
 
     public function __construct(ICampaignModel $model,ICampaignTranslationModel $translationModel)
     {
-        $this->middleware('admin');
+        $this->middleware('can:isAdmin,can:isMod');
+        // $this->middleware('admin');
         $this->_campaignModel = $model;
         $this->_campaignTranslationModel = $translationModel;
     }

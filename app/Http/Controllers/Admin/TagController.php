@@ -14,7 +14,8 @@ class TagController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
+        // $this->middleware('admin');
+        $this->middleware('can:isAdmin,can:isMod');
     }
 
     public function index(Request $request)
@@ -43,7 +44,7 @@ class TagController extends Controller
                 })
                 ->addColumn('action', function($row){
                     $actionBtn = '<div class="d-flex justify-content-end">
-                    <a href="'.route('admin.tags.edit',$row->id).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a> 
+                    <a href="'.route('admin.tags.edit',$row->id).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>
 
                  | <form action="'.route('admin.tags.destroy',$row->id).'" method="POST">
                     '.csrf_field().'

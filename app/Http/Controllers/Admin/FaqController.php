@@ -20,6 +20,7 @@ class FaqController extends Controller
     private $_faqTranslationModel;
     public function __construct(IFaqModel $model,IFaqTranslationModel $translationModel)
     {
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_faqModel = $model;
         $this->_faqTranslationModel = $translationModel;
     }

@@ -15,7 +15,8 @@ class BlogCategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('can:isAdmin,can:isMod');
+        // $this->middleware('admin');
         // $this->middleware('isApprove', ['only' =>['edit','update','destroy']]);
     }
 

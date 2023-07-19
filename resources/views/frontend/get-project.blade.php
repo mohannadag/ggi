@@ -78,13 +78,13 @@
                                                 @if(isset($property->propertyDetails->ivr) && $property->propertyDetails->ivr != '')
                                                     <a href="{{$property->propertyDetails->ivr}}" class="flex flex-wrap items-center justify-center mt-1 h-[30px] bg-primary text-orange leading-none transition-all hover:bg-secondary text-white text-[12px] rounded" target="_blank">360</a>
                                                 @endif
-                                                @can('accessDashboard')
+                                                @cannot('isAgent')
                                                     @if(isset($property->propertyDetails->drive_link) && $property->propertyDetails->drive_link != '')
                                                         <a href="{{$property->propertyDetails->drive_link}}" class="flex flex-wrap items-center justify-center mt-1 h-[30px] bg-primary text-orange leading-none transition-all hover:bg-secondary text-white text-[12px] rounded">
                                                             Drive
                                                         </a>
                                                     @endif
-                                                @endcan
+                                                @endcannot
                                             </td>
                                         </tr>
 

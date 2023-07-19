@@ -16,7 +16,8 @@ class PackageController extends Controller
     private $_packageTranslationModel;
     public function __construct(PackageModel $model,PackageTranslationModel $translationModel)
     {
-        $this->middleware('admin');
+        // $this->middleware('admin');
+        $this->middleware('can:isAdmin,can:isMod');
         $this->_packageModel = $model;
         $this->_packageTranslationModel = $translationModel;
     }
