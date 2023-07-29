@@ -347,11 +347,7 @@
                                                     {{-- <form> --}}
                                                         <div class="form-group">
                                                             <label for="list_info">Description</label>
-                                                            <textarea name="description" class="form-control" id="list_info" rows="4" placeholder="Enter your text here">
-                                                                @if (isset($propertyTranslation->description))
-                                                                {{ $propertyTranslation->description }}
-                                                                @endif
-                                                            </textarea>
+                                                            <textarea name="description" class="form-control" id="list_info" rows="4" placeholder="Enter your text here" value="">@if (isset($propertyTranslation->description)){{ $propertyTranslation->description }}@endif</textarea>
                                                         </div>
                                                     {{-- </form> --}}
                                                 </div>
