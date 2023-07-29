@@ -68,9 +68,9 @@
 
                                     <li class="flex flex-wrap items-center">
                                         @if($property->category_id == 5)
-                                        @if($property->propertyDetails->delivery_year < 2022)
+                                        @if($property->propertyDetails->title_deed_type == 1)
                                         <span>Ready</span>
-                                        @elseif($property->propertyDetails->delivery_year > 2023)
+                                        @elseif($property->propertyDetails->title_deed_type == 2)
                                         <span>Under Construction</span>
                                         @endif
                                         @else

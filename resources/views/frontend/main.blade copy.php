@@ -69,7 +69,6 @@
     <link rel="stylesheet" href="{{asset('frontend/css/snapgram.css')}}">
     <link rel='stylesheet' href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/tw-elements.min.css" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
 
     <link rel="stylesheet" href="{{asset('frontend/css/stories.css')}}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
@@ -184,7 +183,6 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
     <script src="{{asset('frontend/js/script.js')}}"></script>
     <script src="{{asset('frontend/js/plugins/custom_slider/customSlider.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js" integrity="sha512-jNDtFf7qgU0eH/+Z42FG4fw3w7DM/9zbgNPe3wfJlCylVDTT3IgKW5r92Vy9IHa6U50vyMz5gRByIu4YIXFtaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js"></script>
 </body>
 @stack('script')
 <script>
