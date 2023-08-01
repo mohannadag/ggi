@@ -51,9 +51,9 @@
                                 $createdAt = \Carbon\Carbon::parse($property->created_at);
                                 @endphp
                                     <tr class="border-b bg-[#E9F1FF]">
-                                        <td class="text-[1.1rem] text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$property->propertyTranslation->title ?? $property->propertyTranslationEnglish->title ?? null}}</td>
+                                        <td class="text-[1.1rem] text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$property->propertyTranslation->title ?? $property->title ?? null}}</td>
                                         <td class="text-[1.1rem] text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$property->property_id}}</td>
-                                        <td class="text-[1.1rem] text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$property->category->categoryTranslation->name ?? $property->category->categoryTranslationEnglish->name ?? null}}</td>
+                                        <td class="text-[1.1rem] text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{$property->category->categoryTranslation->name ?? $property->category->name ?? null}}</td>
                                         <td class="text-[1.1rem] text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{convert($property->price, $property->currency)}}</td>
                                         <td class="text-[1.1rem] text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             <a href="{{route('front.property', ['property' => $property->id])}}" class="flex flex-wrap items-center justify-center   h-[30px] bg-primary text-orange leading-none transition-all hover:bg-secondary text-white text-[12px] rounded" target="_blank">Link</a>

@@ -4,5 +4,5 @@ use Illuminate\Http\Request;
 
 interface IPropertySearchModel
 {
-    public function getData(Request $request, $perPage = 6);
+    public function getData(Request $request, $perPage = 6, $all = false);
 }

@@ -14,7 +14,7 @@ class PropertySearchModel implements IPropertySearchModel
         $this->_propertySearchService = $propertySearchService;
     }
 
-    public function getData(Request $request, $perPage = 6)
+    public function getData(Request $request, $perPage = 6, $all = false)
     {
         Session::get('currentLocal');
         //dd($request);
@@ -83,7 +83,7 @@ class PropertySearchModel implements IPropertySearchModel
         $data['property_name'] = $request->input('property_name');
         $data['property_id'] = $request->input('property_id');
         // dd($data);
-        return $this->_propertySearchService->getData($data, $perPage);
+        return $this->_propertySearchService->getData($data, $perPage, $all);
     }
 
 }

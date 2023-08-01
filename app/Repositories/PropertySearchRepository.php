@@ -495,11 +495,17 @@ class PropertySearchRepository implements IPropertySearchRepository
                         ->get();
     }
 
-    public function filterProperties($data, $perPage = 6)
+    public function filterProperties($data, $perPage = 6, $all = false)
     {
-        $query = property::where('moderation_status', 1)
-                        ->with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation');
-        // dd($query->get());
+        $query = property::with('propertyTranslation','propertyDetails','country.countryTranslation','state.stateTranslation','city.cityTranslation','category.categoryTranslation');
+        // dd($all);
+
+        if(!$all)
+        {
+            // dd($all);
+            $query = $query->where('moderation_status', 1);
+        }
+
         if($data['category'] != "")
         {
             $query = $query->where('category_id', $data['category']);
@@ -584,9 +590,9 @@ class PropertySearchRepository implements IPropertySearchRepository
         }
 
         if($perPage == 0)
-            return $query->get();
+            return $query->orderBy('id','desc')->get();
 
-        return $query->paginate(6);
+        return $query->paginate($perPage);
     }
 
 }

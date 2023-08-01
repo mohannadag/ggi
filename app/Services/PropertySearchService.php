@@ -13,8 +13,8 @@ class PropertySearchService
     {
         $this->_propertySearchRepository = $_propertySearchRepository;
     }
-    public function getData($data, $perPage = 6)
+    public function getData($data, $perPage = 6, $all = false)
     {
-        return $this->_propertySearchRepository->filterProperties($data, $perPage);
+        return $this->_propertySearchRepository->filterProperties($data, $perPage, $all);
     }
 }
