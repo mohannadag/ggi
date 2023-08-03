@@ -187,6 +187,7 @@
              margin-top: 0 !important
          }
      }
+
  </style>
  {{-- @if (Cookie::get('popupform') !== null )
  <!-- Modal -->
@@ -217,8 +218,8 @@
                              <div>
                                  <input type="text" name="PopupName" id="PopupName" placeholder="{{trans('file.name')}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white mb-3" required>
                              </div>
-                             <div>
-                                 <input type="text" name="PopupPhone" id="PopupPhone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white mb-3" placeholder="{{trans('file.phone')}}" required>
+                             <div style="display:flex; margin-bottom:10px">
+                                 <input type="text" name="PopupPhone" id="PopupPhone" class="phoneInput bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white mb-3" placeholder="{{trans('file.phone')}}" required>
                              </div>
                              <div>
                                  <input type="email" name="PopupEmail" id="PopupEmail" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white mb-3" placeholder="{{trans('file.email')}}" required>
@@ -239,6 +240,66 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
+
+ <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        $(".phoneInput").intlTelInput({
+            utilsScript:
+                "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.18/js/utils.js",
+            nationalMode: false,
+            separateDialCode: false,
+            autoHideDialCode: false,
+            initialCountry: "TR",
+            preferredCountries: [
+                "SA",
+                "QA",
+                "TR",
+                "IQ",
+                "KW",
+                "BH",
+                "AE",
+                "YE",
+                "JO",
+                "DZ",
+                "TN",
+                "LY",
+                "EG",
+                "SD",
+                "OM",
+                "SY",
+            ],
+        });
+
+        $(".NumericOnly").keydown(function (event) {
+            if (
+                event.keyCode == 46 ||
+                event.keyCode == 8 ||
+                event.keyCode == 9 ||
+                event.keyCode == 27 ||
+                event.keyCode == 13 ||
+                (event.keyCode == 65 && event.ctrlKey === true) ||
+                (event.keyCode >= 35 && event.keyCode <= 39)
+            ) {
+                return;
+            } else {
+                if (
+                    event.shiftKey ||
+                    ((event.keyCode < 48 || event.keyCode > 57) &&
+                        (event.keyCode < 96 || event.keyCode > 105))
+                ) {
+                    event.preventDefault();
+                }
+            }
+        });
+
+        counterInit();
+        function counterInit() {
+            $(".st-counter").tamjidCounter({
+                duration: 3000,
+            });
+        }
+    });
+</script>
 
  <script type="text/javascript">
     // function openModal() {

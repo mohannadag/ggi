@@ -48,7 +48,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/plugins/nice-select.css') }}" />
     <link rel="stylesheet" href="{{asset('frontend/js/plugins/custom_slider/customSliderStyle.css')}}">
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
 
     <link rel="stylesheet" href="{{asset('frontend/css/zuck.min.css')}}">
 
@@ -160,6 +160,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
     <script src="{{asset('frontend/js/plugins/custom_slider/customSlider.js')}}"></script>
 
     <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js"></script>
 </body>
 @stack('script')
 
@@ -238,6 +239,64 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
         }
     });
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        $(".phoneInput").intlTelInput({
+            utilsScript:
+                "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.18/js/utils.js",
+            nationalMode: false,
+            separateDialCode: false,
+            autoHideDialCode: false,
+            initialCountry: "TR",
+            preferredCountries: [
+                "SA",
+                "QA",
+                "TR",
+                "IQ",
+                "KW",
+                "BH",
+                "AE",
+                "YE",
+                "JO",
+                "DZ",
+                "TN",
+                "LY",
+                "EG",
+                "SD",
+                "OM",
+                "SY",
+            ],
+        });
 
+        $(".NumericOnly").keydown(function (event) {
+            if (
+                event.keyCode == 46 ||
+                event.keyCode == 8 ||
+                event.keyCode == 9 ||
+                event.keyCode == 27 ||
+                event.keyCode == 13 ||
+                (event.keyCode == 65 && event.ctrlKey === true) ||
+                (event.keyCode >= 35 && event.keyCode <= 39)
+            ) {
+                return;
+            } else {
+                if (
+                    event.shiftKey ||
+                    ((event.keyCode < 48 || event.keyCode > 57) &&
+                        (event.keyCode < 96 || event.keyCode > 105))
+                ) {
+                    event.preventDefault();
+                }
+            }
+        });
+
+        counterInit();
+        function counterInit() {
+            $(".st-counter").tamjidCounter({
+                duration: 3000,
+            });
+        }
+    });
+</script>
 
 </html>
