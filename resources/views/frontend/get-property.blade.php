@@ -384,7 +384,7 @@
                                         <div
                                             class="overflow-hidden rounded-md drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                                             <div class="relative">
-                                                <a href="{{ route('front.property', ['property' => $property->id]) }}"
+                                                <a href="{{ route('front.property', ['property' => $property->property_id]) }}"
                                                     class="block">
                                                     <img src="{{ URL::asset('/images/thumbnail/' . $property->thumbnail) }}"
                                                         class="w-full h-full" loading="lazy" width="370" height="266"
@@ -394,12 +394,12 @@
                                             </div>
 
                                             <div class="pt-[15px] pb-[20px] px-[20px] text-left">
-                                                <h3><a href="{{ route('front.property', ['property' => $property->id]) }}"
+                                                <h3><a href="{{ route('front.property', ['property' => $property->property_id]) }}"
                                                         class="font-lora leading-tight text-[18px] text-primary">{{
                                                         $property->property_id }}</a>
                                                 </h3>
                                                 <h4 class="leading-none"><a
-                                                        href="{{ route('front.property', ['property' => $property->id]) }}"
+                                                        href="{{ route('front.property', ['property' => $property->property_id]) }}"
                                                         class="font-light text-[14px] leading-[1.75] text-primary underline">{{
                                                         $property->country->countryTranslation->name ??
                                                         ($property->country->countryTranslationEnglish->name ?? null)

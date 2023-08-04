@@ -189,14 +189,14 @@
                             <div class="overflow-hidden rounded-md text-center transition-all duration-300 drop-shadow-[0px_2px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] hover:-translate-y-[10px] flex flex-wrap flex-col md:flex-row items-end">
                                 <div class="relative mb-[15px] lg:mb-[0px] block w-full lg:w-[300px]">
 
-                                    <a href="{{ route('front.property', ['property' => $property->id]) }}" class="block h-[250px]">
+                                    <a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="block h-[250px]">
                                         <img src="{!! $property->photo() !!}" class="w-full h-full rounded-tl-[6px] lg:rounded-bl-[6px] object-cover" loading="lazy" width="300" height="250" alt="{{$property->property_id}}">
                                     </a>
                                 </div>
 
                                 <div class="flex flex-col relative w-full lg:w-[calc(100%-300px)]">
                                     <div class="text-{{ App::isLocale('ar') ? 'right' : 'left' }} px-4 lg:px-0 w-full md:w-auto md:flex-1 lg:mr-7 xl:mr-[55px] bg-[#FFFDFC] lg:ml-[30px]">
-                                        <h3><a href="{{ route('front.property', ['property' => $property->id]) }}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary font-medium">{{$property->property_id}}.</a></h3>
+                                        <h3><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary font-medium">{{$property->property_id}}.</a></h3>
                                         <h4><p class="font-light text-tiny">{{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }},
                                             {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }},
                                             {{ $property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null) }}</p></h4>
@@ -293,15 +293,15 @@
                                     <div class="swiper-slide">
                                         <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                                             <div class="relative">
-                                                <a href="{{ route('front.property', ['property' => $property->id]) }}" class="block">
+                                                <a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="block">
                                                     <img src="{{ URL::asset('/images/thumbnail/' . $property->thumbnail) }}" class="w-full h-full" loading="lazy" width="370" height="266" alt="@@title">
                                                 </a>
                                                 <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize">{{trans('file.property_for_sale')}}</span>
                                             </div>
 
                                             <div class="pt-[15px] pb-[20px] px-[20px] text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
-                                                <h3><a href="{{ route('front.property', ['property' => $property->id]) }}" class="font-lora leading-tight text-[18px] text-primary">{{$property->property_id}}</a></h3>
-                                                <h4 class="leading-none"><a href="{{ route('front.property', ['property' => $property->id]) }}" class="font-light text-[14px] leading-[1.75] text-primary underline">{{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }},
+                                                <h3><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-lora leading-tight text-[18px] text-primary">{{$property->property_id}}</a></h3>
+                                                <h4 class="leading-none"><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-light text-[14px] leading-[1.75] text-primary underline">{{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }},
                                                     {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }},
                                                     {{ $property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null) }}</a></h4>
                                                 <ul class="mt-[10px]">
