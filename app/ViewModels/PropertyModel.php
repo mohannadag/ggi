@@ -133,7 +133,7 @@ class PropertyModel implements IPropertyModel
             })
             ->addColumn('action', function($row){
                 $actionBtn = '<div class="d-flex justify-content-end">
-                <a href="'.route('front.property', ['property' => $row->id]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a> |
+                <a href="'.route('front.property', ['property' => $row->property_id]).'" class="edit btn btn-success btn-sm" target="_blank"><i class="la la-eye"></i></a> |
                   <a href="'.route('admin.properties.edit',$row->id).'" class="edit btn btn-info btn-sm"><i class="la la-edit"></i></a>
                  | <form action="'.route('admin.properties.destroy',$row->id).'" method="POST">
                     '.csrf_field().'
