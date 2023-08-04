@@ -199,7 +199,7 @@
                                                     <label>Property ID</label>
                                                     <input type="text" name="property_id"
                                                         class="form-control filter-input"
-                                                        value="{{ $property->property_id }}" placeholder="ZOAC25">
+                                                        value="{{ $property->property_id }}" placeholder="ZOAC25" required>
                                                 </div>
 
                                                 <div class="col-md-6">

@@ -475,14 +475,14 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                                     <div class="swiper-slide">
                                         <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                                             <div class="relative">
-                                                <a href="{{ route('front.property', ['property' => $similarListing->id]) }}" class="block">
+                                                <a href="{{ route('front.property', ['property' => $similarListing->property_id]) }}" class="block">
                                                     <img src="{{ URL::asset('/images/thumbnail/' . $similarListing->thumbnail) }}" class="w-full h-full" loading="lazy" width="370" height="266" alt="@@title">
                                                 </a>
                                             </div>
 
                                             <div class="pt-[15px] pb-[20px] px-[20px] text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
-                                                <h3><a href="{{ route('front.property', ['property' => $similarListing->id]) }}" class="font-lora leading-tight text-[18px] text-primary">{{ $similarListing->property_id}}</a></h3>
-                                                <h4 class="leading-none"><a href="{{ route('front.property', ['property' => $similarListing->id]) }}" class="font-light text-[14px] leading-[1.75] text-primary underline">{{ $similarListing->country->countryTranslation->name ?? ($similarListing->country->countryTranslationEnglish->name ?? null) }},
+                                                <h3><a href="{{ route('front.property', ['property' => $similarListing->property_id]) }}" class="font-lora leading-tight text-[18px] text-primary">{{ $similarListing->property_id}}</a></h3>
+                                                <h4 class="leading-none"><a href="{{ route('front.property', ['property' => $similarListing->property_id]) }}" class="font-light text-[14px] leading-[1.75] text-primary underline">{{ $similarListing->country->countryTranslation->name ?? ($similarListing->country->countryTranslationEnglish->name ?? null) }},
                                                         {{ $similarListing->state->stateTranslation->name ?? ($similarListing->state->stateTranslationEnglish->name ?? null) }},
                                                         {{ $similarListing->city->cityTranslation->name ?? ($similarListing->city->cityTranslationEnglish->name ?? null) }}</a></h4>
                                                 <ul class="mt-[10px]">

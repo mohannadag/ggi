@@ -122,12 +122,12 @@
                             <div class="swiper-slide">
                                 <div class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                                     <div class="relative">
-                                        <a href="{{ route('front.property', ['property' => $property->id]) }}" class="block"><img src="{!! $property->photo() !!}" class="w-full h-full" loading="lazy" width="370" height="266" alt="{{ $property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null) }}"></a>
+                                        <a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="block"><img src="{!! $property->photo() !!}" class="w-full h-full" loading="lazy" width="370" height="266" alt="{{ $property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null) }}"></a>
                                         <span class="absolute bottom-5 left-5 bg-[#FFFDFC] p-[5px] rounded-[2px] text-primary leading-none text-[14px] font-normal capitalize">{{trans('file.property_for_sale')}}</span>
                                     </div>
 
                                     <div class="py-[20px] px-[20px] text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
-                                        <h3><a href="{{ route('front.property', ['property' => $property->id]) }}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium">{{$property->property_id}}</a></h3>
+                                        <h3><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium">{{$property->property_id}}</a></h3>
                                         <h4><p class="font-light text-[14px] leading-[1.75]">
                                             {{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }},
                             {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }},

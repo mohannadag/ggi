@@ -35,6 +35,11 @@ class Property extends Model
 
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'property_id';
+    }
+
     public function propertyDetails()
     {
         return $this->hasOne(PropertyDetail::class,'property_id','id');

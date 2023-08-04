@@ -62,7 +62,7 @@
                                                     <div class="col-md-4">
                                                         <label>Property ID</label> <span class="text-danger">*</span>
                                                         <input type="text" name="property_id" class="form-control filter-input"
-                                                            value="{{ old('property_id') }}" placeholder="Enter Property ID">
+                                                            value="{{ old('property_id') }}" placeholder="Enter Property ID" required>
                                                         @error('property_id')
                                                             <p class="text-danger">{{ $message }}</p>
                                                         @enderror
