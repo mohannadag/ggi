@@ -514,6 +514,9 @@
                                                                 <option value="{{ '3' }}" {{ old('view') == '3' ? 'selected' : '' }}> {{ trans('file.view_forest') }}</option>
                                                                 <option value="{{ '4' }}" {{ old('view') == '4' ? 'selected' : '' }}> {{ trans('file.view_street') }}</option>
                                                                 <option value="{{ '5' }}" {{ old('view') == '5' ? 'selected' : '' }}> {{ trans('file.view_landscape') }}</option>
+                                                                <option value="{{ '6' }}" {{ old('view') == '6' ? 'selected' : '' }}> {{ trans('file.view_lack') }}</option>
+                                                                <option value="{{ '7' }}" {{ old('view') == '7' ? 'selected' : '' }}> {{ trans('file.view_panorama') }}</option>
+                                                                <option value="{{ '8' }}" {{ old('view') == '8' ? 'selected' : '' }}> {{ trans('file.view_garden') }}</option>
                                                             </select>
                                                         </div>
                                                     </div>

@@ -409,5 +409,7 @@ return array(
     'baths-number' => 'number of baths',
     'last-update' => 'Last Update',
     'notes' => 'Notes',
-
+    'view_lack' => 'Lack',
+    'view_panorama' => 'Panorama',
+    'view_garden' => 'Garden',
 );

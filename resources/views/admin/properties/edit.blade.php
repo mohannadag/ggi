@@ -555,6 +555,15 @@
                                                                 <option value="{{ '5' }}"
                                                                     @if (isset($property->propertyDetails->view)) {{ $property->propertyDetails->view == '5' ? 'selected' : '' }} @endif>
                                                                     {{ trans('file.view_landscape') }}</option>
+                                                                <option value="{{ '6' }}"
+                                                                    @if (isset($property->propertyDetails->view)) {{ $property->propertyDetails->view == '6' ? 'selected' : '' }} @endif>
+                                                                    {{ trans('file.view_lack') }}</option>
+                                                                <option value="{{ '7' }}"
+                                                                    @if (isset($property->propertyDetails->view)) {{ $property->propertyDetails->view == '7' ? 'selected' : '' }} @endif>
+                                                                    {{ trans('file.view_panorama') }}</option>
+                                                                <option value="{{ '8' }}"
+                                                                    @if (isset($property->propertyDetails->view)) {{ $property->propertyDetails->view == '8' ? 'selected' : '' }} @endif>
+                                                                    {{ trans('file.view_garden') }}</option>
                                                             </select>
                                                         </div>
                                                     </div>

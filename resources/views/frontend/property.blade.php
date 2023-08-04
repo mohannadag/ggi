@@ -198,6 +198,24 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                             &nbsp;<span>{{trans('file.view_landscape')}}</span>
                         </li>
                         @endif
+                        @if($property->propertyDetails->view == "6")
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="{{ url('frontend/images/interior/view.png') }}" loading="lazy" alt="icon" width="30" height="20">
+                            &nbsp;<span>{{trans('file.view_lack')}}</span>
+                        </li>
+                        @endif
+                        @if($property->propertyDetails->view == "7")
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="{{ url('frontend/images/interior/view.png') }}" loading="lazy" alt="icon" width="30" height="20">
+                            &nbsp;<span>{{trans('file.view_panorama')}}</span>
+                        </li>
+                        @endif
+                        @if($property->propertyDetails->view == "8")
+                        <li class="flex flex-wrap items-center mb-[25px]">
+                            <img class="mr-[15px]" src="{{ url('frontend/images/interior/view.png') }}" loading="lazy" alt="icon" width="30" height="20">
+                            &nbsp;<span>{{trans('file.view_garden')}}</span>
+                        </li>
+                        @endif
                         @if($property->propertyDetails->title_deed_type == "1")
                         <li class="flex flex-wrap items-center mb-[25px]">
                             <img class="mr-[15px]" src="{{ url('frontend/images/interior/titledeed.png') }}" loading="lazy" alt="icon" width="30" height="20">
