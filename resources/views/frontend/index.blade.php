@@ -17,7 +17,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
 
 @endphp
 @section('content')
-   @include('frontend.includes.header')
+   @include('frontend.includes.header1')
    <!--Hero section starts-->
     @include('frontend.includes.newhero')
     @include('frontend.includes.stories')

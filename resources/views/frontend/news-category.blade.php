@@ -19,7 +19,7 @@
                 <div class="text-center text-white relative z-10">
                     <div class="mb-5"><span class="text-base block">{{trans('file.news')}}</span></div>
                     <h1 class="font-lora text-[32px] sm:text-[50px] md:text-[68px] lg:text-[50px] leading-tight xl:text-2xl font-medium">
-                        {{$popularTopic->blogCategoryTranslation->name ?? $popularTopic->blogCategoryTranslationEnglish->name  ?? null }}
+                        {{ $popularTopic->blogCategoryTranslation->name ?? $popularTopic->name  ?? '' }}
                     </h1>
 
                 </div>
@@ -31,7 +31,7 @@
     <div class="ps-page ps-page--blog">
         <div class="ps-page__header">
             <div class="container">
-                <h1 class="ps-page__heading" style="{{(App::isLocale('ar') ? 'text-align: right' : 'text-align: left')}}"> {{$popularTopic->blogCategoryTranslation->name ?? $popularTopic->blogCategoryTranslationEnglish->name  ?? null }}</h1>
+                <h1 class="ps-page__heading" style="{{(App::isLocale('ar') ? 'text-align: right' : 'text-align: left')}}"> {{ $popularTopic->blogCategoryTranslation->name ?? $popularTopic->name  ?? '' }}</h1>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
                                     <span class="block leading-none font-normal text-[14px] text-secondary mb-[10px]">{{$createdAt->toFormattedDateString()}}</span>
                                     <h3><a href="{{ route('news.show', $news) }}" class="font-lora text-[22px] xl:text-[24px] leading-[1.285] text-primary block mb-[10px] hover:text-secondary transition-all font-medium">{{$news->blogTranslation->title ?? $news->blogTranslationEnglish->title  ?? null }}</a></h3>
                                     @php
-                                        $content = html_entity_decode($news->blogTranslation->body ?? $news->blogTranslationEnglish->body ?? null);
+                                        $content = html_entity_decode($news->blogTranslation->body ?? $news->body ?? null);
                                     @endphp
                                     <p class="font-light text-[#494949] text-[16px] leading-[1.75]">{!! substr($content, 0, 150 ) !!}..</p>
                                 </div>
