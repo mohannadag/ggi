@@ -15,9 +15,9 @@
         <div class="grid grid-cols-12">
             <div class="col-span-12">
                 <div class="max-w-[600px]  mx-auto text-center text-primary relative z-[1]">
-                    <div class="mb-5"><span class="text-base block">{{$country->countryTranslation->name ?? $country->countryTranslationEnglish->name ?? null}} Properties</span></div>
+                    <div class="mb-5"><span class="text-base block">{{$country->countryTranslation->name ?? $country->name ?? null}} Properties</span></div>
                     <h1 class="font-lora text-[36px] sm:text-[50px] md:text-[68px] lg:text-[50px] leading-tight xl:text-2xl font-medium">
-                        {{$state->stateTranslation->name ?? $state->stateTranslationEnglish->name ?? null}} Properties
+                        {{$state->stateTranslation->name ?? $state->name ?? null}} Properties
                     </h1>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                             <div class="swiper-slide">
                                 <div class="overflow-hidden rounded-md drop-shadow-[0px_0px_5px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center transition-all duration-300 hover:-translate-y-[10px]">
                                     <div class="relative">
-                                        <a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="block"><img src="{{ URL::asset('/images/thumbnail/'.$property->thumbnail) }}" class="w-full h-full" loading="lazy" width="370" height="266" alt="{{ $property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null) }}"></a>
+                                        <a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="block"><img src="{{ URL::asset('/images/thumbnail/'.$property->thumbnail) }}" class="w-full h-full" loading="lazy" width="370" height="266" alt="project"></a>
                                         <div class="flex flex-wrap flex-col absolute top-5 right-5">
                                             <button class="flex flex-wrap items-center bg-[rgb(11,44,61,0.8)] p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{('frontend/images/icon/camera.png')}}" loading="lazy" width="13" height="10" alt="camera icon">07</button>
                                             <button class="flex flex-wrap items-center bg-[rgb(11,44,61,0.8)] p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{('frontend/images/icon/video.png')}}" loading="lazy" width="14" height="10" alt="camera icon">08</button>
@@ -97,11 +97,11 @@
                                     </div>
 
                                     <div class="py-[20px] px-[20px] text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
-                                        <h3><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium">{{ $property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null) }}</a></h3>
-                                        <h4><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-light text-[14px] leading-[1.75] underline">{{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }},
-                                            {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }},
-                                            {{ $property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null) }}</a></h4>
-                                        <span class="font-light text-sm">{{ $property->category->categoryTranslation->name }}</span>
+                                        <h3><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary hover:text-secondary transition-all font-medium">{{ $property->property_id ?? null }}</a></h3>
+                                        <h4><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-light text-[14px] leading-[1.75] underline">{{ $property->country->countryTranslation->name ?? ($property->country->name ?? null) }},
+                                            {{ $property->state->stateTranslation->name ?? ($property->state->name ?? null) }},
+                                            {{ $property->city->cityTranslation->name ?? ($property->city->name ?? null) }}</a></h4>
+                                        <span class="font-light text-sm">{{ $property->category->categoryTranslation->name ?? '' }}</span>
                                         <ul class="flex flex-wrap items-center justify-between text-[12px] mt-[10px] mb-[15px] pb-[10px] border-b border-[#E0E0E0]">
                                             <li class="flex flex-wrap items-center pr-[25px] sm:pr-[5px] md:pr-[25px] border-r border-[#E0DEDE]">
                                                 <svg class="mr-[5px]" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -195,7 +195,7 @@
                                 <div class="relative mb-[15px] lg:mb-[0px] block w-full lg:w-[300px]">
 
                                     <a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="block h-[250px]">
-                                        <img src="{{ URL::asset('/images/thumbnail/'.$property->thumbnail) }}" class="w-full h-full rounded-tl-[6px] lg:rounded-bl-[6px] object-cover" loading="lazy" width="300" height="250" alt="{{ $property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null) }}">
+                                        <img src="{{ URL::asset('/images/thumbnail/'.$property->thumbnail) }}" class="w-full h-full rounded-tl-[6px] lg:rounded-bl-[6px] object-cover" loading="lazy" width="300" height="250" alt="{{ $property->property_id }}">
                                     </a>
 
                                     <div class="flex flex-wrap flex-col absolute top-5 right-5">
@@ -209,12 +209,12 @@
 
                                 <div class="flex flex-col relative w-full lg:w-[calc(100%-300px)]">
                                     <div class="text-left px-4 lg:px-0 w-full md:w-auto md:flex-1 lg:mr-7 xl:mr-[55px] bg-[#FFFDFC] lg:ml-[30px]">
-                                        <h3><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary font-medium">{{ $property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null) }}.</a></h3>
+                                        <h3><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-lora leading-tight text-[22px] xl:text-[26px] text-primary font-medium">{{ $property->property_id }}.</a></h3>
                                         <h4><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-light text-tiny underline">
-                                            {{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }},
-                                            {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }},
-                                            {{ $property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null) }}</a></h4>
-                                        <span class="font-light text-sm block">{{ $property->category->categoryTranslation->name }}</span>
+                                            {{ $property->country->countryTranslation->name ?? ($property->country->name ?? null) }},
+                                            {{ $property->state->stateTranslation->name ?? ($property->state->name ?? null) }},
+                                            {{ $property->city->cityTranslation->name ?? ($property->city->name ?? null) }}</a></h4>
+                                        <span class="font-light text-sm block">{{ $property->category->categoryTranslation->name ?? '' }}</span>
                                         <ul>
                                             <li class="flex flex-wrap items-center justify-between mt-[15px] mb-[10px] pt-[10px] border-t border-[#E0E0E0]">
                                                 <span class="font-lora text-base text-primary leading-none font-medium">{{trans('file.starts_from')}}: {{ convert($property->price, $property->currency) }}</span>
@@ -308,20 +308,20 @@
                                         <div class="overflow-hidden rounded-md drop-shadow-[0px_2px_3px_rgba(0,0,0,0.1)] bg-[#FFFDFC] text-center">
                                             <div class="relative">
                                                 <a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="block">
-                                                    <img src="{{ URL::asset('/images/thumbnail/'.$property->thumbnail) }}" class="w-full h-full" loading="lazy" width="370" height="266" alt="@@title">
+                                                    <img src="{{ URL::asset('/images/thumbnail/'.$property->thumbnail) }}" class="w-full h-full" loading="lazy" width="370" height="266" alt="{{ $property->property_id }}">
                                                 </a>
-                                                <div class="flex flex-wrap flex-col absolute top-5 right-5">
+                                                {{-- <div class="flex flex-wrap flex-col absolute top-5 right-5">
                                                     <button class="flex flex-wrap items-center bg-primary p-[5px] rounded-[2px] text-white mb-[5px] text-xs"><img class="mr-1" src="{{url('frontend/images/icon/camera.png')}}" loading="lazy" width="13" height="10" alt="camera icon">07</button>
                                                     <button class="flex flex-wrap items-center bg-primary p-[5px] rounded-[2px] text-white text-xs"><img class="mr-1" src="{{url('frontend/images/icon/video.png')}}" loading="lazy" width="14" height="10" alt="camera icon">08</button>
-                                                </div>
+                                                </div> --}}
 
                                             </div>
 
                                             <div class="pt-[15px] pb-[20px] px-[20px] text-{{ App::isLocale('ar') ? 'right' : 'left' }}">
-                                                <h3><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-lora leading-tight text-[18px] text-primary">{{ $property->propertyTranslation->title ?? ($property->propertyTranslationEnglish->title ?? null) }}</a></h3>
-                                                <h4 class="leading-none"><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-light text-[14px] leading-[1.75] text-primary underline">{{ $property->country->countryTranslation->name ?? ($property->country->countryTranslationEnglish->name ?? null) }},
-                                                    {{ $property->state->stateTranslation->name ?? ($property->state->stateTranslationEnglish->name ?? null) }},
-                                                    {{ $property->city->cityTranslation->name ?? ($property->city->cityTranslationEnglish->name ?? null) }}</a></h4>
+                                                <h3><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-lora leading-tight text-[18px] text-primary">{{ $property->property_id }}</a></h3>
+                                                <h4 class="leading-none"><a href="{{ route('front.property', ['property' => $property->property_id]) }}" class="font-light text-[14px] leading-[1.75] text-primary underline">{{ $property->country->countryTranslation->name ?? ($property->country->name ?? null) }},
+                                                    {{ $property->state->stateTranslation->name ?? ($property->state->name ?? null) }},
+                                                    {{ $property->city->cityTranslation->name ?? ($property->city->name ?? null) }}</a></h4>
                                                 <ul class="mt-[10px]">
                                                     <li class="flex flex-wrap items-center justify-between">
                                                         <span class="font-lora text-[14px] text-secondary leading-none">{{trans('file.starts_from')}}: {{ convert($property->price, $property->currency) }}</span>
@@ -381,7 +381,7 @@
                     </div>
 
 
-                    <div class="mb-[60px]">
+                    {{-- <div class="mb-[60px]">
                         <h3 class="text-primary leading-none text-[24px] font-lora underline mb-[40px] font-medium">Tags<span
     class="text-secondary">.</span></h3>
                         <ul class="flex flex-wrap my-[-7px] mx-[-5px] font-light text-[12px]">
@@ -399,7 +399,7 @@
                             </li>
 
                         </ul>
-                    </div>
+                    </div> --}}
                 </aside>
             </div>
         </div>
