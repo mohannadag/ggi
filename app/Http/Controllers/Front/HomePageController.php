@@ -1389,4 +1389,9 @@ class HomePageController extends Controller
 
     }
 
+    public function landdingTopkapi()
+    {
+        return view('landing.topkapi');
+    }
+
 }

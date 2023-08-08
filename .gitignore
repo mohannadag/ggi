@@ -15,3 +15,4 @@ Archive.zip
 public/images/*
 .env
 storage/framework/views/*
+vendor/composer/platform_check.php

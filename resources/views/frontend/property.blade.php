@@ -53,7 +53,7 @@ $languages = \Illuminate\Support\Facades\DB::table('languages')
                         <h2 class="font-lora text-primary text-4xl leading-[1.277] capitalize font-medium mb-3">
                             {{$property->property_id}}
                         </h2>
-                        <p class="p-2">{{ $property->propertyTranslation->description ?? $property->description ?? '' }}</p>
+                        <p class="p-2">{{ $property->propertyTranslation->description ?? '' }}</p>
                     </div>
 
                 </div>
