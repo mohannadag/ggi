@@ -1391,7 +1391,7 @@ class HomePageController extends Controller
 
     public function landdingTopkapi()
     {
-        return view('landing.topkapi');
+        return view('landing.topkapi-v2');
     }
 
 }
