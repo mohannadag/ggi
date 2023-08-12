@@ -412,4 +412,6 @@ return array(
     'view_lack' => 'Lack',
     'view_panorama' => 'Panorama',
     'view_garden' => 'Garden',
+    'call' => 'Let\'s call you',
+    'wanthelp' => 'send',
 );

@@ -384,4 +384,6 @@ return array(
     'view_lack' => 'بحيرة',
     'view_panorama' => 'بانورامية',
     'view_garden' => 'حدائق',
+    'call' => 'دعنا نتصل بك',
+    'wanthelp' => 'أرغب باستشارة عقارية',
 );
