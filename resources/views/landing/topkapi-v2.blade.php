@@ -6,7 +6,7 @@
 <div class="d-flex justify-content-between p-3 sticky-top bg-light">
     <img src="https://ggiturkey.com/frontend/images/logo/logo.png" class="logo-one" alt="Logo" width="130px">
     <div class="appointment-btn">
-        <a href="#" class="default-btn default-bg-buttercup">
+        <a href="#contact-area" class="default-btn default-bg-buttercup">
             Schedule appointment
             <i class='bx bx-right-arrow-alt'></i>
         </a>
@@ -25,7 +25,7 @@
                             <h1>Home Might Be <b>Place Of Comfort</b></h1>
                             <p>Lorem ipsum dolor sit ame consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna </p>
                             <div class="home-slider-btn">
-                                <a href="#" class="default-btn">
+                                <a href="#contact-area" class="default-btn">
                                     Check Appointment
                                     <i class='bx bx-right-arrow-alt'></i>
                                 </a>
@@ -69,14 +69,14 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-property">
                         <div class="images">
-                            <a href="">
+                            {{-- <a href=""> --}}
                                 <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/1.jpg" alt="Images">
-                            </a>
+                            {{-- </a> --}}
                             <div class="property-content">
                                 <span>DEVELOPED</span>
-                                <a href="">
+                                {{-- <a href=""> --}}
                                     <h3>69 Alfred Apartment</h3>
-                                </a>
+                                {{-- </a> --}}
                                 <p>Details ipsum dolor sitameLorem adipiscing cnsectetur adipiscing mod</p>
                                 {{-- <a href="" class="learn-more-btn">
                                     <i class='bx bx-right-arrow-alt'></i>
@@ -90,14 +90,14 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-property">
                         <div class="images">
-                            <a href="">
+                            {{-- <a href=""> --}}
                                 <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/2.jpg" alt="Images">
-                            </a>
+                            {{-- </a> --}}
                             <div class="property-content">
                                 <span>FINISHED</span>
-                                <a href="">
+                                {{-- <a href=""> --}}
                                     <h3>Congregation Building</h3>
-                                </a>
+                                {{-- </a> --}}
                                 <p>Details ipsum dolor sitameLorem adipiscing cnsectetur adipiscing mod</p>
                                 {{-- <a href="" class="learn-more-btn">
                                     <i class='bx bx-right-arrow-alt'></i>
@@ -111,14 +111,14 @@
                 <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
                     <div class="single-property">
                         <div class="images">
-                            <a href="">
+                            {{-- <a href=""> --}}
                                 <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/3.jpg" alt="Images">
-                            </a>
+                            {{-- </a> --}}
                             <div class="property-content">
                                 <span>IN PROGRESS</span>
-                                <a href="">
+                                {{-- <a href=""> --}}
                                     <h3>C Block Room</h3>
-                                </a>
+                                {{-- </a> --}}
                                 <p>Details ipsum dolor sitameLorem adipiscing cnsectetur adipiscing mod</p>
                                 {{-- <a href="" class="learn-more-btn">
                                     <i class='bx bx-right-arrow-alt'></i>
@@ -238,11 +238,13 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6">
                                     <div class="room-details-card">
-                                        <a href="">
+                                        {{-- <a href=""> --}}
                                             <img src="https://templates.hibootstrap.com/oftop/default/assets/img/room-details/3.jpg" alt="Images">
-                                        </a>
+                                        {{-- </a> --}}
                                         <div class="content">
-                                            <a href=""><h3>01. FLOORS DETAILS</h3></a>
+                                            {{-- <a href=""> --}}
+                                                <h3>01. FLOORS DETAILS</h3>
+                                            {{-- </a> --}}
                                             <p>
                                                 Lorem ipsum dolor sit ame consectetur adipisicing elit, sed do eiusmod tempor
                                                 incididunt ut labore et dolore magna aliquaUt enim ad minim veniaquis
@@ -253,11 +255,13 @@
 
                                 <div class="col-lg-4 col-md-6">
                                     <div class="room-details-card">
-                                        <a href="">
+                                        {{-- <a href=""> --}}
                                             <img src="	https://templates.hibootstrap.com/oftop/default/assets/img/room-details/1.jpg" alt="Images">
-                                        </a>
+                                        {{-- </a> --}}
                                         <div class="content">
-                                            <a href=""><h3>01. FLOORS DETAILS</h3></a>
+                                            {{-- <a href=""> --}}
+                                                <h3>01. FLOORS DETAILS</h3>
+                                            {{-- </a> --}}
                                             <p>
                                                 Lorem ipsum dolor sit ame consectetur adipisicing elit, sed do eiusmod tempor
                                                 incididunt ut labore et dolore magna aliquaUt enim ad minim veniaquis
@@ -268,11 +272,13 @@
 
                                 <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
                                     <div class="room-details-card">
-                                        <a href="">
+                                        {{-- <a href=""> --}}
                                             <img src="	https://templates.hibootstrap.com/oftop/default/assets/img/room-details/2.jpg" alt="Images">
-                                        </a>
+                                        {{-- </a> --}}
                                         <div class="content">
-                                            <a href=""><h3>01. FLOORS DETAILS</h3></a>
+                                            {{-- <a href=""> --}}
+                                                <h3>01. FLOORS DETAILS</h3>
+                                            {{-- </a> --}}
                                             <p>
                                                 Lorem ipsum dolor sit ame consectetur adipisicing elit, sed do eiusmod tempor
                                                 incididunt ut labore et dolore magna aliquaUt enim ad minim veniaquis
@@ -372,33 +378,36 @@
     </div>
 
     <!-- Contact Area -->
-    <div class="contact-area" style="background-image: url(https://templates.hibootstrap.com/oftop/default/assets/img/project-details/2.jpg)">
+    <div id="contact-area" class="contact-area" style="background-image: url(https://templates.hibootstrap.com/oftop/default/assets/img/project-details/2.jpg)">
         <div class="container">
             <div class="contact-option">
                 <div class="contact-form">
                     <span>SEND MESSAGE</span>
                     <h2>Contact With Us</h2>
-                    <form id="contactForm">
+                    <form id="contact_form" action="#">
                         <div class="row">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <i class='bx bx-user'></i>
-                                    <input type="text" name="name" id="name" class="form-control" required data-error="Please enter your name" placeholder="Your Name*">
+                                    <input type="text" name="name" id="fName" class="form-control" required data-error="Please enter your name" placeholder="Your Name*">
                                 </div>
+                                <div class="text-danger" id="nameErrorMsg"></div>
                             </div>
 
                             <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <i class='bx bx-user'></i>
-                                    <input type="email" name="email" id="email" class="form-control" required data-error="Please enter your email" placeholder="Email*">
+                                    <input type="email" name="email" id="InputEmail" class="form-control" required data-error="Please enter your email" placeholder="Email*">
                                 </div>
+                                <div class="text-danger" id="emailErrorMsg"></div>
                             </div>
 
                             <div class="col-lg-12 col-sm-12">
                                 <div class="form-group">
                                     <i class='bx bx-phone'></i>
-                                    <input type="text" name="phone_number" id="phone_number" required data-error="Please enter your number" class="form-control" placeholder="Your Phone">
+                                    <input type="text" name="phone_number" id="InputPhone" required data-error="Please enter your number" class="form-control" placeholder="Your Phone">
                                 </div>
+                                <div class="text-danger" id="phoneErrorMsg"></div>
                             </div>
 
                             <div class="col-lg-12 col-md-12">
@@ -406,6 +415,7 @@
                                     <i class='bx bx-envelope'></i>
                                     <textarea name="message" class="form-control" id="message" cols="30" rows="8" required data-error="Write your message" placeholder="Your Message"></textarea>
                                 </div>
+                                <div class="text-danger" id="messageErrorMsg"></div>
                             </div>
 
                             <div class="col-lg-12 col-md-12">
@@ -413,6 +423,8 @@
                                     Send Message
                                     <i class='bx bx-right-arrow-alt'></i>
                                 </button>
+                                <div class="text-danger" id="responseErrorMsg"></div>
+                                <div class="text-success" id="responseSuccessMsg"></div>
                             </div>
                         </div>
                     </form>
@@ -440,4 +452,84 @@
         });
 
     </script>
+
+<script type="text/javascript">
+    $('#contact_form').on('submit', function(e) {
+        e.preventDefault();
+        $('.v7').text("Submitting...");
+        $('.v7').prop('disabled', true);
+        let fname = $('#fName').val();
+        let email = $('#InputEmail').val();
+        let phone = $('#InputPhone').val();
+        let message = $('#message').val();
+
+        $.ajax({
+            url: "{{ route('contact') }}",
+            type: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                name: fname,
+                email: email,
+                phone: phone,
+                message: message,
+            },
+            success: function(response) {
+                // $('#successMsg').show();
+                // console.log(response);
+                $('#fName').val("");
+                $('#InputEmail').val("");
+                $('#InputPhone').val("");
+                $('#message').val("");
+
+                $('.v7').text("Send Message");
+                $('.v7').prop('disabled', false);
+
+
+                $('#nameErrorMsg').fadeOut(300);
+                $('#emailErrorMsg').fadeOut(300);
+                $('#phoneErrorMsg').fadeOut(300);
+                $('#messageErrorMsg').fadeOut(300);
+                $('#responseErrorMsg').fadeOut(300);
+
+                $('#responseSuccessMsg').text('Thank you!');
+                $('#responseSuccessMsg').delay(3200).fadeOut(300);
+
+                // Swal.fire({
+                //     position: 'center',
+                //     icon: 'success',
+                //     title: 'Thanks for contacting us!',
+                //     showConfirmButton: false,
+                //     timer: 1500
+                // })
+
+            },
+            error: function(response) {
+                console.log(response);
+                $('#nameErrorMsg').text(response.responseJSON.errors.name);
+                $('#emailErrorMsg').text(response.responseJSON.errors.email);
+                $('#phoneErrorMsg').text(response.responseJSON.errors.phone);
+                $('#messageErrorMsg').text(response.responseJSON.errors.message);
+                $('#responseErrorMsg').text(response.responseJSON.message);
+                // $('#nameErrorMsg').delay(3200).fadeOut(300);
+                // $('#emailErrorMsg').delay(3200).fadeOut(300);
+                // $('#phoneErrorMsg').delay(3200).fadeOut(300);
+                // $('#messageErrorMsg').delay(3200).fadeOut(300);
+
+                $('.v7').text("Send Message");
+                $('.v7').prop('disabled', false);
+
+            },
+        });
+    });
+
+    // Add remove loading class on body element based on Ajax request status
+    $(document).on({
+        ajaxStart: function() {
+            $("body").addClass("loading");
+        },
+        ajaxStop: function() {
+            $("body").removeClass("loading");
+        }
+    });
+</script>
 @endpush

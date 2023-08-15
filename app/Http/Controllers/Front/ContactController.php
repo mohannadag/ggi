@@ -78,8 +78,8 @@ class ContactController extends Controller
         request()->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
-            'message'=>'required'
+            'phone' => 'required|numeric',
+            // 'message'=>'required'
         ]);
 
         $data = array(
