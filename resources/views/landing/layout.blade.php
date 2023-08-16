@@ -36,6 +36,7 @@
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="https://ggiturkey.com/frontend/images/logo/logo.png">
+        @stack('style')
     </head>
     <body>
 

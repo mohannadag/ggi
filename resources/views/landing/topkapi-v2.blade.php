@@ -1,13 +1,22 @@
 @extends('landing.layout')
 @section('content')
 
-
+@push('style')
+    <style>
+        .list-item i {
+            color: #fd7e14;
+            /* font-size: 30px; */
+            border: 1px solid #fd7e14;
+            border-radius: 50px;
+        }
+    </style>
+@endpush
 
 <div class="d-flex justify-content-between p-3 sticky-top bg-light">
     <img src="https://ggiturkey.com/frontend/images/logo/logo.png" class="logo-one" alt="Logo" width="130px">
     <div class="appointment-btn">
         <a href="#contact-area" class="default-btn default-bg-buttercup">
-            Schedule appointment
+            {{trans('landing.contact-with-us')}}
             <i class='bx bx-right-arrow-alt'></i>
         </a>
     </div>
@@ -21,18 +30,16 @@
                 <div class="row align-items-center">
                     <div class="col-lg-5 col-xxl-6">
                         <div class="home-slider-content">
-                            <span>Conformable Place</span>
-                            <h1>Home Might Be <b>Place Of Comfort</b></h1>
-                            <p>Lorem ipsum dolor sit ame consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore et dolore magna </p>
+                            <span>{{ trans('landing.hero-span') }}</span>
+                            <h1>{{ trans('landing.hero-title')}}
+                                {{-- <b>{{ trans('landing.hero-subtitle')}}</b> --}}
+                            </h1>
+                            <p>{{ trans('landing.hero-description') }}</p>
                             <div class="home-slider-btn">
                                 <a href="#contact-area" class="default-btn">
-                                    Check Appointment
+                                    {{trans('landing.contact-with-us')}}
                                     <i class='bx bx-right-arrow-alt'></i>
                                 </a>
-                                {{-- <a href="contact.html" class="default-btn active">
-                                    Contact Us
-                                    <i class='bx bx-right-arrow-alt'></i>
-                                </a> --}}
                             </div>
                         </div>
                     </div>
@@ -57,10 +64,10 @@
         <div class="container-max">
             <div class="property-section-text">
                 <div class="section-title">
-                    <span>The areas</span>
+                    <span>{{ trans('landing.about-project-span') }}</span>
                     <h2>
-                        The Area Of Property
-                        <b>Get It Know</b>
+                        {{ trans('landing.about-project-title') }}
+                        <b>{{ trans('landing.about-project-subtitle') }}</b>
                     </h2>
                 </div>
             </div>
@@ -69,19 +76,12 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-property">
                         <div class="images">
-                            {{-- <a href=""> --}}
-                                <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/1.jpg" alt="Images">
-                            {{-- </a> --}}
+                            <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/1.jpg" alt="Images">
                             <div class="property-content">
-                                <span>DEVELOPED</span>
-                                {{-- <a href=""> --}}
-                                    <h3>69 Alfred Apartment</h3>
-                                {{-- </a> --}}
-                                <p>Details ipsum dolor sitameLorem adipiscing cnsectetur adipiscing mod</p>
-                                {{-- <a href="" class="learn-more-btn">
-                                    <i class='bx bx-right-arrow-alt'></i>
-                                    Learn More
-                                </a> --}}
+                                <span>{{ trans('landing.about-card1-span') }}</span>
+                                <h3>{{ trans('landing.about-card1-title') }}</h3>
+                                <p>{{ trans('landing.about-card1-description') }}</p>
+
                             </div>
                         </div>
                     </div>
@@ -90,19 +90,11 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-property">
                         <div class="images">
-                            {{-- <a href=""> --}}
-                                <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/2.jpg" alt="Images">
-                            {{-- </a> --}}
+                            <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/2.jpg" alt="Images">
                             <div class="property-content">
-                                <span>FINISHED</span>
-                                {{-- <a href=""> --}}
-                                    <h3>Congregation Building</h3>
-                                {{-- </a> --}}
-                                <p>Details ipsum dolor sitameLorem adipiscing cnsectetur adipiscing mod</p>
-                                {{-- <a href="" class="learn-more-btn">
-                                    <i class='bx bx-right-arrow-alt'></i>
-                                    Learn More
-                                </a> --}}
+                                <span>{{ trans('landing.about-card2-span') }}</span>
+                                <h3>{{ trans('landing.about-card2-title') }}</h3>
+                                <p>{{ trans('landing.about-card2-description') }}</p>
                             </div>
                         </div>
                     </div>
@@ -111,19 +103,11 @@
                 <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
                     <div class="single-property">
                         <div class="images">
-                            {{-- <a href=""> --}}
-                                <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/3.jpg" alt="Images">
-                            {{-- </a> --}}
+                            <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/3.jpg" alt="Images">
                             <div class="property-content">
-                                <span>IN PROGRESS</span>
-                                {{-- <a href=""> --}}
-                                    <h3>C Block Room</h3>
-                                {{-- </a> --}}
-                                <p>Details ipsum dolor sitameLorem adipiscing cnsectetur adipiscing mod</p>
-                                {{-- <a href="" class="learn-more-btn">
-                                    <i class='bx bx-right-arrow-alt'></i>
-                                    Learn More
-                                </a> --}}
+                                <span>{{ trans('landing.about-card3-span') }}</span>
+                                <h3>{{ trans('landing.about-card3-title') }}</h3>
+                                <p>{{ trans('landing.about-card3-description') }}</p>
                                 <div class="plus-dots">
                                     <img src="	https://templates.hibootstrap.com/oftop/default/assets/img/property/plus-dots.png" alt="Images">
                                 </div>
@@ -144,6 +128,13 @@
     -->
     <div class="about-area pt-100 pb-70 bg-light">
         <div class="container">
+            <div class="property-section-text">
+                <div class="section-title">
+                    <h2 class="text-center">
+                        {{ trans('landing.video-title') }}
+                    </h2>
+                </div>
+            </div>
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="single-gallery">
@@ -177,57 +168,76 @@
     -->
     <div class="property-details">
         <div class="container">
+
             <div class="property-details-list">
-                <ul>
+                <div class="row">
+                    <div class="col-4 text-center h4 list-item">
+                        <i class='bx bx-check mx-2'></i>
+                        <span>{{ trans('landing.list-item1') }}</span>
+                    </div>
+                    <div class="col-4 text-center h4 list-item">
+                        <i class='bx bx-check mx-2'></i>
+                        <span>{{ trans('landing.list-item2') }}</span>
+                    </div>
+                    <div class="col-4 text-center h4 list-item">
+                        <i class='bx bx-check mx-2'></i>
+                        <span>{{ trans('landing.list-item3') }}</span>
+                    </div>
+                    <div class="col-4 text-center h4 list-item">
+                        <i class='bx bx-check mx-2'></i>
+                        <span>{{ trans('landing.list-item4') }}</span>
+                    </div>
+                    <div class="col-4 text-center h4 list-item">
+                        <i class='bx bx-check mx-2'></i>
+                        <span>{{ trans('landing.list-item5') }}</span>
+                    </div>
+                    <div class="col-4 text-center h4 list-item">
+                        <i class='bx bx-check mx-2'></i>
+                        <span>{{ trans('landing.list-item6') }}</span>
+                    </div>
+                </div>
+                {{-- <ul>
                     <li>
-                        {{-- <i class="flaticon-select"></i> --}}
-                        <i class='bx bxs-buildings'></i>
-                        <span>مشروع بضمان حكومي</span>
-                        {{-- <a href="#">مشروع بضمان حكومي </a> --}}
+                        <i class='bx bx-check'></i>
+                        <span>{{ trans('landing.list-item1') }}</span>
                     </li>
 
                     <li>
-                        {{-- <i class="flaticon-sleep"></i> --}}
-                        <i class='bx bxs-purchase-tag-alt'></i>
-                        <span>أسعار مناسبة وسط اسطنبول</span>
-                        {{-- <a href="#">أسعار مناسبة وسط اسطنبول</a> --}}
+                        <i class='bx bx-check'></i>
+                        <span>{{ trans('landing.list-item2') }}</span>
                     </li>
 
                     <li>
-                        <i class="flaticon-bath"></i>
-                        <span>مناسب للجنسية</span>
-                        {{-- <a href="#">مناسب للجنسية </a> --}}
+                        <i class='bx bx-check'></i>
+                        <span>{{ trans('landing.list-item3') }}</span>
                     </li>
 
                     <li>
-                        <i class="flaticon-chefs-hat"></i>
-                        <span>سهولة إعادة البيع</span>
-                        {{-- <a href="#">سهولة إعادة البيع </a> --}}
+                        <i class='bx bx-check'></i>
+                        <span>{{ trans('landing.list-item4') }}</span>
                     </li>
 
                     <li>
-                        <i class="flaticon-wrench"></i>
-                        <span>القرب من المناطق السياحية</span>
-                        {{-- <a href="#">القرب من المناطق السياحية </a> --}}
+                        <i class='bx bx-check'></i>
+                        <span>{{ trans('landing.list-item5') }}</span>
                     </li>
                     <li>
-                        <i class="flaticon-wrench"></i>
-                        <span>عائد استثماري مرتفع </span>
-                        {{-- <a href="#">عائد استثماري مرتفع</a> --}}
+                        <i class='bx bx-check'></i>
+                        <span>{{ trans('landing.list-item6') }}</span>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
         </div>
     </div>
     <!-- Property Details  End -->
 
     <!-- Room Details Area-->
-    <div class="room-details-area pb-70">
+    <div class="room-details-area pb-70 pt-5">
         <div class="container-fluid">
             <div class="container-max">
                 <div class="section-title text-center">
-                    <span>ROOM DETAILS</span>
-                    <h2 class="margin-auto">Real Value is<b> Inside</b></h2>
+                    {{-- <span>ROOM DETAILS</span> --}}
+                    <h2 class="margin-auto">{{ trans('landing.fetures-title') }}</h2>
                 </div>
 
                 <div class="tab room-details-tab">
@@ -238,16 +248,11 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6">
                                     <div class="room-details-card">
-                                        {{-- <a href=""> --}}
-                                            <img src="https://templates.hibootstrap.com/oftop/default/assets/img/room-details/3.jpg" alt="Images">
-                                        {{-- </a> --}}
+                                        <img src="https://templates.hibootstrap.com/oftop/default/assets/img/room-details/3.jpg" alt="Images">
                                         <div class="content">
-                                            {{-- <a href=""> --}}
-                                                <h3>01. FLOORS DETAILS</h3>
-                                            {{-- </a> --}}
+                                            <h3>{{ trans('landing.feture-title1') }}</h3>
                                             <p>
-                                                Lorem ipsum dolor sit ame consectetur adipisicing elit, sed do eiusmod tempor
-                                                incididunt ut labore et dolore magna aliquaUt enim ad minim veniaquis
+                                                {{ trans('landing.feture-description1') }}
                                             </p>
                                         </div>
                                     </div>
@@ -255,16 +260,11 @@
 
                                 <div class="col-lg-4 col-md-6">
                                     <div class="room-details-card">
-                                        {{-- <a href=""> --}}
-                                            <img src="	https://templates.hibootstrap.com/oftop/default/assets/img/room-details/1.jpg" alt="Images">
-                                        {{-- </a> --}}
+                                        <img src="	https://templates.hibootstrap.com/oftop/default/assets/img/room-details/1.jpg" alt="Images">
                                         <div class="content">
-                                            {{-- <a href=""> --}}
-                                                <h3>01. FLOORS DETAILS</h3>
-                                            {{-- </a> --}}
+                                            <h3>{{ trans('landing.feture-title2') }}</h3>
                                             <p>
-                                                Lorem ipsum dolor sit ame consectetur adipisicing elit, sed do eiusmod tempor
-                                                incididunt ut labore et dolore magna aliquaUt enim ad minim veniaquis
+                                                {{ trans('landing.feture-description2') }}
                                             </p>
                                         </div>
                                     </div>
@@ -272,16 +272,11 @@
 
                                 <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
                                     <div class="room-details-card">
-                                        {{-- <a href=""> --}}
-                                            <img src="	https://templates.hibootstrap.com/oftop/default/assets/img/room-details/2.jpg" alt="Images">
-                                        {{-- </a> --}}
+                                        <img src="	https://templates.hibootstrap.com/oftop/default/assets/img/room-details/2.jpg" alt="Images">
                                         <div class="content">
-                                            {{-- <a href=""> --}}
-                                                <h3>01. FLOORS DETAILS</h3>
-                                            {{-- </a> --}}
+                                            <h3>{{ trans('landing.feture-title3') }}</h3>
                                             <p>
-                                                Lorem ipsum dolor sit ame consectetur adipisicing elit, sed do eiusmod tempor
-                                                incididunt ut labore et dolore magna aliquaUt enim ad minim veniaquis
+                                                {{ trans('landing.feture-description3') }}
                                             </p>
                                         </div>
                                     </div>
