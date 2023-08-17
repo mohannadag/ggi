@@ -4,16 +4,31 @@
 @push('style')
     <style>
         .list-item i {
-            color: #fd7e14;
+            color: #b39359;
             /* font-size: 30px; */
-            border: 1px solid #fd7e14;
+            border: 1px solid #b39359;
             border-radius: 50px;
+        }
+
+        .whatsapp_float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
         }
     </style>
 @endpush
 
 <div class="d-flex justify-content-between p-3 sticky-top bg-light">
-    <img src="https://ggiturkey.com/frontend/images/logo/logo.png" class="logo-one" alt="Logo" width="130px">
+    <img src="https://ggiturkey.com/frontend/images/logo/logo.png" class="logo-one" alt="Logo" width="100px">
     <div class="appointment-btn">
         <a href="#contact-area" class="default-btn default-bg-buttercup">
             {{trans('landing.contact-with-us')}}
@@ -36,7 +51,11 @@
                             </h1>
                             <p>{{ trans('landing.hero-description') }}</p>
                             <div class="home-slider-btn">
-                                <a href="#contact-area" class="default-btn">
+                                <a
+                                    href="https://wa.me/905373539567"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="default-btn">
                                     {{trans('landing.contact-with-us')}}
                                     <i class='bx bx-right-arrow-alt'></i>
                                 </a>
@@ -46,7 +65,8 @@
 
                     <div class="col-lg-7 col-xxl-6 pr-0">
                         <div class="home-slider-img">
-                            <img src="https://templates.hibootstrap.com/oftop/default/assets/img/home1/1.jpg" alt="Images">
+                            {{-- <img src="https://templates.hibootstrap.com/oftop/default/assets/img/home1/1.jpg" alt="Images"> --}}
+                            <img src="{{asset('new-landing/assets/img/hero.png')}}" alt="hero image">
                         </div>
                     </div>
                 </div>
@@ -76,7 +96,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-property">
                         <div class="images">
-                            <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/1.jpg" alt="Images">
+                            <img src="{{asset('new-landing/assets/img/550.600/1.png')}}" alt="Images">
                             <div class="property-content">
                                 <span>{{ trans('landing.about-card1-span') }}</span>
                                 <h3>{{ trans('landing.about-card1-title') }}</h3>
@@ -90,7 +110,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-property">
                         <div class="images">
-                            <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/2.jpg" alt="Images">
+                            <img src="{{asset('new-landing/assets/img/550.600/2.png')}}" alt="Images">
                             <div class="property-content">
                                 <span>{{ trans('landing.about-card2-span') }}</span>
                                 <h3>{{ trans('landing.about-card2-title') }}</h3>
@@ -103,13 +123,13 @@
                 <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
                     <div class="single-property">
                         <div class="images">
-                            <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/3.jpg" alt="Images">
+                            <img src="{{asset('new-landing/assets/img/550.600/3.png')}}" alt="Images">
                             <div class="property-content">
                                 <span>{{ trans('landing.about-card3-span') }}</span>
                                 <h3>{{ trans('landing.about-card3-title') }}</h3>
                                 <p>{{ trans('landing.about-card3-description') }}</p>
                                 <div class="plus-dots">
-                                    <img src="	https://templates.hibootstrap.com/oftop/default/assets/img/property/plus-dots.png" alt="Images">
+                                    <img src="https://templates.hibootstrap.com/oftop/default/assets/img/property/plus-dots.png" alt="Images">
                                 </div>
                             </div>
                         </div>
@@ -138,8 +158,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="single-gallery">
-                    <img src="https://templates.hibootstrap.com/oftop/default/assets/img/room-details/1.jpg" class="" loading="lazy"  alt="">
-                    <a href="https://www.youtube.com/watch?v=xMKSaKutgG8" class="gallery-icon" style="transform: none">
+                    <img src="{{asset('new-landing/assets/img/video-cover.jpg')}}" class="" loading="lazy"  alt="">
+                    <a href="https://www.youtube.com/watch?v=4Tpa7sS1JDA" class="gallery-icon" style="transform: none">
                         <i class='bx bx-play-circle'></i>
                     </a>
                     </div>
@@ -148,7 +168,7 @@
 
                 <div class="col-lg-6">
                     <div class="about-img">
-                        <img src="https://ggiturkey.com/images/images/atlalat-sahr-2023-06-20-6491a2e25a656.png" alt="Images">
+                        <img src="{{asset('new-landing/assets/img/main.png')}}" alt="Images">
                     </div>
                 </div>
             </div>
@@ -248,7 +268,7 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6">
                                     <div class="room-details-card">
-                                        <img src="https://templates.hibootstrap.com/oftop/default/assets/img/room-details/3.jpg" alt="Images">
+                                        <img src="{{asset('new-landing/assets/img/870.520/1.png')}}" alt="Images">
                                         <div class="content">
                                             <h3>{{ trans('landing.feture-title1') }}</h3>
                                             <p>
@@ -260,7 +280,7 @@
 
                                 <div class="col-lg-4 col-md-6">
                                     <div class="room-details-card">
-                                        <img src="	https://templates.hibootstrap.com/oftop/default/assets/img/room-details/1.jpg" alt="Images">
+                                        <img src="{{asset('new-landing/assets/img/870.520/2.png')}}" alt="Images">
                                         <div class="content">
                                             <h3>{{ trans('landing.feture-title2') }}</h3>
                                             <p>
@@ -272,7 +292,7 @@
 
                                 <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0">
                                     <div class="room-details-card">
-                                        <img src="	https://templates.hibootstrap.com/oftop/default/assets/img/room-details/2.jpg" alt="Images">
+                                        <img src="{{asset('new-landing/assets/img/870.520/3.png')}}" alt="Images">
                                         <div class="content">
                                             <h3>{{ trans('landing.feture-title3') }}</h3>
                                             <p>
@@ -295,6 +315,9 @@
     <!-- Testimonial Area -->
     <div class="testimonial-area ptb-70">
         <div class="container">
+            <div class="section-title text-center">
+                <h2 class="margin-auto">{{ trans('landing.testimonial-title') }}</h2>
+            </div>
             <div class="testimonial-slider owl-carousel owl-theme">
                 <div class="testimonial-item">
                     <h3>A Precious Journey</h3>
@@ -334,7 +357,7 @@
 
     <div class="ptb-70 bg-light">
         <div class="container">
-            <h2 class="text-center">Our Services</h2>
+            <h2 class="text-center">{{ trans('landing.service-title') }}</h2>
             <div class="row">
                 <div class="col text-center">
                     <i class='flaticon-bankrupt' style="font-size: 50px"></i>
@@ -373,18 +396,18 @@
     </div>
 
     <!-- Contact Area -->
-    <div id="contact-area" class="contact-area" style="background-image: url(https://templates.hibootstrap.com/oftop/default/assets/img/project-details/2.jpg)">
+    <div id="contact-area" class="contact-area" style="background-image: url({{asset('new-landing/assets/img/contact-background.jpg')}})">
         <div class="container">
             <div class="contact-option">
                 <div class="contact-form">
-                    <span>SEND MESSAGE</span>
-                    <h2>Contact With Us</h2>
+                    <span>{{ trans('landing.send-message') }}</span>
+                    <h2>{{ trans('landing.contact-us') }}</h2>
                     <form id="contact_form" action="#">
                         <div class="row">
                             <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <i class='bx bx-user'></i>
-                                    <input type="text" name="name" id="fName" class="form-control" required data-error="Please enter your name" placeholder="Your Name*">
+                                    <input type="text" name="name" id="fName" class="form-control" required data-error="Please enter your name" placeholder="{{ trans('landing.yourname') }}">
                                 </div>
                                 <div class="text-danger" id="nameErrorMsg"></div>
                             </div>
@@ -392,7 +415,7 @@
                             <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <i class='bx bx-user'></i>
-                                    <input type="email" name="email" id="InputEmail" class="form-control" required data-error="Please enter your email" placeholder="Email*">
+                                    <input type="email" name="email" id="InputEmail" class="form-control" required data-error="Please enter your email" placeholder="{{ trans('landing.email') }}">
                                 </div>
                                 <div class="text-danger" id="emailErrorMsg"></div>
                             </div>
@@ -400,7 +423,7 @@
                             <div class="col-lg-12 col-sm-12">
                                 <div class="form-group">
                                     <i class='bx bx-phone'></i>
-                                    <input type="text" name="phone_number" id="InputPhone" required data-error="Please enter your number" class="form-control" placeholder="Your Phone">
+                                    <input type="text" name="phone_number" id="InputPhone" required data-error="Please enter your number" class="form-control" placeholder="{{ trans('landing.phone') }}">
                                 </div>
                                 <div class="text-danger" id="phoneErrorMsg"></div>
                             </div>
@@ -408,14 +431,14 @@
                             <div class="col-lg-12 col-md-12">
                                 <div class="form-group">
                                     <i class='bx bx-envelope'></i>
-                                    <textarea name="message" class="form-control" id="message" cols="30" rows="8" required data-error="Write your message" placeholder="Your Message"></textarea>
+                                    <textarea name="message" class="form-control" id="message" cols="30" rows="8" placeholder="{{ trans('landing.yourmessage') }}"></textarea>
                                 </div>
                                 <div class="text-danger" id="messageErrorMsg"></div>
                             </div>
 
                             <div class="col-lg-12 col-md-12">
                                 <button type="submit" class="default-btn default-bg-buttercup">
-                                    Send Message
+                                    {{ trans('landing.send-message') }}
                                     <i class='bx bx-right-arrow-alt'></i>
                                 </button>
                                 <div class="text-danger" id="responseErrorMsg"></div>
@@ -429,20 +452,25 @@
     </div>
     <!-- Contact Area End -->
 
+    <!-- wpp-btn-mobile -->
+    <a
+        href="https://wa.me/905373539567"
+        class="whatsapp_float"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+      <i class='bx bxl-whatsapp'></i>
+    </a>
+
 @endsection
 
 
 @push('script')
     <script>
+
         $(document).ready(function() {
             $('.gallery-icon').magnificPopup({
-                disableOn: 700,
-                type: 'iframe',
-                mainClass: 'mfp-fade',
-                removalDelay: 160,
-                preloader: false,
-
-                fixedContentPos: false
+                type: 'iframe'
             });
         });
 

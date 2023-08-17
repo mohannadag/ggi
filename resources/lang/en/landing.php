@@ -32,4 +32,12 @@ return array(
     'feture-description2' => 'تتراوح ارتفاعات المباني بين 5 و15 طابق .',
     'feture-title3' => 'تصاميم و ديكورات عصرية',
     'feture-description3' => '16 بناء سكني وفندقين بتصنيفات 5 و 6 نجوم .',
+    'testimonial-title' => 'ماذا قالوا عنا ؟',
+    'service-title' => 'خدمات المجموعة الذهبية للاستثمار',
+    'send-message' => 'تواصل معنا',
+    'contact-us' => 'اتصل بنا',
+    'yourname' => 'الاسم',
+    'email' => 'الايميل',
+    'phone' => 'الهاتف',
+    'yourmessage' => 'الرسالة',
 );
