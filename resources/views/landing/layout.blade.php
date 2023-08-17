@@ -23,7 +23,7 @@
         <!-- Nice Select CSS -->
         <link rel="stylesheet" href="{{asset('new-landing/assets/css/nice-select.min.css')}}">
         <!-- Style CSS -->
-        <link rel="stylesheet" href="{{asset('new-landing/assets/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('new-landing/assets/css/style1.css')}}">
         <!-- Responsive CSS -->
         <link rel="stylesheet" href="{{asset('new-landing/assets/css/responsive.css')}}">
         <!-- Theme Dark CSS -->
