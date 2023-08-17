@@ -24,6 +24,10 @@
             box-shadow: 2px 2px 3px #999;
             z-index: 100;
         }
+
+        .services .col-4 i {
+            font-size: 50px;
+        }
     </style>
 @endpush
 
@@ -320,36 +324,37 @@
             </div>
             <div class="testimonial-slider owl-carousel owl-theme">
                 <div class="testimonial-item">
-                    <h3>A Precious Journey</h3>
+                    <h3>{{ trans('landing.testimonial-name1') }}</h3>
+                    <span>{{ trans('landing.testimonial-country1') }}</span>
                     <p>
-                        Lorem ipsum dolor sit ame consectetur adipisicing elitsed
-                        do eiusmod tempor labore et dolore magna aliquaUt
+                        {{ trans('landing.testimonial-paragraph1') }}
                     </p>
                 </div>
 
                 <div class="testimonial-item">
-                    <h3>Very Much Useful Support</h3>
+                    <h3>{{ trans('landing.testimonial-name2') }}</h3>
+                    <span>{{ trans('landing.testimonial-country2') }}</span>
                     <p>
-                        Lorem ipsum dolor sit ame consectetur adipisicing elitsed
-                        do eiusmod tempor labore et dolore magna aliquaUt
+                        {{ trans('landing.testimonial-paragraph2') }}
                     </p>
                 </div>
 
                 <div class="testimonial-item">
-                    <h3>Awesome Experiences Ever</h3>
+                    <h3>{{ trans('landing.testimonial-name3') }}</h3>
+                    <span>{{ trans('landing.testimonial-country3') }}</span>
                     <p>
-                        Lorem ipsum dolor sit ame consectetur adipisicing elitsed
-                        do eiusmod tempor labore et dolore magna aliquaUt
+                        {{ trans('landing.testimonial-paragraph3') }}
                     </p>
                 </div>
 
                 <div class="testimonial-item">
-                    <h3>Very Much Useful Support</h3>
+                    <h3>{{ trans('landing.testimonial-name4') }}</h3>
+                    <span>{{ trans('landing.testimonial-country4') }}</span>
                     <p>
-                        Lorem ipsum dolor sit ame consectetur adipisicing elitsed
-                        do eiusmod tempor labore et dolore magna aliquaUt
+                        {{ trans('landing.testimonial-paragraph4') }}
                     </p>
                 </div>
+
             </div>
         </div>
     </div>
@@ -358,38 +363,32 @@
     <div class="ptb-70 bg-light">
         <div class="container">
             <h2 class="text-center">{{ trans('landing.service-title') }}</h2>
-            <div class="row">
-                <div class="col text-center">
-                    <i class='flaticon-bankrupt' style="font-size: 50px"></i>
-                    <h4>Property Management</h3>
+            <div class="row services pb-3 pt-3">
+                <div class="col-4 text-center">
+                    <i class='bx bx-cabinet'></i>
+                    <h4>{{ trans('landing.service-furniture') }}</h4>
                 </div>
-                <div class="col text-center">
-                    <i class='flaticon-value' style="font-size: 50px"></i>
-                    <h4>Property Management</h3>
+                <div class="col-4 text-center">
+                    <i class='bx bxs-coin-stack'></i>
+                    <h4>{{ trans('landing.service-invest') }}</h4>
                 </div>
-                <div class="col text-center">
-                    <i class='flaticon-time-management' style="font-size: 50px"></i>
-                    <h4>Property Management</h3>
+                <div class="col-4 text-center">
+                    <i class='bx bx-buildings'></i>
+                    <h4>{{ trans('landing.service-mangment') }}</h4>
                 </div>
-                <div class="col text-center">
-                    <i class='flaticon-house' style="font-size: 50px"></i>
-                    <h4>Property Management</h3>
+            </div>
+            <div class="row services pb-3 pt-3">
+                <div class="col-4 text-center">
+                    <i class='bx bx-conversation'></i>
+                    <h4>{{ trans('landing.service-consultant') }}</h4>
                 </div>
-                <div class="col text-center">
-                    <i class='flaticon-bankrupt' style="font-size: 50px"></i>
-                    <h4>Property Management</h3>
+                <div class="col-4 text-center">
+                    <i class='bx bx-paper-plane'></i>
+                    <h4>{{ trans('landing.service-remote') }}</h4>
                 </div>
-                <div class="col text-center">
-                    <i class='flaticon-value' style="font-size: 50px"></i>
-                    <h4>Property Management</h3>
-                </div>
-                <div class="col text-center">
-                    <i class='flaticon-time-management' style="font-size: 50px"></i>
-                    <h4>Property Management</h3>
-                </div>
-                <div class="col text-center">
-                    <i class='flaticon-house' style="font-size: 50px"></i>
-                    <h4>Property Management</h3>
+                <div class="col-4 text-center">
+                    <i class='bx bxs-paste'></i>
+                    <h4>{{ trans('landing.service-citizenship') }}</h4>
                 </div>
             </div>
         </div>
