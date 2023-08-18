@@ -199,7 +199,7 @@
              <div class="window-wrapper">
                  <div class="image-side">
                      <div class="popup-img">
-                        <img src="{{asset('frontend/images/about/312.520.png')}}" style="width: 100%; height:100%">
+                        <img class="hidden md:block" src="{{asset('frontend/images/about/312.520.png')}}" style="width: 100%; height:100%">
                      </div>
                      <button type="button" id="closeButton" class="popup-close-icon close" data-dismiss="modal" onclick="closePopup()">
                          <svg aria-hidden="true" class="w-5 h-5" fill="#fff" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

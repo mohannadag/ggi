@@ -365,29 +365,35 @@
             <h2 class="text-center">{{ trans('landing.service-title') }}</h2>
             <div class="row services pb-3 pt-3">
                 <div class="col-4 text-center">
-                    <i class='bx bx-cabinet'></i>
+                    <img class="p-3" src="{{asset('new-landing/assets/img/services/Furniture.png')}}" alt="service">
+                    {{-- <i class='bx bx-cabinet'></i> --}}
                     <h4>{{ trans('landing.service-furniture') }}</h4>
                 </div>
                 <div class="col-4 text-center">
-                    <i class='bx bxs-coin-stack'></i>
+                    {{-- <i class='bx bxs-coin-stack'></i> --}}
+                    <img class="p-3" src="{{asset('new-landing/assets/img/services/investment.png')}}" alt="service">
                     <h4>{{ trans('landing.service-invest') }}</h4>
                 </div>
                 <div class="col-4 text-center">
-                    <i class='bx bx-buildings'></i>
+                    {{-- <i class='bx bx-buildings'></i> --}}
+                    <img class="p-3" src="{{asset('new-landing/assets/img/services/mangment.png')}}" alt="service">
                     <h4>{{ trans('landing.service-mangment') }}</h4>
                 </div>
             </div>
             <div class="row services pb-3 pt-3">
                 <div class="col-4 text-center">
-                    <i class='bx bx-conversation'></i>
+                    {{-- <i class='bx bx-conversation'></i> --}}
+                    <img class="p-3" src="{{asset('new-landing/assets/img/services/Consulting.png')}}" alt="service">
                     <h4>{{ trans('landing.service-consultant') }}</h4>
                 </div>
                 <div class="col-4 text-center">
-                    <i class='bx bx-paper-plane'></i>
+                    {{-- <i class='bx bx-paper-plane'></i> --}}
+                    <img class="p-3" src="{{asset('new-landing/assets/img/services/Online.png')}}" alt="service">
                     <h4>{{ trans('landing.service-remote') }}</h4>
                 </div>
                 <div class="col-4 text-center">
-                    <i class='bx bxs-paste'></i>
+                    {{-- <i class='bx bxs-paste'></i> --}}
+                    <img class="p-3" src="{{asset('new-landing/assets/img/services/passport.png')}}" alt="service">
                     <h4>{{ trans('landing.service-citizenship') }}</h4>
                 </div>
             </div>

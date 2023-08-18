@@ -30,6 +30,8 @@
         <link rel="stylesheet" href="{{asset('new-landing/assets/css/theme-dark.css')}}">
         <!-- RTL CSS -->
         <link rel="stylesheet" href="{{asset('new-landing/assets/css/rtl.css')}}">
+        <!-- cairo font -->
+        <link href="https://fonts.cdnfonts.com/css/cairo" rel="stylesheet">
 
         <!-- Title -->
         <title>GGI - Toplapi</title>
