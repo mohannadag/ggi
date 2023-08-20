@@ -49,7 +49,7 @@ class Kernel extends HttpKernel
             //\RenatoMarinho\LaravelPageSpeed\Middleware\RemoveQuotes::class,
             \RenatoMarinho\LaravelPageSpeed\Middleware\CollapseWhitespace::class,
             \RenatoMarinho\LaravelPageSpeed\Middleware\DeferJavascript::class,
-            // \App\Http\Middleware\Localization::class,
+            \App\Http\Middleware\Localization::class,
         ],
 
         'api' => [
@@ -82,5 +82,6 @@ class Kernel extends HttpKernel
         'credit' => \App\Http\Middleware\hasCredit::class,
         'XSS' => \App\Http\Middleware\XSS::class,
         'accessDashboard' => \App\Http\Middleware\AccessDashboard::class,
+        'Localization' => \App\Http\Middleware\Localization::class,
     ];
 }

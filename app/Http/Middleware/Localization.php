@@ -21,16 +21,22 @@ class Localization
         // app()->setLocale($request->route('locale'));
 
         // dd($request->route('locale'));
+        $local = Session::get('currentLocal', 'ar');
 
-        if ($request->route('locale') != null || $request->route('locale') != '') {
-            App::setLocale(Session::put('currentLocal', $request->route('locale')));
-        }
-        else {
-            App::setLocale(Session::put('currentLocal', 'ar'));
-        }
+        Session::put('currentLocal', $local);
+        App::setLocale($local);
+        // dd($local);
+        // $locale   = Session::get('currentLocal', 'ar');
+        // dd($locale);
+        // if ($request->route('locale') != null || $request->route('locale') != '') {
+        //     App::setLocale(Session::put('currentLocal', $request->route('locale')));
+        // }
+        // else {
+        //     App::setLocale(Session::put('currentLocal', 'ar'));
+        // }
 
-        // forget the 'locale' parameter
-        $request->route()->forgetParameter('locale');
+        // // forget the 'locale' parameter
+        // $request->route()->forgetParameter('locale');
         return $next($request);
     }
 }

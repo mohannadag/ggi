@@ -17,8 +17,8 @@ class AgentController extends Controller
 {
     public function __construct()
     {
-        Session::put('currentLocal', 'en');
-        App::setLocale('en');
+        // Session::put('currentLocal', 'en');
+        // App::setLocale('en');
     }
 
     public function index()

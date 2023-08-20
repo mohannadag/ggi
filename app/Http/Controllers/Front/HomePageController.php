@@ -48,8 +48,8 @@ class HomePageController extends Controller
 
     public function __construct(IPropertySearchModel $propertySearchModel,IPropertySearchRepository $properties)
     {
-        Session::put('currentLocal', 'en');
-        App::setLocale('en');
+        // Session::put('currentLocal', 'en');
+        // App::setLocale('en');
 
         $this->_propertySearchModel = $propertySearchModel;
         $this->_propertySearchRepository = $properties;

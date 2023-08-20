@@ -31,8 +31,8 @@ class ProjectController extends Controller
 
         $this->middleware('auth');
 
-        Session::put('currentLocal', 'en');
-        App::setLocale('en');
+        // Session::put('currentLocal', 'en');
+        // App::setLocale('en');
 
         $this->_propertySearchModel = $propertySearchModel;
         $this->_propertySearchRepository = $properties;

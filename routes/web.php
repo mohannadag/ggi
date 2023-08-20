@@ -37,7 +37,73 @@ Route::get('pull', function() {
     dd('working');
 });
 
-
+Route::group([
+    // 'prefix' => '{locale}',
+    // 'where' => ['locale' => '[a-z]{2}'],
+    'middleware' => 'Localization'
+], function () {
+    Route::get('/properties', [Front\PropertyController::class, 'index'])->name('properties');;
+    Route::get('/drive', [Front\ProjectController::class, 'index']);
+    Route::get('/properties-map', [Front\PropertyController::class, 'maps']);
+    // Route::get('/properties/rent',[Front\PropertyController::class,'rent'])->name('property.rent');
+    // Route::get('/properties/sale',[Front\PropertyController::class,'sale'])->name('property.sale');
+    Route::get('/properties/city/{city}', [Front\PropertyController::class, 'city'])->name('property.city');
+    Route::get('/properties/getCity/{city}', [Front\PropertyController::class, 'getCity'])->name('get.city');
+    Route::get('/properties/state/{state}', [Front\PropertyController::class, 'State'])->name('property.state');
+    Route::get('/properties/sale', [Front\PropertyController::class, 'Sale'])->name('property.sale');
+    Route::get('/properties/rent', [Front\PropertyController::class, 'Rent'])->name('property.rent');
+    Route::get('/properties/property/{category}', [Front\PropertyController::class, 'category'])->name('get.category');
+    Route::get('/properties/{property}', [Front\PropertyController::class, 'singleProperty'])->name('front.property');
+    Route::get('/drive/{property}', [Front\ProjectController::class, 'singleProject'])->name('front.project');
+    Route::get('/ivr', [Front\HomePageController::class, 'ivrhome'])->name('front.ivr-index');
+    Route::get('/ivr/{property}', [Front\PropertyController::class, 'ivrProperty'])->name('front.property-ivr');
+    Route::get('/ivr-2/{property}', [Front\PropertyController::class, 'ivrProp'])->name('front.property-ivr-2');
+    Route::get('/ivr-3/{property}', [Front\PropertyController::class, 'ivrProp3'])->name('front.property-ivr-3');
+    Route::get('/ivr-4/{property}', [Front\PropertyController::class, 'ivrProp4'])->name('front.property-ivr-4');
+    Route::get('/services/{service}', [Front\HomePageController::class, 'service'])->name('single-service');
+    Route::get('/about', [Front\HomePageController::class, 'about']);
+    // Route::get('/faq', [Front\HomePageController::class, 'faq']);
+    Route::get('/page/{page}', [Front\HomePageController::class, 'page']);
+    Route::get('/landing/{landing}', [Front\HomePageController::class, 'landing']);
+    Route::get('/virtual', [Front\HomePageController::class, 'virtualreality']);
+    Route::get('/videos', [Front\HomePageController::class, 'video']);
+    Route::get('/privacy', [Front\HomePageController::class, 'privacy']);
+    Route::get('/terms', [Front\HomePageController::class, 'terms']);
+    Route::get('/contact', [Front\ContactController::class, 'index']);
+    Route::post('/contact/send', [Front\ContactController::class, 'send'])->name('contact')->middleware('XSS');
+    Route::post('/contact/send-full', [Front\ContactController::class, 'sendFull'])->name('contact-full')->middleware('XSS');
+    Route::get('/turkish-citizenship', [Front\CitizenshipController::class, 'index']);
+    Route::get('/career', [Front\CareerController::class, 'index']);
+    Route::post('/career/send', [Front\CareerController::class, 'store'])->name('career');
+    Route::get('/404', [Front\HomePageController::class, 'errorPage']);
+    Route::get('/agents', [Front\AgentController::class, 'index']);
+    Route::get('/agents/{agent}', [Front\AgentController::class, 'show'])->name('agents.show');
+    Route::get('/packages', [Front\HomePageController::class, 'membershipPackage']);
+    Route::get('/news', [Front\NewsController::class, 'index'])->name('news.index');
+    Route::get('/news/{news}', [Front\NewsController::class, 'show'])->name('news.show');
+    Route::get('/news/popular-topic/{category}', [Front\NewsController::class, 'popularTopic'])->name('news.popular-topic');
+    Route::get('/tag/{tag}', [Front\HomePageController::class, 'tag'])->name('tags');
+    Route::get('/add-listing', [Front\HomePageController::class, 'addListing'])->middleware('auth');
+    Route::post('/state-city', [Front\HomePageController::class, 'getCity'])->name('state.city');
+    Route::get('/search-sale', [Front\HomePageController::class, 'searchProperty'])->name('search.property');
+    Route::get('/search-project', [Front\HomePageController::class, 'searchProject'])->name('search.pproject');
+    Route::get('/ivr-search', [Front\HomePageController::class, 'ivrsearch'])->name('search.ivr-property');
+    Route::get('/search-rent', [Front\HomePageController::class, 'searchPropertyRent'])->name('search.rent');
+    Route::post('/autocomplete/fetch', [Front\HomePageController::class, 'fetch'])->name('autocomplete.fetch');
+    Route::post('/search-properties', [Front\PropertyController::class, 'searchProperties'])->name('search.properties');
+    Route::post('/search-project', [Front\PropertyController::class, 'searchProperties'])->name('search.project');
+    Route::post('/search-blogs', [Front\NewsController::class, 'searchBlogs'])->name('search.blogs');
+    Route::post('/search-projects', [Front\ProjectController::class, 'searchProjects'])->name('search.projects');
+    Route::post('/sort-agent', [Front\AgentController::class, 'sortAgent'])->name('agent.sort');
+    Route::post('/messages', [Front\MessagesController::class, 'store'])->name('messages.store')->middleware('XSS');
+    Route::post('/booking-request', [Front\BookingRequestController::class, 'store'])->name('booking.request')->middleware('XSS');
+    Route::get('/language-change/{id}', [Front\LanguageController::class, 'defaultChange'])->name('language.defaultChange');
+    Route::get('/currency/{id}', [Front\HomePageController::class, 'currency'])->name('front.currency');
+    Route::post('/subscribe', [Admin\SubscribeController::class, 'subscribe'])->name('email.subscribe')->middleware('XSS');
+    Route::get('/all-properties', [Front\PropertyController::class, 'getAllProperties'])->name('get.allproperties');
+    Route::get('/login/{provider}', [Admin\SocialLoginController::class, 'redirectToProvider'])->name('redirect.provider');
+    Route::get('/login/{provider}/callback', [Admin\SocialLoginController::class, 'handleProviderCallback']);
+});
 
 Route::get('/', [Front\HomePageController::class, 'index'])->name('front.home');
 Route::get('/zz', [Front\HomePageController::class, 'soon']);
@@ -48,67 +114,7 @@ Route::get('/landing-topkapi', [Front\HomePageController::class, 'landdingTopkap
 // Route::get('/help',function(){
 //     return File::get(public_path() . '/../help/index.html');
 // });
-Route::get('/properties', [Front\PropertyController::class, 'index'])->name('properties');;
-Route::get('/drive', [Front\ProjectController::class, 'index']);
-Route::get('/properties-map', [Front\PropertyController::class, 'maps']);
-// Route::get('/properties/rent',[Front\PropertyController::class,'rent'])->name('property.rent');
-// Route::get('/properties/sale',[Front\PropertyController::class,'sale'])->name('property.sale');
-Route::get('/properties/city/{city}', [Front\PropertyController::class, 'city'])->name('property.city');
-Route::get('/properties/getCity/{city}', [Front\PropertyController::class, 'getCity'])->name('get.city');
-Route::get('/properties/state/{state}', [Front\PropertyController::class, 'State'])->name('property.state');
-Route::get('/properties/sale', [Front\PropertyController::class, 'Sale'])->name('property.sale');
-Route::get('/properties/rent', [Front\PropertyController::class, 'Rent'])->name('property.rent');
-Route::get('/properties/property/{category}', [Front\PropertyController::class, 'category'])->name('get.category');
-Route::get('/properties/{property}', [Front\PropertyController::class, 'singleProperty'])->name('front.property');
-Route::get('/drive/{property}', [Front\ProjectController::class, 'singleProject'])->name('front.project');
-Route::get('/ivr', [Front\HomePageController::class, 'ivrhome'])->name('front.ivr-index');
-Route::get('/ivr/{property}', [Front\PropertyController::class, 'ivrProperty'])->name('front.property-ivr');
-Route::get('/ivr-2/{property}', [Front\PropertyController::class, 'ivrProp'])->name('front.property-ivr-2');
-Route::get('/ivr-3/{property}', [Front\PropertyController::class, 'ivrProp3'])->name('front.property-ivr-3');
-Route::get('/ivr-4/{property}', [Front\PropertyController::class, 'ivrProp4'])->name('front.property-ivr-4');
-Route::get('/services/{service}', [Front\HomePageController::class, 'service'])->name('single-service');
-Route::get('/about', [Front\HomePageController::class, 'about']);
-// Route::get('/faq', [Front\HomePageController::class, 'faq']);
-Route::get('/page/{page}', [Front\HomePageController::class, 'page']);
-Route::get('/landing/{landing}', [Front\HomePageController::class, 'landing']);
-Route::get('/virtual', [Front\HomePageController::class, 'virtualreality']);
-Route::get('/videos', [Front\HomePageController::class, 'video']);
-Route::get('/privacy', [Front\HomePageController::class, 'privacy']);
-Route::get('/terms', [Front\HomePageController::class, 'terms']);
-Route::get('/contact', [Front\ContactController::class, 'index']);
-Route::post('/contact/send', [Front\ContactController::class, 'send'])->name('contact')->middleware('XSS');
-Route::post('/contact/send-full', [Front\ContactController::class, 'sendFull'])->name('contact-full')->middleware('XSS');
-Route::get('/turkish-citizenship', [Front\CitizenshipController::class, 'index']);
-Route::get('/career', [Front\CareerController::class, 'index']);
-Route::post('/career/send', [Front\CareerController::class, 'store'])->name('career');
-Route::get('/404', [Front\HomePageController::class, 'errorPage']);
-Route::get('/agents', [Front\AgentController::class, 'index']);
-Route::get('/agents/{agent}', [Front\AgentController::class, 'show'])->name('agents.show');
-Route::get('/packages', [Front\HomePageController::class, 'membershipPackage']);
-Route::get('/news', [Front\NewsController::class, 'index'])->name('news.index');
-Route::get('/news/{news}', [Front\NewsController::class, 'show'])->name('news.show');
-Route::get('/news/popular-topic/{category}', [Front\NewsController::class, 'popularTopic'])->name('news.popular-topic');
-Route::get('/tag/{tag}', [Front\HomePageController::class, 'tag'])->name('tags');
-Route::get('/add-listing', [Front\HomePageController::class, 'addListing'])->middleware('auth');
-Route::post('/state-city', [Front\HomePageController::class, 'getCity'])->name('state.city');
-Route::get('/search-sale', [Front\HomePageController::class, 'searchProperty'])->name('search.property');
-Route::get('/search-project', [Front\HomePageController::class, 'searchProject'])->name('search.pproject');
-Route::get('/ivr-search', [Front\HomePageController::class, 'ivrsearch'])->name('search.ivr-property');
-Route::get('/search-rent', [Front\HomePageController::class, 'searchPropertyRent'])->name('search.rent');
-Route::post('/autocomplete/fetch', [Front\HomePageController::class, 'fetch'])->name('autocomplete.fetch');
-Route::post('/search-properties', [Front\PropertyController::class, 'searchProperties'])->name('search.properties');
-Route::post('/search-project', [Front\PropertyController::class, 'searchProperties'])->name('search.project');
-Route::post('/search-blogs', [Front\NewsController::class, 'searchBlogs'])->name('search.blogs');
-Route::post('/search-projects', [Front\ProjectController::class, 'searchProjects'])->name('search.projects');
-Route::post('/sort-agent', [Front\AgentController::class, 'sortAgent'])->name('agent.sort');
-Route::post('/messages', [Front\MessagesController::class, 'store'])->name('messages.store')->middleware('XSS');
-Route::post('/booking-request', [Front\BookingRequestController::class, 'store'])->name('booking.request')->middleware('XSS');
-Route::get('/language-change/{id}', [Front\LanguageController::class, 'defaultChange'])->name('language.defaultChange');
-Route::get('/currency/{id}', [Front\HomePageController::class, 'currency'])->name('front.currency');
-Route::post('/subscribe', [Admin\SubscribeController::class, 'subscribe'])->name('email.subscribe')->middleware('XSS');
-Route::get('/all-properties', [Front\PropertyController::class, 'getAllProperties'])->name('get.allproperties');
-Route::get('/login/{provider}', [Admin\SocialLoginController::class, 'redirectToProvider'])->name('redirect.provider');
-Route::get('/login/{provider}/callback', [Admin\SocialLoginController::class, 'handleProviderCallback']);
+
 
 Route::get('/analytics', function () {
     //    $start  = new Carbon\Carbon('2021-10-05 15:00:03');
