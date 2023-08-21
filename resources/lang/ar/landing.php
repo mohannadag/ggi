@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'contact-with-us' => 'اضغط للتواصل',
+    'contact-with-us' => 'اضغط للتواصل معنا',
     'hero-span' => 'شقق فخمة للبيع وسط اسطنبول ',
     'hero-title' => 'تملك و احصل على الجنسية التركية ',
     'hero-description' => 'مشروع سكني متكامل الخدمات يحتوي مول تجاري ضمن موقع مركزي',
@@ -54,7 +54,10 @@ return array(
     'service-citizenship' => 'معاملات الجنسية',
     'send-message' => 'تواصل معنا',
     'contact-us' => 'اتصل بنا',
-    'yourname' => 'الاسم',
+    'firstname' => 'الاسم الاول',
+    'lastname' => 'الاسم الاخير',
+    'bedrooms' => 'عدد الغرف',
+    'price' => 'السعر',
     'email' => 'الايميل',
     'phone' => 'الهاتف',
     'yourmessage' => 'الرسالة',

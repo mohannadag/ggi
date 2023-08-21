@@ -412,7 +412,7 @@
                             <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <i class='bx bx-user'></i>
-                                    <input type="text" name="name" id="fName" class="form-control" required data-error="Please enter your name" placeholder="{{ trans('landing.yourname') }}">
+                                    <input type="text" id="fName" name="fname" class="form-control" required data-error="Please enter your name" placeholder="{{ trans('landing.firstname') }}">
                                 </div>
                                 <div class="text-danger" id="nameErrorMsg"></div>
                             </div>
@@ -420,15 +420,39 @@
                             <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <i class='bx bx-user'></i>
-                                    <input type="email" name="email" id="InputEmail" class="form-control" required data-error="Please enter your email" placeholder="{{ trans('landing.email') }}">
+                                    <input type="text" id="lName" name="lname" class="form-control" required data-error="Please enter your name" placeholder="{{ trans('landing.lastname') }}">
+                                </div>
+                                <div class="text-danger" id="nameErrorMsg"></div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <i class='bx bx-user'></i>
+                                    <input type="email" id="InputEmail" name="email" class="form-control" data-error="Please enter your email" placeholder="{{ trans('landing.email') }}">
                                 </div>
                                 <div class="text-danger" id="emailErrorMsg"></div>
                             </div>
 
-                            <div class="col-lg-12 col-sm-12">
+                            <div class="col-lg-6 col-sm-6">
                                 <div class="form-group">
                                     <i class='bx bx-phone'></i>
-                                    <input type="text" name="phone_number" id="InputPhone" required data-error="Please enter your number" class="form-control" placeholder="{{ trans('landing.phone') }}">
+                                    <input type="tel" name="phone" id="InputPhone" required data-error="Please enter your number" class="phoneInput form-control" placeholder="{{ trans('landing.phone') }}">
+                                </div>
+                                <div class="text-danger" id="phoneErrorMsg"></div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <i class='bx bxs-purchase-tag'></i>
+                                    <input type="number" id="mPrice" name="mPrice" data-error="Please enter price" class="form-control" placeholder="{{ trans('landing.price') }}">
+                                </div>
+                                <div class="text-danger" id="phoneErrorMsg"></div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                   <i class='bx bx-border-all'></i>
+                                    <input type="number" id="numberOfBedrooms" name="numberOfBedrooms" data-error="Please enter rooms number" class="form-control" placeholder="{{ trans('landing.bedrooms') }}">
                                 </div>
                                 <div class="text-danger" id="phoneErrorMsg"></div>
                             </div>
@@ -482,6 +506,81 @@
     </script>
 
 <script type="text/javascript">
+    $('#contact_form').on('submit', function(e) {
+        e.preventDefault();
+        $('.v7').text("Submitting...");
+        $('.v7').prop('disabled', true);
+        let fname = $('#fName').val();
+        let lname = $('#lName').val();
+        let email = $('#InputEmail').val();
+        let phone = $('#InputPhone').val();
+        let type = "";
+        let state = "";
+        let maxPrice = $('#mPrice').val();
+        let numberOfBedrooms = $('#numberOfBedrooms').val();
+        // console.log(maxPrice);
+        // let message = $('#message').val();
+        $.ajax({
+            url: "{{ route('contact-full') }}",
+            type: "POST",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                fname: fname,
+                lname: lname,
+                email: email,
+                phone: phone,
+                type: type,
+                state: state,
+                maxPrice: maxPrice,
+                numberOfBedrooms : numberOfBedrooms,
+                // message: message,
+            },
+            success: function(response) {
+                // $('#successMsg').show();
+                // console.log(response);
+                $('#fName').val("");
+                $('#lName').val("");
+                $('#InputEmail').val("");
+                $('#InputPhone').val("");
+                $('#message').val("");
+                $('#category').val("");
+                $('#location').val("");
+                $('#mPrice').val("");
+                $('#numberOfBedrooms').val("");
+                $('.v7').text("Send Message");
+                $('.v7').prop('disabled', false);
+                console.log('success');
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Thanks for contacting us!',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+            },
+            error: function(response) {
+                // $('#nameErrorMsg').text(response.responseJSON.errors.name);
+                // $('#emailErrorMsg').text(response.responseJSON.errors.email);
+                // $('#phoneErrorMsg').text(response.responseJSON.errors.phone);
+                // $('#messageErrorMsg').text(response.responseJSON.errors.message);
+                $('#responseErrorMsg').text(response.responseJSON.message);
+
+                // $('#nameErrorMsg').delay(3200).fadeOut(300);
+                // $('#emailErrorMsg').delay(3200).fadeOut(300);
+                // $('#phoneErrorMsg').delay(3200).fadeOut(300);
+                $('#responseErrorMsg').delay(3200).fadeOut(300);
+                console.log('faild');
+                $('.v7').text("Send Message");
+                $('.v7').prop('disabled', false);
+
+            },
+        });
+    });
+
+</script>
+
+{{-- <script type="text/javascript">
     $('#contact_form').on('submit', function(e) {
         e.preventDefault();
         $('.v7').text("Submitting...");
@@ -559,5 +658,5 @@
             $("body").removeClass("loading");
         }
     });
-</script>
+</script> --}}
 @endpush
