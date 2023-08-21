@@ -34,7 +34,11 @@
 <div class="d-flex justify-content-between p-3 sticky-top bg-light">
     <img src="https://ggiturkey.com/frontend/images/logo/logo.png" class="logo-one" alt="Logo" width="100px">
     <div class="appointment-btn">
-        <a href="#contact-area" class="default-btn default-bg-buttercup">
+        <a href="#contact-area"
+            href="https://wa.me/905373539567"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="default-btn default-bg-buttercup">
             {{trans('landing.contact-with-us')}}
             <i class='bx bx-right-arrow-alt'></i>
         </a>
